@@ -1,0 +1,254 @@
+import { FC, PropsWithChildren } from 'react';
+import styled from 'styled-components';
+
+import { Size } from '@/shared/types';
+
+type Align = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
+type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+type Justify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+
+interface IStyledFlexWrapProps {
+  $align?: Align;
+  $alignSm?: Align;
+  $alignMd?: Align;
+  $alignLg?: Align;
+  $alignXl?: Align;
+  $alignXxl?: Align;
+  $basis?: number | string;
+  $basisSm?: number | string;
+  $basisMd?: number | string;
+  $basisLg?: number | string;
+  $basisXl?: number | string;
+  $basisXxl?: number | string;
+  $direction?: Direction;
+  $directionSm?: Direction;
+  $directionMd?: Direction;
+  $directionLg?: Direction;
+  $directionXl?: Direction;
+  $directionXxl?: Direction;
+  $gap?: Size;
+  $gapSm?: Size;
+  $gapMd?: Size;
+  $gapLg?: Size;
+  $gapXl?: Size;
+  $gapXxl?: Size;
+  $grow?: number;
+  $growSm?: number;
+  $growMd?: number;
+  $growLg?: number;
+  $growXl?: number;
+  $growXxl?: number;
+  $justify?: Justify;
+  $justifySm?: Justify;
+  $justifyMd?: Justify;
+  $justifyLg?: Justify;
+  $justifyXl?: Justify;
+  $justifyXxl?: Justify;
+  $mb?: Size;
+  $wrap?: Wrap;
+  $wrapSm?: Wrap;
+  $wrapMd?: Wrap;
+  $wrapLg?: Wrap;
+  $wrapXl?: Wrap;
+  $wrapXxl?: Wrap;
+}
+
+const StyledFlexWrap = styled.div<IStyledFlexWrapProps>`
+  align-items: ${({ $align }) => $align};
+  display: flex;
+  flex-basis: ${({ $basis }) => $basis};
+  flex-direction: ${({ $direction }) => $direction};
+  flex-grow: ${({ $grow }) => $grow};
+  flex-wrap: ${({ $wrap }) => $wrap};
+  gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
+  justify-content: ${({ $justify }) => $justify};
+  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+    align-items: ${({ $alignSm }) => $alignSm};
+    flex-basis: ${({ $basisSm }) => $basisSm};
+    flex-direction: ${({ $directionSm }) => $directionSm};
+    flex-grow: ${({ $growSm }) => $growSm};
+    flex-wrap: ${({ $wrapSm }) => $wrapSm};
+    gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
+    justify-content: ${({ $justifySm }) => $justifySm};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    align-items: ${({ $alignMd }) => $alignMd};
+    flex-basis: ${({ $basisMd }) => $basisMd};
+    flex-direction: ${({ $directionMd }) => $directionMd};
+    flex-grow: ${({ $growMd }) => $growMd};
+    flex-wrap: ${({ $wrapMd }) => $wrapMd};
+    gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
+    justify-content: ${({ $justifyMd }) => $justifyMd};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+    align-items: ${({ $alignLg }) => $alignLg};
+    flex-basis: ${({ $basisLg }) => $basisLg};
+    flex-direction: ${({ $directionLg }) => $directionLg};
+    flex-grow: ${({ $growLg }) => $growLg};
+    flex-wrap: ${({ $wrapLg }) => $wrapLg};
+    gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
+    justify-content: ${({ $justifyLg }) => $justifyLg};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+    align-items: ${({ $alignXl }) => $alignXl};
+    flex-basis: ${({ $basisXl }) => $basisXl};
+    flex-direction: ${({ $directionXl }) => $directionXl};
+    flex-grow: ${({ $growXl }) => $growXl};
+    flex-wrap: ${({ $wrapXl }) => $wrapXl};
+    gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
+    justify-content: ${({ $justifyXl }) => $justifyXl};
+  }
+  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+    align-items: ${({ $alignXxl }) => $alignXxl};
+    flex-basis: ${({ $basisXxl }) => $basisXxl};
+    flex-direction: ${({ $directionXxl }) => $directionXxl};
+    flex-grow: ${({ $growXxl }) => $growXxl};
+    flex-wrap: ${({ $wrapXxl }) => $wrapXxl};
+    gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
+    justify-content: ${({ $justifyXxl }) => $justifyXxl};
+  }
+`;
+
+interface IFlexWrapProps extends PropsWithChildren {
+  align?: Align;
+  alignSm?: Align;
+  alignMd?: Align;
+  alignLg?: Align;
+  alignXl?: Align;
+  alignXxl?: Align;
+  basis?: number | string;
+  basisSm?: number | string;
+  basisMd?: number | string;
+  basisLg?: number | string;
+  basisXl?: number | string;
+  basisXxl?: number | string;
+  direction?: Direction;
+  directionSm?: Direction;
+  directionMd?: Direction;
+  directionLg?: Direction;
+  directionXl?: Direction;
+  directionXxl?: Direction;
+  gap?: Size;
+  gapSm?: Size;
+  gapMd?: Size;
+  gapLg?: Size;
+  gapXl?: Size;
+  gapXxl?: Size;
+  grow?: number;
+  growSm?: number;
+  growMd?: number;
+  growLg?: number;
+  growXl?: number;
+  growXxl?: number;
+  justify?: Justify;
+  justifySm?: Justify;
+  justifyMd?: Justify;
+  justifyLg?: Justify;
+  justifyXl?: Justify;
+  justifyXxl?: Justify;
+  mb?: Size;
+  wrap?: Wrap;
+  wrapSm?: Wrap;
+  wrapMd?: Wrap;
+  wrapLg?: Wrap;
+  wrapXl?: Wrap;
+  wrapXxl?: Wrap;
+}
+
+export const FlexWrap: FC<IFlexWrapProps> = ({
+  align,
+  alignSm,
+  alignMd,
+  alignLg,
+  alignXl,
+  alignXxl,
+  basis,
+  basisSm,
+  basisMd,
+  basisLg,
+  basisXl,
+  basisXxl,
+  direction,
+  directionSm,
+  directionMd,
+  directionLg,
+  directionXl,
+  directionXxl,
+  gap,
+  gapSm,
+  gapMd,
+  gapLg,
+  gapXl,
+  gapXxl,
+  grow,
+  growSm,
+  growMd,
+  growLg,
+  growXl,
+  growXxl,
+  justify,
+  justifySm,
+  justifyMd,
+  justifyLg,
+  justifyXl,
+  justifyXxl,
+  mb,
+  wrap,
+  wrapSm,
+  wrapMd,
+  wrapLg,
+  wrapXl,
+  wrapXxl,
+  children,
+}) => (
+  <StyledFlexWrap
+    $align={align}
+    $alignSm={alignSm}
+    $alignMd={alignMd}
+    $alignLg={alignLg}
+    $alignXl={alignXl}
+    $alignXxl={alignXxl}
+    $basis={basis}
+    $basisSm={basisSm}
+    $basisMd={basisMd}
+    $basisLg={basisLg}
+    $basisXl={basisXl}
+    $basisXxl={basisXxl}
+    $direction={direction}
+    $directionSm={directionSm}
+    $directionMd={directionMd}
+    $directionLg={directionLg}
+    $directionXl={directionXl}
+    $directionXxl={directionXxl}
+    $gap={gap}
+    $gapSm={gapSm}
+    $gapMd={gapMd}
+    $gapLg={gapLg}
+    $gapXl={gapXl}
+    $gapXxl={gapXxl}
+    $grow={grow}
+    $growSm={growSm}
+    $growMd={growMd}
+    $growLg={growLg}
+    $growXl={growXl}
+    $growXxl={growXxl}
+    $justify={justify}
+    $justifySm={justifySm}
+    $justifyMd={justifyMd}
+    $justifyLg={justifyLg}
+    $justifyXl={justifyXl}
+    $justifyXxl={justifyXxl}
+    $mb={mb}
+    $wrap={wrap}
+    $wrapSm={wrapSm}
+    $wrapMd={wrapMd}
+    $wrapLg={wrapLg}
+    $wrapXl={wrapXl}
+    $wrapXxl={wrapXxl}
+  >
+    {children}
+  </StyledFlexWrap>
+);

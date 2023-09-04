@@ -1,0 +1,103 @@
+'use client';
+
+import { useRef, useState, FC } from 'react';
+import styled, { useTheme } from 'styled-components';
+
+import { Icon, Typography } from '.';
+import { useOutsideClick } from '@/hooks';
+
+const StyledPopover = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  bottom: 0;
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  left: 5px;
+  position: absolute;
+  transform: translate(0, calc(100% + 10px));
+  z-index: 999;
+`;
+
+const StyledArrow = styled.div<{ $hasTitle: boolean }>`
+  left: 10px;
+  position: absolute;
+  top: calc(-0.5rem - 1px);
+
+  &::before, &::after {
+    border-color: transparent;
+    border-style: solid;
+    border-width: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size2} ${theme.gutters.size2}`};
+    content: "";
+    position: absolute;
+  }
+
+  &::before {
+    border-bottom-color: rgba(0,0,0,.25);
+    top: 0;
+  }
+
+  &::after {
+    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.border : theme.colors.white};
+    top: 1px;
+  }
+`;
+
+const StyledHeader = styled.div`
+  background-color: ${({ theme }) => theme.colors.border};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: ${({ theme }) => theme.gutters.size2};
+`
+
+const StyledBody = styled.div`
+  line-height: 1.3;
+  padding: ${({ theme }) => theme.gutters.size2};
+`
+
+const StyledLabel = styled.label`
+  align-items: center;
+  color: ${({ theme }) => theme.colors.primaryText};
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+  line-height: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+interface IPopoverProps {
+  title?: string;
+  description: string;
+}
+
+export const Popover: FC<IPopoverProps> = ({ title, description }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const theme = useTheme()
+  const wrapperRef = useRef(null);
+  
+  const handleOnClick = () => setIsVisible(prevIsVisible => !prevIsVisible);
+  useOutsideClick({ ref: wrapperRef, callback: handleOnClick });
+
+  return (
+    <>
+      <StyledLabel onClick={handleOnClick}>
+        <Icon name="info" mr={1} color={theme.colors.primary} width={15} height={15} />
+        Tell me about this
+      </StyledLabel>
+      {isVisible && (
+        <StyledPopover ref={wrapperRef}>
+          <StyledArrow $hasTitle={!!title} />
+          {title && <StyledHeader>
+            <Typography variant="label" fontWeight="bold">{title}</Typography>
+          </StyledHeader>}
+          <StyledBody>
+            <Typography variant="span">{description}</Typography>
+          </StyledBody>
+        </StyledPopover>
+      )}
+    </>
+  );
+};
