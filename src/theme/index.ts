@@ -83,6 +83,14 @@ const gutters: IGutters = {
   size10: "2.5rem",
   size11: "2.75rem",
   size12: "3rem",
+  size13: "3.25rem",
+  size14: "3.5rem",
+  size15: "3.75rem",
+  size16: "4rem",
+  size17: "4.25rem",
+  size18: "4.5rem",
+  size19: "4.75rem",
+  size20: "5rem",
 };
 
 const shadows: IShadows = {

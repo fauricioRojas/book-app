@@ -57,6 +57,14 @@ export interface IGutters {
   size10: string;
   size11: string;
   size12: string;
+  size13: string;
+  size14: string;
+  size15: string;
+  size16: string;
+  size17: string;
+  size18: string;
+  size19: string;
+  size20: string;
 }
 
 export interface IShadows {

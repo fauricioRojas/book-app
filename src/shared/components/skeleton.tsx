@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
-import { Size } from '@/shared/types';
+import { FullSize, Size } from '@/shared/types';
 
-type Height = 'sm' | 'md' | 'lg' | 'xl';
+type Height = FullSize;
 type Width = 'quarter' | 'half' | 'three-quarters' | 'full';
 
 interface IStyledSkeletonProps {
@@ -36,21 +36,9 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   animation-timing-function: ease;
   background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.secondary} 63%)`};
   background-size: 400% 100%;
+  height: ${({ $height, theme }) => theme.gutters[`size${$height}`]};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
-
-  ${({ $height, theme }) => $height === 'sm' && css`
-    height: ${theme.gutters.size4};
-  `};
-  ${({ $height, theme }) => $height === 'md' && css`
-    height: ${theme.gutters.size6};
-  `};
-  ${({ $height, theme }) => $height === 'lg' && css`
-    height: ${theme.gutters.size8};
-  `};
-  ${({ $height, theme }) => $height === 'xl' && css`
-    height: ${theme.gutters.size12};
-  `};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
