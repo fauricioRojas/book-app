@@ -14,6 +14,7 @@ export * from "./global-styles";
 export * from "./icon";
 export * from "./icon-button";
 export * from "./input";
+export * from "./link";
 export * from "./photo";
 export * from "./photo-preview";
 export * from "./popover";

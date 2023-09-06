@@ -37,6 +37,12 @@ export const ENGLISH: ILanguageTranslation = {
   dog: "Dog",
   cat: "Cat",
   back: "Back",
+  home: "Home",
+  petNotFound: "Pet Not Found",
+  vehicleNotFound: "Vehicle Not Found",
+  weAresorry:
+    "We're sorry, we couldn't find the resource you were looking for.",
+  tryThesePages: "Try one of these pages:",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

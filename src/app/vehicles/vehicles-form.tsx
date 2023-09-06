@@ -67,9 +67,9 @@ export const VehiclesForm = () => {
       date: new Date(newVehicleData.dateOfPurchase),
       description: newVehicleData.description,
       photo: newVehicleData.photo,
-    }).select('id');
+    }).select('id').single();
     await supabaseClient.from(VEHICLES_TABLE).insert({
-      noteId: data ? data[0].id : null,
+      noteId: data?.id,
       plateNumber: newVehicleData.plateNumber,
       brand: newVehicleData.brand,
       model: newVehicleData.model,

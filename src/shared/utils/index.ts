@@ -16,3 +16,13 @@ export const detectMobileDevice = () => {
     /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
   return regex.test(navigator.userAgent);
 };
+
+export const formatDate = (date: Date): string => {
+  const newDate = typeof date === "string" ? new Date(date) : date;
+
+  return `${newDate.getDate().toString().padStart(2, "0")}/${(
+    newDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(2, "0")}/${newDate.getFullYear()}`;
+};

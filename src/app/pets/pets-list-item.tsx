@@ -3,12 +3,13 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, IconName, Typography } from '@/shared/components';
+import { Card, FlexWrap, Icon, Link, IconName, Typography } from '@/shared/components';
 import { IPet } from '@/supabase';
 
 interface IPetsListItemProps extends IPet {}
 
 export const PetsListItem: FC<IPetsListItemProps> = ({
+  id,
   name,
   breed,
   notes: {
@@ -18,20 +19,22 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
   const { colors } = useTheme();
 
   return (
-    <Card>
-      <FlexWrap justify="space-between" grow={1}>
-        <Typography variant="h5">
-          {name}
-          {' '}
-          <Typography variant="label">({breed})</Typography>
-        </Typography>
-        <Icon
-          name={type as IconName}
-          color={colors.primaryText}
-          height={25}
-          width={25}
-        />
-      </FlexWrap>
-    </Card>
+    <Link href={`/pets/${id}`} asContainer>
+      <Card>
+        <FlexWrap justify="space-between">
+          <Typography variant="h5">
+            {name}
+            {' '}
+            <Typography variant="label">({breed})</Typography>
+          </Typography>
+          <Icon
+            name={type as IconName}
+            color={colors.primaryText}
+            height={25}
+            width={25}
+          />
+        </FlexWrap>
+      </Card>
+    </Link>
   );
 };

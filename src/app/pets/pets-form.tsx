@@ -64,9 +64,9 @@ export const PetsForm = () => {
       date: new Date(newPetData.dateOfBirth),
       description: newPetData.description,
       photo: newPetData.photo,
-    }).select('id');
+    }).select('id').single();
     await supabaseClient.from(PETS_TABLE).insert({
-      noteId: data ? data[0].id : null,
+      noteId: data?.id,
       name: newPetData.name,
       breed: newPetData.breed,
     });

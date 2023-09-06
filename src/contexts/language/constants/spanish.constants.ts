@@ -37,6 +37,12 @@ export const SPANISH: ILanguageTranslation = {
   dog: "Perro",
   cat: "Gato",
   back: "Atrás",
+  home: "Inicio",
+  petNotFound: "Mascota no Encontrada",
+  vehicleNotFound: "Vehículo no Encontrado",
+  weAresorry:
+    "Lo sentimos, no pudimos encontrar el recurso que estaba buscando.",
+  tryThesePages: "Intente alguna de estas páginas:",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

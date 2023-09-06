@@ -37,6 +37,11 @@ export interface ILanguageTranslation extends Language {
   dog: string;
   cat: string;
   back: string;
+  home: string;
+  petNotFound: string;
+  vehicleNotFound: string;
+  weAresorry: string;
+  tryThesePages: string;
   // Form error messages
   required: string;
   validEmail: string;

@@ -1,0 +1,38 @@
+import { notFound } from "next/navigation";
+
+import { IVehicle, VEHICLES_TABLE, supabaseClient } from "@/supabase";
+import { VehicleDetails } from "./vehicle-details";
+
+interface IVehicleParams {
+  params: {
+    id: string;
+  };
+}
+
+const Vehicle = async ({ params: { id } }: IVehicleParams) => {
+  const { data: vehicle } = await supabaseClient.from(VEHICLES_TABLE).select<string, IVehicle>(`
+    id,
+    plateNumber,
+    brand,
+    model,
+    notes (
+      id,
+      type,
+      date,
+      description,
+      photo
+    )
+  `).match({ id }).single();
+
+  if (!vehicle) {
+    notFound();
+  }
+
+  return (
+    <main>
+      <VehicleDetails {...vehicle} />
+    </main>
+  );
+};
+
+export default Vehicle;
