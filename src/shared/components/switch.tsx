@@ -36,7 +36,7 @@ const StyledSwitch = styled.div<IStyledSwitchProps>`
     }
   
     .slider {
-      background-color: ${({ theme }) => theme.colors.gray300};
+      background-color: ${({ theme }) => theme.colors.gray400};
       border-radius: 9px;
       bottom: 0;
       cursor: pointer;

@@ -8,8 +8,8 @@ interface IStyledSelectProps {
 }
 
 const StyledSelect = styled.select<IStyledSelectProps>`
-  background-color: ${({ theme }) => theme.colors.secondary};
-  border: 1px solid transparent;
+  background-color: transparent;
+  border: 1px solid border;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   cursor: pointer;

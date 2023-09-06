@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
@@ -19,22 +20,32 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
 }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
+  const router = useRouter();
 
   return (
     <>
-      <FlexWrap align="center" gap={6} mb={8}>
-        <Typography
-          variant="h1"
-          fontWeight="bold"
-        >
-          {brand}
-        </Typography>
+      <FlexWrap align="baseline" gap={3} mb={8}>
         <Icon
-          name={notes.type as IconName}
-          height={40}
-          width={40}
+          name="arrow-back"
+          height={25}
+          width={25}
           color={colors.primaryText}
+          onClick={router.back}
         />
+        <FlexWrap align="center" gap={6}>
+          <Typography
+            variant="h1"
+            fontWeight="bold"
+          >
+            {brand}
+          </Typography>
+          <Icon
+            name={notes.type as IconName}
+            height={40}
+            width={40}
+            color={colors.primaryText}
+          />
+        </FlexWrap>
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
         <FlexWrap direction="column" gap={2}>

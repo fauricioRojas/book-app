@@ -61,6 +61,7 @@ export interface IGutters {
 
 export interface IShadows {
   sm: string;
+  md: string;
   lg: string;
 }
 

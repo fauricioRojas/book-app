@@ -37,9 +37,9 @@ const commonColors = {
 
 export const lightColors: IColors = {
   ...commonColors,
-  secondary100: "#E9EEFB",
-  secondary: "#EDF1FC",
-  secondary900: "#D3D8E8",
+  secondary100: "#ECEEF1",
+  secondary: "#E8EAED",
+  secondary900: "#797C7E",
   neutral: "#FEFEFE",
   neutralTransparent: "rgba(255,255,255,0.9)",
   primaryText: "#292A36",
@@ -50,9 +50,9 @@ export const lightColors: IColors = {
 
 export const darkColors: IColors = {
   ...commonColors,
-  secondary100: "#838282",
-  secondary: "#353535",
-  secondary900: "#2A2A2A",
+  secondary100: "#969A9B",
+  secondary: "#3C4043",
+  secondary900: "#242728",
   neutral: "#1A1A1A",
   neutralTransparent: "rgba(16, 20, 24, 0.8)",
   primaryText: "#E4E6EB",
@@ -87,7 +87,8 @@ const gutters: IGutters = {
 
 const shadows: IShadows = {
   sm: "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
-  lg: "0 1rem 3rem rgba(0, 0, 0, 0.175)",
+  md: "0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)",
+  lg: "0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15)",
 };
 
 const commonTheme = {
