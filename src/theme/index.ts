@@ -23,6 +23,7 @@ const commonColors = {
   black: "#000",
   success: "#31A24C",
   error: "#DC3545",
+  error900: "#AC2836",
   warning: "#FC6E20",
   gray100: "#F8F9FA",
   gray200: "#E9ECEF",

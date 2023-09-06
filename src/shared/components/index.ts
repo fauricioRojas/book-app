@@ -7,6 +7,7 @@ export * from "./camera";
 export * from "./card";
 export * from "./checkbox";
 export * from "./col";
+export * from "./confirmation-modal";
 export * from "./container";
 export * from "./drawer";
 export * from "./flex-wrap";

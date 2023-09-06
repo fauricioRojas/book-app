@@ -2,10 +2,10 @@
 
 import { createContext, useContext } from "react";
 
-import { DrawerArgs } from "./drawer.types";
+import { IDrawerArgs } from "./drawer.types";
 
 interface IDrawerContext {
-  showDrawer: (args: DrawerArgs) => void;
+  showDrawer: (args: IDrawerArgs) => void;
   hideDrawer: () => void;
 }
 

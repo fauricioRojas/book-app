@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { Size } from '@/shared/types';
 
-type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary';
+type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error';
 type Type = 'button' | 'submit' | 'reset';
 
 interface IStyledButtonProps {
@@ -82,6 +82,17 @@ const StyledButton = styled.button<IStyledButtonProps>`
     &:focus, &:hover {
       background-color: ${theme.colors.secondary};
       color: ${theme.colors.primaryText};
+    }
+  `}
+
+  ${({ $variant, theme }) => $variant === 'error' && css`
+    background-color: ${theme.colors.error};
+    border-color: ${theme.colors.error};
+    color: ${theme.colors.white};
+
+    &:focus, &:hover {
+      background-color: ${theme.colors.error900};
+      border-color: ${theme.colors.error900};
     }
   `}
 

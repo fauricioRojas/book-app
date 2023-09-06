@@ -21,6 +21,7 @@ export interface IColors {
   black: string;
   success: string;
   error: string;
+  error900: string;
   warning: string;
   skeleton: string;
   border: string;
