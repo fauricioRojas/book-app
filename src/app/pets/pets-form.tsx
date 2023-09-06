@@ -16,6 +16,7 @@ import { useFormRules } from "@/hooks";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { ITypeSelectorOption } from "@/shared/types";
+import { NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
 
 interface IPetsForm {
   name: string;
@@ -57,8 +58,18 @@ export const PetsForm = () => {
 
   const handleShowPetsSelector = () => setMode('selector');
 
-  const onSubmit = (data: any) => {
-    console.log('handleSubmit()', data);
+  const onSubmit = async (newPetData: IPetsForm) => {
+    const { data } = await supabaseClient.from(NOTES_TABLE).insert({
+      type: newPetData.type,
+      date: new Date(newPetData.dateOfBirth),
+      description: newPetData.description,
+      photo: newPetData.photo,
+    }).select('id');
+    await supabaseClient.from(PETS_TABLE).insert({
+      noteId: data ? data[0].id : null,
+      name: newPetData.name,
+      breed: newPetData.breed,
+    });
     showSnackbar({
       type: 'success',
       body: translation.savedPet,

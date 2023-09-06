@@ -18,7 +18,7 @@ const breakpoints: IBreakpoints = {
 const commonColors = {
   primary100: "#6897D8",
   primary: "#2474E1",
-  primary900: "#0958C4",
+  primary900: "#19519E",
   white: "#FFF",
   black: "#000",
   success: "#31A24C",
@@ -37,7 +37,7 @@ const commonColors = {
 
 export const lightColors: IColors = {
   ...commonColors,
-  secondary100: "#F5F6FA",
+  secondary100: "#E9EEFB",
   secondary: "#EDF1FC",
   secondary900: "#D3D8E8",
   neutral: "#FEFEFE",

@@ -17,10 +17,11 @@ import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { ITypeSelectorOption } from "@/shared/types";
+import { NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabase";
 
 interface IVehiclesForm {
   plateNumber: string;
-  breed: string;
+  brand: string;
   model: string;
   type: string;
   dateOfPurchase: string;
@@ -37,7 +38,7 @@ export const VehiclesForm = () => {
   } = useForm<IVehiclesForm>({
     defaultValues: {
       plateNumber: "",
-      breed: "",
+      brand: "",
       model: "",
       type: "",
       dateOfPurchase: "",
@@ -60,8 +61,19 @@ export const VehiclesForm = () => {
 
   const handleShowVehiclesSelector = () => setMode('selector');
 
-  const onSubmit = (data: any) => {
-    console.log('handleSubmit()', data);
+  const onSubmit = async (newVehicleData: IVehiclesForm) => {
+    const { data } = await supabaseClient.from(NOTES_TABLE).insert({
+      type: newVehicleData.type,
+      date: new Date(newVehicleData.dateOfPurchase),
+      description: newVehicleData.description,
+      photo: newVehicleData.photo,
+    }).select('id');
+    await supabaseClient.from(VEHICLES_TABLE).insert({
+      noteId: data ? data[0].id : null,
+      plateNumber: newVehicleData.plateNumber,
+      brand: newVehicleData.brand,
+      model: newVehicleData.model,
+    });
     showSnackbar({
       type: 'success',
       body: translation.savedVehicle,
@@ -98,7 +110,7 @@ export const VehiclesForm = () => {
         <Col cols={12} mb={4}>
           <Controller
             control={control}
-            name="breed"
+            name="brand"
             rules={REQUIRED}
             render={({
               field: { onChange, onBlur, value },
@@ -106,7 +118,7 @@ export const VehiclesForm = () => {
               <Input
                 value={value}
                 label={translation.brand}
-                errorMessage={errors.breed?.message}
+                errorMessage={errors.brand?.message}
                 required
                 onChange={onChange}
                 onBlur={onBlur}
@@ -127,6 +139,7 @@ export const VehiclesForm = () => {
                 label={translation.model}
                 errorMessage={errors.model?.message}
                 required
+                inputMode="numeric"
                 onChange={onChange}
                 onBlur={onBlur}
                 onKeyDown={handleOnlyAllowNumbers}

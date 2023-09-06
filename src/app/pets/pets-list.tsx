@@ -1,46 +1,22 @@
-'use client';
+import { Col, Row } from '@/shared/components';
+import { supabaseClient, IPet, PETS_TABLE } from '@/supabase';
+import { PetsListItem } from './pets-list-item';
 
-import { useTheme } from 'styled-components';
-
-import { Card, Col, FlexWrap, Icon, Row, Typography } from '@/shared/components';
-import { IPet } from '@/shared/types';
-
-const PETS: IPet[] = [
-  {
-    id: 1,
-    name: "Luna",
-    breed: "Pastor Alemán",
-    type: "dog",
-    dateOfBirth: 1396332000000,
-    description: undefined,
-    photo: undefined,
-  },
-  {
-    id: 2,
-    name: "Tesla",
-    breed: "Pastor Alemán",
-    type: "dog",
-    dateOfBirth: 1681970400000,
-    description: undefined,
-    photo: undefined,
-  },
-  {
-    id: 3,
-    name: "Cascabel",
-    breed: "Mini",
-    type: "cat",
-    dateOfBirth: 1681970400000,
-    description: undefined,
-    photo: undefined,
-  },
-];
-
-export const PetsList = () => {
-  const { colors } = useTheme();
+export const PetsList = async () => {
+  const { data: pets } = await supabaseClient.from(PETS_TABLE).select<string, IPet>(`
+    id,
+    name,
+    breed,
+    notes (
+      id,
+      type,
+      date
+    )
+  `);
 
   return (
     <Row>
-      {PETS.map((pet) => (
+      {(pets || []).map((pet) => (
         <Col
           key={pet.id}
           cols={12}
@@ -49,44 +25,9 @@ export const PetsList = () => {
           xl={3}
           mb={4}
         >
-          <Card>
-            <FlexWrap justify="space-between" grow={1}>
-              <Typography variant="h5" fontWeight="bold">
-                {pet.name}
-                {' '}
-                <Typography variant="label">({pet.breed})</Typography>
-              </Typography>
-              <Icon
-                name={pet.type}
-                color={colors.primaryText}
-                height={25}
-                width={25}
-              />
-            </FlexWrap>
-          </Card>
+          <PetsListItem {...pet} />
         </Col>
       ))}
     </Row>
-    // <FlexWrap gap={4} wrap="wrap">
-    //   {PETS.map((pet) => (
-    //     <Card
-    //       key={pet.id}
-    //     >
-    //       <FlexWrap justify="space-between" grow={1}>
-    //         <Typography variant="h5" fontWeight="bold">
-    //           {pet.name}
-    //           {' '}
-    //           <Typography variant="label">({pet.breed})</Typography>
-    //         </Typography>
-    //         <Icon
-    //           name={pet.type}
-    //           color={colors.primaryText}
-    //           height={25}
-    //           width={25}
-    //         />
-    //       </FlexWrap>
-    //     </Card>
-    //   ))}
-    // </FlexWrap>
   );
 };
