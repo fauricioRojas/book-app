@@ -4,9 +4,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
-  Button,
   Col,
-  FlexWrap,
   Input,
   Photo,
   Row,
@@ -17,6 +15,7 @@ import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { ITypeSelectorOption } from "@/shared/types";
 import { NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
+import { FormButtons } from "@/components";
 
 interface IPetsForm {
   name: string;
@@ -59,14 +58,14 @@ export const PetsForm = () => {
   const handleShowPetsSelector = () => setMode('selector');
 
   const onSubmit = async (newPetData: IPetsForm) => {
-    const { data } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
       type: newPetData.type,
       date: new Date(newPetData.dateOfBirth),
       description: newPetData.description,
       photo: newPetData.photo,
     }).select('id').single();
     await supabaseClient.from(PETS_TABLE).insert({
-      noteId: data?.id,
+      noteId: note?.id,
       name: newPetData.name,
       breed: newPetData.breed,
     });
@@ -162,10 +161,7 @@ export const PetsForm = () => {
           <Photo onChangePhoto={handleChangePhoto} />
         </Col>
       </Row>
-      <FlexWrap justify="center" gap={4}>
-        <Button variant="outline-secondary" block onClick={handleShowPetsSelector}>{translation.back}</Button>
-        <Button type="submit" block>{translation.save}</Button>
-      </FlexWrap>
+      <FormButtons onClickBack={handleShowPetsSelector} />
     </form>
   );
 };

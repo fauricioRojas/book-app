@@ -8,6 +8,8 @@ import { IVehicle, NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabas
 import { FlexWrap, Icon, IconButton, IconName, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
+import { MaintenancesForm } from "./maintenances-form";
+import { MaintenancesList } from "./maintenances-list";
 
 interface IVehicleDetailsProps extends IVehicle {}
 
@@ -17,6 +19,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
   model,
   plateNumber,
   notes,
+  maintenances,
 }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
@@ -25,10 +28,11 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
 
+
   const handleShowVehicleForm = () => {
     showDrawer({
-      title: translation.newVehicle,
-      body: <Typography variant="h1">Add stuff to vehicle</Typography>,
+      title: translation.newMaintenance,
+      body: <MaintenancesForm vehicleId={id} />,
     });
   };
 
@@ -99,7 +103,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
           />
         </FlexWrap>
       </FlexWrap>
-      <FlexWrap direction="column" gap={4}>
+      <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h5" fontWeight="bold">{translation.plateNumber}</Typography>
           <Typography variant="label">{plateNumber}</Typography>
@@ -124,6 +128,10 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
+        <FlexWrap direction="column" gap={2}>
+          <Typography variant="h5" fontWeight="bold">{translation.maintenances}</Typography>
+          <MaintenancesList maintenances={maintenances} />
+        </FlexWrap>
       </FlexWrap>
     </>
   );

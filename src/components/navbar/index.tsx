@@ -25,7 +25,7 @@ export const Navbar = () => {
   const navbarItems = useMemo(() => {
     const items: INavbarItem[] = [
       {
-        iconName: 'wheel',
+        iconName: 'tire',
         text: translation.vehicles,
         href: '/vehicles',
       },

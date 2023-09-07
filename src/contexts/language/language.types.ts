@@ -9,6 +9,8 @@ export interface ILanguageTranslation extends Language {
   theme: string;
   language: string;
   cost: string;
+  kilometers: string;
+  date: string;
   save: string;
   cancel: string;
   delete: string;
@@ -28,6 +30,18 @@ export interface ILanguageTranslation extends Language {
   deletedPet: string;
   notDeletedPet: string;
   petDeleteConfirmation: string;
+  maintenances: string;
+  noMaintenances: string;
+  newMaintenance: string;
+  deleteMaintenance: string;
+  savedMaintenance: string;
+  notSavedMaintenance: string;
+  deletedMaintenance: string;
+  notDeletedMaintenance: string;
+  maintenanceDeleteConfirmation: string;
+  oilChange: string;
+  tireReplacement: string;
+  refuel: string;
   plateNumber: string;
   breed: string;
   brand: string;

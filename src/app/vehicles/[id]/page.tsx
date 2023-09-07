@@ -21,6 +21,18 @@ const Vehicle = async ({ params: { id } }: IVehicleParams) => {
       date,
       description,
       photo
+    ),
+    maintenances (
+      id,
+      notes (
+        id,
+        type,
+        date,
+        description,
+        photo
+      ),
+      cost,
+      kilometers
     )
   `).match({ id }).single();
 

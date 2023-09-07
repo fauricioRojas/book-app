@@ -42,20 +42,20 @@ const fadeOut = keyframes`
 `;
 
 const StyledConfirmationModal = styled.div`
-  position: fixed;
-  z-index: 2;
+  height: 100%;
   left: 0;
+  overflow: auto;
+  position: fixed;
   top: 0;
   width: 100%;
-  height: 100%;
-  overflow: auto;
+  z-index: 2;
 `;
 const StyledConfirmationModalBackdrop = styled.div<IStyledConfirmationModalProps>`
-  background-color: rgba(0, 0, 0, 0.54);
   animation-duration: .3s;
   animation-name: ${fadeIn};
-  width: 100%;
+  background-color: rgba(0, 0, 0, 0.54);
   height: 100%;
+  width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
     animation-duration: .3s;
@@ -63,19 +63,19 @@ const StyledConfirmationModalBackdrop = styled.div<IStyledConfirmationModalProps
   `};
 `;
 const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>`
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  align-items: center;
   animation-duration: .3s;
   animation-name: ${slideIn};
-  padding: ${({ theme }) => theme.gutters.size4};
   background-color: ${({ theme }) => theme.colors.neutral};
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  bottom: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: ${({ theme }) => theme.gutters.size4};
+  justify-content: center;
+  padding: ${({ theme }) => theme.gutters.size4};
+  position: absolute;
+  width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
     animation-duration: .3s;

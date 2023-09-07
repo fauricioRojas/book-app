@@ -7,16 +7,25 @@ interface INote {
 }
 
 export interface IVehicle {
-  id: string;
+  id: number;
   notes: INote;
+  maintenances: IMaintenance[];
   plateNumber: string;
   brand: string;
   model: number;
 }
 
 export interface IPet {
-  id: string;
+  id: number;
   notes: INote;
   name: string;
   breed: string;
+}
+
+export interface IMaintenance {
+  id: number;
+  vehicles: IVehicle;
+  notes: INote;
+  cost: number;
+  kilometers: number | null;
 }

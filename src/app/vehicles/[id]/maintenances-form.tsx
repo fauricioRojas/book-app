@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -13,40 +13,44 @@ import {
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
-import { VehiclesSelector } from "./vehicles-selector";
+import { MaintenancesSelector } from "./maintenances-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabase";
+import { MAINTENANCES_TABLE, NOTES_TABLE, supabaseClient } from "@/supabase";
 import { FormButtons } from "@/components";
 
-interface IVehiclesForm {
-  plateNumber: string;
-  brand: string;
-  model: string;
+interface IMaintenancesForm {
+  cost: string;
+  kilometers?: string;
   type: string;
-  dateOfPurchase: string;
+  date: string;
   description?: string;
   photo?: string;
 }
 
-export const VehiclesForm = () => {
+interface IMaintenancesFormProps {
+  vehicleId: number;
+}
+
+export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
+  vehicleId,
+}) => {
   const {
     control,
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<IVehiclesForm>({
+  } = useForm<IMaintenancesForm>({
     defaultValues: {
-      plateNumber: "",
-      brand: "",
-      model: "",
+      cost: "",
+      kilometers: "",
       type: "",
-      dateOfPurchase: "",
+      date: "",
       description: "",
       photo: undefined,
     },
   });
   const [mode, setMode] = useState<'selector' | 'form'>('selector');
-  const { REQUIRED, YEAR } = useFormRules();
+  const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
@@ -58,30 +62,30 @@ export const VehiclesForm = () => {
     setMode('form')
   };
 
-  const handleShowVehiclesSelector = () => setMode('selector');
+  const handleShowMaintenancesSelector = () => setMode('selector');
 
-  const onSubmit = async (newVehicleData: IVehiclesForm) => {
+  const onSubmit = async (newMaintenanceData: IMaintenancesForm) => {
     const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
-      type: newVehicleData.type,
-      date: new Date(newVehicleData.dateOfPurchase),
-      description: newVehicleData.description,
-      photo: newVehicleData.photo,
+      type: newMaintenanceData.type,
+      date: new Date(newMaintenanceData.date),
+      description: newMaintenanceData.description,
+      photo: newMaintenanceData.photo,
     }).select('id').single();
-    await supabaseClient.from(VEHICLES_TABLE).insert({
+    await supabaseClient.from(MAINTENANCES_TABLE).insert({
+      vehicleId,
       noteId: note?.id,
-      plateNumber: newVehicleData.plateNumber,
-      brand: newVehicleData.brand,
-      model: newVehicleData.model,
+      cost: newMaintenanceData.cost,
+      kilometers: newMaintenanceData.kilometers || null,
     });
     showSnackbar({
       type: 'success',
-      body: translation.savedVehicle,
+      body: translation.savedMaintenance,
     });
     hideDrawer();
   };
 
   if (mode === 'selector') {
-    return <VehiclesSelector onSelect={handleSetType} />
+    return <MaintenancesSelector onSelect={handleSetType} />
   }
 
   return (
@@ -90,53 +94,15 @@ export const VehiclesForm = () => {
         <Col cols={12} mb={4}>
           <Controller
             control={control}
-            name="plateNumber"
+            name="cost"
             rules={REQUIRED}
             render={({
               field: { onChange, onBlur, value },
             }) => (
               <Input
                 value={value}
-                label={translation.plateNumber}
-                errorMessage={errors.plateNumber?.message}
-                required
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="brand"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.brand}
-                errorMessage={errors.brand?.message}
-                required
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="model"
-            rules={{ ...REQUIRED, ...YEAR }}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.model}
-                errorMessage={errors.model?.message}
+                label={translation.cost}
+                errorMessage={errors.cost?.message}
                 required
                 inputMode="numeric"
                 onChange={onChange}
@@ -149,7 +115,25 @@ export const VehiclesForm = () => {
         <Col cols={12} mb={4}>
           <Controller
             control={control}
-            name="dateOfPurchase"
+            name="kilometers"
+            render={({
+              field: { onChange, onBlur, value },
+            }) => (
+              <Input
+                value={value}
+                label={translation.kilometers}
+                inputMode="numeric"
+                onChange={onChange}
+                onBlur={onBlur}
+                onKeyDown={handleOnlyAllowNumbers}
+              />
+            )}
+          />
+        </Col>
+        <Col cols={12} mb={4}>
+          <Controller
+            control={control}
+            name="date"
             rules={REQUIRED}
             render={({
               field: { onChange, onBlur, value },
@@ -157,8 +141,8 @@ export const VehiclesForm = () => {
               <Input
                 type="date"
                 value={value}
-                label={translation.dateOfPurchase}
-                errorMessage={errors.dateOfPurchase?.message}
+                label={translation.date}
+                errorMessage={errors.date?.message}
                 required
                 onChange={onChange}
                 onBlur={onBlur}
@@ -186,7 +170,7 @@ export const VehiclesForm = () => {
           <Photo onChangePhoto={handleChangePhoto} />
         </Col>
       </Row>
-      <FormButtons onClickBack={handleShowVehiclesSelector} />
+      <FormButtons onClickBack={handleShowMaintenancesSelector} />
     </form>
   );
 };

@@ -17,16 +17,18 @@ import { FootprintIcon } from './footprint-icon';
 import { InfoIcon } from './info-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
+import { OilIcon } from './oil-icon';
 import { PencilIcon } from './pencil-icon';
 import { PickupIcon } from './pickup-icon';
+import { RefuelIcon } from './refuel-icon';
 import { SettingsIcon } from './settings-icon';
 import { SignOutIcon } from './sign-out-icon';
 import { StarIcon } from './star-icon';
+import { TireIcon } from './tire-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
-import { WheelIcon } from './wheel-icon';
 import { Size } from '@/shared/types';
 
 export interface ICommonIconProps {
@@ -56,16 +58,18 @@ export type IconName =
   | 'info'
   | 'microphone'
   | 'motorcycle'
+  | 'oil'
   | 'pencil'
   | 'pickup'
+  | 'refuel'
   | 'settings'
   | 'sign-out'
   | 'star'
+  | 'tire'
   | 'trash'
   | 'truck'
   | 'video-camera'
-  | 'warning'
-  | 'wheel';
+  | 'warning';
 
 interface IIconProps extends ICommonIconProps {
   name: IconName;
@@ -88,16 +92,18 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   info: InfoIcon,
   microphone: MicrophoneIcon,
   motorcycle: MotorcycleIcon,
+  oil: OilIcon,
   pencil: PencilIcon,
   pickup: PickupIcon,
+  refuel: RefuelIcon,
   settings: SettingsIcon,
   'sign-out': SignOutIcon,
   star: StarIcon,
+  tire: TireIcon,
   trash: TrashIcon,
   truck: TruckIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
-  wheel: WheelIcon,
 };
 
 interface IStyledIconProps {

@@ -26,3 +26,14 @@ export const formatDate = (date: Date): string => {
     .toString()
     .padStart(2, "0")}/${newDate.getFullYear()}`;
 };
+
+const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "COL",
+  minimumFractionDigits: 0,
+});
+export const formatMoney = (money: number) =>
+  formatter.format(money).replace("COL", "₡");
+
+export const formatKilometers = (value: number) =>
+  `${value.toLocaleString("en-US")} km`;
