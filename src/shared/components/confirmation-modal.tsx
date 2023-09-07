@@ -140,7 +140,7 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
           <Button variant="outline-secondary" onClick={handleCloseModal}>
               {translation.cancel}
             </Button>
-            <Button onClick={handleClick}>
+            <Button variant="error" onClick={handleClick}>
               {buttonText}
             </Button>
         </FlexWrap>
