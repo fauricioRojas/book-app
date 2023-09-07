@@ -17,7 +17,7 @@ export const ACAirFilterIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={typeof props.onClick === 'function'}
+    $isClickable={!!props.onClick}
     {...props}
   >
     <path

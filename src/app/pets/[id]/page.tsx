@@ -39,7 +39,6 @@ const Pet = async ({ params: { id } }: IPetParams) => {
   if (!pet) {
     notFound();
   }
-  console.log('pet:', pet);
 
   return (
     <main>

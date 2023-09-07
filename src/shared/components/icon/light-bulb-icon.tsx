@@ -17,7 +17,7 @@ export const LightBulbIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={typeof props.onClick === 'function'}
+    $isClickable={!!props.onClick}
     {...props}
   >
     <g transform="translate(-204.5 -1608.362)">
