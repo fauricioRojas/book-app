@@ -93,6 +93,52 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
         id: 16,
         label: translation.brakesAdjustment,
         value: 'brake',
+        width: 35,
+        height: 35,
+      },
+      {
+        id: 17,
+        label: translation.washed,
+        value: 'washed',
+      },
+      {
+        id: 18,
+        label: translation.beltChange,
+        value: 'belt',
+      },
+      {
+        id: 19,
+        label: translation.oilFilterChange,
+        value: 'oil-filter',
+        width: 25,
+        height: 25,
+      },
+      {
+        id: 20,
+        label: translation.ballJointsChange,
+        value: 'ball-joints',
+      },
+      {
+        id: 21,
+        label: translation.chainChange,
+        value: 'chain',
+      },
+      {
+        id: 22,
+        label: translation.paintDetailing,
+        value: 'paint',
+      },
+      {
+        id: 23,
+        label: translation.fuseReplacement,
+        value: 'fuse',
+        width: 25,
+        height: 25,
+      },
+      {
+        id: 24,
+        label: translation.bushingChange,
+        value: 'bushing',
       },
     ];
     return types;

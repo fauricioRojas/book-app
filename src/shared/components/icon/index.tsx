@@ -5,15 +5,19 @@ import { ACAirFilterIcon } from './ac-air-filter-icon';
 import { AddIcon } from './add-icon';
 import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
+import { BallJointsIcon } from './ball-joints-icon';
 import { BatteryIcon } from './battery-icon';
+import { BeltIcon } from './belt-icon';
 import { BrakeIcon } from './brake-icon';
 import { BrakeFiberIcon } from './brake-fiber-icon';
 import { BrushIcon } from './brush-icon';
 import { BullIcon } from './bull-icon';
-import { CancelIcon } from './cancel-icon';
+import { BushingIcon } from './bushing-icon';
 import { CameraIcon } from './camera-icon';
+import { CancelIcon } from './cancel-icon';
 import { CarIcon } from './car-icon';
 import { CatIcon } from './cat-icon';
+import { ChainIcon } from './chain-icon';
 import { CheckIcon } from './check-icon';
 import { CoolantIcon } from './coolant-icon';
 import { DogIcon } from './dog-icon';
@@ -22,12 +26,15 @@ import { EngineIcon } from './engine-icon';
 import { ErrorIcon } from './error-icon';
 import { ExpandIcon } from './expand-icon';
 import { FootprintIcon } from './footprint-icon';
+import { FuseIcon } from './fuse-icon';
 import { InfoIcon } from './info-icon';
 import { LightBulbIcon } from './light-bulb-icon';
 import { LinedUpAndBalancedIcon } from './lined-up-and-balanced-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
 import { OilIcon } from './oil-icon';
+import { OilFilterIcon } from './oil-filter-icon';
+import { PaintIcon } from './paint-icon';
 import { PencilIcon } from './pencil-icon';
 import { PickupIcon } from './pickup-icon';
 import { RadiatorIcon } from './radiator-icon';
@@ -43,6 +50,7 @@ import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
+import { WashedIcon } from './washed-icon';
 import { Size } from '@/shared/types';
 
 export interface ICommonIconProps {
@@ -60,15 +68,19 @@ export type IconName =
   | 'add'
   | 'arrow-back'
   | 'arrow-down'
+  | 'ball-joints'
   | 'battery'
+  | 'belt'
   | 'brake'
   | 'brake-fiber'
   | 'brush'
   | 'bull'
+  | 'bushing'
   | 'camera'
   | 'cancel'
   | 'car'
   | 'cat'
+  | 'chain'
   | 'check'
   | 'coolant'
   | 'dog'
@@ -77,12 +89,15 @@ export type IconName =
   | 'error'
   | 'expand'
   | 'footprint'
+  | 'fuse'
   | 'info'
   | 'light-bulb'
   | 'lined-up-and-balanced'
   | 'microphone'
   | 'motorcycle'
   | 'oil'
+  | 'oil-filter'
+  | 'paint'
   | 'pencil'
   | 'pickup'
   | 'radiator'
@@ -97,7 +112,8 @@ export type IconName =
   | 'trash'
   | 'truck'
   | 'video-camera'
-  | 'warning';
+  | 'warning'
+  | 'washed';
 
 interface IIconProps extends ICommonIconProps {
   name: IconName;
@@ -108,15 +124,19 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   add: AddIcon,
   'arrow-back': ArrowBackIcon,
   'arrow-down': ArrowDownIcon,
+  'ball-joints': BallJointsIcon,
   battery: BatteryIcon,
+  belt: BeltIcon,
   brake: BrakeIcon,
   'brake-fiber': BrakeFiberIcon,
   brush: BrushIcon,
   bull: BullIcon,
+  bushing: BushingIcon,
   camera: CameraIcon,
   cancel: CancelIcon,
   car: CarIcon,
   cat: CatIcon,
+  chain: ChainIcon,
   check: CheckIcon,
   coolant: CoolantIcon,
   dog: DogIcon,
@@ -125,12 +145,15 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   error: ErrorIcon,
   expand: ExpandIcon,
   footprint: FootprintIcon,
+  fuse: FuseIcon,
   info: InfoIcon,
   'light-bulb': LightBulbIcon,
   'lined-up-and-balanced': LinedUpAndBalancedIcon,
   microphone: MicrophoneIcon,
   motorcycle: MotorcycleIcon,
   oil: OilIcon,
+  'oil-filter': OilFilterIcon,
+  paint: PaintIcon,
   pencil: PencilIcon,
   pickup: PickupIcon,
   radiator: RadiatorIcon,
@@ -146,6 +169,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   truck: TruckIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
+  washed: WashedIcon,
 };
 
 interface IStyledIconProps {

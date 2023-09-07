@@ -11,7 +11,7 @@ const getWidth = ({ gutters }: DefaultTheme, cols: number) =>
 const StyledTypeSelectorOption = styled.div`
   align-items: center;
   background-color: transparent;
-  border: ${({ theme }) => `1px solid ${theme.colors.primary}`};
+  border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
@@ -81,13 +81,13 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
               >
                 <Icon
                   name={type.value as IconName}
-                  color={colors.primary}
+                  color={colors.secondaryText}
                   height={type.height ?? 30}
                   width={type.width ?? 30}
                 />
                 <Typography
                   variant="label"
-                  color="primary"
+                  color="secondary-text"
                   fontWeight="bold"
                   textAlign="center"
                 >

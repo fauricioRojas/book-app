@@ -55,7 +55,15 @@ export interface ILanguageTranslation extends Language {
   acAirFilterChange: string;
   coolantChange: string;
   brakesAdjustment: string;
+  washed: string;
+  beltChange: string;
+  oilFilterChange: string;
+  ballJointsChange: string;
+  chainChange: string;
   plateNumber: string;
+  paintDetailing: string;
+  fuseReplacement: string;
+  bushingChange: string;
   breed: string;
   brand: string;
   model: string;
