@@ -21,24 +21,31 @@ export const BushingIcon: FC<ICommonIconProps> = ({
     {...props}
   >
     <rect
-      width="20"
-      height="20"
+      width="7"
+      height="30"
       x="0"
-      y="4"
+      y="0"
+      fill={color}
+    />
+    <rect
+      width="25"
+      height="20"
+      x="6"
+      y="5"
+      fill={color}
+    />
+    <rect
+      width="7"
+      height="30"
+      x="38"
+      y="0"
       fill={color}
     />
     <rect
       width="20"
       height="20"
-      x="24"
-      y="4"
-      fill={color}
-    />
-    <rect
-      width="14"
-      height="20"
-      x="48"
-      y="4"
+      x="44"
+      y="5"
       fill={color}
     />
   </StyledSvg>

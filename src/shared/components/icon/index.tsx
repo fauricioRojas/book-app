@@ -13,9 +13,11 @@ import { BrakeFiberIcon } from './brake-fiber-icon';
 import { BrushIcon } from './brush-icon';
 import { BullIcon } from './bull-icon';
 import { BushingIcon } from './bushing-icon';
+import { CableIcon } from './cable-icon';
 import { CameraIcon } from './camera-icon';
 import { CancelIcon } from './cancel-icon';
 import { CarIcon } from './car-icon';
+import { CarChasisIcon } from './car-chasis-icon';
 import { CatIcon } from './cat-icon';
 import { ChainIcon } from './chain-icon';
 import { CheckIcon } from './check-icon';
@@ -27,11 +29,13 @@ import { ErrorIcon } from './error-icon';
 import { ExpandIcon } from './expand-icon';
 import { FootprintIcon } from './footprint-icon';
 import { FuseIcon } from './fuse-icon';
+import { GearIcon } from './gear-icon';
+import { HandleBarIcon } from './handle-bar-icon';
 import { InfoIcon } from './info-icon';
 import { LightBulbIcon } from './light-bulb-icon';
-import { LinedUpAndBalancedIcon } from './lined-up-and-balanced-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
+import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
 import { OilIcon } from './oil-icon';
 import { OilFilterIcon } from './oil-filter-icon';
 import { PaintGunIcon } from './paint-gun-icon';
@@ -76,9 +80,11 @@ export type IconName =
   | 'brush'
   | 'bull'
   | 'bushing'
+  | 'cable'
   | 'camera'
   | 'cancel'
   | 'car'
+  | 'car-chasis'
   | 'cat'
   | 'chain'
   | 'check'
@@ -90,11 +96,13 @@ export type IconName =
   | 'expand'
   | 'footprint'
   | 'fuse'
+  | 'gear'
+  | 'handle-bar'
   | 'info'
   | 'light-bulb'
-  | 'lined-up-and-balanced'
   | 'microphone'
   | 'motorcycle'
+  | 'motorcycle-seat'
   | 'oil'
   | 'oil-filter'
   | 'paint-gun'
@@ -132,9 +140,11 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   brush: BrushIcon,
   bull: BullIcon,
   bushing: BushingIcon,
+  cable: CableIcon,
   camera: CameraIcon,
   cancel: CancelIcon,
   car: CarIcon,
+  'car-chasis': CarChasisIcon,
   cat: CatIcon,
   chain: ChainIcon,
   check: CheckIcon,
@@ -146,11 +156,13 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   expand: ExpandIcon,
   footprint: FootprintIcon,
   fuse: FuseIcon,
+  gear: GearIcon,
+  'handle-bar': HandleBarIcon,
   info: InfoIcon,
   'light-bulb': LightBulbIcon,
-  'lined-up-and-balanced': LinedUpAndBalancedIcon,
   microphone: MicrophoneIcon,
   motorcycle: MotorcycleIcon,
+  'motorcycle-seat': MotorcycleSeatIcon,
   oil: OilIcon,
   'oil-filter': OilFilterIcon,
   'paint-gun': PaintGunIcon,

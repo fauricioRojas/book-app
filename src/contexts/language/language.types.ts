@@ -60,6 +60,10 @@ export interface ILanguageTranslation extends Language {
   oilFilterChange: string;
   ballJointsChange: string;
   chainChange: string;
+  handleBarChange: string;
+  motorcycleSeatChange: string;
+  gearChange: string;
+  cablesChange: string;
   plateNumber: string;
   paintDetailing: string;
   fuseReplacement: string;

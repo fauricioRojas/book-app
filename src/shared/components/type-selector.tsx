@@ -55,10 +55,11 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
 
   const handleChangeSearchTerm = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
+    const lowerCaseValue = value.toLocaleLowerCase();
     setSearchTerm(value);
     setFilteredTypes(
       value
-        ? types.filter(({ label }) => label.toLowerCase().includes(value))
+        ? types.filter(({ label }) => label.toLowerCase().includes(lowerCaseValue))
         : types,
     );
   };

@@ -141,6 +141,30 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
         label: translation.bushingChange,
         value: ENGLISH.bushingChange,
       },
+      {
+        id: 25,
+        label: translation.handleBarChange,
+        value: ENGLISH.handleBarChange,
+        height: 40,
+        width: 40,
+      },
+      {
+        id: 26,
+        label: translation.motorcycleSeatChange,
+        value: ENGLISH.motorcycleSeatChange,
+      },
+      {
+        id: 27,
+        label: translation.gearChange,
+        value: ENGLISH.gearChange,
+        height: 30,
+        width: 30,
+      },
+      {
+        id: 28,
+        label: translation.cablesChange,
+        value: ENGLISH.cablesChange,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -85,7 +85,7 @@ export const Input: FC<IInputProps> = ({
         {leftIconName && (
           <StyledLeftIcon
             name={leftIconName}
-            color={colors.primaryText}
+            color={colors.secondaryText}
             width={18}
             height={18}
           />
@@ -100,7 +100,7 @@ export const Input: FC<IInputProps> = ({
         {rightIconName && (
           <StyledRightIcon
             name={rightIconName}
-            color={colors.primaryText}
+            color={colors.secondaryText}
             width={18}
             height={18}
           />
