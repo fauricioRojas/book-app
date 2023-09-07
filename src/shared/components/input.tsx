@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FocusEventHandler } from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
-import { FlexWrap, Typography } from '.';
+import { Box, FlexWrap, Icon, IconName, Typography } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
 type Type = 'text' | 'number' | 'date';
@@ -15,6 +15,8 @@ interface IInputProps {
   placeholder?: string;
   errorMessage?: string;
   required?: boolean;
+  leftIconName?: IconName;
+  rightIconName?: IconName;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEventHandler<HTMLInputElement>) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
@@ -22,6 +24,8 @@ interface IInputProps {
 
 interface IStyledInputProps extends Pick<IInputProps, 'onChange' | 'onBlur' | 'onKeyDown'> {
   $isInvalid: boolean;
+  $hasLeftIcon: boolean;
+  $hasRightIcon: boolean;
 }
 
 const StyledInput = styled.input<IStyledInputProps>`
@@ -36,15 +40,31 @@ const StyledInput = styled.input<IStyledInputProps>`
   height: 40px;
   letter-spacing: 0.00938rem;
   line-height: inherit;
-  padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
+  padding: ${({ $hasLeftIcon, $hasRightIcon, theme }) =>
+    `${theme.gutters.size2} ${$hasRightIcon ? theme.gutters.size10 : theme.gutters.size3} ${theme.gutters.size2} ${$hasLeftIcon ? theme.gutters.size10 : theme.gutters.size3}`};
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%;
 
+  &:hover {
+    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary};
+  }
   &:focus {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;
     outline: 0;
+    padding: ${({ $hasLeftIcon, $hasRightIcon, theme }) =>
+      `${theme.gutters.size2} ${$hasRightIcon ? `calc(${theme.gutters.size10} - 1px)` : `calc(${theme.gutters.size3} - 1px)`} ${theme.gutters.size2} ${$hasLeftIcon ? `calc(${theme.gutters.size10} - 1px)` : `calc(${theme.gutters.size3} - 1px)`}`};
   }
+`;
+const StyledLeftIcon = styled(Icon)`
+  position: absolute;
+  left: ${({ theme }) => theme.gutters.size3};
+  top: 11px;
+`;
+const StyledRightIcon = styled(Icon)`
+  position: absolute;
+  right: ${({ theme }) => theme.gutters.size3};
+  top: 11px;
 `;
 
 export const Input: FC<IInputProps> = ({
@@ -52,15 +72,41 @@ export const Input: FC<IInputProps> = ({
   label,
   errorMessage,
   required,
+  leftIconName,
+  rightIconName,
   ...props
-}) => (
-  <FlexWrap direction="column" gap={1}>
-    {label && <Typography variant="label">{label} {required && <Typography variant="label" color="error">*</Typography>}</Typography>}
-    <StyledInput
-      type={type}
-      $isInvalid={!!errorMessage}
-      {...props}
-    />
-    {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
-  </FlexWrap>
-);
+}) => {
+  const { colors } = useTheme();
+
+  return (
+    <FlexWrap direction="column" gap={1}>
+      {label && <Typography variant="label">{label} {required && <Typography variant="label" color="error">*</Typography>}</Typography>}
+      <Box position="relative">
+        {leftIconName && (
+          <StyledLeftIcon
+            name={leftIconName}
+            color={colors.primaryText}
+            width={18}
+            height={18}
+          />
+        )}
+        <StyledInput
+          type={type}
+          $isInvalid={!!errorMessage}
+          $hasLeftIcon={!!leftIconName}
+          $hasRightIcon={!!rightIconName}
+          {...props}
+        />
+        {rightIconName && (
+          <StyledRightIcon
+            name={rightIconName}
+            color={colors.primaryText}
+            width={18}
+            height={18}
+          />
+        )}
+      </Box>
+      {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
+    </FlexWrap>
+  );
+};

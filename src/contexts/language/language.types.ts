@@ -81,6 +81,8 @@ export interface ILanguageTranslation extends Language {
   vehicleNotFound: string;
   weAresorry: string;
   tryThesePages: string;
+  search: string;
+  noResultsFound: string;
   // Form error messages
   required: string;
   validEmail: string;

@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { usePathname } from 'next/navigation'
 import { FC } from 'react';
 import styled, { useTheme } from 'styled-components';
@@ -8,7 +8,7 @@ import styled, { useTheme } from 'styled-components';
 import { Icon, Typography } from '@/shared/components';
 import { INavbarItem } from './navbar.types';
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NextLink)`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.gutters.size1};

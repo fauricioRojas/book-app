@@ -83,6 +83,8 @@ export const SPANISH: ILanguageTranslation = {
   weAresorry:
     "Lo sentimos, no pudimos encontrar el recurso que estaba buscando.",
   tryThesePages: "Intente alguna de estas páginas:",
+  search: "Escriba aquí para buscar",
+  noResultsFound: "No se encontraron resultados",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

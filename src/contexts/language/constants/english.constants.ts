@@ -83,6 +83,8 @@ export const ENGLISH: ILanguageTranslation = {
   weAresorry:
     "We're sorry, we couldn't find the resource you were looking for.",
   tryThesePages: "Try one of these pages:",
+  search: "Type here to search",
+  noResultsFound: "No results found",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

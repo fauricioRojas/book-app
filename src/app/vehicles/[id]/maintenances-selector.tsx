@@ -100,6 +100,10 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
   }, [language]);
 
   return (
-    <TypeSelector types={maintenancesTypes} onSelect={onSelect} />
+    <TypeSelector
+      types={maintenancesTypes}
+      showSearchInput
+      onSelect={onSelect}
+    />
   );
 };

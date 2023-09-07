@@ -5,8 +5,9 @@ import styled, { DefaultTheme, css } from 'styled-components';
 
 import { Size } from '@/shared/types';
 
-type Color = 'primary' | 'error';
+type Color = 'primary' | 'primary-text' | 'secondary-text' | 'error';
 type FontWeight = 'bold' | 'regular';
+type TextAlign = 'left' | 'center' | 'right';
 type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label' | 'p' | 'span';
 
 interface IStyledTypographyProps {
@@ -14,7 +15,7 @@ interface IStyledTypographyProps {
   $italic?: boolean;
   $fontWeight?: FontWeight;
   $mb?: Size;
-  $center?: boolean;
+  $textAlign?: TextAlign;
   $display?: boolean;
   $displaySm?: boolean;
   $displayMd?: boolean;
@@ -24,9 +25,15 @@ interface IStyledTypographyProps {
   theme: DefaultTheme;
 }
 
-const sharedCss = ({ $color, $italic, $mb, theme }: IStyledTypographyProps) => css`
+const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypographyProps) => css`
   ${$color === 'primary' && css`
     color: ${theme.colors.primary};
+  `}
+  ${$color === 'primary-text' && css`
+    color: ${theme.colors.primaryText};
+  `}
+  ${$color === 'secondary-text' && css`
+    color: ${theme.colors.secondaryText};
   `}
   ${$color === 'error' && css`
     color: ${theme.colors.error};
@@ -47,6 +54,8 @@ const sharedCss = ({ $color, $italic, $mb, theme }: IStyledTypographyProps) => c
   letter-spacing: 0.00938rem;
   line-height: 1.2;
   margin-bottom: ${theme.gutters[`size${$mb}`]};
+  margin-top: 0;
+  text-align: ${$textAlign};
   transition: color .2s ease;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
@@ -75,17 +84,12 @@ const sharedCss = ({ $color, $italic, $mb, theme }: IStyledTypographyProps) => c
     `}
   }
 `
-const sharedHeadingCss = ({ $center }: IStyledTypographyProps) => css`
-  margin-top: 0;
-  text-align: ${$center ? 'center' : undefined};
-`
 
 const H1 = styled.h1`
   font-size: calc(1.375rem + 1.5vw);
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 3rem;
   }
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const H2 = styled.h2`
@@ -93,7 +97,6 @@ const H2 = styled.h2`
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 2.5rem;
   }
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const H3 = styled.h3`
@@ -101,7 +104,6 @@ const H3 = styled.h3`
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 2rem;
   }
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const H4 = styled.h4`
@@ -109,17 +111,14 @@ const H4 = styled.h4`
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 1.5rem;
   }
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const H5 = styled.h5`
   font-size: 1.25rem;
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const H6 = styled.h6`
   font-size: 1rem;
-  ${sharedHeadingCss}
   ${sharedCss};
 `;
 const LABEL = styled.label`
@@ -154,7 +153,7 @@ interface ITypographyProps extends PropsWithChildren {
   variant: Variant;
   className?: string;
   fontWeight?: FontWeight;
-  center?: boolean;
+  textAlign?: TextAlign;
   italic?: boolean;
   color?: Color;
   mb?: Size;
@@ -169,7 +168,7 @@ interface ITypographyProps extends PropsWithChildren {
 export const Typography: FC<ITypographyProps> = ({
   variant,
   fontWeight = 'regular',
-  center,
+  textAlign,
   italic,
   color,
   mb = 0,
@@ -186,7 +185,7 @@ export const Typography: FC<ITypographyProps> = ({
 
   return (
     <Element
-      $center={center}
+      $textAlign={textAlign}
       $fontWeight={fontWeight}
       $italic={italic}
       $color={color}

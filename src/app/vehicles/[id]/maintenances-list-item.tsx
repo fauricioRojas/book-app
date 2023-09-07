@@ -27,7 +27,7 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
           justify="space-between"
           align="center"
         >
-          <Typography variant="h5">{formatDate(date)}</Typography>
+          <Typography variant="label">{formatDate(date)}</Typography>
           <Icon
             name={type as IconName}
             color={colors.primaryText}

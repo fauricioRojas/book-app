@@ -32,6 +32,7 @@ import { PencilIcon } from './pencil-icon';
 import { PickupIcon } from './pickup-icon';
 import { RadiatorIcon } from './radiator-icon';
 import { RefuelIcon } from './refuel-icon';
+import { SearchIcon } from './search-icon';
 import { SettingsIcon } from './settings-icon';
 import { ShockAbsorbersIcon } from './shock-absorbers-icon';
 import { SideMirrorIcon } from './side-mirror-icon';
@@ -86,6 +87,7 @@ export type IconName =
   | 'pickup'
   | 'radiator'
   | 'refuel'
+  | 'search'
   | 'settings'
   | 'shock-absorbers'
   | 'side-mirror'
@@ -133,6 +135,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   pickup: PickupIcon,
   radiator: RadiatorIcon,
   refuel: RefuelIcon,
+  search: SearchIcon,
   settings: SettingsIcon,
   'shock-absorbers': ShockAbsorbersIcon,
   'side-mirror': SideMirrorIcon,
