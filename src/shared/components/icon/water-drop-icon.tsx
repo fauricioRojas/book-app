@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { ICommonIconProps, StyledSvg } from '.';
 
-export const WashedIcon: FC<ICommonIconProps> = ({
+export const WaterDropIcon: FC<ICommonIconProps> = ({
   color,
   ml,
   mr,

@@ -3,9 +3,10 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, IconName, Typography } from '@/shared/components';
+import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
 import { IMaintenance } from '@/supabase';
 import { formatDate, formatMoney, formatKilometers } from '@/shared/utils';
+import { ICON_BY_TYPE } from '@/shared/constants';
 
 interface IMaintenancesListItemProps extends IMaintenance {}
 
@@ -29,7 +30,7 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
         >
           <Typography variant="label">{formatDate(date)}</Typography>
           <Icon
-            name={type as IconName}
+            name={ICON_BY_TYPE[type]}
             color={colors.primaryText}
             height={30}
             width={30}

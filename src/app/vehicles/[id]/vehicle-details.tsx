@@ -5,11 +5,12 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import { IVehicle, NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabase";
-import { FlexWrap, Icon, IconButton, IconName, PhotoPreview, Typography } from "@/shared/components";
+import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
+import { ICON_BY_TYPE } from "@/shared/constants";
 
 interface IVehicleDetailsProps extends IVehicle {}
 
@@ -80,7 +81,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
               {brand}
             </Typography>
             <Icon
-              name={notes.type as IconName}
+              name={ICON_BY_TYPE[notes.type]}
               height={30}
               width={30}
               color={colors.primaryText}

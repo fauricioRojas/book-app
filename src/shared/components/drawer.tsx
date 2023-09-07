@@ -27,7 +27,6 @@ const StyledDrawer = styled.div<IStyledDrawerProps>`
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   height: 95%;
   left: 0;
-  padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   position: fixed;
   transform: translateY(100%);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -69,13 +68,13 @@ const StyledDrawerHeader = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: ${({ theme }) => `${theme.gutters.size4} ${theme.gutters.size0}`};
+  padding: ${({ theme }) => theme.gutters.size4};
 `
 const StyledDrawerBody = styled.div`
   height: calc(100% - 56px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: ${({ theme }) => `${theme.gutters.size4} ${theme.gutters.size0}`};
+  padding: ${({ theme }) => theme.gutters.size4};
 `
 
 interface IDrawerProps {

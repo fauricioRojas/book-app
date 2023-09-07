@@ -5,9 +5,10 @@ import { FC } from "react";
 import { useTheme } from "styled-components";
 
 import { IPet, NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
-import { FlexWrap, Icon, IconButton, IconName, PhotoPreview, Typography } from "@/shared/components";
+import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
+import { ICON_BY_TYPE } from "@/shared/constants";
 
 interface IPetDetailsProps extends IPet {}
 
@@ -75,7 +76,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
               {name}
             </Typography>
             <Icon
-              name={notes.type as IconName}
+              name={ICON_BY_TYPE[notes.type]}
               height={30}
               width={30}
               color={colors.primaryText}

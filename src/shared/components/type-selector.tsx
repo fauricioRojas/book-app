@@ -1,9 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
 import styled, { DefaultTheme, useTheme } from 'styled-components';
 
-import { FlexWrap, Icon, IconName, Input, Typography } from "@/shared/components";
+import { FlexWrap, Icon, Input, Typography } from "@/shared/components";
 import { ITypeSelectorOption } from "@/shared/types";
 import { useLanguage } from "@/contexts";
+import { ICON_BY_TYPE } from "@/shared/constants";
 
 const getWidth = ({ gutters }: DefaultTheme, cols: number) =>
   `calc((100% / ${cols}) - ${gutters.size2} + (${gutters.size2} / ${cols}))`;
@@ -80,7 +81,7 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
                 onClick={() => onSelect(type)}
               >
                 <Icon
-                  name={type.value as IconName}
+                  name={ICON_BY_TYPE[type.value]}
                   color={colors.secondaryText}
                   height={type.height ?? 30}
                   width={type.width ?? 30}

@@ -3,8 +3,9 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, Link, IconName, Typography } from '@/shared/components';
+import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IVehicle } from '@/supabase';
+import { ICON_BY_TYPE } from '@/shared/constants';
 
 interface IVehiclesListItemProps extends IVehicle {}
 
@@ -25,7 +26,7 @@ export const VehiclesListItem: FC<IVehiclesListItemProps> = ({
           >
             <Typography variant="h5">{brand}</Typography>
             <Icon
-              name={type as IconName}
+              name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
               height={25}
               width={25}

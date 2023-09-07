@@ -3,8 +3,9 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, Link, IconName, Typography } from '@/shared/components';
+import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IPet } from '@/supabase';
+import { ICON_BY_TYPE } from '@/shared/constants';
 
 interface IPetsListItemProps extends IPet {}
 
@@ -28,7 +29,7 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
             <Typography variant="label">({breed})</Typography>
           </Typography>
           <Icon
-            name={type as IconName}
+            name={ICON_BY_TYPE[type]}
             color={colors.primaryText}
             height={25}
             width={25}

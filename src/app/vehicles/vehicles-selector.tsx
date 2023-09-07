@@ -3,6 +3,7 @@ import { FC, useMemo } from "react";
 import { useLanguage } from "@/contexts";
 import { TypeSelector } from "@/shared/components";
 import { ITypeSelectorOption } from "@/shared/types";
+import { ENGLISH } from "@/contexts/language/constants/english.constants";
 
 interface IVehiclesSelectorProps {
   onSelect: (type: ITypeSelectorOption) => void;
@@ -15,22 +16,22 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
       {
         id: 1,
         label: translation.car,
-        value: 'car',
+        value: ENGLISH.car,
       },
       {
         id: 2,
         label: translation.motorcycle,
-        value: 'motorcycle',
+        value: ENGLISH.motorcycle,
       },
       {
         id: 3,
         label: translation.truck,
-        value: 'truck',
+        value: ENGLISH.truck,
       },
       {
         id: 4,
         label: translation.pickup,
-        value: 'pickup',
+        value: ENGLISH.pickup,
         width: 35,
         height: 35,
       },

@@ -1,5 +1,3 @@
-import { IconName } from "@/shared/components";
-
 export type Size = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 export type FullSize =
   | 1
@@ -33,7 +31,7 @@ export interface ISelectOption<T = any> {
 export interface ITypeSelectorOption {
   id: number;
   label: string;
-  value: IconName;
+  value: string;
   height?: number;
   width?: number;
 }
