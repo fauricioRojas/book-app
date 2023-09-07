@@ -110,6 +110,7 @@ export const ENGLISH: ILanguageTranslation = {
   noResultsFound: "No results found",
   weight: "Weight",
   nextDate: "Next Date",
+  dewormer: "Dewormer",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

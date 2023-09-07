@@ -44,4 +44,5 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.bull]: "bull",
   // Procedure types
   [ENGLISH.vaccine]: "vaccine",
+  [ENGLISH.dewormer]: "parasyte",
 };

@@ -18,6 +18,11 @@ export const ProceduresSelector: FC<IProceduresSelectorProps> = ({ onSelect }) =
         label: translation.vaccine,
         value: ENGLISH.vaccine,
       },
+      {
+        id: 2,
+        label: translation.dewormer,
+        value: ENGLISH.dewormer,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -111,6 +111,7 @@ export const SPANISH: ILanguageTranslation = {
   noResultsFound: "No se encontraron resultados",
   weight: "Peso",
   nextDate: "Próxima Fecha",
+  dewormer: "Desparasitante",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

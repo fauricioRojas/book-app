@@ -108,6 +108,7 @@ export interface ILanguageTranslation extends Language {
   noResultsFound: string;
   weight: string;
   nextDate: string;
+  dewormer: string;
   // Form error messages
   required: string;
   validEmail: string;

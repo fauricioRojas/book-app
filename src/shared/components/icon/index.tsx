@@ -40,6 +40,7 @@ import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
 import { OilIcon } from './oil-icon';
 import { OilFilterIcon } from './oil-filter-icon';
 import { PaintGunIcon } from './paint-gun-icon';
+import { ParasyteIcon } from './parasyte-icon';
 import { PencilIcon } from './pencil-icon';
 import { PickupIcon } from './pickup-icon';
 import { RadiatorIcon } from './radiator-icon';
@@ -109,6 +110,7 @@ export type IconName =
   | 'oil'
   | 'oil-filter'
   | 'paint-gun'
+  | 'parasyte'
   | 'pencil'
   | 'pickup'
   | 'radiator'
@@ -171,6 +173,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   oil: OilIcon,
   'oil-filter': OilFilterIcon,
   'paint-gun': PaintGunIcon,
+  parasyte: ParasyteIcon,
   pencil: PencilIcon,
   pickup: PickupIcon,
   radiator: RadiatorIcon,
