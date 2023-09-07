@@ -30,6 +30,7 @@ import { ExpandIcon } from './expand-icon';
 import { FootprintIcon } from './footprint-icon';
 import { FuseIcon } from './fuse-icon';
 import { GearIcon } from './gear-icon';
+import { GreaseGunIcon } from './grease-gun-icon';
 import { HandleBarIcon } from './handle-bar-icon';
 import { InfoIcon } from './info-icon';
 import { LightBulbIcon } from './light-bulb-icon';
@@ -52,6 +53,7 @@ import { StarIcon } from './star-icon';
 import { TireIcon } from './tire-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
+import { VaccineIcon } from './vaccine-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
@@ -97,6 +99,7 @@ export type IconName =
   | 'footprint'
   | 'fuse'
   | 'gear'
+  | 'grease-gun'
   | 'handle-bar'
   | 'info'
   | 'light-bulb'
@@ -119,6 +122,7 @@ export type IconName =
   | 'tire'
   | 'trash'
   | 'truck'
+  | 'vaccine'
   | 'video-camera'
   | 'warning'
   | 'water-drop';
@@ -157,6 +161,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   footprint: FootprintIcon,
   fuse: FuseIcon,
   gear: GearIcon,
+  'grease-gun': GreaseGunIcon,
   'handle-bar': HandleBarIcon,
   info: InfoIcon,
   'light-bulb': LightBulbIcon,
@@ -179,6 +184,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   tire: TireIcon,
   trash: TrashIcon,
   truck: TruckIcon,
+  vaccine: VaccineIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
   'water-drop': WaterDropIcon,

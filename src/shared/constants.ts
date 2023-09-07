@@ -37,8 +37,11 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.motorcycleSeatChange]: "motorcycle-seat",
   [ENGLISH.gearChange]: "gear",
   [ENGLISH.cablesChange]: "cable",
+  [ENGLISH.grease]: "grease-gun",
   // Pet types
   [ENGLISH.dog]: "dog",
   [ENGLISH.cat]: "cat",
   [ENGLISH.bull]: "bull",
+  // Procedure types
+  [ENGLISH.vaccine]: "vaccine",
 };

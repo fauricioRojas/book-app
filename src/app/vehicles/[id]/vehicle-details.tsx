@@ -8,9 +8,9 @@ import { IVehicle, NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabas
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
+import { ICON_BY_TYPE } from "@/shared/constants";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
-import { ICON_BY_TYPE } from "@/shared/constants";
 
 interface IVehicleDetailsProps extends IVehicle {}
 

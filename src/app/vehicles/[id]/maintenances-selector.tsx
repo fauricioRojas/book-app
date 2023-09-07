@@ -165,6 +165,11 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
         label: translation.cablesChange,
         value: ENGLISH.cablesChange,
       },
+      {
+        id: 29,
+        label: translation.grease,
+        value: ENGLISH.grease,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps

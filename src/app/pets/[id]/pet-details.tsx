@@ -9,6 +9,8 @@ import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/c
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 import { ICON_BY_TYPE } from "@/shared/constants";
+import { ProceduresForm } from "./procedures-form";
+import { ProceduresList } from "./procedures-list";
 
 interface IPetDetailsProps extends IPet {}
 
@@ -17,6 +19,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
   name,
   breed,
   notes,
+  procedures
 }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
@@ -27,8 +30,8 @@ export const PetDetails: FC<IPetDetailsProps> = ({
 
   const handleShowPetForm = () => {
     showDrawer({
-      title: translation.newPet,
-      body: <Typography variant="h1">Add stuff to pet</Typography>,
+      title: translation.newProcedure,
+      body: <ProceduresForm petId={id} />,
     });
   };
 
@@ -120,6 +123,10 @@ export const PetDetails: FC<IPetDetailsProps> = ({
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
+        <FlexWrap direction="column" gap={2}>
+          <Typography variant="h5" fontWeight="bold">{translation.procedures}</Typography>
+          <ProceduresList procedures={procedures} />
+        </FlexWrap>
       </FlexWrap>
     </>
   );

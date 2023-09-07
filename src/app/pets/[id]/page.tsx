@@ -20,12 +20,26 @@ const Pet = async ({ params: { id } }: IPetParams) => {
       date,
       description,
       photo
+    ),
+    procedures (
+      id,
+      notes (
+        id,
+        type,
+        date,
+        description,
+        photo
+      ),
+      cost,
+      weight,
+      nextDate
     )
   `).match({ id }).single();
 
   if (!pet) {
     notFound();
   }
+  console.log('pet:', pet);
 
   return (
     <main>

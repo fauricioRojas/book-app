@@ -18,6 +18,7 @@ export interface IVehicle {
 export interface IPet {
   id: number;
   notes: INote;
+  procedures: IProcedure[];
   name: string;
   breed: string;
 }
@@ -28,4 +29,13 @@ export interface IMaintenance {
   notes: INote;
   cost: number;
   kilometers: number | null;
+}
+
+export interface IProcedure {
+  id: number;
+  pets: IPet;
+  notes: INote;
+  cost: number;
+  weight: number | null;
+  nextDate: Date | null;
 }

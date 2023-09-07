@@ -39,6 +39,15 @@ export interface ILanguageTranslation extends Language {
   deletedMaintenance: string;
   notDeletedMaintenance: string;
   maintenanceDeleteConfirmation: string;
+  procedures: string;
+  noProcedures: string;
+  newProcedure: string;
+  deleteProcedure: string;
+  savedProcedure: string;
+  notSavedProcedure: string;
+  deletedProcedure: string;
+  notDeletedProcedure: string;
+  procedureDeleteConfirmation: string;
   oilChange: string;
   tireReplacement: string;
   refuel: string;
@@ -68,6 +77,8 @@ export interface ILanguageTranslation extends Language {
   paintDetailing: string;
   fuseReplacement: string;
   bushingChange: string;
+  grease: string;
+  vaccine: string;
   breed: string;
   brand: string;
   model: string;
@@ -95,6 +106,8 @@ export interface ILanguageTranslation extends Language {
   tryThesePages: string;
   search: string;
   noResultsFound: string;
+  weight: string;
+  nextDate: string;
   // Form error messages
   required: string;
   validEmail: string;
