@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { IPet } from "@/supabase";
+import { IPet, NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, IconName, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal } from "@/contexts";
+import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 
 interface IPetDetailsProps extends IPet {}
 
@@ -22,6 +22,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
+  const { showSnackbar } = useSnackbar();
 
   const handleShowPetForm = () => {
     showDrawer({
@@ -30,8 +31,21 @@ export const PetDetails: FC<IPetDetailsProps> = ({
     });
   };
 
-  const handleDelete = () => {
-    console.log('handleDelete()');
+  const handleDelete = async () => {
+    const { error: petError } = await supabaseClient.from(PETS_TABLE).delete().eq('id', id);
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).delete().eq('id', notes.id);
+
+    if (petError || noteError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notDeletedPet,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.deletedPet,
+      });
+    }
   }
 
   const handleShowDeleteConfirmation = () => {

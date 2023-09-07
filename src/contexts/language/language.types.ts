@@ -17,12 +17,16 @@ export interface ILanguageTranslation extends Language {
   newVehicle: string;
   savedVehicle: string;
   notSavedVehicle: string;
+  deletedVehicle: string;
+  notDeletedVehicle: string;
   vehicleDeleteConfirmation: string;
   addPet: string;
   deletePet: string;
   newPet: string;
   savedPet: string;
   notSavedPet: string;
+  deletedPet: string;
+  notDeletedPet: string;
   petDeleteConfirmation: string;
   plateNumber: string;
   breed: string;
@@ -39,8 +43,11 @@ export interface ILanguageTranslation extends Language {
   openCamera: string;
   car: string;
   motorcycle: string;
+  truck: string;
+  pickup: string;
   dog: string;
   cat: string;
+  bull: string;
   back: string;
   home: string;
   petNotFound: string;

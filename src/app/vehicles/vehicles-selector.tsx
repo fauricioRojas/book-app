@@ -22,6 +22,18 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
         label: translation.motorcycle,
         value: 'motorcycle',
       },
+      {
+        id: 3,
+        label: translation.truck,
+        value: 'truck',
+      },
+      {
+        id: 4,
+        label: translation.pickup,
+        value: 'pickup',
+        width: 35,
+        height: 35,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps

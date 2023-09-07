@@ -22,6 +22,13 @@ export const PetsSelector: FC<IPetsSelectorProps> = ({ onSelect }) => {
         label: translation.cat,
         value: 'cat',
       },
+      {
+        id: 3,
+        label: translation.bull,
+        value: 'bull',
+        height: 35,
+        width: 35,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps

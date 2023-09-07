@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { IVehicle } from "@/supabase";
+import { IVehicle, NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, IconName, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal } from "@/contexts";
+import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 
 interface IVehicleDetailsProps extends IVehicle {}
 
@@ -23,6 +23,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
+  const { showSnackbar } = useSnackbar();
 
   const handleShowVehicleForm = () => {
     showDrawer({
@@ -31,8 +32,21 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
     });
   };
 
-  const handleDelete = () => {
-    console.log('handleDelete()');
+  const handleDelete = async () => {
+    const { error: vehicleError } = await supabaseClient.from(VEHICLES_TABLE).delete().eq('id', id);
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).delete().eq('id', notes.id);
+
+    if (vehicleError || noteError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notDeletedVehicle,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.deletedVehicle,
+      });
+    }
   }
 
   const handleShowDeleteConfirmation = () => {

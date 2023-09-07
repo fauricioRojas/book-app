@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { AddIcon } from './add-icon';
 import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
+import { BullIcon } from './bull-icon';
 import { CancelIcon } from './cancel-icon';
 import { CameraIcon } from './camera-icon';
 import { CarIcon } from './car-icon';
@@ -17,12 +18,15 @@ import { InfoIcon } from './info-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
 import { PencilIcon } from './pencil-icon';
+import { PickupIcon } from './pickup-icon';
 import { SettingsIcon } from './settings-icon';
 import { SignOutIcon } from './sign-out-icon';
 import { StarIcon } from './star-icon';
 import { TrashIcon } from './trash-icon';
+import { TruckIcon } from './truck-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
+import { WheelIcon } from './wheel-icon';
 import { Size } from '@/shared/types';
 
 export interface ICommonIconProps {
@@ -39,6 +43,7 @@ export type IconName =
   | 'add'
   | 'arrow-back'
   | 'arrow-down'
+  | 'bull'
   | 'camera'
   | 'cancel'
   | 'car'
@@ -52,12 +57,15 @@ export type IconName =
   | 'microphone'
   | 'motorcycle'
   | 'pencil'
+  | 'pickup'
   | 'settings'
   | 'sign-out'
   | 'star'
   | 'trash'
+  | 'truck'
   | 'video-camera'
-  | 'warning';
+  | 'warning'
+  | 'wheel';
 
 interface IIconProps extends ICommonIconProps {
   name: IconName;
@@ -67,6 +75,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   add: AddIcon,
   'arrow-back': ArrowBackIcon,
   'arrow-down': ArrowDownIcon,
+  bull: BullIcon,
   camera: CameraIcon,
   cancel: CancelIcon,
   car: CarIcon,
@@ -80,12 +89,15 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   microphone: MicrophoneIcon,
   motorcycle: MotorcycleIcon,
   pencil: PencilIcon,
+  pickup: PickupIcon,
   settings: SettingsIcon,
   'sign-out': SignOutIcon,
   star: StarIcon,
   trash: TrashIcon,
+  truck: TruckIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
+  wheel: WheelIcon,
 };
 
 interface IStyledIconProps {

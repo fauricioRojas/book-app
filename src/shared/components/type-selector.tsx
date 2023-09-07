@@ -54,8 +54,8 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
           <Icon
             name={type.value as IconName}
             color={colors.primary}
-            height={30}
-            width={30}
+            height={type.height ?? 30}
+            width={type.width ?? 30}
           />
           <Typography
             variant="label"
