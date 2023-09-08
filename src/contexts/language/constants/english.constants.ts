@@ -122,6 +122,7 @@ export const ENGLISH: ILanguageTranslation = {
   rabbit: "Rabbit",
   hamster: "Hamster",
   pig: "Pig",
+  optional: "Optional",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

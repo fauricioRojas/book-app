@@ -106,7 +106,6 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
                 value={value}
                 label={translation.cost}
                 errorMessage={errors.cost?.message}
-                required
                 inputMode="numeric"
                 onChange={onChange}
                 onBlur={onBlur}
@@ -126,6 +125,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
                 value={value}
                 label={translation.weight}
                 inputMode="numeric"
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
                 onKeyDown={handleOnlyAllowNumbers}
@@ -146,7 +146,6 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
                 value={value}
                 label={translation.date}
                 errorMessage={errors.date?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -164,6 +163,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
                 type="date"
                 value={value}
                 label={translation.nextDate}
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -180,6 +180,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
               <Textarea
                 value={value}
                 label={translation.description}
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
               />

@@ -99,7 +99,6 @@ export const VehiclesForm = () => {
                 value={value}
                 label={translation.plateNumber}
                 errorMessage={errors.plateNumber?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -118,7 +117,6 @@ export const VehiclesForm = () => {
                 value={value}
                 label={translation.brand}
                 errorMessage={errors.brand?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -137,7 +135,6 @@ export const VehiclesForm = () => {
                 value={value}
                 label={translation.model}
                 errorMessage={errors.model?.message}
-                required
                 inputMode="numeric"
                 onChange={onChange}
                 onBlur={onBlur}
@@ -159,7 +156,6 @@ export const VehiclesForm = () => {
                 value={value}
                 label={translation.dateOfPurchase}
                 errorMessage={errors.dateOfPurchase?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -176,6 +172,7 @@ export const VehiclesForm = () => {
               <Textarea
                 value={value}
                 label={translation.description}
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
               />

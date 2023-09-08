@@ -120,6 +120,7 @@ export interface ILanguageTranslation extends Language {
   rabbit: string;
   hamster: string;
   pig: string;
+  optional: string;
   // Form error messages
   required: string;
   validEmail: string;

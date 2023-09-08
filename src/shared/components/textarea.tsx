@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, FocusEvent } from 'react';
 import styled from 'styled-components';
 
+import { useLanguage } from '@/contexts';
 import { FlexWrap, Typography } from '.';
 
 interface ITextareaProps {
@@ -9,6 +10,7 @@ interface ITextareaProps {
   label?: string;
   placeholder?: string;
   errorMessage?: string;
+  optional?: boolean;
   rows?: number;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onBlur?: (event: FocusEvent<HTMLTextAreaElement>) => void;
@@ -46,17 +48,22 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
 export const Textarea: FC<ITextareaProps> = ({
   label,
   errorMessage,
+  optional,
   rows = 4,
   ...props
-}) => (
-  <FlexWrap direction="column" gap={1}>
-    {label && <Typography variant="label">{label}</Typography>}
-    <StyledTextarea
-      rows={rows}
-      $rows={rows}
-      $isInvalid={!!errorMessage}
-      {...props}
-    />
-    {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
-  </FlexWrap>
-);
+}) => {
+  const { translation } = useLanguage();
+
+  return (
+    <FlexWrap direction="column" gap={1}>
+      {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
+      <StyledTextarea
+        rows={rows}
+        $rows={rows}
+        $isInvalid={!!errorMessage}
+        {...props}
+      />
+      {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
+    </FlexWrap>
+  );
+};

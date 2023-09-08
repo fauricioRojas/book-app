@@ -123,6 +123,7 @@ export const SPANISH: ILanguageTranslation = {
   rabbit: "Conejo",
   hamster: "Hámster",
   pig: "Chancho",
+  optional: "Opcional",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

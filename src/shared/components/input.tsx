@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, FocusEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 
+import { useLanguage } from '@/contexts';
 import { Box, FlexWrap, Icon, IconName, Typography } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
@@ -14,7 +15,7 @@ interface IInputProps {
   inputMode?: InputMode;
   placeholder?: string;
   errorMessage?: string;
-  required?: boolean;
+  optional?: boolean;
   leftIconName?: IconName;
   rightIconName?: IconName;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -71,16 +72,17 @@ export const Input: FC<IInputProps> = ({
   type = 'text',
   label,
   errorMessage,
-  required,
+  optional,
   leftIconName,
   rightIconName,
   ...props
 }) => {
   const { colors } = useTheme();
+  const { translation } = useLanguage();
 
   return (
     <FlexWrap direction="column" gap={1}>
-      {label && <Typography variant="label">{label} {required && <Typography variant="label" color="error">*</Typography>}</Typography>}
+      {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
       <Box position="relative">
         {leftIconName && (
           <StyledLeftIcon

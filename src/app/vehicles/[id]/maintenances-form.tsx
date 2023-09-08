@@ -103,7 +103,6 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
                 value={value}
                 label={translation.cost}
                 errorMessage={errors.cost?.message}
-                required
                 inputMode="numeric"
                 onChange={onChange}
                 onBlur={onBlur}
@@ -123,6 +122,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
                 value={value}
                 label={translation.kilometers}
                 inputMode="numeric"
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
                 onKeyDown={handleOnlyAllowNumbers}
@@ -143,7 +143,6 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
                 value={value}
                 label={translation.date}
                 errorMessage={errors.date?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -160,6 +159,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
               <Textarea
                 value={value}
                 label={translation.description}
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
               />

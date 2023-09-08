@@ -95,7 +95,6 @@ export const PetsForm = () => {
                 value={value}
                 label={translation.name}
                 errorMessage={errors.name?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -114,7 +113,6 @@ export const PetsForm = () => {
                 value={value}
                 label={translation.breed}
                 errorMessage={errors.breed?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -134,7 +132,6 @@ export const PetsForm = () => {
                 value={value}
                 label={translation.dateOfBirth}
                 errorMessage={errors.dateOfBirth?.message}
-                required
                 onChange={onChange}
                 onBlur={onBlur}
               />
@@ -151,6 +148,7 @@ export const PetsForm = () => {
               <Textarea
                 value={value}
                 label={translation.description}
+                optional
                 onChange={onChange}
                 onBlur={onBlur}
               />
