@@ -10,7 +10,7 @@ export const ENGLISH: ILanguageTranslation = {
   language: "Language",
   cost: "Cost",
   kilometers: "Kilometers",
-  date: "Fecha",
+  date: "Date",
   save: "Save",
   cancel: "Cancel",
   delete: "Delete",
