@@ -13,13 +13,14 @@ const getLanguageOptions = (translation: ILanguageTranslation): ISelectOption<La
 
 export const LanguageProvider: FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useLocalStorage<LanguageType>('language', 'es');
+  const translation = LANGUAGES[language];
 
   return (
     <LanguageContext.Provider
       value={{
         language,
-        languageOptions: getLanguageOptions(LANGUAGES[language]),
-        translation: LANGUAGES[language],
+        languageOptions: getLanguageOptions(translation),
+        translation,
         changeLanguage: setLanguage,
       }}
     >

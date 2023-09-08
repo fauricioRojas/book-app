@@ -9,7 +9,6 @@ export interface ILanguageTranslation extends Language {
   theme: string;
   language: string;
   cost: string;
-  kilometers: string;
   date: string;
   save: string;
   cancel: string;
@@ -129,6 +128,15 @@ export interface ILanguageTranslation extends Language {
   hamster: string;
   pig: string;
   optional: string;
+  currency: string;
+  dollar: string;
+  colon: string;
+  measure: string;
+  kilometers: string;
+  meters: string;
+  miles: string;
+  grams: string;
+  pounds: string;
   // Form error messages
   required: string;
   validEmail: string;

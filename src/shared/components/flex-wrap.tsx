@@ -125,6 +125,7 @@ interface IFlexWrapProps extends PropsWithChildren {
   basisLg?: number | string;
   basisXl?: number | string;
   basisXxl?: number | string;
+  className?: string;
   direction?: Direction;
   directionSm?: Direction;
   directionMd?: Direction;
@@ -203,6 +204,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
   wrapXl,
   wrapXxl,
   children,
+  ...props
 }) => (
   <StyledFlexWrap
     $align={align}
@@ -248,6 +250,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
     $wrapLg={wrapLg}
     $wrapXl={wrapXl}
     $wrapXxl={wrapXxl}
+    {...props}
   >
     {children}
   </StyledFlexWrap>

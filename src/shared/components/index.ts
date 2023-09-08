@@ -10,6 +10,7 @@ export * from "./col";
 export * from "./confirmation-modal";
 export * from "./container";
 export * from "./drawer";
+export * from "./divider";
 export * from "./flex-wrap";
 export * from "./global-styles";
 export * from "./icon";

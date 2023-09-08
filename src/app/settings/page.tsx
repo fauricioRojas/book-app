@@ -1,16 +1,25 @@
-import { LanguageSelector, ThemeToggle } from "@/components";
-import { Card, FlexWrap } from "@/shared/components";
+import { Divider, FlexWrap } from "@/shared/components";
+import { CurrencySelector } from "./currency-selector";
+import { LanguageSelector } from "./language-selector";
+import { MeasureSelector } from "./measure-selector";
+import { ThemeSelector } from "./theme-selector";
+import { WeightSelector } from "./weight-selector";
 import { SettingsHeader } from "./settings-header";
 
 const Settings = () => (
   <main>
     <SettingsHeader />
-    <Card>
-      <FlexWrap direction="column" gap={4}>
-        <ThemeToggle />
-        <LanguageSelector />
-      </FlexWrap>
-    </Card>
+    <FlexWrap direction="column" gap={2}>
+      <ThemeSelector />
+      <Divider />
+      <LanguageSelector />
+      <Divider />
+      <CurrencySelector />
+      <Divider />
+      <MeasureSelector />
+      <Divider />
+      <WeightSelector />
+    </FlexWrap>
   </main>
 );
 
