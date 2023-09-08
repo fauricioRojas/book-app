@@ -140,6 +140,9 @@ export const SPANISH: ILanguageTranslation = {
   miles: "Millas",
   grams: "Gramos",
   pounds: "Libras",
+  tractor: "Tractor",
+  trailer: "Trailer",
+  bike: "Bicicleta",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

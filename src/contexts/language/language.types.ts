@@ -137,6 +137,9 @@ export interface ILanguageTranslation extends Language {
   miles: string;
   grams: string;
   pounds: string;
+  tractor: string;
+  trailer: string;
+  bike: string;
   // Form error messages
   required: string;
   validEmail: string;

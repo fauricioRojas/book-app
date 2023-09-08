@@ -9,6 +9,7 @@ import { ArrowDownIcon } from './arrow-down-icon';
 import { BallJointsIcon } from './ball-joints-icon';
 import { BatteryIcon } from './battery-icon';
 import { BeltIcon } from './belt-icon';
+import { BikeIcon } from './bike-icon';
 import { BrakeIcon } from './brake-icon';
 import { BrakeFiberIcon } from './brake-fiber-icon';
 import { BrakeFluidBottleIcon } from './brake-fluid-bottle-icon';
@@ -70,6 +71,8 @@ import { SurgeryKnifeIcon } from './surgery-knife-icon';
 import { SyringeIcon } from './syringe-icon';
 import { TickIcon } from './tick-icon';
 import { TireIcon } from './tire-icon';
+import { TractorIcon } from './tractor-icon';
+import { TrailerIcon } from './trailer-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
 import { VideoCameraIcon } from './video-camera-icon';
@@ -97,6 +100,7 @@ export type IconName =
   | 'ball-joints'
   | 'battery'
   | 'belt'
+  | 'bike'
   | 'brake'
   | 'brake-fiber'
   | 'brake-fluid-bottle'
@@ -158,6 +162,8 @@ export type IconName =
   | 'syringe'
   | 'tick'
   | 'tire'
+  | 'tractor'
+  | 'trailer'
   | 'trash'
   | 'truck'
   | 'video-camera'
@@ -177,6 +183,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'ball-joints': BallJointsIcon,
   battery: BatteryIcon,
   belt: BeltIcon,
+  bike: BikeIcon,
   brake: BrakeIcon,
   'brake-fiber': BrakeFiberIcon,
   'brake-fluid-bottle': BrakeFluidBottleIcon,
@@ -238,6 +245,8 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   syringe: SyringeIcon,
   tick: TickIcon,
   tire: TireIcon,
+  tractor: TractorIcon,
+  trailer: TrailerIcon,
   trash: TrashIcon,
   truck: TruckIcon,
   'video-camera': VideoCameraIcon,

@@ -139,6 +139,9 @@ export const ENGLISH: ILanguageTranslation = {
   miles: "Miles",
   grams: "Grams",
   pounds: "Pounds",
+  tractor: "Tractor",
+  trailer: "Trailer",
+  bike: "Bike",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

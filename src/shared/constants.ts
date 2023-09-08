@@ -3,10 +3,13 @@ import { IconName } from "./components";
 
 export const ICON_BY_TYPE: Record<string, IconName> = {
   // Vehicle types
-  [ENGLISH.car]: "car",
+  [ENGLISH.bike]: "bike",
   [ENGLISH.motorcycle]: "motorcycle",
+  [ENGLISH.car]: "car",
   [ENGLISH.truck]: "truck",
   [ENGLISH.pickup]: "pickup",
+  [ENGLISH.tractor]: "tractor",
+  [ENGLISH.trailer]: "trailer",
   // Maintenance types
   [ENGLISH.engineOilChange]: "oil",
   [ENGLISH.refuel]: "petrol-pump",
