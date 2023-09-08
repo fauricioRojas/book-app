@@ -32,6 +32,8 @@ import { FuseIcon } from './fuse-icon';
 import { GearIcon } from './gear-icon';
 import { GreaseGunIcon } from './grease-gun-icon';
 import { HandleBarIcon } from './handle-bar-icon';
+import { HairCutIcon } from './hair-cut-icon';
+import { HamsterIcon } from './hamster-icon';
 import { InfoIcon } from './info-icon';
 import { LightBulbIcon } from './light-bulb-icon';
 import { MicrophoneIcon } from './microphone-icon';
@@ -40,21 +42,28 @@ import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
 import { OilIcon } from './oil-icon';
 import { OilFilterIcon } from './oil-filter-icon';
 import { PaintGunIcon } from './paint-gun-icon';
-import { ParasyteIcon } from './parasyte-icon';
 import { PencilIcon } from './pencil-icon';
+import { PetBathIcon } from './pet-bath-icon';
+import { PetGroomingBrushIcon } from './pet-grooming-brush-icon';
+import { PetNailClippersIcon } from './pet-nail-clippers-icon';
+import { PetrolPumpIcon } from './petrol-pump-icon';
 import { PickupIcon } from './pickup-icon';
+import { PigIcon } from './pig-icon';
+import { PillsBottleIcon } from './pills-bottle-icon';
+import { RabbitIcon } from './rabbit-icon';
 import { RadiatorIcon } from './radiator-icon';
-import { RefuelIcon } from './refuel-icon';
 import { SearchIcon } from './search-icon';
 import { SettingsIcon } from './settings-icon';
 import { ShockAbsorbersIcon } from './shock-absorbers-icon';
 import { SideMirrorIcon } from './side-mirror-icon';
 import { SignOutIcon } from './sign-out-icon';
 import { StarIcon } from './star-icon';
+import { SurgeryKnifeIcon } from './surgery-knife-icon';
+import { SyringeIcon } from './syringe-icon';
+import { TickIcon } from './tick-icon';
 import { TireIcon } from './tire-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
-import { VaccineIcon } from './vaccine-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
@@ -62,6 +71,7 @@ import { Size } from '@/shared/types';
 
 export interface ICommonIconProps {
   className?: string;
+  pointer?: boolean;
   color?: string;
   width?: number;
   height?: number;
@@ -102,6 +112,8 @@ export type IconName =
   | 'gear'
   | 'grease-gun'
   | 'handle-bar'
+  | 'hair-cut'
+  | 'hamster'
   | 'info'
   | 'light-bulb'
   | 'microphone'
@@ -110,21 +122,28 @@ export type IconName =
   | 'oil'
   | 'oil-filter'
   | 'paint-gun'
-  | 'parasyte'
   | 'pencil'
+  | 'pet-bath'
+  | 'pet-grooming-brush'
+  | 'pet-nail-clippers'
+  | 'petrol-pump'
   | 'pickup'
+  | 'pig'
+  | 'pills-bottle'
+  | 'rabbit'
   | 'radiator'
-  | 'refuel'
   | 'search'
   | 'settings'
   | 'shock-absorbers'
   | 'side-mirror'
   | 'sign-out'
   | 'star'
+  | 'surgery-knife'
+  | 'syringe'
+  | 'tick'
   | 'tire'
   | 'trash'
   | 'truck'
-  | 'vaccine'
   | 'video-camera'
   | 'warning'
   | 'water-drop';
@@ -165,6 +184,8 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   gear: GearIcon,
   'grease-gun': GreaseGunIcon,
   'handle-bar': HandleBarIcon,
+  'hair-cut': HairCutIcon,
+  hamster: HamsterIcon,
   info: InfoIcon,
   'light-bulb': LightBulbIcon,
   microphone: MicrophoneIcon,
@@ -173,21 +194,28 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   oil: OilIcon,
   'oil-filter': OilFilterIcon,
   'paint-gun': PaintGunIcon,
-  parasyte: ParasyteIcon,
   pencil: PencilIcon,
+  'pet-bath': PetBathIcon,
+  'pet-grooming-brush': PetGroomingBrushIcon,
+  'pet-nail-clippers': PetNailClippersIcon,
+  'petrol-pump': PetrolPumpIcon,
   pickup: PickupIcon,
+  pig: PigIcon,
+  'pills-bottle': PillsBottleIcon,
+  rabbit: RabbitIcon,
   radiator: RadiatorIcon,
-  refuel: RefuelIcon,
   search: SearchIcon,
   settings: SettingsIcon,
   'shock-absorbers': ShockAbsorbersIcon,
   'side-mirror': SideMirrorIcon,
   'sign-out': SignOutIcon,
   star: StarIcon,
+  'surgery-knife': SurgeryKnifeIcon,
+  syringe: SyringeIcon,
+  tick: TickIcon,
   tire: TireIcon,
   trash: TrashIcon,
   truck: TruckIcon,
-  vaccine: VaccineIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
   'water-drop': WaterDropIcon,
@@ -200,7 +228,7 @@ interface IStyledIconProps {
 }
 
 export const StyledSvg = styled.svg<IStyledIconProps>`
-  cursor: ${( $isClickable ) => $isClickable ? 'pointer' : 'default'};
+  cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
   margin-left: ${({ $ml, theme }) => theme.gutters[`size${$ml}`]};
   margin-right: ${({ $mr, theme }) => theme.gutters[`size${$mr}`]};
   transition: color .2s ease;

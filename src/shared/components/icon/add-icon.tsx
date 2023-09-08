@@ -4,6 +4,7 @@ import { ICommonIconProps, StyledSvg } from '.';
 
 export const AddIcon: FC<ICommonIconProps> = ({
   color,
+  pointer,
   ml,
   mr,
   width = 20,
@@ -18,7 +19,7 @@ export const AddIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={!!props.onClick}
+    $isClickable={pointer || pointer || !!props.onClick}
     {...props}
   >
     <path

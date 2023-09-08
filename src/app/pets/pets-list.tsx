@@ -1,6 +1,7 @@
 import { Col, Row } from '@/shared/components';
 import { supabaseClient, IPet, PETS_TABLE } from '@/supabase';
 import { PetsListItem } from './pets-list-item';
+import { NoPets } from './no-pets';
 
 export const PetsList = async () => {
   const { data: pets } = await supabaseClient.from(PETS_TABLE).select<string, IPet>(`
@@ -14,9 +15,13 @@ export const PetsList = async () => {
     )
   `);
 
+  if (!pets?.length) {
+    return <NoPets />;
+  }
+
   return (
     <Row>
-      {(pets || []).map((pet) => (
+      {pets.map((pet) => (
         <Col
           key={pet.id}
           cols={12}

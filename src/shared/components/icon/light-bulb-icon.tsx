@@ -4,6 +4,7 @@ import { ICommonIconProps, StyledSvg } from '.';
 
 export const LightBulbIcon: FC<ICommonIconProps> = ({
   color,
+  pointer,
   ml,
   mr,
   width = 20,
@@ -17,7 +18,7 @@ export const LightBulbIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={!!props.onClick}
+    $isClickable={pointer || !!props.onClick}
     {...props}
   >
     <g transform="translate(-204.5 -1608.362)">

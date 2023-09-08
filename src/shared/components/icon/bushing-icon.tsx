@@ -4,6 +4,7 @@ import { ICommonIconProps, StyledSvg } from '.';
 
 export const BushingIcon: FC<ICommonIconProps> = ({
   color,
+  pointer,
   ml,
   mr,
   width = 20,
@@ -17,7 +18,7 @@ export const BushingIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={!!props.onClick}
+    $isClickable={pointer || !!props.onClick}
     {...props}
   >
     <rect

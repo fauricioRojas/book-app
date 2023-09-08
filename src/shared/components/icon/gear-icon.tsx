@@ -4,6 +4,7 @@ import { ICommonIconProps, StyledSvg } from '.';
 
 export const GearIcon: FC<ICommonIconProps> = ({
   color,
+  pointer,
   ml,
   mr,
   width = 20,
@@ -17,7 +18,7 @@ export const GearIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={!!props.onClick}
+    $isClickable={pointer || !!props.onClick}
     {...props}
   >
     <path

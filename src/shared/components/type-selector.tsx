@@ -39,13 +39,11 @@ const StyledTypeSelectorOption = styled.div`
 
 interface ITypeSelectorProps {
   types: ITypeSelectorOption[];
-  showSearchInput?: boolean;
   onSelect: (type: ITypeSelectorOption) => void;
 }
 
 export const TypeSelector: FC<ITypeSelectorProps> = ({
   types,
-  showSearchInput,
   onSelect,
 }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,7 +64,7 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
 
   return (
     <FlexWrap direction="column" gap={4}>
-      {showSearchInput && (
+      {types.length > 8 && (
         <Input
           value={searchTerm}
           leftIconName="search"
@@ -86,9 +84,10 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
                   color={colors.secondaryText}
                   height={type.height ?? 30}
                   width={type.width ?? 30}
+                  pointer
                 />
                 <Typography
-                  variant="label"
+                  variant="h6"
                   color="secondary-text"
                   fontWeight="bold"
                   textAlign="center"

@@ -32,6 +32,7 @@ export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
         color={isActive ? colors.primary : colors.primaryText}
         width={20}
         height={20}
+        pointer
       />
       <Typography
         variant="span"

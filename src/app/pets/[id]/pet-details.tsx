@@ -91,7 +91,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
             iconName="trash"
             variant="error"
             height={22}
-            width={20}
+            width={22}
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton

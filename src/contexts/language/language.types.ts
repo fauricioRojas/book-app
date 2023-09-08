@@ -22,6 +22,7 @@ export interface ILanguageTranslation extends Language {
   deletedVehicle: string;
   notDeletedVehicle: string;
   vehicleDeleteConfirmation: string;
+  noVehicles: string;
   addPet: string;
   deletePet: string;
   newPet: string;
@@ -30,6 +31,7 @@ export interface ILanguageTranslation extends Language {
   deletedPet: string;
   notDeletedPet: string;
   petDeleteConfirmation: string;
+  noPets: string;
   maintenances: string;
   noMaintenances: string;
   newMaintenance: string;
@@ -109,6 +111,15 @@ export interface ILanguageTranslation extends Language {
   weight: string;
   nextDate: string;
   dewormer: string;
+  hairCut: string;
+  nailsCut: string;
+  bath: string;
+  hairBrushing: string;
+  pills: string;
+  surgery: string;
+  rabbit: string;
+  hamster: string;
+  pig: string;
   // Form error messages
   required: string;
   validEmail: string;

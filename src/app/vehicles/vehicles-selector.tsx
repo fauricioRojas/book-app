@@ -32,8 +32,8 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
         id: 4,
         label: translation.pickup,
         value: ENGLISH.pickup,
-        width: 35,
-        height: 35,
+        width: 40,
+        height: 40,
       },
     ];
     return types;
@@ -41,6 +41,9 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
   }, [language]);
 
   return (
-    <TypeSelector types={vehiclesTypes} onSelect={onSelect} />
+    <TypeSelector
+      types={vehiclesTypes}
+      onSelect={onSelect}
+    />
   );
 };

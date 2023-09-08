@@ -57,6 +57,7 @@ export const IconButton: FC<IIconButtonProps> = ({
         color={colors[variant]}
         width={width}
         height={height}
+        pointer
       />
     </StyledIconButton>
   );

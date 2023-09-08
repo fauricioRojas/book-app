@@ -27,6 +27,27 @@ export const PetsSelector: FC<IPetsSelectorProps> = ({ onSelect }) => {
         id: 3,
         label: translation.bull,
         value: ENGLISH.bull,
+        height: 45,
+        width: 45,
+      },
+      {
+        id: 4,
+        label: translation.rabbit,
+        value: ENGLISH.rabbit,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 5,
+        label: translation.hamster,
+        value: ENGLISH.hamster,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 6,
+        label: translation.pig,
+        value: ENGLISH.pig,
         height: 35,
         width: 35,
       },
@@ -36,6 +57,9 @@ export const PetsSelector: FC<IPetsSelectorProps> = ({ onSelect }) => {
   }, [language]);
 
   return (
-    <TypeSelector types={petsTypes} onSelect={onSelect} />
+    <TypeSelector
+      types={petsTypes}
+      onSelect={onSelect}
+    />
   );
 };

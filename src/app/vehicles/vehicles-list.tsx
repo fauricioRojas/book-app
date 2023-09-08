@@ -1,6 +1,7 @@
 import { Col, Row } from '@/shared/components';
 import { supabaseClient, IVehicle, VEHICLES_TABLE } from '@/supabase';
 import { VehiclesListItem } from './vehicles-list-item';
+import { NoVehicles } from './no-vehicles';
 
 export const VehiclesList = async () => {
   const { data: vehicles } = await supabaseClient.from(VEHICLES_TABLE).select<string, IVehicle>(`
@@ -14,9 +15,13 @@ export const VehiclesList = async () => {
     )
   `);
 
+  if (!vehicles?.length) {
+    return <NoVehicles />;
+  }
+
   return (
     <Row>
-      {(vehicles || []).map((vehicle) => (
+      {vehicles.map((vehicle) => (
         <Col
           key={vehicle.id}
           cols={12}

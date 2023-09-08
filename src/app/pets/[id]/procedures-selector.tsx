@@ -23,6 +23,38 @@ export const ProceduresSelector: FC<IProceduresSelectorProps> = ({ onSelect }) =
         label: translation.dewormer,
         value: ENGLISH.dewormer,
       },
+      {
+        id: 3,
+        label: translation.hairCut,
+        value: ENGLISH.hairCut,
+      },
+      {
+        id: 4,
+        label: translation.nailsCut,
+        value: ENGLISH.nailsCut,
+      },
+      {
+        id: 5,
+        label: translation.bath,
+        value: ENGLISH.bath,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 6,
+        label: translation.hairBrushing,
+        value: ENGLISH.hairBrushing,
+      },
+      {
+        id: 7,
+        label: translation.pills,
+        value: ENGLISH.pills,
+      },
+      {
+        id: 8,
+        label: translation.surgery,
+        value: ENGLISH.surgery,
+      },
     ];
     return types;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +63,6 @@ export const ProceduresSelector: FC<IProceduresSelectorProps> = ({ onSelect }) =
   return (
     <TypeSelector
       types={proceduresTypes}
-      showSearchInput
       onSelect={onSelect}
     />
   );

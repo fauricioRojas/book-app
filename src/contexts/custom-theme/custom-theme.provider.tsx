@@ -1,20 +1,11 @@
 "use client";
 
-import { createContext, useContext, FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from "react";
 import { ThemeProvider } from "styled-components";
 
 import { useLocalStorage } from '@/hooks';
 import { DARK_THEME, LIGHT_THEME } from '@/theme';
-
-interface ICustomThemeContext {
-  isDarkTheme: boolean;
-  toggleTheme: () => void;
-}
-
-export const CustomThemeContext = createContext<ICustomThemeContext>({
-  isDarkTheme: false,
-  toggleTheme: () => undefined,
-});
+import { CustomThemeContext } from './custom-theme.context';
 
 const isDeviceDarkTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
@@ -31,5 +22,3 @@ export const CustomThemeProvider: FC<PropsWithChildren> = ({ children }) => {
     </ThemeProvider>
   );
 };
-
-export const useCustomTheme = () => useContext(CustomThemeContext);

@@ -9,7 +9,7 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.pickup]: "pickup",
   // Maintenance types
   [ENGLISH.oilChange]: "oil",
-  [ENGLISH.refuel]: "refuel",
+  [ENGLISH.refuel]: "petrol-pump",
   [ENGLISH.tireReplacement]: "tire",
   [ENGLISH.batteryReplacement]: "battery",
   [ENGLISH.linedUpAndBalanced]: "car-chasis",
@@ -42,7 +42,16 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.dog]: "dog",
   [ENGLISH.cat]: "cat",
   [ENGLISH.bull]: "bull",
+  [ENGLISH.rabbit]: "rabbit",
+  [ENGLISH.hamster]: "hamster",
+  [ENGLISH.pig]: "pig",
   // Procedure types
-  [ENGLISH.vaccine]: "vaccine",
-  [ENGLISH.dewormer]: "parasyte",
+  [ENGLISH.vaccine]: "syringe",
+  [ENGLISH.dewormer]: "tick",
+  [ENGLISH.hairCut]: "hair-cut",
+  [ENGLISH.nailsCut]: "pet-nail-clippers",
+  [ENGLISH.bath]: "pet-bath",
+  [ENGLISH.hairBrushing]: "pet-grooming-brush",
+  [ENGLISH.pills]: "pills-bottle",
+  [ENGLISH.surgery]: "surgery-knife",
 };

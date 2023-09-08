@@ -33,6 +33,7 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
             color={colors.primaryText}
             height={25}
             width={25}
+            pointer
           />
         </FlexWrap>
       </Card>

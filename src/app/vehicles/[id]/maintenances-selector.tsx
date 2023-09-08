@@ -17,8 +17,8 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
         id: 1,
         label: translation.oilChange,
         value: ENGLISH.oilChange,
-        height: 35,
-        width: 35,
+        height: 40,
+        width: 40,
       },
       {
         id: 2,
@@ -178,7 +178,6 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
   return (
     <TypeSelector
       types={maintenancesTypes}
-      showSearchInput
       onSelect={onSelect}
     />
   );
