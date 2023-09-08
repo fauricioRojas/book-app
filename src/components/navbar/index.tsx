@@ -8,15 +8,16 @@ import { NavbarItem } from './navbar-item';
 import { useLanguage } from '@/contexts';
 
 const StyledNavbar = styled.nav`
+  align-items: center;
   background-color: ${({ theme }) => theme.colors.neutralTransparent};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
+  bottom: ${({ theme }) => theme.gutters.size0};
+  display: flex;
+  height: 58px;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
   position: fixed;
-  display: flex;
-  bottom: ${({ theme }) => theme.gutters.size0};
-  width: 100%;
-  justify-content: space-between;
   transition: background-color .3s;
+  width: 100%;
 `;
 
 export const Navbar = () => {

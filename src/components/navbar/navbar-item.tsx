@@ -9,12 +9,12 @@ import { Icon, Typography } from '@/shared/components';
 import { INavbarItem } from './navbar.types';
 
 const StyledLink = styled(NextLink)`
+  align-items: center;
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: ${({ theme }) => theme.gutters.size1};
-  align-items: center;
   text-decoration: none;
-  flex: 1;
 `;
 
 
@@ -29,7 +29,7 @@ export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
     <StyledLink href={href}>
       <Icon
         name={iconName}
-        color={isActive ? colors.primary : colors.primaryText}
+        color={isActive ? colors.primary : colors.secondaryText}
         width={20}
         height={20}
         pointer
@@ -37,7 +37,7 @@ export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
       <Typography
         variant="span"
         fontWeight="bold"
-        color={isActive ? 'primary' : undefined}
+        color={isActive ? 'primary' : 'secondary-text'}
       >
         {text}
       </Typography>

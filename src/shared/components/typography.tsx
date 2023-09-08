@@ -128,11 +128,13 @@ const LABEL = styled.label`
 `;
 const P = styled.p`
   font-size: 1rem;
-  margin-top: 0;
   ${sharedCss};
 `;
 const SPAN = styled.span`
-  font-size: 0.875rem;
+  font-size: calc(0.6rem + 0.3vw);
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 0.875rem;
+  }
   ${sharedCss};
 `;
 
