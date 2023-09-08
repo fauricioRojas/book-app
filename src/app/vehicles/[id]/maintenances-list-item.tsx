@@ -5,8 +5,9 @@ import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
 import { IMaintenance } from '@/supabase';
-import { formatDate, formatMoney, formatKilometers } from '@/shared/utils';
+import { formatDate, formatMoney, formatLength } from '@/shared/utils';
 import { ICON_BY_TYPE } from '@/shared/constants';
+import { useMeasure } from '@/contexts';
 
 interface IMaintenancesListItemProps extends IMaintenance {}
 
@@ -20,6 +21,7 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
   },
 }) => {
   const { colors } = useTheme();
+  const { currency, lengthUnit } = useMeasure();
 
   return (
     <Card>
@@ -41,11 +43,11 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
           align="center"
         >
           <Typography variant="label">
-            {formatMoney(cost)}
+            {formatMoney(cost, currency)}
           </Typography>
           {kilometers && (
             <Typography variant="label">
-              {formatKilometers(kilometers)}
+              {formatLength(kilometers, lengthUnit)}
             </Typography>
           )}
         </FlexWrap>

@@ -5,8 +5,9 @@ import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
 import { IProcedure } from '@/supabase';
-import { formatDate, formatMoney } from '@/shared/utils';
+import { formatDate, formatMoney, formatWeight } from '@/shared/utils';
 import { ICON_BY_TYPE } from '@/shared/constants';
+import { useMeasure } from '@/contexts';
 
 interface IProceduresListItemProps extends IProcedure {}
 
@@ -21,6 +22,7 @@ export const ProceduresListItem: FC<IProceduresListItemProps> = ({
   },
 }) => {
   const { colors } = useTheme();
+  const { currency, weightUnit } = useMeasure();
 
   return (
     <Card>
@@ -42,11 +44,11 @@ export const ProceduresListItem: FC<IProceduresListItemProps> = ({
           align="center"
         >
           <Typography variant="label">
-            {formatMoney(cost)}
+            {formatMoney(cost, currency)}
           </Typography>
           {weight && (
             <Typography variant="label">
-              {weight} kg
+              {formatWeight(weight, weightUnit)}
             </Typography>
           )}
         </FlexWrap>

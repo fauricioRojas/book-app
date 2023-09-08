@@ -133,7 +133,7 @@ export const ENGLISH: ILanguageTranslation = {
   currency: "Currency",
   dollar: "Dollar",
   colon: "Colon",
-  measure: "Measure",
+  length: "Length",
   kilometers: "Kilometers",
   meters: "Meters",
   miles: "Miles",

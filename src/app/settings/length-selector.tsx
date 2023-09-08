@@ -9,14 +9,14 @@ const StyledFlexWrap = styled(FlexWrap)`
   margin: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
 `;
 
-export const WeightSelector = () => {
-  const { weightUnit, weightUnitOptions, changeWeightUnit } = useMeasure();
+export const LengthSelector = () => {
+  const { lengthUnit, lengthUnitOptions, changeLengthUnit } = useMeasure();
   const { translation } = useLanguage();
 
   return (
     <StyledFlexWrap justify="space-between" align="center">
-      <Typography variant="label">{translation.weight}</Typography>
-      <Select value={weightUnit} options={weightUnitOptions} onChange={changeWeightUnit} />
+      <Typography variant="label">{translation.length}</Typography>
+      <Select value={lengthUnit} options={lengthUnitOptions} onChange={changeLengthUnit} />
     </StyledFlexWrap>
   );
 };

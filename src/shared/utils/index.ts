@@ -1,3 +1,5 @@
+import type { CurrencyType, LengthUnitType, WeightUnitType } from "@/contexts";
+
 export const handleOnlyAllowNumbers = (event: KeyboardEvent) => {
   const numbericKey = +event.key;
   const isBackspacing = event.key === "Backspace";
@@ -29,13 +31,43 @@ export const formatDate = (date: Date): string => {
     .padStart(2, "0")}/${newDate.getFullYear()}`;
 };
 
-const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "COL",
-  minimumFractionDigits: 0,
-});
-export const formatMoney = (money: number) =>
-  formatter.format(money).replace("COL", "₡");
+export const formatMoney = (
+  value: number,
+  currency: CurrencyType = "colon"
+) => {
+  const currencyMapper: Record<CurrencyType, string> = {
+    colon: "COL",
+    dollar: "USD",
+  };
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currencyMapper[currency],
+    minimumFractionDigits: 0,
+  });
 
-export const formatKilometers = (value: number) =>
-  `${value.toLocaleString("en-US")} km`;
+  return formatter.format(value).replace("COL", "₡").replace(/\s/g, "");
+};
+
+export const formatLength = (
+  value: number,
+  lengthUnit: LengthUnitType = "meters"
+) => {
+  const lengthMapper: Record<LengthUnitType, string> = {
+    meters: "km",
+    miles: "mi",
+  };
+
+  return `${value.toLocaleString("en-US")} ${lengthMapper[lengthUnit]}`;
+};
+
+export const formatWeight = (
+  value: number,
+  weightUnit: WeightUnitType = "grams"
+) => {
+  const weightMapper: Record<WeightUnitType, string> = {
+    grams: "kg",
+    pounds: "lb.",
+  };
+
+  return `${value.toLocaleString("en-US")} ${weightMapper[weightUnit]}`;
+};

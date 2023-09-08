@@ -134,7 +134,7 @@ export const SPANISH: ILanguageTranslation = {
   currency: "Moneda",
   dollar: "Dólar",
   colon: "Colón",
-  measure: "Medida",
+  length: "Longitud",
   kilometers: "Kilómetros",
   meters: "Metros",
   miles: "Millas",

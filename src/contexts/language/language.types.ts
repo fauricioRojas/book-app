@@ -131,7 +131,7 @@ export interface ILanguageTranslation extends Language {
   currency: string;
   dollar: string;
   colon: string;
-  measure: string;
+  length: string;
   kilometers: string;
   meters: string;
   miles: string;

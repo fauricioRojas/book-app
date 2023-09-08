@@ -7,6 +7,7 @@ import {
   CustomThemeProvider,
   DrawerProvider,
   LanguageProvider,
+  MeasureProvider,
   ModalProvider,
   SnackbarProvider,
 } from '@/contexts';
@@ -29,17 +30,19 @@ const RootLayout: FC<PropsWithChildren> = ({ children }) => (
       <StyledComponentsRegistry>
         <CustomThemeProvider>
           <LanguageProvider>
-            <ModalProvider>
-              <SnackbarProvider>
-                <DrawerProvider>
-                  <GlobalStyles />
-                  <Container>
-                    {children}
-                  </Container>
-                  <Navbar />
-                </DrawerProvider>
-              </SnackbarProvider>
-            </ModalProvider>
+            <MeasureProvider>
+              <ModalProvider>
+                <SnackbarProvider>
+                  <DrawerProvider>
+                    <GlobalStyles />
+                    <Container>
+                      {children}
+                    </Container>
+                    <Navbar />
+                  </DrawerProvider>
+                </SnackbarProvider>
+              </ModalProvider>
+            </MeasureProvider>
           </LanguageProvider>
         </CustomThemeProvider>
       </StyledComponentsRegistry>
