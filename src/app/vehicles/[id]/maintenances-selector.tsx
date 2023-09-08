@@ -15,8 +15,8 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
     const types: ITypeSelectorOption[] = [
       {
         id: 1,
-        label: translation.oilChange,
-        value: ENGLISH.oilChange,
+        label: translation.engineOilChange,
+        value: ENGLISH.engineOilChange,
         height: 40,
         width: 40,
       },
@@ -82,20 +82,20 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
       },
       {
         id: 14,
-        label: translation.acAirFilterChange,
-        value: ENGLISH.acAirFilterChange,
+        label: translation.cabinAirFilterChange,
+        value: ENGLISH.cabinAirFilterChange,
       },
       {
         id: 15,
-        label: translation.coolantChange,
-        value: ENGLISH.coolantChange,
+        label: translation.oilFilterChange,
+        value: ENGLISH.oilFilterChange,
+        width: 25,
+        height: 25,
       },
       {
         id: 16,
-        label: translation.brakesAdjustment,
-        value: ENGLISH.brakesAdjustment,
-        width: 35,
-        height: 35,
+        label: translation.coolantChange,
+        value: ENGLISH.coolantChange,
       },
       {
         id: 17,
@@ -109,10 +109,10 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
       },
       {
         id: 19,
-        label: translation.oilFilterChange,
-        value: ENGLISH.oilFilterChange,
-        width: 25,
-        height: 25,
+        label: translation.brakesAdjustment,
+        value: ENGLISH.brakesAdjustment,
+        width: 35,
+        height: 35,
       },
       {
         id: 20,
@@ -131,8 +131,8 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
       },
       {
         id: 23,
-        label: translation.fuseReplacement,
-        value: ENGLISH.fuseReplacement,
+        label: translation.motorcycleFuseReplacement,
+        value: ENGLISH.motorcycleFuseReplacement,
         width: 25,
         height: 25,
       },
@@ -169,6 +169,52 @@ export const MaintenancesSelector: FC<IMaintenancesSelectorProps> = ({ onSelect 
         id: 29,
         label: translation.grease,
         value: ENGLISH.grease,
+      },
+      {
+        id: 30,
+        label: translation.rimsChange,
+        value: ENGLISH.rimsChange,
+      },
+      {
+        id: 31,
+        label: translation.acRevision,
+        value: ENGLISH.acRevision,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 32,
+        label: translation.fuelFilterChange,
+        value: ENGLISH.fuelFilterChange,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 33,
+        label: translation.carFusesReplacement,
+        value: ENGLISH.carFusesReplacement,
+      },
+      {
+        id: 34,
+        label: translation.brakeFluidChange,
+        value: ENGLISH.brakeFluidChange,
+        height: 35,
+        width: 35,
+      },
+      {
+        id: 35,
+        label: translation.injectorCleaning,
+        value: ENGLISH.injectorCleaning,
+      },
+      {
+        id: 36,
+        label: translation.hosesReplacement,
+        value: ENGLISH.hosesReplacement,
+      },
+      {
+        id: 37,
+        label: translation.carburetorReplacement,
+        value: ENGLISH.carburetorReplacement,
       },
     ];
     return types;

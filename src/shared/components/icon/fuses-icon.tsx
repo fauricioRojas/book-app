@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { ICommonIconProps, StyledSvg } from '.';
 
-export const FuseIcon: FC<ICommonIconProps> = ({
+export const FusesIcon: FC<ICommonIconProps> = ({
   color,
   pointer,
   ml,

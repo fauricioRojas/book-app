@@ -50,7 +50,7 @@ export interface ILanguageTranslation extends Language {
   deletedProcedure: string;
   notDeletedProcedure: string;
   procedureDeleteConfirmation: string;
-  oilChange: string;
+  engineOilChange: string;
   tireReplacement: string;
   refuel: string;
   batteryReplacement: string;
@@ -63,7 +63,7 @@ export interface ILanguageTranslation extends Language {
   radiatorReplacement: string;
   brushReplacement: string;
   engineAirFilterChange: string;
-  acAirFilterChange: string;
+  cabinAirFilterChange: string;
   coolantChange: string;
   brakesAdjustment: string;
   washed: string;
@@ -77,9 +77,17 @@ export interface ILanguageTranslation extends Language {
   cablesChange: string;
   plateNumber: string;
   paintDetailing: string;
-  fuseReplacement: string;
+  motorcycleFuseReplacement: string;
   bushingChange: string;
   grease: string;
+  rimsChange: string;
+  acRevision: string;
+  fuelFilterChange: string;
+  carFusesReplacement: string;
+  brakeFluidChange: string;
+  injectorCleaning: string;
+  hosesReplacement: string;
+  carburetorReplacement: string;
   vaccine: string;
   breed: string;
   brand: string;

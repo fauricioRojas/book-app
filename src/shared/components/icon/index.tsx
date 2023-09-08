@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import styled from 'styled-components';
 
+import { ACIcon } from './ac-icon';
 import { ACAirFilterIcon } from './ac-air-filter-icon';
 import { AddIcon } from './add-icon';
 import { ArrowBackIcon } from './arrow-back-icon';
@@ -10,6 +11,7 @@ import { BatteryIcon } from './battery-icon';
 import { BeltIcon } from './belt-icon';
 import { BrakeIcon } from './brake-icon';
 import { BrakeFiberIcon } from './brake-fiber-icon';
+import { BrakeFluidBottleIcon } from './brake-fluid-bottle-icon';
 import { BrushIcon } from './brush-icon';
 import { BullIcon } from './bull-icon';
 import { BushingIcon } from './bushing-icon';
@@ -17,7 +19,9 @@ import { CableIcon } from './cable-icon';
 import { CameraIcon } from './camera-icon';
 import { CancelIcon } from './cancel-icon';
 import { CarIcon } from './car-icon';
+import { CarburetorIcon } from './carburetor-icon';
 import { CarChasisIcon } from './car-chasis-icon';
+import { CarFuseIcon } from './car-fuse-icon';
 import { CatIcon } from './cat-icon';
 import { ChainIcon } from './chain-icon';
 import { CheckIcon } from './check-icon';
@@ -28,13 +32,16 @@ import { EngineIcon } from './engine-icon';
 import { ErrorIcon } from './error-icon';
 import { ExpandIcon } from './expand-icon';
 import { FootprintIcon } from './footprint-icon';
-import { FuseIcon } from './fuse-icon';
+import { FuelFilterIcon } from './fuel-filter-icon';
+import { FusesIcon } from './fuses-icon';
 import { GearIcon } from './gear-icon';
 import { GreaseGunIcon } from './grease-gun-icon';
 import { HandleBarIcon } from './handle-bar-icon';
 import { HairCutIcon } from './hair-cut-icon';
 import { HamsterIcon } from './hamster-icon';
+import { HoseIcon } from './hose-icon';
 import { InfoIcon } from './info-icon';
+import { InjectorIcon } from './injector-icon';
 import { LightBulbIcon } from './light-bulb-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
@@ -52,6 +59,7 @@ import { PigIcon } from './pig-icon';
 import { PillsBottleIcon } from './pills-bottle-icon';
 import { RabbitIcon } from './rabbit-icon';
 import { RadiatorIcon } from './radiator-icon';
+import { RimIcon } from './rim-icon';
 import { SearchIcon } from './search-icon';
 import { SettingsIcon } from './settings-icon';
 import { ShockAbsorbersIcon } from './shock-absorbers-icon';
@@ -81,6 +89,7 @@ export interface ICommonIconProps {
 };
 
 export type IconName =
+  | 'ac'
   | 'ac-air-filter'
   | 'add'
   | 'arrow-back'
@@ -90,6 +99,7 @@ export type IconName =
   | 'belt'
   | 'brake'
   | 'brake-fiber'
+  | 'brake-fluid-bottle'
   | 'brush'
   | 'bull'
   | 'bushing'
@@ -97,7 +107,9 @@ export type IconName =
   | 'camera'
   | 'cancel'
   | 'car'
+  | 'carburetor'
   | 'car-chasis'
+  | 'car-fuse'
   | 'cat'
   | 'chain'
   | 'check'
@@ -108,13 +120,16 @@ export type IconName =
   | 'error'
   | 'expand'
   | 'footprint'
-  | 'fuse'
+  | 'fuel-filter'
+  | 'fuses'
   | 'gear'
   | 'grease-gun'
   | 'handle-bar'
   | 'hair-cut'
   | 'hamster'
+  | 'hose'
   | 'info'
+  | 'injector'
   | 'light-bulb'
   | 'microphone'
   | 'motorcycle'
@@ -132,6 +147,7 @@ export type IconName =
   | 'pills-bottle'
   | 'rabbit'
   | 'radiator'
+  | 'rim'
   | 'search'
   | 'settings'
   | 'shock-absorbers'
@@ -153,6 +169,7 @@ interface IIconProps extends ICommonIconProps {
 }
 
 const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
+  ac: ACIcon,
   'ac-air-filter': ACAirFilterIcon,
   add: AddIcon,
   'arrow-back': ArrowBackIcon,
@@ -162,6 +179,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   belt: BeltIcon,
   brake: BrakeIcon,
   'brake-fiber': BrakeFiberIcon,
+  'brake-fluid-bottle': BrakeFluidBottleIcon,
   brush: BrushIcon,
   bull: BullIcon,
   bushing: BushingIcon,
@@ -169,7 +187,9 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   camera: CameraIcon,
   cancel: CancelIcon,
   car: CarIcon,
+  carburetor: CarburetorIcon,
   'car-chasis': CarChasisIcon,
+  'car-fuse': CarFuseIcon,
   cat: CatIcon,
   chain: ChainIcon,
   check: CheckIcon,
@@ -180,13 +200,16 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   error: ErrorIcon,
   expand: ExpandIcon,
   footprint: FootprintIcon,
-  fuse: FuseIcon,
+  'fuel-filter': FuelFilterIcon,
+  fuses: FusesIcon,
   gear: GearIcon,
   'grease-gun': GreaseGunIcon,
   'handle-bar': HandleBarIcon,
   'hair-cut': HairCutIcon,
   hamster: HamsterIcon,
+  hose: HoseIcon,
   info: InfoIcon,
+  injector: InjectorIcon,
   'light-bulb': LightBulbIcon,
   microphone: MicrophoneIcon,
   motorcycle: MotorcycleIcon,
@@ -204,6 +227,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'pills-bottle': PillsBottleIcon,
   rabbit: RabbitIcon,
   radiator: RadiatorIcon,
+  rim: RimIcon,
   search: SearchIcon,
   settings: SettingsIcon,
   'shock-absorbers': ShockAbsorbersIcon,

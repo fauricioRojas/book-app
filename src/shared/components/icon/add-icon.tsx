@@ -19,7 +19,7 @@ export const AddIcon: FC<ICommonIconProps> = ({
     height={height}
     $ml={ml}
     $mr={mr}
-    $isClickable={pointer || pointer || !!props.onClick}
+    $isClickable={pointer || !!props.onClick}
     {...props}
   >
     <path
