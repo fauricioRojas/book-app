@@ -15,10 +15,14 @@ const StyledSelect = styled.select<IStyledSelectProps>`
     linear-gradient(45deg,  transparent 50%, ${theme.colors.secondaryText} 50%, ${theme.colors.secondaryText} calc(50% + 1px), transparent calc(50% + 2px)), 
     linear-gradient(-45deg, transparent 50%, ${theme.colors.secondaryText} 50%, ${theme.colors.secondaryText} calc(50% + 1px), transparent calc(50% + 2px));
   `};
-  background-position: ${({ $borderless, theme }) => `
-    right ${$borderless ? '6px' : '18px'} top ${theme.gutters.size4}, 
-    right ${$borderless ? '0px' : theme.gutters.size3} top ${theme.gutters.size4};
-  `};
+  ${({ $borderless }) => $borderless
+    ? css`
+        background-position: right 6px top 6px, right 0px top 6px;
+      `
+    : css`
+        background-position: right 18px top 16px, right 12px top 16px;
+      `
+  };
   background-repeat: no-repeat;
   background-size: 6px 6px;
   border: ${({ $borderless, theme }) => `1px solid ${$borderless ? 'transparent' : theme.colors.border}`};
@@ -26,14 +30,17 @@ const StyledSelect = styled.select<IStyledSelectProps>`
   color: ${({ theme }) => theme.colors.secondaryText};
   cursor: pointer;
   font-size: 1rem;
-  height: 40px;
+  height: ${({ $borderless }) => $borderless ? 'auto' : '40px'};
   letter-spacing: 0.00938rem;
   outline: 0;
-  padding: ${({ $borderless, theme }) => `
-    ${theme.gutters.size2}
-    ${$borderless ? theme.gutters.size6 : theme.gutters.size8}
-    ${theme.gutters.size2}
-    ${$borderless ? theme.gutters.size0 : theme.gutters.size3}`};
+  ${({ $borderless, theme }) => $borderless
+    ? css`
+        padding: ${`${theme.gutters.size0} ${theme.gutters.size6} ${theme.gutters.size0} ${theme.gutters.size0}`};
+      `
+    : css`
+        padding: ${`${theme.gutters.size2} ${theme.gutters.size8} ${theme.gutters.size2} ${theme.gutters.size3}`};
+      `
+  };
   -webkit-appearance: none;
   -moz-appearance: none;
 
