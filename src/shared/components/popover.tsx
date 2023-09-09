@@ -6,8 +6,12 @@ import styled, { useTheme } from 'styled-components';
 import { FlexWrap, Icon, Typography } from '.';
 import { useOutsideClick } from '@/hooks';
 
+interface IStyledArrowProps {
+  $hasTitle: boolean;
+}
+
 const StyledPopover = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.secondary};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   bottom: 0;
@@ -17,8 +21,7 @@ const StyledPopover = styled.div`
   transform: translate(0, calc(100% + 10px));
   z-index: 999;
 `;
-
-const StyledArrow = styled.div<{ $hasTitle: boolean }>`
+const StyledArrow = styled.div<IStyledArrowProps>`
   left: 10px;
   position: absolute;
   top: calc(-0.5rem - 1px);
@@ -32,22 +35,22 @@ const StyledArrow = styled.div<{ $hasTitle: boolean }>`
   }
 
   &::before {
-    border-bottom-color: rgba(0,0,0,.25);
+    border-bottom-color: ${({ theme }) => theme.colors.border};
     top: 0;
   }
 
   &::after {
-    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.border : theme.colors.white};
+    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.secondary800 : theme.colors.secondary};
     top: 1px;
   }
 `;
 
 const StyledHeader = styled.div`
-  background-color: ${({ theme }) => theme.colors.border};
+  background-color: ${({ theme }) => theme.colors.secondary800};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  padding: ${({ theme }) => theme.gutters.size2};
+  padding: ${({ theme }) => `${theme.gutters.size1} ${theme.gutters.size2}`};
 `;
 
 const StyledBody = styled.div`
@@ -82,9 +85,11 @@ export const Popover: FC<IPopoverProps> = ({ title, description }) => {
       {isVisible && (
         <StyledPopover ref={popoverRef}>
           <StyledArrow $hasTitle={!!title} />
-          {title && <StyledHeader>
-            <Typography variant="label" fontWeight="bold">{title}</Typography>
-          </StyledHeader>}
+          {title && (
+            <StyledHeader>
+              <Typography variant="h6" fontWeight="bold">{title}</Typography>
+            </StyledHeader>
+          )}
           <StyledBody>
             <Typography variant="span">{description}</Typography>
           </StyledBody>
