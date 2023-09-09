@@ -8,7 +8,7 @@ const StyledInputFile = styled.input`
   display: none;
 `
 const StyledInputFileLabel = styled.label`
-  background-color: ${({ theme }) => theme.colors.neutralTransparent};
+  background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   color: ${({ theme }) => theme.colors.primaryText};
@@ -26,6 +26,7 @@ const StyledInputFileLabel = styled.label`
 
   &:focus, &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
+    border-color: ${({ theme }) => theme.colors.secondary};
   }
 `
 
