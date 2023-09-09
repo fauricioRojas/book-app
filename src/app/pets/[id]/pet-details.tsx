@@ -112,7 +112,6 @@ export const PetDetails: FC<IPetDetailsProps> = ({
           />
           <IconButton
             iconName="pencil"
-            variant="warning"
             height={25}
             width={25}
             onClick={handleShowPetsFormInEditMode}

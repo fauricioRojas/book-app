@@ -114,7 +114,6 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
           />
           <IconButton
             iconName="pencil"
-            variant="warning"
             height={25}
             width={25}
             onClick={handleShowVehiclesFormInEditMode}
