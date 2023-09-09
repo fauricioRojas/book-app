@@ -6,7 +6,7 @@ import { Button, FlexWrap } from "@/shared/components";
 import { useLanguage } from "@/contexts";
 
 interface IFormButtonsProps {
-  onClickBack: () => void;
+  onClickBack?: () => void;
 }
 
 export const FormButtons: FC<IFormButtonsProps> = ({
@@ -16,13 +16,15 @@ export const FormButtons: FC<IFormButtonsProps> = ({
 
   return (
     <FlexWrap justify="center" gap={4}>
-      <Button
-        variant="outline-secondary"
-        block
-        onClick={onClickBack}
-      >
-        {translation.back}
-      </Button>
+      {onClickBack && (
+        <Button
+          variant="outline-secondary"
+          block
+          onClick={onClickBack}
+        >
+          {translation.back}
+        </Button>
+      )}
       <Button
         type="submit"
         block

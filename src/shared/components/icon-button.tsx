@@ -3,7 +3,7 @@ import styled, { useTheme } from 'styled-components';
 
 import { Icon, IconName } from '.';
 
-type Variant = 'primary' | 'secondary' | 'error';
+type Variant = 'primary' | 'secondary' | 'error' | 'warning';
 
 interface IStyledIconButtonProps {
   $variant: Variant;
@@ -11,21 +11,26 @@ interface IStyledIconButtonProps {
 
 const StyledIconButton = styled.button<IStyledIconButtonProps>`
   background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 50%;
+  border: none;
   cursor: pointer;
   display: flex;
-  padding: ${({ theme }) => theme.gutters.size1};
-  transition: background-color .15s ease-in-out;
-
-  &:focus, &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary800};
-  }
+  padding: ${({ theme }) => theme.gutters.size0};
 
   &:disabled {
     opacity: .65;
     cursor: default;
     pointer-events: none;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    border: 2px solid transparent;
+    border-radius: 50%;
+    padding: ${({ theme }) => theme.gutters.size1};
+    transition: background-color .15s ease-in-out;
+
+    &:focus, &:hover {
+      background-color: ${({ theme }) => theme.colors.secondary800};
+    }
   }
 `
 

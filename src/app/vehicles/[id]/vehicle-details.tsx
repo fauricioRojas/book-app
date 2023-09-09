@@ -11,6 +11,7 @@ import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 import { ICON_BY_TYPE } from "@/shared/constants";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
+import { VehiclesForm } from "../vehicles-form";
 
 interface IVehicleDetailsProps extends IVehicle {}
 
@@ -29,11 +30,26 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
 
-
-  const handleShowVehicleForm = () => {
+  const handleShowMaintenancesForm = () => {
     showDrawer({
       title: translation.newMaintenance,
       body: <MaintenancesForm vehicleId={id} />,
+    });
+  };
+
+  const handleShowVehiclesFormInEditMode = () => {
+    const defaultValues = {
+      plateNumber,
+      brand,
+      model: model.toString(),
+      type: notes.type,
+      dateOfPurchase: notes.date,
+      description: notes.description ?? '',
+      photo: notes.photo,
+    };
+    showDrawer({
+      title: translation.editPet,
+      body: <VehiclesForm defaultValues={defaultValues} vehicleId={id} noteId={notes.id} />,
     });
   };
 
@@ -88,7 +104,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
             />
           </FlexWrap>
         </FlexWrap>
-        <FlexWrap align="center" gap={1}>
+        <FlexWrap align="center" gap={2} gapMd={1}>
           <IconButton
             iconName="trash"
             variant="error"
@@ -97,10 +113,17 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton
+            iconName="pencil"
+            variant="warning"
+            height={25}
+            width={25}
+            onClick={handleShowVehiclesFormInEditMode}
+          />
+          <IconButton
             iconName="add"
             height={22}
             width={22}
-            onClick={handleShowVehicleForm}
+            onClick={handleShowMaintenancesForm}
           />
         </FlexWrap>
       </FlexWrap>
@@ -119,7 +142,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">Description</Typography>
+            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p">{notes.description}</Typography>
           </FlexWrap>
         )}

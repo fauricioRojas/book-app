@@ -11,6 +11,7 @@ import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
 import { ICON_BY_TYPE } from "@/shared/constants";
 import { ProceduresForm } from "./procedures-form";
 import { ProceduresList } from "./procedures-list";
+import { PetsForm } from "../pets-form";
 
 interface IPetDetailsProps extends IPet {}
 
@@ -28,10 +29,25 @@ export const PetDetails: FC<IPetDetailsProps> = ({
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
 
-  const handleShowPetForm = () => {
+  const handleShowProceduresForm = () => {
     showDrawer({
       title: translation.newProcedure,
       body: <ProceduresForm petId={id} />,
+    });
+  };
+
+  const handleShowPetsFormInEditMode = () => {
+    const defaultValues = {
+      name,
+      breed,
+      type: notes.type,
+      dateOfBirth: notes.date,
+      description: notes.description ?? '',
+      photo: notes.photo,
+    };
+    showDrawer({
+      title: translation.editPet,
+      body: <PetsForm defaultValues={defaultValues} petId={id} noteId={notes.id} />,
     });
   };
 
@@ -86,7 +102,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
             />
           </FlexWrap>
         </FlexWrap>
-        <FlexWrap align="center" gap={1}>
+        <FlexWrap align="center" gap={2} gapMd={1}>
           <IconButton
             iconName="trash"
             variant="error"
@@ -95,10 +111,17 @@ export const PetDetails: FC<IPetDetailsProps> = ({
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton
+            iconName="pencil"
+            variant="warning"
+            height={25}
+            width={25}
+            onClick={handleShowPetsFormInEditMode}
+          />
+          <IconButton
             iconName="add"
             height={22}
             width={22}
-            onClick={handleShowPetForm}
+            onClick={handleShowProceduresForm}
           />
         </FlexWrap>
       </FlexWrap>

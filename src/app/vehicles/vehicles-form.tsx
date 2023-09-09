@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -23,12 +23,23 @@ interface IVehiclesForm {
   brand: string;
   model: string;
   type: string;
-  dateOfPurchase: string;
+  dateOfPurchase: Date | string;
   description?: string;
   photo?: string;
 }
 
-export const VehiclesForm = () => {
+interface IVehiclesFormProps {
+  defaultValues?: IVehiclesForm;
+  vehicleId?: number;
+  noteId?: number;
+}
+
+export const VehiclesForm: FC<IVehiclesFormProps> = ({
+  defaultValues,
+  vehicleId,
+  noteId,
+}) => {
+  const isEditMode = defaultValues && vehicleId && noteId;
   const {
     control,
     setValue,
@@ -45,13 +56,24 @@ export const VehiclesForm = () => {
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>('selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const handleChangePhoto = (photo?: string) => setValue('photo', photo);
+  useEffect(() => {
+    if (defaultValues) {
+      setValue('plateNumber', defaultValues.plateNumber);
+      setValue('brand', defaultValues.brand);
+      setValue('model', defaultValues.model);
+      setValue('type', defaultValues.type);
+      setValue('dateOfPurchase', defaultValues.dateOfPurchase);
+      setValue('description', defaultValues.description);
+      setValue('photo', defaultValues.photo);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues]);
 
   const handleSetType = (type: ITypeSelectorOption) => {
     setValue('type', type.value);
@@ -60,23 +82,49 @@ export const VehiclesForm = () => {
 
   const handleShowVehiclesSelector = () => setMode('selector');
 
-  const onSubmit = async (newVehicleData: IVehiclesForm) => {
+  const addNewVehicle = async (vehicleDate: IVehiclesForm) => {
     const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
-      type: newVehicleData.type,
-      date: new Date(newVehicleData.dateOfPurchase),
-      description: newVehicleData.description,
-      photo: newVehicleData.photo,
+      type: vehicleDate.type,
+      date: new Date(vehicleDate.dateOfPurchase),
+      description: vehicleDate.description,
+      photo: vehicleDate.photo,
     }).select('id').single();
     await supabaseClient.from(VEHICLES_TABLE).insert({
       noteId: note?.id,
-      plateNumber: newVehicleData.plateNumber,
-      brand: newVehicleData.brand,
-      model: newVehicleData.model,
+      plateNumber: vehicleDate.plateNumber,
+      brand: vehicleDate.brand,
+      model: vehicleDate.model,
     });
     showSnackbar({
       type: 'success',
       body: translation.savedVehicle,
     });
+  };
+
+  const editExistingVehicle = async (vehicleDate: IVehiclesForm) => {
+    await supabaseClient.from(NOTES_TABLE).update({
+      type: vehicleDate.type,
+      date: new Date(vehicleDate.dateOfPurchase),
+      description: vehicleDate.description,
+      photo: vehicleDate.photo,
+    }).eq('id', noteId);
+    await supabaseClient.from(VEHICLES_TABLE).update({
+      plateNumber: vehicleDate.plateNumber,
+      brand: vehicleDate.brand,
+      model: vehicleDate.model,
+    }).eq('id', vehicleId);
+    showSnackbar({
+      type: 'success',
+      body: translation.editedVehicle,
+    });
+  };
+
+  const onSubmit = async (vehicleData: IVehiclesForm) => {
+    if (isEditMode) {
+      await editExistingVehicle(vehicleData);
+    } else {
+      await addNewVehicle(vehicleData);
+    }
     hideDrawer();
   };
 
@@ -180,10 +228,18 @@ export const VehiclesForm = () => {
           />
         </Col>
         <Col cols={12} mb={5}>
-          <Photo onChangePhoto={handleChangePhoto} />
+          <Controller
+            control={control}
+            name="photo"
+            render={({
+              field: { onChange, value },
+            }) => (
+              <Photo photo={value} onChangePhoto={onChange} />
+            )}
+          />
         </Col>
       </Row>
-      <FormButtons onClickBack={handleShowVehiclesSelector} />
+      <FormButtons onClickBack={isEditMode ? undefined : handleShowVehiclesSelector} />
     </form>
   );
 };

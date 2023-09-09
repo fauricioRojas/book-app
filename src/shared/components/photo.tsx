@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import {
   BrowseFiles,
@@ -13,17 +13,16 @@ import { useLanguage } from '@/contexts';
 import { detectMobileDevice } from '@/shared/utils';
 
 interface IPhotoProps {
+  photo?: string;
   onChangePhoto: (photo?: string) => void;
 }
 
 const isMobileDevice = detectMobileDevice();
 
-export const Photo: FC<IPhotoProps> = ({ onChangePhoto }) => {
-  const [photo, setPhoto] = useState<string | undefined>(undefined);
+export const Photo: FC<IPhotoProps> = ({ photo, onChangePhoto }) => {
   const { translation } = useLanguage();
 
   const handleChangePhoto = (browsedPhoto?: string) => {
-    setPhoto(browsedPhoto);
     onChangePhoto(browsedPhoto);
   };
 
@@ -38,11 +37,6 @@ export const Photo: FC<IPhotoProps> = ({ onChangePhoto }) => {
       }
       reader.onerror = () => handleChangePhoto();
     }
-  };
-
-  const handleRemovePhoto = () => {
-    setPhoto(undefined);
-    onChangePhoto();
   };
 
   return (
@@ -62,7 +56,7 @@ export const Photo: FC<IPhotoProps> = ({ onChangePhoto }) => {
           )}
         </FlexWrap>
       )}
-      <PhotoPreview photo={photo} onRemovePhoto={handleRemovePhoto} />
+      <PhotoPreview photo={photo} onRemovePhoto={onChangePhoto} />
     </FlexWrap>
   );
 };

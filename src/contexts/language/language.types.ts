@@ -140,6 +140,18 @@ export interface ILanguageTranslation extends Language {
   tractor: string;
   trailer: string;
   bike: string;
+  editPet: string;
+  editVehicle: string;
+  editProcedure: string;
+  editMaintenance: string;
+  editedPet: string;
+  notEditedPet: string;
+  editedVehicle: string;
+  notEditedVehicle: string;
+  editedProcedure: string;
+  notEditedProcedure: string;
+  editedMaintenance: string;
+  notEditedMaintenance: string;
   // Form error messages
   required: string;
   validEmail: string;

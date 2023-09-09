@@ -2,8 +2,8 @@ interface INote {
   id: number;
   type: string;
   date: Date;
-  description: string | null;
-  photo: string | null;
+  description?: string;
+  photo?: string;
 }
 
 export interface IVehicle {
@@ -28,7 +28,7 @@ export interface IMaintenance {
   vehicles: IVehicle;
   notes: INote;
   cost: number;
-  kilometers: number | null;
+  kilometers?: number;
 }
 
 export interface IProcedure {
@@ -36,6 +36,6 @@ export interface IProcedure {
   pets: IPet;
   notes: INote;
   cost: number;
-  weight: number | null;
-  nextDate: Date | null;
+  weight?: number;
+  nextDate?: Date;
 }

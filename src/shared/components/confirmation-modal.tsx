@@ -138,11 +138,11 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
         <Typography variant="h6" fontWeight="bold">{title}</Typography>
         <FlexWrap gap={4}>
           <Button variant="outline-secondary" onClick={handleCloseModal}>
-              {translation.cancel}
-            </Button>
-            <Button variant="error" onClick={handleClick}>
-              {buttonText}
-            </Button>
+            {translation.cancel}
+          </Button>
+          <Button variant="error" onClick={handleClick}>
+            {buttonText}
+          </Button>
         </FlexWrap>
       </StyledConfirmationModalContent>
     </StyledConfirmationModal>
