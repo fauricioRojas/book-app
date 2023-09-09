@@ -10,7 +10,7 @@ const Loading = () => (
     <Skeleton height={5} width="full" widthMd="quarter" mb={2} />
     <Skeleton height={8} width="full" widthMd="quarter" mb={4} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={2} />
-    <Skeleton height={20} width="full" widthMd="quarter" mb={4} />
+    <Skeleton height="150px" width="full" widthMd="quarter" mb={4} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={2} />
     <Row>
       {Array.from(Array(8).keys()).map(index => (
@@ -22,7 +22,7 @@ const Loading = () => (
           xl={3}
           mb={4}
         >
-          <Skeleton height={19} width="full" />
+          <Skeleton height="106px" width="full" />
         </Col>
       ))}
     </Row>

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 import { FullSize, Size } from '@/shared/types';
 
-type Height = FullSize;
+type Height = FullSize | string;
 type Width = 'quarter' | 'half' | 'three-quarters' | 'full';
 
 interface IStyledSkeletonProps {
@@ -36,7 +36,7 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   animation-timing-function: ease;
   background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.secondary900} 37%, ${theme.colors.secondary} 63%)`};
   background-size: 400% 100%;
-  height: ${({ $height, theme }) => theme.gutters[`size${$height}`]};
+  height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 

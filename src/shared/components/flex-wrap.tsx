@@ -27,6 +27,7 @@ interface IStyledFlexWrapProps {
   $directionLg?: Direction;
   $directionXl?: Direction;
   $directionXxl?: Direction;
+  $fullHeight?: boolean;
   $gap?: Size;
   $gapSm?: Size;
   $gapMd?: Size;
@@ -62,6 +63,7 @@ const StyledFlexWrap = styled.div<IStyledFlexWrapProps>`
   flex-grow: ${({ $grow }) => $grow};
   flex-wrap: ${({ $wrap }) => $wrap};
   gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
+  height: ${({ $fullHeight }) => $fullHeight ? '100%' : undefined};
   justify-content: ${({ $justify }) => $justify};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
 
@@ -132,6 +134,7 @@ interface IFlexWrapProps extends PropsWithChildren {
   directionLg?: Direction;
   directionXl?: Direction;
   directionXxl?: Direction;
+  fullHeight?: boolean;
   gap?: Size;
   gapSm?: Size;
   gapMd?: Size;
@@ -178,6 +181,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
   directionLg,
   directionXl,
   directionXxl,
+  fullHeight,
   gap,
   gapSm,
   gapMd,
@@ -225,6 +229,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
     $directionLg={directionLg}
     $directionXl={directionXl}
     $directionXxl={directionXxl}
+    $fullHeight={fullHeight}
     $gap={gap}
     $gapSm={gapSm}
     $gapMd={gapMd}

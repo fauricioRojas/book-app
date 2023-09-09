@@ -5,6 +5,7 @@ const StyledCard = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary900};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   box-shadow: ${({ theme }) => theme.shadows.md};
+  height: 100%;
   padding: ${({ theme }) => theme.gutters.size4};
 `;
 

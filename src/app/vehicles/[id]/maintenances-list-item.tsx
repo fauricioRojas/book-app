@@ -25,7 +25,7 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
 
   return (
     <Card>
-      <FlexWrap gap={4}>
+      <FlexWrap gap={4} fullHeight>
         <FlexWrap align="center">
           <Icon
             name={ICON_BY_TYPE[type]}
@@ -34,18 +34,14 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
             width={35}
           />
         </FlexWrap>
-        <FlexWrap direction="column" gap={1}>
-          <FlexWrap>
-            <Typography variant="label">{formatDate(date)}</Typography>
-          </FlexWrap>
-          <FlexWrap gap={8}>
-            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
-            {kilometers && (
-              <Typography variant="label">
-                {formatLength(kilometers, lengthUnit)}
-              </Typography>
-            )}
-          </FlexWrap>
+        <FlexWrap direction="column" justify="center" gap={2}>
+          <Typography variant="label">{formatDate(date)}</Typography>
+          <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+          {kilometers && (
+            <Typography variant="label">
+              {formatLength(kilometers, lengthUnit)}
+            </Typography>
+          )}
         </FlexWrap>
       </FlexWrap>
     </Card>
