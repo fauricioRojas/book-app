@@ -111,6 +111,8 @@ export interface ILanguageTranslation extends Language {
   home: string;
   petNotFound: string;
   vehicleNotFound: string;
+  procedureNotFound: string;
+  maintenanceNotFound: string;
   weAresorry: string;
   tryThesePages: string;
   search: string;
@@ -152,6 +154,7 @@ export interface ILanguageTranslation extends Language {
   notEditedProcedure: string;
   editedMaintenance: string;
   notEditedMaintenance: string;
+  nextDateHint: string;
   // Form error messages
   required: string;
   validEmail: string;

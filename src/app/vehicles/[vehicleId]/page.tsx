@@ -1,15 +1,16 @@
 import { notFound } from "next/navigation";
+import { FC } from "react";
 
 import { IVehicle, VEHICLES_TABLE, supabaseClient } from "@/supabase";
 import { VehicleDetails } from "./vehicle-details";
 
-interface IVehicleParams {
+interface IVehicleProps {
   params: {
-    id: string;
+    vehicleId: string;
   };
 }
 
-const Vehicle = async ({ params: { id } }: IVehicleParams) => {
+const Vehicle: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
   const { data: vehicle } = await supabaseClient.from(VEHICLES_TABLE).select<string, IVehicle>(`
     id,
     plateNumber,
@@ -24,6 +25,9 @@ const Vehicle = async ({ params: { id } }: IVehicleParams) => {
     ),
     maintenances (
       id,
+      vehicles (
+        id
+      ),
       notes (
         id,
         type,
@@ -34,7 +38,7 @@ const Vehicle = async ({ params: { id } }: IVehicleParams) => {
       cost,
       kilometers
     )
-  `).match({ id }).single();
+  `).match({ id: vehicleId }).single();
 
   if (!vehicle) {
     notFound();

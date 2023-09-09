@@ -79,38 +79,54 @@ export const PetsForm: FC<IPetsFormProps> = ({
   const handleShowPetsSelector = () => setMode('selector');
 
   const addNewPet = async (petData: IPetsForm) => {
-    const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description,
       photo: petData.photo,
     }).select('id').single();
-    await supabaseClient.from(PETS_TABLE).insert({
-      noteId: note?.id,
+    const { error: petError } = await supabaseClient.from(PETS_TABLE).insert({
+      noteId: noteData?.id,
       name: petData.name,
       breed: petData.breed,
     });
-    showSnackbar({
-      type: 'success',
-      body: translation.savedPet,
-    });
+
+    if (noteError || petError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notSavedPet,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.savedPet,
+      });
+    }
   };
 
   const editExistingPet = async (petData: IPetsForm) => {
-    await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description,
       photo: petData.photo,
     }).eq('id', noteId);
-    await supabaseClient.from(PETS_TABLE).update({
+    const { error: petError } = await supabaseClient.from(PETS_TABLE).update({
       name: petData.name,
       breed: petData.breed,
     }).eq('id', petId);
-    showSnackbar({
-      type: 'success',
-      body: translation.editedPet,
-    });
+
+    if (noteError || petError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notEditedPet,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.editedPet,
+      });
+    }
   };
 
   const onSubmit = async (petData: IPetsForm) => {

@@ -112,6 +112,8 @@ export const ENGLISH: ILanguageTranslation = {
   home: "Home",
   petNotFound: "Pet Not Found",
   vehicleNotFound: "Vehicle Not Found",
+  procedureNotFound: "Procedure Not Found",
+  maintenanceNotFound: "Maintenance Not Found",
   weAresorry:
     "We're sorry, we couldn't find the resource you were looking for.",
   tryThesePages: "Try one of these pages:",
@@ -154,6 +156,7 @@ export const ENGLISH: ILanguageTranslation = {
   notEditedProcedure: "Failed editing the procedure",
   editedMaintenance: "Maintenance edited successfully",
   notEditedMaintenance: "Failed editing the maintenance",
+  nextDateHint: "In Homepage will be shown a reminder with the next date",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

@@ -1,15 +1,16 @@
 import { notFound } from "next/navigation";
+import { FC } from "react";
 
 import { IPet, PETS_TABLE, supabaseClient } from "@/supabase";
 import { PetDetails } from "./pet-details";
 
-interface IPetParams {
+interface IPetProps {
   params: {
-    id: string;
+    petId: string;
   };
 }
 
-const Pet = async ({ params: { id } }: IPetParams) => {
+const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
   const { data: pet } = await supabaseClient.from(PETS_TABLE).select<string, IPet>(`
     id,
     name,
@@ -23,6 +24,9 @@ const Pet = async ({ params: { id } }: IPetParams) => {
     ),
     procedures (
       id,
+      pets (
+        id
+      ),
       notes (
         id,
         type,
@@ -34,7 +38,7 @@ const Pet = async ({ params: { id } }: IPetParams) => {
       weight,
       nextDate
     )
-  `).match({ id }).single();
+  `).match({ id: petId }).single();
 
   if (!pet) {
     notFound();

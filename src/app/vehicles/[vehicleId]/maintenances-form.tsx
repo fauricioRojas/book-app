@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -22,18 +22,25 @@ interface IMaintenancesForm {
   cost: string;
   kilometers?: string;
   type: string;
-  date: string;
+  date: Date |string;
   description?: string;
   photo?: string;
 }
 
 interface IMaintenancesFormProps {
+  defaultValues?: IMaintenancesForm;
+  maintenanceId?: number;
   vehicleId: number;
+  noteId?: number;
 }
 
 export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
+  defaultValues,
+  maintenanceId,
   vehicleId,
+  noteId,
 }) => {
+  const isEditMode = defaultValues && maintenanceId && noteId;
   const {
     control,
     setValue,
@@ -49,13 +56,23 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>('selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const handleChangePhoto = (photo?: string) => setValue('photo', photo);
+  useEffect(() => {
+    if (defaultValues) {
+      setValue('cost', defaultValues.cost);
+      setValue('kilometers', defaultValues.kilometers);
+      setValue('type', defaultValues.type);
+      setValue('date', defaultValues.date);
+      setValue('description', defaultValues.description);
+      setValue('photo', defaultValues.photo);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues]);
 
   const handleSetType = (type: ITypeSelectorOption) => {
     setValue('type', type.value);
@@ -64,23 +81,64 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
 
   const handleShowMaintenancesSelector = () => setMode('selector');
 
-  const onSubmit = async (newMaintenanceData: IMaintenancesForm) => {
-    const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
-      type: newMaintenanceData.type,
-      date: new Date(newMaintenanceData.date),
-      description: newMaintenanceData.description,
-      photo: newMaintenanceData.photo,
+  const addNewMaintenance = async (maintenanceData: IMaintenancesForm) => {
+    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+      type: maintenanceData.type,
+      date: new Date(maintenanceData.date),
+      description: maintenanceData.description,
+      photo: maintenanceData.photo,
     }).select('id').single();
-    await supabaseClient.from(MAINTENANCES_TABLE).insert({
+    const { error: maintenanceError } = await supabaseClient.from(MAINTENANCES_TABLE).insert({
       vehicleId,
-      noteId: note?.id,
-      cost: newMaintenanceData.cost,
-      kilometers: newMaintenanceData.kilometers || null,
+      noteId: noteData?.id,
+      cost: maintenanceData.cost,
+      kilometers: maintenanceData.kilometers || null,
     });
-    showSnackbar({
-      type: 'success',
-      body: translation.savedMaintenance,
-    });
+
+    if (noteError || maintenanceError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notSavedMaintenance,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.savedMaintenance,
+      });
+    }
+  };
+
+  const editExistingMaintenance = async (maintenanceData: IMaintenancesForm) => {
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+      type: maintenanceData.type,
+      date: new Date(maintenanceData.date),
+      description: maintenanceData.description,
+      photo: maintenanceData.photo,
+    }).eq('id', noteId);
+    const { error: maintenanceError } = await supabaseClient.from(MAINTENANCES_TABLE).update({
+      cost: maintenanceData.cost,
+      kilometers: maintenanceData.kilometers || null,
+    }).eq('id', maintenanceId);
+
+    if (noteError || maintenanceError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notSavedMaintenance,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.savedMaintenance,
+      });
+    }
+  };
+
+  const onSubmit = async (maintenanceData: IMaintenancesForm) => {
+    if (isEditMode) {
+      await editExistingMaintenance(maintenanceData);
+    } else {
+      await addNewMaintenance(maintenanceData);
+    }
     hideDrawer();
   };
 
@@ -167,10 +225,18 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
           />
         </Col>
         <Col cols={12} mb={5}>
-          <Photo onChangePhoto={handleChangePhoto} />
+          <Controller
+            control={control}
+            name="photo"
+            render={({
+              field: { onChange, value },
+            }) => (
+              <Photo photo={value} onChangePhoto={onChange} />
+            )}
+          />
         </Col>
       </Row>
-      <FormButtons onClickBack={handleShowMaintenancesSelector} />
+      <FormButtons onClickBack={isEditMode ? undefined : handleShowMaintenancesSelector} />
     </form>
   );
 };

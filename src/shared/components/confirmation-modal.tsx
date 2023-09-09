@@ -138,7 +138,13 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
         onClick={handleCloseConfirmationModal}
       />
       <StyledConfirmationModalContent $isHiding={isHiding}>
-        <Typography variant="h6" fontWeight="bold">{title}</Typography>
+        <Typography
+          variant="h6"
+          fontWeight="bold"
+          textAlign="center"
+        >
+          {title}
+        </Typography>
         <FlexWrap gap={4}>
           <Button variant="outline-secondary" onClick={handleCloseConfirmationModal}>
             {translation.cancel}

@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import { Size } from '@/shared/types';
+import { Position, Size } from '@/shared/types';
 
 type Align = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
@@ -47,6 +47,7 @@ interface IStyledFlexWrapProps {
   $justifyXl?: Justify;
   $justifyXxl?: Justify;
   $mb?: Size;
+  $position?: Position;
   $wrap?: Wrap;
   $wrapSm?: Wrap;
   $wrapMd?: Wrap;
@@ -66,6 +67,19 @@ const StyledFlexWrap = styled.div<IStyledFlexWrapProps>`
   height: ${({ $fullHeight }) => $fullHeight ? '100%' : undefined};
   justify-content: ${({ $justify }) => $justify};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+
+  ${({ $position }) => $position === 'absolute' && css`
+    position: absolute;
+  `};
+  ${({ $position }) => $position === 'fixed' && css`
+    position: fixed;
+  `};
+  ${({ $position }) => $position === 'relative' && css`
+    position: relative;
+  `};
+  ${({ $position }) => $position === 'sticky' && css`
+    position: sticky;
+  `};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     align-items: ${({ $alignSm }) => $alignSm};
@@ -154,6 +168,7 @@ interface IFlexWrapProps extends PropsWithChildren {
   justifyXl?: Justify;
   justifyXxl?: Justify;
   mb?: Size;
+  position?: Position;
   wrap?: Wrap;
   wrapSm?: Wrap;
   wrapMd?: Wrap;
@@ -201,6 +216,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
   justifyXl,
   justifyXxl,
   mb,
+  position,
   wrap,
   wrapSm,
   wrapMd,
@@ -249,6 +265,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
     $justifyXl={justifyXl}
     $justifyXxl={justifyXxl}
     $mb={mb}
+    $position={position}
     $wrap={wrap}
     $wrapSm={wrapSm}
     $wrapMd={wrapMd}

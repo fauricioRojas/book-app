@@ -83,40 +83,56 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   const handleShowVehiclesSelector = () => setMode('selector');
 
   const addNewVehicle = async (vehicleDate: IVehiclesForm) => {
-    const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description,
       photo: vehicleDate.photo,
     }).select('id').single();
-    await supabaseClient.from(VEHICLES_TABLE).insert({
-      noteId: note?.id,
+    const { error: vehicleError } = await supabaseClient.from(VEHICLES_TABLE).insert({
+      noteId: noteData?.id,
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
       model: vehicleDate.model,
     });
-    showSnackbar({
-      type: 'success',
-      body: translation.savedVehicle,
-    });
+
+    if (noteError || vehicleError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notSavedVehicle,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.savedVehicle,
+      });
+    }
   };
 
   const editExistingVehicle = async (vehicleDate: IVehiclesForm) => {
-    await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description,
       photo: vehicleDate.photo,
     }).eq('id', noteId);
-    await supabaseClient.from(VEHICLES_TABLE).update({
+    const { error: vehicleError } = await supabaseClient.from(VEHICLES_TABLE).update({
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
       model: vehicleDate.model,
     }).eq('id', vehicleId);
-    showSnackbar({
-      type: 'success',
-      body: translation.editedVehicle,
-    });
+
+    if (noteError || vehicleError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notEditedVehicle,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.editedVehicle,
+      });
+    }
   };
 
   const onSubmit = async (vehicleData: IVehiclesForm) => {

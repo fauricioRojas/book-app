@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
@@ -21,20 +21,27 @@ import { FormButtons } from "@/components";
 interface IProceduresForm {
   cost: string;
   weight?: string;
-  nextDate?: string;
+  nextDate?: Date | string;
   type: string;
-  date: string;
+  date: Date | string;
   description?: string;
   photo?: string;
 }
 
 interface IProceduresFormProps {
+  defaultValues?: IProceduresForm;
+  procedureId?: number;
   petId: number;
+  noteId?: number;
 }
 
 export const ProceduresForm: FC<IProceduresFormProps> = ({
+  defaultValues,
+  procedureId,
   petId,
+  noteId,
 }) => {
+  const isEditMode = defaultValues && procedureId && noteId;
   const {
     control,
     setValue,
@@ -51,13 +58,24 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>('selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const handleChangePhoto = (photo?: string) => setValue('photo', photo);
+  useEffect(() => {
+    if (defaultValues) {
+      setValue('cost', defaultValues.cost);
+      setValue('weight', defaultValues.weight);
+      setValue('nextDate', defaultValues.nextDate);
+      setValue('type', defaultValues.type);
+      setValue('date', defaultValues.date);
+      setValue('description', defaultValues.description);
+      setValue('photo', defaultValues.photo);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValues]);
 
   const handleSetType = (type: ITypeSelectorOption) => {
     setValue('type', type.value);
@@ -66,24 +84,66 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
 
   const handleShowProceduresSelector = () => setMode('selector');
 
-  const onSubmit = async (newMaintenanceData: IProceduresForm) => {
-    const { data: note } = await supabaseClient.from(NOTES_TABLE).insert({
-      type: newMaintenanceData.type,
-      date: new Date(newMaintenanceData.date),
-      description: newMaintenanceData.description,
-      photo: newMaintenanceData.photo,
+  const addNewProcedure = async (procedureData: IProceduresForm) => {
+    const { data: noteDate, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+      type: procedureData.type,
+      date: new Date(procedureData.date),
+      description: procedureData.description,
+      photo: procedureData.photo,
     }).select('id').single();
-    await supabaseClient.from(PROCEDURES_TABLE).insert({
+    const { error: procedureError } = await supabaseClient.from(PROCEDURES_TABLE).insert({
       petId,
-      noteId: note?.id,
-      cost: newMaintenanceData.cost,
-      weight: newMaintenanceData.weight || null,
-      nextDate: newMaintenanceData.nextDate ? new Date(newMaintenanceData.nextDate) : null,
+      noteId: noteDate?.id,
+      cost: procedureData.cost,
+      weight: procedureData.weight || null,
+      nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,
     });
-    showSnackbar({
-      type: 'success',
-      body: translation.savedProcedure,
-    });
+
+    if (noteError || procedureError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notSavedProcedure,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.savedProcedure,
+      });
+    }
+  };
+
+  const editExistingProcedure = async (procedureData: IProceduresForm) => {
+    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+      type: procedureData.type,
+      date: new Date(procedureData.date),
+      description: procedureData.description,
+      photo: procedureData.photo,
+    }).eq('id', noteId);
+    const { error: procedureError } = await supabaseClient.from(PROCEDURES_TABLE).update({
+      cost: procedureData.cost,
+      weight: procedureData.weight || null,
+      nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,
+    }).eq('id', procedureId);
+
+    if (noteError || procedureError) {
+      showSnackbar({
+        type: 'error',
+        body: translation.notEditedProcedure,
+      });
+    } else {
+      showSnackbar({
+        type: 'success',
+        body: translation.editedProcedure,
+      });
+    }
+  };
+
+  const onSubmit = async (procedureData: IProceduresForm) => {
+    if (isEditMode) {
+      await editExistingProcedure(procedureData);
+    } else {
+      await addNewProcedure(procedureData);
+    }
     hideDrawer();
   };
 
@@ -188,10 +248,18 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
           />
         </Col>
         <Col cols={12} mb={5}>
-          <Photo onChangePhoto={handleChangePhoto} />
+          <Controller
+            control={control}
+            name="photo"
+            render={({
+              field: { onChange, value },
+            }) => (
+              <Photo photo={value} onChangePhoto={onChange} />
+            )}
+          />
         </Col>
       </Row>
-      <FormButtons onClickBack={handleShowProceduresSelector} />
+      <FormButtons onClickBack={isEditMode ? undefined : handleShowProceduresSelector} />
     </form>
   );
 };

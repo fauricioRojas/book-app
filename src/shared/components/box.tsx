@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
-type Position = 'absolute' | 'fixed' | 'relative' | 'sticky';
+import { Position } from '@/shared/types';
 
 interface IStyledBoxProps {
   $mb?: number;

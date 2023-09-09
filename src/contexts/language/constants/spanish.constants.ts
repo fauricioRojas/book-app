@@ -113,6 +113,8 @@ export const SPANISH: ILanguageTranslation = {
   home: "Inicio",
   petNotFound: "Mascota no Encontrada",
   vehicleNotFound: "Vehículo no Encontrado",
+  procedureNotFound: "Procedimiento no Encontrado",
+  maintenanceNotFound: "Mantenimiento no Encontrado",
   weAresorry:
     "Lo sentimos, no pudimos encontrar el recurso que estaba buscando.",
   tryThesePages: "Intente alguna de estas páginas:",
@@ -155,6 +157,8 @@ export const SPANISH: ILanguageTranslation = {
   notEditedProcedure: "Procedimiento no editado",
   editedMaintenance: "Mantenimiento editado",
   notEditedMaintenance: "Mantenimiento no editado",
+  nextDateHint:
+    "En la pantalla de inicio se mostrará un recordatorio de la próxima fecha",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",
