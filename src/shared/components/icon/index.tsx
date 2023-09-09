@@ -27,6 +27,7 @@ import { CatIcon } from './cat-icon';
 import { ChainIcon } from './chain-icon';
 import { CheckIcon } from './check-icon';
 import { CoolantIcon } from './coolant-icon';
+import { CurrencyIcon } from './currency-icon';
 import { DogIcon } from './dog-icon';
 import { EngineAirFilterIcon } from './engine-air-filter-icon';
 import { EngineIcon } from './engine-icon';
@@ -43,8 +44,10 @@ import { HamsterIcon } from './hamster-icon';
 import { HoseIcon } from './hose-icon';
 import { InfoIcon } from './info-icon';
 import { InjectorIcon } from './injector-icon';
+import { LengthMeterIcon } from './length-meter-icon';
 import { LightBulbIcon } from './light-bulb-icon';
 import { MicrophoneIcon } from './microphone-icon';
+import { MoonIcon } from './moon-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
 import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
 import { OilIcon } from './oil-icon';
@@ -73,11 +76,13 @@ import { TickIcon } from './tick-icon';
 import { TireIcon } from './tire-icon';
 import { TractorIcon } from './tractor-icon';
 import { TrailerIcon } from './trailer-icon';
+import { TranslateIcon } from './translate-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
 import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
+import { WeightIcon } from './weight-icon';
 import { Size } from '@/shared/types';
 
 export interface ICommonIconProps {
@@ -118,6 +123,7 @@ export type IconName =
   | 'chain'
   | 'check'
   | 'coolant'
+  | 'currency'
   | 'dog'
   | 'engine'
   | 'engine-air-filter'
@@ -134,8 +140,10 @@ export type IconName =
   | 'hose'
   | 'info'
   | 'injector'
+  | 'length-meter'
   | 'light-bulb'
   | 'microphone'
+  | 'moon'
   | 'motorcycle'
   | 'motorcycle-seat'
   | 'oil'
@@ -164,11 +172,13 @@ export type IconName =
   | 'tire'
   | 'tractor'
   | 'trailer'
+  | 'translate'
   | 'trash'
   | 'truck'
   | 'video-camera'
   | 'warning'
-  | 'water-drop';
+  | 'water-drop'
+  | 'weight';
 
 interface IIconProps extends ICommonIconProps {
   name: IconName;
@@ -201,6 +211,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   chain: ChainIcon,
   check: CheckIcon,
   coolant: CoolantIcon,
+  currency: CurrencyIcon,
   dog: DogIcon,
   engine: EngineIcon,
   'engine-air-filter': EngineAirFilterIcon,
@@ -217,8 +228,10 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   hose: HoseIcon,
   info: InfoIcon,
   injector: InjectorIcon,
+  'length-meter': LengthMeterIcon,
   'light-bulb': LightBulbIcon,
   microphone: MicrophoneIcon,
+  moon: MoonIcon,
   motorcycle: MotorcycleIcon,
   'motorcycle-seat': MotorcycleSeatIcon,
   oil: OilIcon,
@@ -247,11 +260,13 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   tire: TireIcon,
   tractor: TractorIcon,
   trailer: TrailerIcon,
+  translate: TranslateIcon,
   trash: TrashIcon,
   truck: TruckIcon,
   'video-camera': VideoCameraIcon,
   warning: WarningIcon,
   'water-drop': WaterDropIcon,
+  weight: WeightIcon,
 };
 
 interface IStyledIconProps {

@@ -38,6 +38,9 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   resize: none;
 
+  &:hover {
+    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
+  }
   &:focus {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;

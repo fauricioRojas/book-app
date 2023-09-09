@@ -172,7 +172,7 @@ export const FlexWrap: FC<IFlexWrapProps> = ({
   basisLg,
   basisXl,
   basisXxl,
-  direction,
+  direction = 'row',
   directionSm,
   directionMd,
   directionLg,

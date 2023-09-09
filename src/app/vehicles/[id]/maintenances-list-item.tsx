@@ -25,31 +25,27 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
 
   return (
     <Card>
-      <FlexWrap direction="column" gap={3}>
-        <FlexWrap
-          justify="space-between"
-          align="center"
-        >
-          <Typography variant="label">{formatDate(date)}</Typography>
+      <FlexWrap gap={4}>
+        <FlexWrap align="center">
           <Icon
             name={ICON_BY_TYPE[type]}
             color={colors.primaryText}
-            height={30}
-            width={30}
+            height={35}
+            width={35}
           />
         </FlexWrap>
-        <FlexWrap
-          justify="space-between"
-          align="center"
-        >
-          <Typography variant="label">
-            {formatMoney(cost, currency)}
-          </Typography>
-          {kilometers && (
-            <Typography variant="label">
-              {formatLength(kilometers, lengthUnit)}
-            </Typography>
-          )}
+        <FlexWrap direction="column" gap={1}>
+          <FlexWrap>
+            <Typography variant="label">{formatDate(date)}</Typography>
+          </FlexWrap>
+          <FlexWrap gap={8}>
+            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+            {kilometers && (
+              <Typography variant="label">
+                {formatLength(kilometers, lengthUnit)}
+              </Typography>
+            )}
+          </FlexWrap>
         </FlexWrap>
       </FlexWrap>
     </Card>

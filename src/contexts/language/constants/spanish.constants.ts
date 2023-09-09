@@ -6,7 +6,7 @@ export const SPANISH: ILanguageTranslation = {
   vehicles: "Vehículos",
   pets: "Mascotas",
   settings: "Configuración",
-  theme: "Tema Oscuro",
+  theme: "Modo Oscuro",
   language: "Lenguaje",
   save: "Guardar",
   cost: "Costo",

@@ -38,9 +38,6 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypograph
   ${$color === 'error' && css`
     color: ${theme.colors.error};
   `}
-  ${!$color && css`
-    color: ${theme.colors.primaryText};
-  `}
   ${({ $display }: any) => typeof $display === 'boolean' && css`
     display: ${$display ? 'block' : 'none'};
   `}
@@ -172,7 +169,7 @@ export const Typography: FC<ITypographyProps> = ({
   fontWeight = 'regular',
   textAlign,
   italic,
-  color,
+  color = 'primary-text',
   mb = 0,
   display,
   displaySm,

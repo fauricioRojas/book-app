@@ -20,22 +20,20 @@ export const VehiclesListItem: FC<IVehiclesListItemProps> = ({
   return (
     <Link href={`/vehicles/${id}`} asContainer>
       <Card>
-        <FlexWrap direction="column" gap={3}>
-          <FlexWrap
-            justify="space-between"
-          >
-            <Typography variant="h5">{brand}</Typography>
+        <FlexWrap gap={4}>
+          <FlexWrap align="center">
             <Icon
               name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
-              height={30}
-              width={30}
+              height={45}
+              width={45}
               pointer
             />
           </FlexWrap>
-          <Typography variant="label">
-            {plateNumber}
-          </Typography>
+          <FlexWrap direction="column" gap={1}>
+            <Typography variant="h6" fontWeight="bold">{brand}</Typography>
+            <Typography variant="label">{plateNumber}</Typography>
+          </FlexWrap>
         </FlexWrap>
       </Card>
     </Link>

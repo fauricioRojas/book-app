@@ -46,8 +46,8 @@ const StyledButton = styled.button<IStyledButtonProps>`
     color: ${theme.colors.white};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.primary900};
-      border-color: ${theme.colors.primary900};
+      background-color: ${theme.colors.primary800};
+      border-color: ${theme.colors.primary800};
     }
   `}
 
@@ -68,20 +68,20 @@ const StyledButton = styled.button<IStyledButtonProps>`
     color: ${theme.colors.primaryText};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.secondary900};
-      border-color: ${theme.colors.secondary900};
+      background-color: ${theme.colors.secondary800};
+      border-color: ${theme.colors.secondary800};
       color: ${theme.colors.white};
     }
   `}
 
   ${({ $variant, theme }) => $variant === 'outline-secondary' && css`
     background-color: ${theme.colors.white};
-    border-color: ${theme.colors.border};
-    color: ${theme.colors.black};
+    border-color: ${theme.colors.secondary};
+    color: ${theme.colors.secondary};
 
     &:focus, &:hover {
       background-color: ${theme.colors.secondary};
-      color: ${theme.colors.primaryText};
+      color: ${theme.colors.white};
     }
   `}
 

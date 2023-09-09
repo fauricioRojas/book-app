@@ -80,8 +80,8 @@ export const PetDetails: FC<IPetDetailsProps> = ({
             </Typography>
             <Icon
               name={ICON_BY_TYPE[notes.type]}
-              height={30}
-              width={30}
+              height={25}
+              width={25}
               color={colors.primaryText}
             />
           </FlexWrap>
@@ -104,27 +104,27 @@ export const PetDetails: FC<IPetDetailsProps> = ({
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.breed}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.breed}</Typography>
           <Typography variant="label">{breed}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.dateOfBirth}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.dateOfBirth}</Typography>
           <Typography variant="label">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
+            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.procedures}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.procedures}</Typography>
           <ProceduresList procedures={procedures} />
         </FlexWrap>
       </FlexWrap>

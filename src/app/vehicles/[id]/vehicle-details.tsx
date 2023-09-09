@@ -106,31 +106,31 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
       </FlexWrap>
       <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.plateNumber}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.plateNumber}</Typography>
           <Typography variant="label">{plateNumber}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.model}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.model}</Typography>
           <Typography variant="label">{model}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.dateOfPurchase}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.dateOfPurchase}</Typography>
           <Typography variant="label">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">Description</Typography>
+            <Typography variant="h6" fontWeight="bold">Description</Typography>
             <Typography variant="p">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.maintenances}</Typography>
+          <Typography variant="h6" fontWeight="bold">{translation.maintenances}</Typography>
           <MaintenancesList maintenances={maintenances} />
         </FlexWrap>
       </FlexWrap>

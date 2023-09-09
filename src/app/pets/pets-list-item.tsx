@@ -22,19 +22,20 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
   return (
     <Link href={`/pets/${id}`} asContainer>
       <Card>
-        <FlexWrap justify="space-between">
-          <Typography variant="h5">
-            {name}
-            {' '}
-            <Typography variant="label">({breed})</Typography>
-          </Typography>
-          <Icon
-            name={ICON_BY_TYPE[type]}
-            color={colors.primaryText}
-            height={25}
-            width={25}
-            pointer
-          />
+        <FlexWrap gap={4}>
+          <FlexWrap align="center">
+            <Icon
+              name={ICON_BY_TYPE[type]}
+              color={colors.primaryText}
+              height={35}
+              width={35}
+              pointer
+            />
+          </FlexWrap>
+          <FlexWrap direction="column" gap={1}>
+            <Typography variant="h6" fontWeight="bold">{name}</Typography>
+            <Typography variant="label">{breed}</Typography>
+          </FlexWrap>
         </FlexWrap>
       </Card>
     </Link>

@@ -15,7 +15,7 @@ import { StyledComponentsRegistry } from './registry';
 import { Navbar } from '@/components';
 
 export const metadata: Metadata = {
-  title: 'Book App',
+  title: 'BookApp',
   description: 'Manage your vehicles and pets using Book App',
 }
 

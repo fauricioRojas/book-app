@@ -16,49 +16,45 @@ const breakpoints: IBreakpoints = {
 };
 
 const commonColors = {
-  primary100: "#6897D8",
+  primary100: "#A4B6F1",
+  primary200: "#7194E9",
   primary: "#2474E1",
-  primary900: "#19519E",
+  primary800: "#2656A4",
+  primary900: "#213A6A",
   white: "#FFF",
   black: "#000",
   success: "#31A24C",
+  error100: "#EC716F",
   error: "#DC3545",
-  error900: "#AC2836",
+  error900: "#A12D35",
   warning: "#FC6E20",
-  gray100: "#F8F9FA",
-  gray200: "#E9ECEF",
-  gray300: "#DEE2E6",
-  gray400: "#CED4DA",
-  gray500: "#ADB5BD",
-  gray600: "#6C757D",
-  gray700: "#495057",
-  gray800: "#343A40",
-  gray900: "#212529",
 };
 
 export const lightColors: IColors = {
   ...commonColors,
-  secondary100: "#ECEEF1",
+  secondary100: "#6D6E6F",
+  secondary200: "#A8AAAC",
   secondary: "#E8EAED",
-  secondary900: "#797C7E",
+  secondary800: "#EEEFF1",
+  secondary900: "#F3F4F6",
   neutral: "#FEFEFE",
   neutralTransparent: "rgba(255,255,255,0.9)",
   primaryText: "#292A36",
   secondaryText: "#444444",
-  skeleton: "#ADB5BD",
   border: "rgba(0, 0, 0, 0.23)",
 };
 
 export const darkColors: IColors = {
   ...commonColors,
-  secondary100: "#969A9B",
+  secondary100: "#989A9C",
+  secondary200: "#686B6E",
   secondary: "#3C4043",
-  secondary900: "#242728",
+  secondary800: "#2E3133",
+  secondary900: "#212324",
   neutral: "#1A1A1A",
   neutralTransparent: "rgba(16, 20, 24, 0.8)",
   primaryText: "#E4E6EB",
   secondaryText: "#B0B3B8",
-  skeleton: "#1F1E1E",
   border: "rgba(255, 255, 255, 0.23)",
 };
 

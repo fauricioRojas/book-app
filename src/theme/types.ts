@@ -8,10 +8,14 @@ export interface IBreakpoints {
 
 export interface IColors {
   primary100: string;
+  primary200: string;
   primary: string; // 10
+  primary800: string;
   primary900: string;
   secondary100: string;
+  secondary200: string;
   secondary: string; // 30
+  secondary800: string;
   secondary900: string;
   neutral: string; // 60
   neutralTransparent: string;
@@ -20,20 +24,11 @@ export interface IColors {
   white: string;
   black: string;
   success: string;
+  error100: string;
   error: string;
   error900: string;
   warning: string;
-  skeleton: string;
   border: string;
-  gray100: string;
-  gray200: string;
-  gray300: string;
-  gray400: string;
-  gray500: string;
-  gray600: string;
-  gray700: string;
-  gray800: string;
-  gray900: string;
 }
 
 export interface IFontWeights {

@@ -47,7 +47,7 @@ const StyledInput = styled.input<IStyledInputProps>`
   width: 100%;
 
   &:hover {
-    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary};
+    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
   }
   &:focus {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};

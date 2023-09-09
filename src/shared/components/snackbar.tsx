@@ -31,7 +31,7 @@ const StyledSnackbar = styled.div<IStyledSkeletonProps>`
   bottom: ${({ theme }) => theme.gutters.size8};
   align-items: center;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.secondary800};
   color: ${({ theme }) => theme.colors.primaryText};
   max-width: 320px;
   width: auto;
@@ -55,7 +55,7 @@ const StyledSnackbarProgress = styled.div<IStyledSkeletonProgressProps>`
   transform-origin: left;
   background: linear-gradient(
     to right,
-    ${({ theme }) => theme.colors.gray300},
+    ${({ theme }) => theme.colors.secondary},
     ${({ $color }) => $color}
   );
   border-radius: inherit;

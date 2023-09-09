@@ -39,6 +39,7 @@ const Vehicle = async ({ params: { id } }: IVehicleParams) => {
   if (!vehicle) {
     notFound();
   }
+  console.log('vehicle:', vehicle);
 
   return (
     <main>

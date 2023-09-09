@@ -13,7 +13,7 @@ const Loading = () => (
           xl={3}
           mb={4}
         >
-          <Skeleton height={14} width="full" />
+          <Skeleton height={19} width="full" />
         </Col>
       ))}
     </Row>

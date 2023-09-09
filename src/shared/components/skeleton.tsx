@@ -34,7 +34,7 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   animation-iteration-count: infinite;
   animation-name: ${skeletonAnimation};
   animation-timing-function: ease;
-  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.secondary} 63%)`};
+  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.secondary900} 37%, ${theme.colors.secondary} 63%)`};
   background-size: 400% 100%;
   height: ${({ $height, theme }) => theme.gutters[`size${$height}`]};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
