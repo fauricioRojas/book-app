@@ -3,17 +3,22 @@ import { supabaseClient, IPet, PETS_TABLE } from '@/supabase';
 import { PetsListItem } from './pets-list-item';
 import { NoPets } from './no-pets';
 
+const abortController = new AbortController();
+
 export const PetsList = async () => {
-  const { data: pets } = await supabaseClient.from(PETS_TABLE).select<string, IPet>(`
-    id,
-    name,
-    breed,
-    notes (
+  const { data: pets } = await supabaseClient
+    .from(PETS_TABLE)
+    .select<string, IPet>(`
       id,
-      type,
-      date
-    )
-  `);
+      name,
+      breed,
+      notes (
+        id,
+        type,
+        date
+      )
+    `)
+    .abortSignal(abortController.signal);
 
   if (!pets?.length) {
     return <NoPets />;

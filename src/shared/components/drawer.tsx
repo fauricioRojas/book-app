@@ -74,7 +74,10 @@ const StyledDrawerBody = styled.div`
   height: calc(100% - 56px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: ${({ theme }) => theme.gutters.size4};
+  padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4} ${theme.gutters.size4}`};
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.gutters.size4};
+  }
 `
 
 interface IDrawerProps {

@@ -4,6 +4,8 @@ import { FC } from "react";
 import { IPet, PETS_TABLE, supabaseClient } from "@/supabase";
 import { PetDetails } from "./pet-details";
 
+const abortController = new AbortController();
+
 interface IPetProps {
   params: {
     petId: string;
@@ -11,22 +13,12 @@ interface IPetProps {
 }
 
 const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
-  const { data: pet } = await supabaseClient.from(PETS_TABLE).select<string, IPet>(`
-    id,
-    name,
-    breed,
-    notes (
+  const { data: pet } = await supabaseClient
+    .from(PETS_TABLE)
+    .select<string, IPet>(`
       id,
-      type,
-      date,
-      description,
-      photo
-    ),
-    procedures (
-      id,
-      pets (
-        id
-      ),
+      name,
+      breed,
       notes (
         id,
         type,
@@ -34,11 +26,26 @@ const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
         description,
         photo
       ),
-      cost,
-      weight,
-      nextDate
-    )
-  `).match({ id: petId }).single();
+      procedures (
+        id,
+        pets (
+          id
+        ),
+        notes (
+          id,
+          type,
+          date,
+          description,
+          photo
+        ),
+        cost,
+        weight,
+        nextDate
+      )
+    `)
+    .match({ id: petId })
+    .abortSignal(abortController.signal)
+    .single();
 
   if (!pet) {
     notFound();

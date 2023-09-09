@@ -4,6 +4,8 @@ import { FC } from "react";
 import { IMaintenance, MAINTENANCES_TABLE, supabaseClient } from "@/supabase";
 import { MaintenanceDetails } from "./maintenance-details";
 
+const abortController = new AbortController();
+
 interface IMaintenanceProps {
   params: {
     maintenanceId: string;
@@ -11,22 +13,26 @@ interface IMaintenanceProps {
 }
 
 const Maintenance: FC<IMaintenanceProps> = async ({ params: { maintenanceId } }) => {
-  console.log('maintenanceId:', maintenanceId);
-  const { data: maintenance } = await supabaseClient.from(MAINTENANCES_TABLE).select<string, IMaintenance>(`
-    id,
-    notes (
+  const { data: maintenance } = await supabaseClient
+    .from(MAINTENANCES_TABLE)
+    .select<string, IMaintenance>(`
       id,
-      type,
-      date,
-      description,
-      photo
-    ),
-    vehicles (
-      id
-    ),
-    cost,
-    kilometers
-  `).match({ id: maintenanceId }).single();
+      notes (
+        id,
+        type,
+        date,
+        description,
+        photo
+      ),
+      vehicles (
+        id
+      ),
+      cost,
+      kilometers
+    `)
+    .match({ id: maintenanceId })
+    .abortSignal(abortController.signal)
+    .single();
 
   if (!maintenance) {
     notFound();

@@ -48,7 +48,7 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
       photo: notes.photo,
     };
     showDrawer({
-      title: translation.editPet,
+      title: translation.editVehicle,
       body: <VehiclesForm defaultValues={defaultValues} vehicleId={id} noteId={notes.id} />,
     });
   };

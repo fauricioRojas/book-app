@@ -3,17 +3,22 @@ import { supabaseClient, IVehicle, VEHICLES_TABLE } from '@/supabase';
 import { VehiclesListItem } from './vehicles-list-item';
 import { NoVehicles } from './no-vehicles';
 
+const abortController = new AbortController();
+
 export const VehiclesList = async () => {
-  const { data: vehicles } = await supabaseClient.from(VEHICLES_TABLE).select<string, IVehicle>(`
-    id,
-    plateNumber,
-    brand,
-    notes (
+  const { data: vehicles } = await supabaseClient
+    .from(VEHICLES_TABLE)
+    .select<string, IVehicle>(`
       id,
-      type,
-      date
-    )
-  `);
+      plateNumber,
+      brand,
+      notes (
+        id,
+        type,
+        date
+      )
+    `)
+    .abortSignal(abortController.signal);
 
   if (!vehicles?.length) {
     return <NoVehicles />;
