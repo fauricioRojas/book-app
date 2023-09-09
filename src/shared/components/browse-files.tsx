@@ -26,7 +26,6 @@ const StyledInputFileLabel = styled.label`
 
   &:focus, &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.primaryText};
   }
 `
 

@@ -102,7 +102,7 @@ interface IConfirmationModalProps {
   title: string;
   isOpen: boolean;
   buttonText: string;
-  onClick: () => void;
+  onClick: () => Promise<void>;
   onClose: () => void;
 }
 
@@ -116,7 +116,7 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
   const { translation } = useLanguage();
   const [isHiding, setIsHiding] = useState(false);
 
-  const handleCloseModal = useCallback(() => {
+  const handleCloseConfirmationModal = useCallback(() => {
     setIsHiding(true);
     setTimeout(() => {
       onClose();
@@ -125,19 +125,22 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = useCallback(() => {
-    handleCloseModal();
-    onClick();
+  const handleClick = useCallback(async () => {
+    await onClick();
+    handleCloseConfirmationModal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClick]);
 
   return isOpen ? (
     <StyledConfirmationModal>
-      <StyledConfirmationModalBackdrop $isHiding={isHiding} onClick={handleCloseModal} />
+      <StyledConfirmationModalBackdrop
+        $isHiding={isHiding}
+        onClick={handleCloseConfirmationModal}
+      />
       <StyledConfirmationModalContent $isHiding={isHiding}>
         <Typography variant="h6" fontWeight="bold">{title}</Typography>
         <FlexWrap gap={4}>
-          <Button variant="outline-secondary" onClick={handleCloseModal}>
+          <Button variant="outline-secondary" onClick={handleCloseConfirmationModal}>
             {translation.cancel}
           </Button>
           <Button variant="error" onClick={handleClick}>

@@ -52,7 +52,7 @@ const StyledButton = styled.button<IStyledButtonProps>`
   `}
 
   ${({ $variant, theme }) => $variant === 'outline-primary' && css`
-    background-color: ${theme.colors.white};
+    background-color: transparent;
     border-color: ${theme.colors.primary};
     color: ${theme.colors.primary};
 
@@ -75,13 +75,13 @@ const StyledButton = styled.button<IStyledButtonProps>`
   `}
 
   ${({ $variant, theme }) => $variant === 'outline-secondary' && css`
-    background-color: ${theme.colors.white};
-    border-color: ${theme.colors.secondary};
-    color: ${theme.colors.secondary};
+    background-color: transparent;
+    border-color: ${theme.colors.border};
+    color: ${theme.colors.primaryText};
 
     &:focus, &:hover {
       background-color: ${theme.colors.secondary};
-      color: ${theme.colors.white};
+      border-color: ${theme.colors.secondary};
     }
   `}
 
