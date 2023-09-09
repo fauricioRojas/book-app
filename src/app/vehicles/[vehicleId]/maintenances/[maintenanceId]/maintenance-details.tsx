@@ -111,9 +111,15 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
         </FlexWrap>
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
-        <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
-          <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+        <FlexWrap gap={4}>
+          <FlexWrap direction="column" basis="50%" gap={2}>
+            <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
+            <Typography variant="label">{formatDate(notes.date)}</Typography>
+          </FlexWrap>
+          <FlexWrap direction="column" basis="50%" gap={2}>
+            <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
+            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+          </FlexWrap>
         </FlexWrap>
         {kilometers && (
           <FlexWrap direction="column" gap={2}>
@@ -121,10 +127,6 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
             <Typography variant="label">{formatLength(kilometers, lengthUnit)}</Typography>
           </FlexWrap>
         )}
-        <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
-          <Typography variant="label">{formatDate(notes.date)}</Typography>
-        </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>

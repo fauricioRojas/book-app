@@ -2,11 +2,8 @@
 
 import styled, { useTheme } from 'styled-components';
 
-import { ChangeEvent } from 'react';
-
 import { FlexWrap, Icon, Select, Typography } from '@/shared/components';
 import { useLanguage } from '@/contexts';
-import { LanguageType } from '@/contexts/language/language.types';
 
 const StyledFlexWrap = styled(FlexWrap)`
   margin: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
@@ -18,9 +15,6 @@ const StyledIconWrapper = styled(FlexWrap)`
 export const LanguageSelector = () => {
   const { colors } = useTheme();
   const { language, languageOptions, translation, changeLanguage } = useLanguage();
-
-  const handleChangeLanguage = ({ target }: ChangeEvent<HTMLSelectElement>) =>
-    changeLanguage(target.value as LanguageType);
 
   return (
     <StyledFlexWrap justify="space-between" align="center">
@@ -34,7 +28,7 @@ export const LanguageSelector = () => {
         value={language}
         borderless
         options={languageOptions}
-        onChange={handleChangeLanguage}
+        onChange={changeLanguage}
       />
     </StyledFlexWrap>
   );

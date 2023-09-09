@@ -13,7 +13,8 @@ const StyledPhotoPreview = styled.div<StyledPhotoPreviewProps>`
   background-image: url(${({ $backgroundImage }) => $backgroundImage});
   background-repeat: no-repeat;
   background-size: contain;
-  height: 300px;
+  min-height: 150px;
+  max-height: 300px;
   width: 100%;
 `
 const StyledTrashIconWrap = styled.div`

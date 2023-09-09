@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { ChangeEvent, createContext, useContext } from "react";
 
 import { ISelectOption } from "@/shared/types";
 import { ILanguageTranslation, LanguageType } from "./language.types";
@@ -9,7 +9,7 @@ interface ILanguageContext {
   language: LanguageType;
   languageOptions: ISelectOption<string>[];
   translation: ILanguageTranslation;
-  changeLanguage: (language: LanguageType) => void;
+  changeLanguage: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const LanguageContext = createContext<ILanguageContext>({

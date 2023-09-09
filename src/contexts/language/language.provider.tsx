@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, PropsWithChildren } from 'react';
+import { ChangeEvent, FC, PropsWithChildren } from 'react';
 
 import { useLocalStorage } from '@/hooks';
 import { LANGUAGES, languageTypes } from './constants/language.constants';
@@ -15,13 +15,16 @@ export const LanguageProvider: FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useLocalStorage<LanguageType>('language', 'es');
   const translation = LANGUAGES[language];
 
+  const changeLanguage = ({ target }: ChangeEvent<HTMLSelectElement>) =>
+    setLanguage(target.value as LanguageType);
+
   return (
     <LanguageContext.Provider
       value={{
         language,
         languageOptions: getLanguageOptions(translation),
         translation,
-        changeLanguage: setLanguage,
+        changeLanguage,
       }}
     >
       {children}

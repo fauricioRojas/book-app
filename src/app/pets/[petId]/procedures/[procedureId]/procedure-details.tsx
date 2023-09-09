@@ -113,29 +113,33 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
         </FlexWrap>
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
-        <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
-          <Typography variant="label">{formatMoney(cost, currency)}</Typography>
-        </FlexWrap>
-        {weight && (
-          <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
-            <Typography variant="label">{formatWeight(weight, weightUnit)}</Typography>
+        <FlexWrap gap={4}>
+          <FlexWrap direction="column" basis="50%" gap={2}>
+            <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
+            <Typography variant="label">{formatDate(notes.date)}</Typography>
           </FlexWrap>
-        )}
-        <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
-          <Typography variant="label">{formatDate(notes.date)}</Typography>
+          <FlexWrap direction="column" basis="50%" gap={2}>
+            <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
+            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+          </FlexWrap>
         </FlexWrap>
-        {nextDate && (
-          <FlexWrap direction="column" gap={2}>
-            <FlexWrap align="center" gap={1}>
-              <Typography variant="h6" fontWeight="bold">{translation.nextDate}</Typography>
-              <Popover description={translation.nextDateHint} />
+        <FlexWrap gap={4}>
+          {weight && (
+            <FlexWrap direction="column" basis="50%" gap={2}>
+              <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
+              <Typography variant="label">{formatWeight(weight, weightUnit)}</Typography>
             </FlexWrap>
-            <Typography variant="label">{formatDate(nextDate)}</Typography>
-          </FlexWrap>
-        )}
+          )}
+          {nextDate && (
+            <FlexWrap direction="column" basis="50%" gap={2}>
+              <FlexWrap align="center" gap={1}>
+                <Typography variant="h6" fontWeight="bold">{translation.nextDate}</Typography>
+                <Popover description={translation.nextDateHint} />
+              </FlexWrap>
+              <Typography variant="label">{formatDate(nextDate)}</Typography>
+            </FlexWrap>
+          )}
+        </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
