@@ -1,10 +1,16 @@
 'use client';
 
+import styled from 'styled-components';
+
 import { Button, FlexWrap, Typography } from '@/shared/components';
 import { useDrawer, useLanguage } from '@/contexts';
 import { PetsForm } from './pets-form';
 
-export const NoPets = async () => {
+const StyledFlexWrap = styled(FlexWrap)`
+  padding-top: ${({ theme }) => theme.gutters.size8};
+`;
+
+export const NoPets = () => {
   const { translation } = useLanguage();
   const { showDrawer } = useDrawer();
 
@@ -16,7 +22,7 @@ export const NoPets = async () => {
   };
 
   return (
-    <FlexWrap
+    <StyledFlexWrap
       direction="column"
       gap={4}
       align="center"
@@ -31,6 +37,6 @@ export const NoPets = async () => {
       <Button onClick={handleShowPetForm}>
         {translation.addPet}
       </Button>
-    </FlexWrap>
+    </StyledFlexWrap>
   );
 };

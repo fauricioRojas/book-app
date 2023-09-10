@@ -56,6 +56,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
       photo: undefined,
     },
   });
+  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -134,11 +135,13 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   };
 
   const onSubmit = async (maintenanceData: IMaintenancesForm) => {
+    setDisabled(true);
     if (isEditMode) {
       await editExistingMaintenance(maintenanceData);
     } else {
       await addNewMaintenance(maintenanceData);
     }
+    setDisabled(false);
     hideDrawer();
   };
 
@@ -236,7 +239,10 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
           />
         </Col>
       </Row>
-      <FormButtons onClickBack={isEditMode ? undefined : handleShowMaintenancesSelector} />
+      <FormButtons
+        disabledSave={disabled}
+        onClickBack={isEditMode ? undefined : handleShowMaintenancesSelector}
+      />
     </form>
   );
 };

@@ -58,6 +58,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
       photo: undefined,
     },
   });
+  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -139,11 +140,13 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   };
 
   const onSubmit = async (procedureData: IProceduresForm) => {
+    setDisabled(true);
     if (isEditMode) {
       await editExistingProcedure(procedureData);
     } else {
       await addNewProcedure(procedureData);
     }
+    setDisabled(false);
     hideDrawer();
   };
 
@@ -259,7 +262,10 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
           />
         </Col>
       </Row>
-      <FormButtons onClickBack={isEditMode ? undefined : handleShowProceduresSelector} />
+      <FormButtons
+        disabledSave={disabled}
+        onClickBack={isEditMode ? undefined : handleShowProceduresSelector}
+      />
     </form>
   );
 };

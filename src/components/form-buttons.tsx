@@ -6,10 +6,12 @@ import { Button, FlexWrap } from "@/shared/components";
 import { useLanguage } from "@/contexts";
 
 interface IFormButtonsProps {
+  disabledSave?: boolean;
   onClickBack?: () => void;
 }
 
 export const FormButtons: FC<IFormButtonsProps> = ({
+  disabledSave,
   onClickBack,
 }) => {
   const { translation } = useLanguage();
@@ -28,6 +30,7 @@ export const FormButtons: FC<IFormButtonsProps> = ({
       <Button
         type="submit"
         block
+        disabled={disabledSave}
       >
         {translation.save}
       </Button>

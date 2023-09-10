@@ -56,6 +56,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
       photo: undefined,
     },
   });
+  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -136,11 +137,13 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   };
 
   const onSubmit = async (vehicleData: IVehiclesForm) => {
+    setDisabled(true);
     if (isEditMode) {
       await editExistingVehicle(vehicleData);
     } else {
       await addNewVehicle(vehicleData);
     }
+    setDisabled(false);
     hideDrawer();
   };
 
@@ -255,7 +258,10 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
           />
         </Col>
       </Row>
-      <FormButtons onClickBack={isEditMode ? undefined : handleShowVehiclesSelector} />
+      <FormButtons
+        disabledSave={disabled}
+        onClickBack={isEditMode ? undefined : handleShowVehiclesSelector}
+      />
     </form>
   );
 };
