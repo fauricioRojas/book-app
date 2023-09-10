@@ -114,6 +114,7 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
   onClose,
 }) => {
   const { translation } = useLanguage();
+  const [disabled, setDisabled] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
 
   const handleCloseConfirmationModal = useCallback(() => {
@@ -126,7 +127,9 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
   }, []);
 
   const handleClick = useCallback(async () => {
+    setDisabled(true);
     await onClick();
+    setDisabled(false);
     handleCloseConfirmationModal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClick]);
@@ -149,7 +152,7 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
           <Button variant="outline-secondary" onClick={handleCloseConfirmationModal}>
             {translation.cancel}
           </Button>
-          <Button variant="error" onClick={handleClick}>
+          <Button variant="error" disabled={disabled} onClick={handleClick}>
             {buttonText}
           </Button>
         </FlexWrap>
