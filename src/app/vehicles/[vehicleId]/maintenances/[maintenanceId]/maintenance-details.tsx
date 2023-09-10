@@ -114,23 +114,23 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
         <FlexWrap gap={4}>
           <FlexWrap direction="column" basis="50%" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
-            <Typography variant="label">{formatDate(notes.date)}</Typography>
+            <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
           </FlexWrap>
           <FlexWrap direction="column" basis="50%" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
-            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+            <Typography variant="label" color="secondary-text">{formatMoney(cost, currency)}</Typography>
           </FlexWrap>
         </FlexWrap>
         {kilometers && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
-            <Typography variant="label">{formatLength(kilometers, lengthUnit)}</Typography>
+            <Typography variant="label" color="secondary-text">{formatLength(kilometers, lengthUnit)}</Typography>
           </FlexWrap>
         )}
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p">{notes.description}</Typography>
+            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (

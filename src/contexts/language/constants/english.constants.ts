@@ -112,7 +112,7 @@ export const ENGLISH: ILanguageTranslation = {
   maintenanceNotFound: "Maintenance not found",
   weAresorry:
     "We're sorry, we couldn't find the resource you were looking for.",
-  tryThesePages: "Try one of these pages:",
+  tryThesePages: "Try one of the following pages:",
   search: "Search",
   noResultsFound: "No results found",
   weight: "Weight",

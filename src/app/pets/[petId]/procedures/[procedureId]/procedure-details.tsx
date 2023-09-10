@@ -117,18 +117,18 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
         <FlexWrap gap={4}>
           <FlexWrap direction="column" basis="50%" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
-            <Typography variant="label">{formatDate(notes.date)}</Typography>
+            <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
           </FlexWrap>
           <FlexWrap direction="column" basis="50%" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
-            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+            <Typography variant="label" color="secondary-text">{formatMoney(cost, currency)}</Typography>
           </FlexWrap>
         </FlexWrap>
         <FlexWrap gap={4}>
           {weight && (
             <FlexWrap direction="column" basis="50%" gap={2}>
               <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
-              <Typography variant="label">{formatWeight(weight, weightUnit)}</Typography>
+              <Typography variant="label" color="secondary-text">{formatWeight(weight, weightUnit)}</Typography>
             </FlexWrap>
           )}
           {nextDate && (
@@ -137,14 +137,14 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
                 <Typography variant="h6" fontWeight="bold">{translation.nextDate}</Typography>
                 <Popover description={translation.nextDateHint} />
               </FlexWrap>
-              <Typography variant="label">{formatDate(nextDate)}</Typography>
+              <Typography variant="label" color="secondary-text">{formatDate(nextDate)}</Typography>
             </FlexWrap>
           )}
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p">{notes.description}</Typography>
+            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (

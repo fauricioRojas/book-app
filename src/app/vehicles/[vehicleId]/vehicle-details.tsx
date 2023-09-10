@@ -129,20 +129,20 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
       <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h6" fontWeight="bold">{translation.plateNumber}</Typography>
-          <Typography variant="label">{plateNumber}</Typography>
+          <Typography variant="label" color="secondary-text">{plateNumber}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h6" fontWeight="bold">{translation.model}</Typography>
-          <Typography variant="label">{model}</Typography>
+          <Typography variant="label" color="secondary-text">{model}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h6" fontWeight="bold">{translation.dateOfPurchase}</Typography>
-          <Typography variant="label">{formatDate(notes.date)}</Typography>
+          <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p">{notes.description}</Typography>
+            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (

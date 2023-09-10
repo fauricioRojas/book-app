@@ -31,7 +31,7 @@ export const ProceduresList: FC<IProceduresListProps> = ({
         </Col>
       )) : (
         <Col>
-          <Typography variant="label">{translation.noProcedures}</Typography>
+          <Typography variant="label" color="secondary-text">{translation.noProcedures}</Typography>
         </Col>
       )}
     </Row>

@@ -127,16 +127,16 @@ export const PetDetails: FC<IPetDetailsProps> = ({
       <FlexWrap direction="column" gap={4}>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h6" fontWeight="bold">{translation.breed}</Typography>
-          <Typography variant="label">{breed}</Typography>
+          <Typography variant="label" color="secondary-text">{breed}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
           <Typography variant="h6" fontWeight="bold">{translation.dateOfBirth}</Typography>
-          <Typography variant="label">{formatDate(notes.date)}</Typography>
+          <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
             <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p">{notes.description}</Typography>
+            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (

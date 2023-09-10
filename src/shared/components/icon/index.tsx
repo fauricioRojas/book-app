@@ -64,6 +64,7 @@ import { PillsBottleIcon } from './pills-bottle-icon';
 import { RabbitIcon } from './rabbit-icon';
 import { RadiatorIcon } from './radiator-icon';
 import { RimIcon } from './rim-icon';
+import { SadEmojiIcon } from './sad-emoji-icon';
 import { SearchIcon } from './search-icon';
 import { SettingsIcon } from './settings-icon';
 import { ShockAbsorbersIcon } from './shock-absorbers-icon';
@@ -160,6 +161,7 @@ export type IconName =
   | 'rabbit'
   | 'radiator'
   | 'rim'
+  | 'sad-emoji'
   | 'search'
   | 'settings'
   | 'shock-absorbers'
@@ -248,6 +250,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   rabbit: RabbitIcon,
   radiator: RadiatorIcon,
   rim: RimIcon,
+  'sad-emoji': SadEmojiIcon,
   search: SearchIcon,
   settings: SettingsIcon,
   'shock-absorbers': ShockAbsorbersIcon,

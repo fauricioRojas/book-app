@@ -113,7 +113,7 @@ export const SPANISH: ILanguageTranslation = {
   maintenanceNotFound: "Mantenimiento no encontrado",
   weAresorry:
     "Lo sentimos, no pudimos encontrar el recurso que estaba buscando.",
-  tryThesePages: "Intente alguna de estas páginas:",
+  tryThesePages: "Intente alguna de las siguientes páginas:",
   search: "Buscar",
   noResultsFound: "No se encontraron resultados",
   weight: "Peso",

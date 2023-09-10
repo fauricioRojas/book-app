@@ -31,7 +31,7 @@ export const MaintenancesList: FC<IMaintenancesListProps> = ({
         </Col>
       )) : (
         <Col>
-          <Typography variant="label">{translation.noMaintenances}</Typography>
+          <Typography variant="label" color="secondary-text">{translation.noMaintenances}</Typography>
         </Col>
       )}
     </Row>
