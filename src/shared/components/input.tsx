@@ -36,7 +36,6 @@ const StyledInput = styled.input<IStyledInputProps>`
     : theme.colors.border};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
-  font-family: var(--font-lato);
   font-size: 1rem;
   height: 40px;
   letter-spacing: 0.00938rem;

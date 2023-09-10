@@ -27,7 +27,6 @@ const StyledButton = styled.button<IStyledButtonProps>`
   border: 1px solid transparent;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   cursor: pointer;
-  font-family: var(--font-lato);
   font-size: 1rem;
   font-weight: ${({ theme }) => `${theme.fontWeights.regular}`};
   letter-spacing: 0.00938rem;

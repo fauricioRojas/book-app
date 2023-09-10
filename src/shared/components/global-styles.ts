@@ -28,4 +28,8 @@ export const GlobalStyles = createGlobalStyle`
     transition: background-color .3s;
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
   }
+
+  button, input, select, textarea {
+    font-family: var(--font-lato);
+  }
 `;

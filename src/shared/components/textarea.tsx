@@ -29,7 +29,6 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
     : theme.colors.border};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
-  font-family: var(--font-lato);
   font-size: 1rem;
   letter-spacing: 0.00938rem;
   height: ${({ $rows }) => `${$rows * 28.5}px`};

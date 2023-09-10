@@ -14,7 +14,6 @@ const StyledInputFileLabel = styled.label`
   color: ${({ theme }) => theme.colors.primaryText};
   cursor: pointer;
   display: block;
-  font-family: var(--font-lato);
   font-size: 1rem;
   font-weight: ${({ theme }) => `${theme.fontWeights.regular}`};
   letter-spacing: 0.00938rem;

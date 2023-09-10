@@ -17,7 +17,7 @@ const StyledSelect = styled.select<IStyledSelectProps>`
   `};
   ${({ $borderless }) => $borderless
     ? css`
-        background-position: right 6px top 6px, right 0px top 6px;
+        background-position: right 6px top 7px, right 0px top 7px;
       `
     : css`
         background-position: right 18px top 16px, right 12px top 16px;
