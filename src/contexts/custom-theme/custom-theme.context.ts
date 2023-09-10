@@ -12,4 +12,12 @@ export const CustomThemeContext = createContext<ICustomThemeContext>({
   toggleTheme: () => undefined,
 });
 
-export const useCustomTheme = () => useContext(CustomThemeContext);
+export const useCustomTheme = () => {
+  const context = useContext(CustomThemeContext);
+
+  if (!context) {
+    throw new Error("useCustomTheme must be used inside CustomThemeProvider");
+  }
+
+  return context;
+};

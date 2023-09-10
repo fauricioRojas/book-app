@@ -24,9 +24,7 @@ interface IVehiclesListProps {
   serverVehicles: IVehicle[];
 }
 
-export const VehiclesList: FC<IVehiclesListProps> = ({
-  serverVehicles,
-}) => {
+export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
   const [vehicles, setVehicles] = useState<IVehicle[]>(serverVehicles);
 
   useDidUpdate(() => setVehicles(serverVehicles), [serverVehicles]);

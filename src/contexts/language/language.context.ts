@@ -19,4 +19,12 @@ export const LanguageContext = createContext<ILanguageContext>({
   changeLanguage: () => undefined,
 });
 
-export const useLanguage = () => useContext(LanguageContext);
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+
+  if (!context) {
+    throw new Error("useLanguage must be used inside LanguageProvider");
+  }
+
+  return context;
+};

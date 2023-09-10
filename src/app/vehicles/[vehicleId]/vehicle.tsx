@@ -40,9 +40,7 @@ interface IVehicleProps {
   serverVehicle: IVehicle;
 }
 
-export const Vehicle: FC<IVehicleProps> = ({
-  serverVehicle,
-}) => {
+export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
   const [{
     id,
     brand,

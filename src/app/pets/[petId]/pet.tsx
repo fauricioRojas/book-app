@@ -118,16 +118,18 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
 
   const handleDelete = async () => {
     const [
-      { error: proceduresError },
+      { error: proceduresNotesError },
       { error: noteError },
+      { error: proceduresError },
       { error: petError },
     ] = await Promise.all([
-      supabaseClient.from(TABLES.PROCEDURES).delete().eq('petId', id),
+      supabaseClient.from(TABLES.NOTES).delete().in('id', procedures.map(({ notes: { id } }) => id)),
       supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+      supabaseClient.from(TABLES.PROCEDURES).delete().eq('petId', id),
       supabaseClient.from(TABLES.PETS).delete().eq('id', id),
     ]);
 
-    if (proceduresError || noteError || petError) {
+    if (proceduresNotesError || proceduresError || noteError || petError) {
       showSnackbar({
         type: 'error',
         body: translation.notDeletedPet,

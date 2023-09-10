@@ -24,9 +24,7 @@ interface IPetsListProps {
   serverPets: IPet[];
 }
 
-export const PetsList: FC<IPetsListProps> = ({
-  serverPets,
-}) => {
+export const PetsList: FC<IPetsListProps> = ({ serverPets }) => {
   const [pets, setPets] = useState<IPet[]>(serverPets);
 
   useDidUpdate(() => setPets(serverPets), [serverPets]);
