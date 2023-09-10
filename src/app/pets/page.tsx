@@ -2,6 +2,8 @@ import { IPet, SELECT, TABLES, supabaseClient } from '@/supabase';
 import { PetsHeader } from './pets-header';
 import { PetsList } from './pets-list';
 
+export const revalidate = 0;
+
 const abortController = new AbortController();
 
 const PetsPage = async () => {

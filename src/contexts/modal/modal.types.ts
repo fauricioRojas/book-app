@@ -1,5 +1,5 @@
 export interface IConfirmationModalArgs {
   title: string;
   buttonText: string;
-  onClick: () => void;
+  onClick: () => Promise<void>;
 }
