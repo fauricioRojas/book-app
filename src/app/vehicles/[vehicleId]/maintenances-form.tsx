@@ -15,7 +15,7 @@ import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { MaintenancesSelector } from "./maintenances-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { MAINTENANCES_TABLE, NOTES_TABLE, supabaseClient } from "@/supabase";
+import { TABLES, supabaseClient } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IMaintenancesForm {
@@ -83,13 +83,13 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   const handleShowMaintenancesSelector = () => setMode('selector');
 
   const addNewMaintenance = async (maintenanceData: IMaintenancesForm) => {
-    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
       description: maintenanceData.description,
       photo: maintenanceData.photo,
     }).select('id').single();
-    const { error: maintenanceError } = await supabaseClient.from(MAINTENANCES_TABLE).insert({
+    const { error: maintenanceError } = await supabaseClient.from(TABLES.MAINTENANCES).insert({
       vehicleId,
       noteId: noteData?.id,
       cost: maintenanceData.cost,
@@ -110,13 +110,13 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   };
 
   const editExistingMaintenance = async (maintenanceData: IMaintenancesForm) => {
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
       description: maintenanceData.description,
       photo: maintenanceData.photo,
     }).eq('id', noteId);
-    const { error: maintenanceError } = await supabaseClient.from(MAINTENANCES_TABLE).update({
+    const { error: maintenanceError } = await supabaseClient.from(TABLES.MAINTENANCES).update({
       cost: maintenanceData.cost,
       kilometers: maintenanceData.kilometers || null,
     }).eq('id', maintenanceId);

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IPet, PETS_TABLE, supabaseClient } from "@/supabase";
+import { IPet, TABLES, supabaseClient } from "@/supabase";
 import { PetDetails } from "./pet-details";
 
 const abortController = new AbortController();
@@ -14,7 +14,7 @@ interface IPetProps {
 
 const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
   const { data: pet } = await supabaseClient
-    .from(PETS_TABLE)
+    .from(TABLES.PETS)
     .select<string, IPet>(`
       id,
       name,

@@ -15,7 +15,7 @@ import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { NOTES_TABLE, VEHICLES_TABLE, supabaseClient } from "@/supabase";
+import { TABLES, supabaseClient } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IVehiclesForm {
@@ -84,13 +84,13 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   const handleShowVehiclesSelector = () => setMode('selector');
 
   const addNewVehicle = async (vehicleDate: IVehiclesForm) => {
-    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description,
       photo: vehicleDate.photo,
     }).select('id').single();
-    const { error: vehicleError } = await supabaseClient.from(VEHICLES_TABLE).insert({
+    const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).insert({
       noteId: noteData?.id,
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
@@ -111,13 +111,13 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   };
 
   const editExistingVehicle = async (vehicleDate: IVehiclesForm) => {
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description,
       photo: vehicleDate.photo,
     }).eq('id', noteId);
-    const { error: vehicleError } = await supabaseClient.from(VEHICLES_TABLE).update({
+    const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).update({
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
       model: vehicleDate.model,

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IMaintenance, MAINTENANCES_TABLE, supabaseClient } from "@/supabase";
+import { IMaintenance, TABLES, supabaseClient } from "@/supabase";
 import { MaintenanceDetails } from "./maintenance-details";
 
 const abortController = new AbortController();
@@ -14,7 +14,7 @@ interface IMaintenanceProps {
 
 const Maintenance: FC<IMaintenanceProps> = async ({ params: { maintenanceId } }) => {
   const { data: maintenance } = await supabaseClient
-    .from(MAINTENANCES_TABLE)
+    .from(TABLES.MAINTENANCES)
     .select<string, IMaintenance>(`
       id,
       notes (

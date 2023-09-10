@@ -1,3 +1,3 @@
-export * from "./types";
-export * from "./tables";
+export * from "./constants";
 export * from "./supabase-client";
+export * from "./types";

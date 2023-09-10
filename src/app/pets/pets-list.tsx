@@ -1,13 +1,13 @@
-import { Col, Row } from '@/shared/components';
-import { supabaseClient, IPet, PETS_TABLE } from '@/supabase';
-import { PetsListItem } from './pets-list-item';
-import { NoPets } from './no-pets';
+import { supabaseClient, IPet, TABLES } from '@/supabase';
+import { RealtimePetsList } from './realtime-pets-list';
+
+export const revalidate = 5;
 
 const abortController = new AbortController();
 
 export const PetsList = async () => {
   const { data: pets } = await supabaseClient
-    .from(PETS_TABLE)
+    .from(TABLES.PETS)
     .select<string, IPet>(`
       id,
       name,
@@ -20,24 +20,7 @@ export const PetsList = async () => {
     `)
     .abortSignal(abortController.signal);
 
-  if (!pets?.length) {
-    return <NoPets />;
-  }
-
   return (
-    <Row>
-      {pets.map((pet) => (
-        <Col
-          key={pet.id}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <PetsListItem {...pet} />
-        </Col>
-      ))}
-    </Row>
+    <RealtimePetsList serverPets={pets ?? []} />
   );
 };

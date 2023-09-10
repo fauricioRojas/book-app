@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IVehicle, VEHICLES_TABLE, supabaseClient } from "@/supabase";
+import { IVehicle, TABLES, supabaseClient } from "@/supabase";
 import { VehicleDetails } from "./vehicle-details";
 
 const abortController = new AbortController();
@@ -14,7 +14,7 @@ interface IVehicleProps {
 
 const Vehicle: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
   const { data: vehicle } = await supabaseClient
-    .from(VEHICLES_TABLE)
+    .from(TABLES.VEHICLES)
     .select<string, IVehicle>(`
       id,
       plateNumber,

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { IProcedure, NOTES_TABLE, PROCEDURES_TABLE, supabaseClient } from "@/supabase";
+import { IProcedure, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
@@ -55,8 +55,8 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).delete().eq('id', notes.id);
-    const { error: procedureError } = await supabaseClient.from(PROCEDURES_TABLE).delete().eq('id', id);
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id);
+    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).delete().eq('id', id);
 
     if (noteError || procedureError) {
       showSnackbar({

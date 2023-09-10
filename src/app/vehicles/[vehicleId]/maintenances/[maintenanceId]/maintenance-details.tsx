@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { IMaintenance, MAINTENANCES_TABLE, supabaseClient } from "@/supabase";
+import { IMaintenance, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
@@ -53,7 +53,7 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error } = await supabaseClient.from(MAINTENANCES_TABLE).delete().eq('id', id);
+    const { error } = await supabaseClient.from(TABLES.MAINTENANCES).delete().eq('id', id);
 
     if (error) {
       showSnackbar({

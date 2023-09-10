@@ -15,7 +15,7 @@ import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { PROCEDURES_TABLE, NOTES_TABLE, supabaseClient } from "@/supabase";
+import { TABLES, supabaseClient } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IProceduresForm {
@@ -86,13 +86,13 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   const handleShowProceduresSelector = () => setMode('selector');
 
   const addNewProcedure = async (procedureData: IProceduresForm) => {
-    const { data: noteDate, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteDate, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: procedureData.type,
       date: new Date(procedureData.date),
       description: procedureData.description,
       photo: procedureData.photo,
     }).select('id').single();
-    const { error: procedureError } = await supabaseClient.from(PROCEDURES_TABLE).insert({
+    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).insert({
       petId,
       noteId: noteDate?.id,
       cost: procedureData.cost,
@@ -114,13 +114,13 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   };
 
   const editExistingProcedure = async (procedureData: IProceduresForm) => {
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: procedureData.type,
       date: new Date(procedureData.date),
       description: procedureData.description,
       photo: procedureData.photo,
     }).eq('id', noteId);
-    const { error: procedureError } = await supabaseClient.from(PROCEDURES_TABLE).update({
+    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).update({
       cost: procedureData.cost,
       weight: procedureData.weight || null,
       nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,

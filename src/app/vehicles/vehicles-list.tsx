@@ -1,5 +1,5 @@
 import { Col, Row } from '@/shared/components';
-import { supabaseClient, IVehicle, VEHICLES_TABLE } from '@/supabase';
+import { supabaseClient, IVehicle, TABLES } from '@/supabase';
 import { VehiclesListItem } from './vehicles-list-item';
 import { NoVehicles } from './no-vehicles';
 
@@ -7,7 +7,7 @@ const abortController = new AbortController();
 
 export const VehiclesList = async () => {
   const { data: vehicles } = await supabaseClient
-    .from(VEHICLES_TABLE)
+    .from(TABLES.VEHICLES)
     .select<string, IVehicle>(`
       id,
       plateNumber,

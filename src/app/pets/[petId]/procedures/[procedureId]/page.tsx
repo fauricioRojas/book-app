@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IProcedure, PROCEDURES_TABLE, supabaseClient } from "@/supabase";
+import { IProcedure, TABLES, supabaseClient } from "@/supabase";
 import { ProcedureDetails } from "./procedure-details";
 
 const abortController = new AbortController();
@@ -14,7 +14,7 @@ interface IProcedureProps {
 
 const Procedure: FC<IProcedureProps> = async ({ params: { procedureId } }) => {
   const { data: procedure } = await supabaseClient
-    .from(PROCEDURES_TABLE)
+    .from(TABLES.PROCEDURES)
     .select<string, IProcedure>(`
       id,
       notes (

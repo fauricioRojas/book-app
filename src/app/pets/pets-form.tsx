@@ -14,7 +14,7 @@ import { useFormRules } from "@/hooks";
 import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
+import { TABLES, supabaseClient } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IPetsForm {
@@ -80,13 +80,13 @@ export const PetsForm: FC<IPetsFormProps> = ({
   const handleShowPetsSelector = () => setMode('selector');
 
   const addNewPet = async (petData: IPetsForm) => {
-    const { data: noteData, error: noteError } = await supabaseClient.from(NOTES_TABLE).insert({
+    const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
-      description: petData.description,
+      description: petData.description || null,
       photo: petData.photo,
     }).select('id').single();
-    const { error: petError } = await supabaseClient.from(PETS_TABLE).insert({
+    const { error: petError } = await supabaseClient.from(TABLES.PETS).insert({
       noteId: noteData?.id,
       name: petData.name,
       breed: petData.breed,
@@ -106,13 +106,13 @@ export const PetsForm: FC<IPetsFormProps> = ({
   };
 
   const editExistingPet = async (petData: IPetsForm) => {
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).update({
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description,
       photo: petData.photo,
     }).eq('id', noteId);
-    const { error: petError } = await supabaseClient.from(PETS_TABLE).update({
+    const { error: petError } = await supabaseClient.from(TABLES.PETS).update({
       name: petData.name,
       breed: petData.breed,
     }).eq('id', petId);

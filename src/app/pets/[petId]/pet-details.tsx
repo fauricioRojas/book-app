@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { useTheme } from "styled-components";
 
-import { IPet, NOTES_TABLE, PETS_TABLE, supabaseClient } from "@/supabase";
+import { IPet, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
@@ -52,8 +52,8 @@ export const PetDetails: FC<IPetDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error: petError } = await supabaseClient.from(PETS_TABLE).delete().eq('id', id);
-    const { error: noteError } = await supabaseClient.from(NOTES_TABLE).delete().eq('id', notes.id);
+    const { error: petError } = await supabaseClient.from(TABLES.PETS).delete().eq('id', id);
+    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id);
 
     if (petError || noteError) {
       showSnackbar({
