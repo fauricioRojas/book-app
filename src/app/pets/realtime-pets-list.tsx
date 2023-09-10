@@ -4,8 +4,8 @@ import { FC, useEffect, useState } from 'react';
 
 import { Col, Row } from '@/shared/components';
 import { supabaseClient, IPet, TABLES, SCHEMAS, ACTIONS } from '@/supabase';
-import { PetsListItem } from './pets-list-item';
 import { useDidUpdate } from '@/hooks';
+import { PetsListItem } from './pets-list-item';
 import { NoPets } from './no-pets';
 
 const abortController = new AbortController();
@@ -29,11 +29,11 @@ const findPetById = async (id: number) => {
   return data;
 };
 
-interface IRealtimePetsList {
+interface IRealtimePetsListProps {
   serverPets: IPet[];
 }
 
-export const RealtimePetsList: FC<IRealtimePetsList> = ({
+export const RealtimePetsList: FC<IRealtimePetsListProps> = ({
   serverPets,
 }) => {
   const [pets, setPets] = useState<IPet[]>(serverPets);
@@ -42,15 +42,15 @@ export const RealtimePetsList: FC<IRealtimePetsList> = ({
 
   useEffect(() => {
     const channel = supabaseClient
-      .channel('*')
+      .channel('pets-list')
       .on('postgres_changes', {
         event: ACTIONS.INSERT,
         schema: SCHEMAS.PUBLIC,
         table: TABLES.PETS,
       }, async (payload: any) => {
-        const newlyPet = await findPetById(payload.new.id);
-        if (newlyPet) {
-          setPets((prevPets: IPet[]) => prevPets.concat(newlyPet));
+        const newlyAddedPet = await findPetById(payload.new.id);
+        if (newlyAddedPet) {
+          setPets((prevPets: IPet[]) => prevPets.concat(newlyAddedPet));
         }
       })
       .subscribe();

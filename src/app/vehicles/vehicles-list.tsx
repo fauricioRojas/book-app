@@ -1,12 +1,10 @@
-import { Col, Row } from '@/shared/components';
 import { supabaseClient, IVehicle, TABLES } from '@/supabase';
-import { VehiclesListItem } from './vehicles-list-item';
-import { NoVehicles } from './no-vehicles';
+import { RealtimeVehiclesList } from './realtime-vehicles-list';
 
 const abortController = new AbortController();
 
 export const VehiclesList = async () => {
-  const { data: vehicles } = await supabaseClient
+  const { data } = await supabaseClient
     .from(TABLES.VEHICLES)
     .select<string, IVehicle>(`
       id,
@@ -20,24 +18,7 @@ export const VehiclesList = async () => {
     `)
     .abortSignal(abortController.signal);
 
-  if (!vehicles?.length) {
-    return <NoVehicles />;
-  }
-
   return (
-    <Row>
-      {vehicles.map((vehicle) => (
-        <Col
-          key={vehicle.id}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <VehiclesListItem {...vehicle} />
-        </Col>
-      ))}
-    </Row>
+    <RealtimeVehiclesList serverVehicles={data ?? []} />
   );
 };

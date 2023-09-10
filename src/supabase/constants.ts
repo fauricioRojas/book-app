@@ -1,9 +1,9 @@
 export enum TABLES {
-  VEHICLES = "vehicles",
-  PETS = "pets",
-  NOTES = "notes",
   MAINTENANCES = "maintenances",
+  NOTES = "notes",
+  PETS = "pets",
   PROCEDURES = "procedures",
+  VEHICLES = "vehicles",
 }
 
 export enum SCHEMAS {
@@ -11,5 +11,7 @@ export enum SCHEMAS {
 }
 
 export enum ACTIONS {
+  DELETE = "DELETE",
   INSERT = "INSERT",
+  UPDATE = "UPDATE",
 }

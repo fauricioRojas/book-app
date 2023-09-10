@@ -87,7 +87,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
-      description: vehicleDate.description,
+      description: vehicleDate.description || null,
       photo: vehicleDate.photo,
     }).select('id').single();
     const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).insert({

@@ -1,12 +1,10 @@
 import { supabaseClient, IPet, TABLES } from '@/supabase';
 import { RealtimePetsList } from './realtime-pets-list';
 
-export const revalidate = 5;
-
 const abortController = new AbortController();
 
 export const PetsList = async () => {
-  const { data: pets } = await supabaseClient
+  const { data } = await supabaseClient
     .from(TABLES.PETS)
     .select<string, IPet>(`
       id,
@@ -21,6 +19,6 @@ export const PetsList = async () => {
     .abortSignal(abortController.signal);
 
   return (
-    <RealtimePetsList serverPets={pets ?? []} />
+    <RealtimePetsList serverPets={data ?? []} />
   );
 };
