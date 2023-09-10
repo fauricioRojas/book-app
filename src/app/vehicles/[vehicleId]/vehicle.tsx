@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { IVehicle, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IMaintenance, IVehicle, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
@@ -12,23 +12,93 @@ import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
 import { VehiclesForm } from "../vehicles-form";
+import { useDidUpdate } from "@/hooks";
 
-interface IVehicleProps extends IVehicle {}
+const abortController = new AbortController();
+
+const findVehicleById = async (id: number) => {
+  const { data } = await supabaseClient
+    .from(TABLES.VEHICLES)
+    .select<string, IVehicle>(SELECT.FULL_VEHICLE)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  return data;
+};
+
+const findMaintenanceById = async (id: number) => {
+  const { data } = await supabaseClient
+    .from(TABLES.MAINTENANCES)
+    .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  return data;
+};
+
+interface IVehicleProps {
+  serverVehicle: IVehicle;
+}
 
 export const Vehicle: FC<IVehicleProps> = ({
-  id,
-  brand,
-  model,
-  plateNumber,
-  notes,
-  maintenances,
+  serverVehicle,
 }) => {
+  const [{
+    id,
+    brand,
+    model,
+    plateNumber,
+    notes,
+    maintenances,
+  }, setVehicle] = useState<IVehicle>(serverVehicle);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
+
+  useDidUpdate(() => setVehicle(serverVehicle), [serverVehicle]);
+
+  useEffect(() => {
+    const vehicleChannel = supabaseClient
+      .channel('vehicle')
+      .on('postgres_changes', {
+        event: ACTIONS.UPDATE,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.VEHICLES,
+      }, async (payload: any) => {
+        const updatedVehicle = await findVehicleById(payload.new.id);
+        if (updatedVehicle) {
+          setVehicle((prevVehicle: IVehicle) => ({
+            ...prevVehicle,
+            ...updatedVehicle,
+          }));
+        }
+      })
+      .subscribe();
+    const maintenanceChannel = supabaseClient
+      .channel('maintenance')
+      .on('postgres_changes', {
+        event: ACTIONS.INSERT,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.MAINTENANCES,
+      }, async (payload: any) => {
+        const newlyAddedMaintenance = await findMaintenanceById(payload.new.id);
+        if (newlyAddedMaintenance) {
+          setVehicle((prevVehicle: IVehicle) => ({
+            ...prevVehicle,
+            maintenances: prevVehicle.maintenances.concat(newlyAddedMaintenance),
+          }));
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabaseClient.removeChannel(vehicleChannel);
+      supabaseClient.removeChannel(maintenanceChannel);
+    }
+  }, []);
 
   const handleShowMaintenancesForm = () => {
     showDrawer({
@@ -44,7 +114,7 @@ export const Vehicle: FC<IVehicleProps> = ({
       model: model.toString(),
       type: notes.type,
       dateOfPurchase: notes.date,
-      description: notes.description ?? '',
+      description: notes.description || '',
       photo: notes.photo,
     };
     showDrawer({

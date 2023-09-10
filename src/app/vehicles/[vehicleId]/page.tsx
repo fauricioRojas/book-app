@@ -1,48 +1,21 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IVehicle, TABLES, supabaseClient } from "@/supabase";
+import { IVehicle, SELECT, TABLES, supabaseClient } from "@/supabase";
 import { Vehicle } from "./vehicle";
 
 const abortController = new AbortController();
 
-interface IVehicleProps {
+interface IVehiclePageProps {
   params: {
     vehicleId: string;
   };
 }
 
-const VehiclePage: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
+const VehiclePage: FC<IVehiclePageProps> = async ({ params: { vehicleId } }) => {
   const { data: vehicle } = await supabaseClient
     .from(TABLES.VEHICLES)
-    .select<string, IVehicle>(`
-      id,
-      plateNumber,
-      brand,
-      model,
-      notes (
-        id,
-        type,
-        date,
-        description,
-        photo
-      ),
-      maintenances (
-        id,
-        vehicles (
-          id
-        ),
-        notes (
-          id,
-          type,
-          date,
-          description,
-          photo
-        ),
-        cost,
-        kilometers
-      )
-    `)
+    .select<string, IVehicle>(SELECT.FULL_VEHICLE)
     .match({ id: vehicleId })
     .abortSignal(abortController.signal)
     .single();
@@ -53,7 +26,7 @@ const VehiclePage: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
 
   return (
     <main>
-      <Vehicle {...vehicle} />
+      <Vehicle serverVehicle={vehicle} />
     </main>
   );
 };

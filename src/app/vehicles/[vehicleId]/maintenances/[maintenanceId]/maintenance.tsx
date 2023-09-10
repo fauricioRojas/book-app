@@ -1,27 +1,45 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { IMaintenance, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IMaintenance, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
-import { ICON_BY_TYPE } from "@/shared/constants";
+import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { MaintenancesForm } from "../../maintenances-form";
+import { useDidUpdate } from "@/hooks";
 
-interface IMaintenanceDetailsProps extends IMaintenance {}
+const abortController = new AbortController();
 
-export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
-  id,
-  notes,
-  cost,
-  kilometers,
-  vehicles: {
-    id: vehicleId,
-  }
+const findMaintenanceById = async (id: number) => {
+  const { data } = await supabaseClient
+    .from(TABLES.MAINTENANCES)
+    .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  return data;
+};
+
+interface IMaintenanceProps {
+  serverMaintenance: IMaintenance;
+}
+
+export const Maintenance: FC<IMaintenanceProps> = ({
+  serverMaintenance
 }) => {
+  const [{
+    id,
+    notes,
+    cost,
+    kilometers,
+    vehicles: {
+      id: vehicleId,
+    }
+  }, setMaintenance] = useState<IMaintenance>(serverMaintenance);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -30,13 +48,35 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
   const { showSnackbar } = useSnackbar();
   const { currency, lengthUnit } = useMeasure();
 
+  useDidUpdate(() => setMaintenance(serverMaintenance), [serverMaintenance]);
+
+  useEffect(() => {
+    const channel = supabaseClient
+      .channel('maintenance')
+      .on('postgres_changes', {
+        event: ACTIONS.UPDATE,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.MAINTENANCES,
+      }, async (payload: any) => {
+        const updatedMaintenance = await findMaintenanceById(payload.new.id);
+        if (updatedMaintenance) {
+          setMaintenance(updatedMaintenance);
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabaseClient.removeChannel(channel);
+    }
+  }, []);
+
   const handleShowFormInEditMode = () => {
     const defaultValues = {
       cost: cost.toString(),
-      kilometers: kilometers ? kilometers.toString() : undefined,
+      kilometers: (kilometers || '').toString(),
       type: notes.type,
       date: notes.date,
-      description: notes.description ?? '',
+      description: notes.description || '',
       photo: notes.photo,
     };
     showDrawer({
@@ -53,14 +93,23 @@ export const MaintenanceDetails: FC<IMaintenanceDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error } = await supabaseClient.from(TABLES.MAINTENANCES).delete().eq('id', id);
+    const [
+      { error: noteError },
+      { error: maintenanceError }
+    ] = await Promise.all([
+      supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+      supabaseClient.from(TABLES.MAINTENANCES).delete().eq('id', id),
+    ]);
 
-    if (error) {
+    console.log('noteError: ', noteError);
+    console.log('maintenanceError: ', maintenanceError);
+    if (noteError || maintenanceError) {
       showSnackbar({
         type: 'error',
         body: translation.notDeletedMaintenance,
       });
     } else {
+      router.push(`${ROUTES.VEHICLES}/${vehicleId}`);
       showSnackbar({
         type: 'success',
         body: translation.deletedMaintenance,

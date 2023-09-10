@@ -1,4 +1,19 @@
 export enum SELECT {
+  FULL_MAINTENANCE = `
+    id,
+    vehicles (
+      id
+    ),
+    notes (
+      id,
+      type,
+      date,
+      description,
+      photo
+    ),
+    cost,
+    kilometers
+  `,
   MINIMAL_PET = `
     id,
     name,
@@ -61,6 +76,34 @@ export enum SELECT {
       id,
       type,
       date
+    )
+  `,
+  FULL_VEHICLE = `
+    id,
+    plateNumber,
+    brand,
+    model,
+    notes (
+      id,
+      type,
+      date,
+      description,
+      photo
+    ),
+    maintenances (
+      id,
+      vehicles (
+        id
+      ),
+      notes (
+        id,
+        type,
+        date,
+        description,
+        photo
+      ),
+      cost,
+      kilometers
     )
   `,
 }

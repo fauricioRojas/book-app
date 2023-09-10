@@ -15,13 +15,12 @@ import { ProceduresForm } from "../../procedures-form";
 const abortController = new AbortController();
 
 const findProcedureById = async (id: number) => {
-  const { data, error } = await supabaseClient
+  const { data } = await supabaseClient
     .from(TABLES.PROCEDURES)
     .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
     .match({ id })
     .abortSignal(abortController.signal)
     .single();
-  console.log('error', error);
   return data;
 };
 
