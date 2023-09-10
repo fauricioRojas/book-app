@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { FC } from "react";
 
 import { IVehicle, TABLES, supabaseClient } from "@/supabase";
-import { VehicleDetails } from "./vehicle-details";
+import { Vehicle } from "./vehicle";
 
 const abortController = new AbortController();
 
@@ -12,7 +12,7 @@ interface IVehicleProps {
   };
 }
 
-const Vehicle: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
+const VehiclePage: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
   const { data: vehicle } = await supabaseClient
     .from(TABLES.VEHICLES)
     .select<string, IVehicle>(`
@@ -53,9 +53,9 @@ const Vehicle: FC<IVehicleProps> = async ({ params: { vehicleId } }) => {
 
   return (
     <main>
-      <VehicleDetails {...vehicle} />
+      <Vehicle {...vehicle} />
     </main>
   );
 };
 
-export default Vehicle;
+export default VehiclePage;

@@ -1,36 +1,22 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IProcedure, TABLES, supabaseClient } from "@/supabase";
-import { ProcedureDetails } from "./procedure-details";
+import { IProcedure, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { Procedure } from "./procedure";
 
 const abortController = new AbortController();
 
-interface IProcedureProps {
+interface IProcedurePageProps {
   params: {
     procedureId: string;
   };
 }
 
-const Procedure: FC<IProcedureProps> = async ({ params: { procedureId } }) => {
+const ProcedurePage: FC<IProcedurePageProps> = async ({ params: { procedureId } }) => {
   const { data: procedure } = await supabaseClient
     .from(TABLES.PROCEDURES)
-    .select<string, IProcedure>(`
-      id,
-      notes (
-        id,
-        type,
-        date,
-        description,
-        photo
-      ),
-      pets (
-        id
-      ),
-      cost,
-      weight,
-      nextDate
-    `).match({ id: procedureId })
+    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+    .match({ id: procedureId })
     .abortSignal(abortController.signal)
     .single();
 
@@ -40,9 +26,9 @@ const Procedure: FC<IProcedureProps> = async ({ params: { procedureId } }) => {
 
   return (
     <main>
-      <ProcedureDetails {...procedure} />
+      <Procedure serverProcedure={procedure} />
     </main>
   );
 };
 
-export default Procedure;
+export default ProcedurePage;

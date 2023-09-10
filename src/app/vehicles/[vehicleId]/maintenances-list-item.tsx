@@ -6,7 +6,7 @@ import { useTheme } from 'styled-components';
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IMaintenance } from '@/supabase';
 import { formatDate, formatMoney, formatLength } from '@/shared/utils';
-import { ICON_BY_TYPE } from '@/shared/constants';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
 
 interface IMaintenancesListItemProps extends IMaintenance {}
@@ -27,7 +27,7 @@ export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
   const { currency, lengthUnit } = useMeasure();
 
   return (
-    <Link href={`/vehicles/${vehicleId}/maintenances/${id}`} asContainer>
+    <Link href={`${ROUTES.VEHICLES}/${vehicleId}${ROUTES.MAINTENANCES}/${id}`} asContainer>
       <Card>
         <FlexWrap gap={4} fullHeight>
           <FlexWrap align="center">

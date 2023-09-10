@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IPet } from '@/supabase';
-import { ICON_BY_TYPE } from '@/shared/constants';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 
 interface IPetsListItemProps extends IPet {}
 
@@ -20,7 +20,7 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
   const { colors } = useTheme();
 
   return (
-    <Link href={`/pets/${id}`} asContainer>
+    <Link href={`${ROUTES.PETS}/${id}`} asContainer>
       <Card>
         <FlexWrap gap={4}>
           <FlexWrap align="center">

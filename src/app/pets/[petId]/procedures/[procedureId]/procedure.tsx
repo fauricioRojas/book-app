@@ -1,28 +1,47 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { IProcedure, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
-import { ICON_BY_TYPE } from "@/shared/constants";
+import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
+import { useDidUpdate } from "@/hooks";
 import { ProceduresForm } from "../../procedures-form";
 
-interface IProcedureDetailsProps extends IProcedure {}
+const abortController = new AbortController();
 
-export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
-  id,
-  notes,
-  cost,
-  weight,
-  nextDate,
-  pets: {
-    id: petId,
-  }
+const findProcedureById = async (id: number) => {
+  const { data, error } = await supabaseClient
+    .from(TABLES.PROCEDURES)
+    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  console.log('error', error);
+  return data;
+};
+
+interface IProcedureProps {
+  serverProcedure: IProcedure;
+}
+
+export const Procedure: FC<IProcedureProps> = ({
+  serverProcedure,
 }) => {
+  const [{
+    id,
+    notes,
+    cost,
+    weight,
+    nextDate,
+    pets: {
+      id: petId,
+    }
+  }, setProcedure] = useState<IProcedure>(serverProcedure);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -31,14 +50,36 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
   const { showSnackbar } = useSnackbar();
   const { currency, weightUnit } = useMeasure();
 
+  useDidUpdate(() => setProcedure(serverProcedure), [serverProcedure]);
+
+  useEffect(() => {
+    const channel = supabaseClient
+      .channel('procedure')
+      .on('postgres_changes', {
+        event: ACTIONS.UPDATE,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.PROCEDURES,
+      }, async (payload: any) => {
+        const updatedProcedure = await findProcedureById(payload.new.id);
+        if (updatedProcedure) {
+          setProcedure(updatedProcedure);
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabaseClient.removeChannel(channel);
+    }
+  }, []);
+
   const handleShowFormInEditMode = () => {
     const defaultValues = {
       cost: cost.toString(),
-      weight: weight ? weight.toString() : undefined,
-      nextDate: nextDate,
+      weight: (weight || '').toString(),
+      nextDate: nextDate || '',
       type: notes.type,
       date: notes.date,
-      description: notes.description ?? '',
+      description: notes.description || '',
       photo: notes.photo,
     };
     showDrawer({
@@ -55,8 +96,13 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id);
-    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).delete().eq('id', id);
+    const [
+      { error: noteError },
+      { error: procedureError }
+    ] = await Promise.all([
+      supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+      await supabaseClient.from(TABLES.PROCEDURES).delete().eq('id', id),
+    ]);
 
     if (noteError || procedureError) {
       showSnackbar({
@@ -64,6 +110,7 @@ export const ProcedureDetails: FC<IProcedureDetailsProps> = ({
         body: translation.notDeletedProcedure,
       });
     } else {
+      router.push(`${ROUTES.PETS}/${petId}`);
       showSnackbar({
         type: 'success',
         body: translation.deletedProcedure,

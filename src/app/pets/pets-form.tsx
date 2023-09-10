@@ -84,7 +84,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description || null,
-      photo: petData.photo,
+      photo: petData.photo || null,
     }).select('id').single();
     const { error: petError } = await supabaseClient.from(TABLES.PETS).insert({
       noteId: noteData?.id,
@@ -109,8 +109,8 @@ export const PetsForm: FC<IPetsFormProps> = ({
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
-      description: petData.description,
-      photo: petData.photo,
+      description: petData.description || null,
+      photo: petData.photo || null,
     }).eq('id', noteId);
     const { error: petError } = await supabaseClient.from(TABLES.PETS).update({
       name: petData.name,

@@ -1,48 +1,21 @@
 import { notFound } from "next/navigation";
 import { FC } from "react";
 
-import { IPet, TABLES, supabaseClient } from "@/supabase";
-import { PetDetails } from "./pet-details";
+import { IPet, TABLES, SELECT, supabaseClient } from "@/supabase";
+import { Pet } from "./pet";
 
 const abortController = new AbortController();
 
-interface IPetProps {
+interface IPetPageProps {
   params: {
     petId: string;
   };
 }
 
-const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
+const PetPage: FC<IPetPageProps> = async ({ params: { petId } }) => {
   const { data: pet } = await supabaseClient
     .from(TABLES.PETS)
-    .select<string, IPet>(`
-      id,
-      name,
-      breed,
-      notes (
-        id,
-        type,
-        date,
-        description,
-        photo
-      ),
-      procedures (
-        id,
-        pets (
-          id
-        ),
-        notes (
-          id,
-          type,
-          date,
-          description,
-          photo
-        ),
-        cost,
-        weight,
-        nextDate
-      )
-    `)
+    .select<string, IPet>(SELECT.FULL_PET)
     .match({ id: petId })
     .abortSignal(abortController.signal)
     .single();
@@ -53,9 +26,9 @@ const Pet: FC<IPetProps> = async ({ params: { petId } }) => {
 
   return (
     <main>
-      <PetDetails {...pet} />
+      <Pet serverPet={pet} />
     </main>
   );
 };
 
-export default Pet;
+export default PetPage;

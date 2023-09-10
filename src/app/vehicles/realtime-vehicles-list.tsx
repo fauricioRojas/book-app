@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import { Col, Row } from '@/shared/components';
-import { supabaseClient, IVehicle, TABLES, ACTIONS, SCHEMAS } from '@/supabase';
+import { supabaseClient, IVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { VehiclesListItem } from './vehicles-list-item';
 import { NoVehicles } from './no-vehicles';
@@ -13,16 +13,7 @@ const abortController = new AbortController();
 const findVehicleById = async (id: number) => {
   const { data } = await supabaseClient
     .from(TABLES.VEHICLES)
-    .select<string, IVehicle>(`
-      id,
-      plateNumber,
-      brand,
-      notes (
-        id,
-        type,
-        date
-      )
-    `)
+    .select<string, IVehicle>(SELECT.MINIMAL_VEHICLE)
     .match({ id })
     .abortSignal(abortController.signal)
     .single();

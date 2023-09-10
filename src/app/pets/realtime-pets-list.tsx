@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import { Col, Row } from '@/shared/components';
-import { supabaseClient, IPet, TABLES, SCHEMAS, ACTIONS } from '@/supabase';
+import { supabaseClient, IPet, TABLES, SCHEMAS, ACTIONS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { PetsListItem } from './pets-list-item';
 import { NoPets } from './no-pets';
@@ -13,16 +13,7 @@ const abortController = new AbortController();
 const findPetById = async (id: number) => {
   const { data } = await supabaseClient
     .from(TABLES.PETS)
-    .select<string, IPet>(`
-      id,
-      name,
-      breed,
-      notes (
-        id,
-        type,
-        date
-      )
-    `)
+    .select<string, IPet>(SELECT.MINIMAL_PET)
     .match({ id })
     .abortSignal(abortController.signal)
     .single();

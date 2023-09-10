@@ -1,33 +1,98 @@
 'use client';
 
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { IPet, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IPet, IProcedure, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
-import { ICON_BY_TYPE } from "@/shared/constants";
+import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { ProceduresForm } from "./procedures-form";
 import { ProceduresList } from "./procedures-list";
 import { PetsForm } from "../pets-form";
+import { useDidUpdate } from "@/hooks";
 
-interface IPetDetailsProps extends IPet {}
+const abortController = new AbortController();
 
-export const PetDetails: FC<IPetDetailsProps> = ({
-  id,
-  name,
-  breed,
-  notes,
-  procedures
-}) => {
+const findPetById = async (id: number) => {
+  const { data } = await supabaseClient
+    .from(TABLES.PETS)
+    .select<string, IPet>(SELECT.FULL_PET)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  return data;
+};
+
+const findProcedureById = async (id: number) => {
+  const { data } = await supabaseClient
+    .from(TABLES.PROCEDURES)
+    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+    .match({ id })
+    .abortSignal(abortController.signal)
+    .single();
+  return data;
+};
+
+interface IPetProps {
+  serverPet: IPet;
+}
+
+export const Pet: FC<IPetProps> = ({ serverPet }) => {
+  const [{
+    id,
+    name,
+    breed,
+    notes,
+    procedures,
+  }, setPet] = useState<IPet>(serverPet);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
+
+  useDidUpdate(() => setPet(serverPet), [serverPet]);
+
+  useEffect(() => {
+    const petChannel = supabaseClient
+      .channel('pet')
+      .on('postgres_changes', {
+        event: ACTIONS.UPDATE,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.PETS,
+      }, async (payload: any) => {
+        const updatedPet = await findPetById(payload.new.id);
+        if (updatedPet) {
+          setPet((prevPet: IPet) => ({ ...prevPet, ...updatedPet }));
+        }
+      })
+      .subscribe();
+    const procedureChannel = supabaseClient
+      .channel('procedure')
+      .on('postgres_changes', {
+        event: ACTIONS.INSERT,
+        schema: SCHEMAS.PUBLIC,
+        table: TABLES.PROCEDURES,
+      }, async (payload: any) => {
+        const newlyAddedProcedure = await findProcedureById(payload.new.id);
+        if (newlyAddedProcedure) {
+          setPet((prevPet: IPet) => ({
+            ...prevPet,
+            procedures: prevPet.procedures.concat(newlyAddedProcedure),
+          }));
+        }
+      })
+      .subscribe();
+
+    return () => {
+      supabaseClient.removeChannel(petChannel);
+      supabaseClient.removeChannel(procedureChannel);
+    }
+  }, []);
 
   const handleShowProceduresForm = () => {
     showDrawer({
@@ -42,7 +107,7 @@ export const PetDetails: FC<IPetDetailsProps> = ({
       breed,
       type: notes.type,
       dateOfBirth: notes.date,
-      description: notes.description ?? '',
+      description: notes.description || '',
       photo: notes.photo,
     };
     showDrawer({
@@ -52,15 +117,23 @@ export const PetDetails: FC<IPetDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error: petError } = await supabaseClient.from(TABLES.PETS).delete().eq('id', id);
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id);
+    const [
+      { error: proceduresError },
+      { error: noteError },
+      { error: petError },
+    ] = await Promise.all([
+      supabaseClient.from(TABLES.PROCEDURES).delete().eq('petId', id),
+      supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+      supabaseClient.from(TABLES.PETS).delete().eq('id', id),
+    ]);
 
-    if (petError || noteError) {
+    if (proceduresError || noteError || petError) {
       showSnackbar({
         type: 'error',
         body: translation.notDeletedPet,
       });
     } else {
+      router.push(ROUTES.PETS);
       showSnackbar({
         type: 'success',
         body: translation.deletedPet,

@@ -8,14 +8,14 @@ import { IVehicle, TABLES, supabaseClient } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
-import { ICON_BY_TYPE } from "@/shared/constants";
+import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
 import { VehiclesForm } from "../vehicles-form";
 
-interface IVehicleDetailsProps extends IVehicle {}
+interface IVehicleProps extends IVehicle {}
 
-export const VehicleDetails: FC<IVehicleDetailsProps> = ({
+export const Vehicle: FC<IVehicleProps> = ({
   id,
   brand,
   model,
@@ -54,15 +54,23 @@ export const VehicleDetails: FC<IVehicleDetailsProps> = ({
   };
 
   const handleDelete = async () => {
-    const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).delete().eq('id', id);
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id);
+    const [
+      { error: maintenancesError },
+      { error: noteError },
+      { error: vehicleError }
+    ] = await Promise.all([
+      supabaseClient.from(TABLES.MAINTENANCES).delete().eq('vehicleId', id),
+      supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+      supabaseClient.from(TABLES.VEHICLES).delete().eq('id', id),
+    ]);
 
-    if (vehicleError || noteError) {
+    if (maintenancesError || noteError || vehicleError) {
       showSnackbar({
         type: 'error',
         body: translation.notDeletedVehicle,
       });
     } else {
+      router.push(ROUTES.VEHICLES);
       showSnackbar({
         type: 'success',
         body: translation.deletedVehicle,

@@ -88,7 +88,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description || null,
-      photo: vehicleDate.photo,
+      photo: vehicleDate.photo || null,
     }).select('id').single();
     const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).insert({
       noteId: noteData?.id,
@@ -114,8 +114,8 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
-      description: vehicleDate.description,
-      photo: vehicleDate.photo,
+      description: vehicleDate.description || '',
+      photo: vehicleDate.photo || '',
     }).eq('id', noteId);
     const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).update({
       plateNumber: vehicleDate.plateNumber,

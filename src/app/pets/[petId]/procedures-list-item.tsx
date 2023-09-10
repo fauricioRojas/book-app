@@ -6,7 +6,7 @@ import { useTheme } from 'styled-components';
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IProcedure } from '@/supabase';
 import { formatDate, formatMoney, formatWeight } from '@/shared/utils';
-import { ICON_BY_TYPE } from '@/shared/constants';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
 
 interface IProceduresListItemProps extends IProcedure {}
@@ -27,7 +27,7 @@ export const ProceduresListItem: FC<IProceduresListItemProps> = ({
   const { currency, weightUnit } = useMeasure();
 
   return (
-    <Link href={`/pets/${petId}/procedures/${id}`} asContainer>
+    <Link href={`${ROUTES.PETS}/${petId}${ROUTES.PROCEDURES}/${id}`} asContainer>
       <Card>
         <FlexWrap gap={4} fullHeight>
           <FlexWrap align="center">

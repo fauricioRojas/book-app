@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { IVehicle } from '@/supabase';
-import { ICON_BY_TYPE } from '@/shared/constants';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 
 interface IVehiclesListItemProps extends IVehicle {}
 
@@ -18,7 +18,7 @@ export const VehiclesListItem: FC<IVehiclesListItemProps> = ({
   const { colors } = useTheme();
 
   return (
-    <Link href={`/vehicles/${id}`} asContainer>
+    <Link href={`${ROUTES.VEHICLES}/${id}`} asContainer>
       <Card>
         <FlexWrap gap={4}>
           <FlexWrap align="center">
