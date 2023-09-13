@@ -86,6 +86,7 @@ export const SignInForm = () => {
                 }) => (
                   <Input
                     value={value}
+                    inputMode="email"
                     label={translation.email}
                     errorMessage={errors.email?.message}
                     onChange={onChange}

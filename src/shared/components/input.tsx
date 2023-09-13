@@ -80,7 +80,7 @@ export const Input: FC<IInputProps> = ({
   const { translation } = useLanguage();
 
   return (
-    <FlexWrap direction="column" gap={1}>
+    <FlexWrap direction="column" gap={2}>
       {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
       <Box position="relative">
         {leftIconName && (
