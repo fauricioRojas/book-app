@@ -8,7 +8,7 @@ import { Button, Col, Divider, FlexWrap, Input, Row, Typography } from '@/shared
 import { Controller, useForm } from 'react-hook-form';
 import { useFormRules } from '@/hooks';
 
-const StyledLoginForm = styled(FlexWrap)`
+const StyledSignInForm = styled(FlexWrap)`
   display: flex;
   width: 100%;
   gap: ${({ theme }) => theme.gutters.size12};
@@ -18,17 +18,17 @@ const StyledLoginForm = styled(FlexWrap)`
   min-height: calc(100vh - 90px);
 `;
 
-interface ILoginForm {
+interface ISignInForm {
   email: string;
   password: string;
 }
 
-export const LoginForm = () => {
+export const SignInForm = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILoginForm>({
+  } = useForm<ISignInForm>({
     defaultValues: {
       email: "",
       password: "",
@@ -40,34 +40,34 @@ export const LoginForm = () => {
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const onSubmit = async (loginData: ILoginForm) => {
+  const onSubmit = async ({ email, password }: ISignInForm) => {
     try {
       setDisabled(true);
-      const error = await signInWithEmail(loginData.email, loginData.password);
+      const error = await signInWithEmail(email, password);
       if (error) {
         showSnackbar({
           type: "error",
-          body: translation.logInError
+          body: translation.signInError
         });
       }
       setDisabled(false);
     } catch (error) {
       showSnackbar({
         type: "error",
-        body: translation.logInError
+        body: translation.signInError
       });
     }
   };
 
   return (
-    <StyledLoginForm>
+    <StyledSignInForm>
       <Typography variant="h1" fontWeight="bold">BookApp</Typography>
       <FlexWrap direction="column" gap={6}>
         <Button
           variant="secondary"
           onClick={signInWithGithub}
         >
-          {translation.loginInWithGithub}
+          {translation.signInWithGithub}
         </Button>
         <FlexWrap align="center" gap={3}>
           <Divider />
@@ -119,12 +119,12 @@ export const LoginForm = () => {
                 block
                 disabled={disabled}
               >
-                {translation.loginInWithEmail}
+                {translation.signInWithEmail}
               </Button>
             </Col>
           </Row>
         </form>
       </FlexWrap>
-    </StyledLoginForm>
+    </StyledSignInForm>
   );
 };

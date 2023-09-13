@@ -19,10 +19,10 @@ export async function middleware(req: NextRequest) {
 
   if (!session && isValidRoute) {
     const url = new URL(req.url);
-    url.pathname = ROUTES.LOGIN;
+    url.pathname = ROUTES.SIGN_IN;
     return NextResponse.redirect(url);
   }
-  if (session && pathname === ROUTES.LOGIN) {
+  if (session && pathname === ROUTES.SIGN_IN) {
     const url = new URL(req.url);
     url.pathname = ROUTES.HOME;
     return NextResponse.redirect(url);

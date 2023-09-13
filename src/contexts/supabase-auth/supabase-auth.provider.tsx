@@ -3,8 +3,9 @@
 import { useRouter } from "next/navigation";
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
-import { SupabaseAuthContext } from ".";
 import { AuthSession, User } from "@supabase/supabase-js";
+import { ROUTES } from "@/shared/constants";
+import { SupabaseAuthContext } from ".";
 import { useSupabase } from "..";
 
 interface ISupabaseAuthProviderProps extends PropsWithChildren {
@@ -25,7 +26,7 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     if (error) {
       return error.message;
     }
-    router.push('/login');
+    router.push(ROUTES.SIGN_IN);
     return null;
   };
 

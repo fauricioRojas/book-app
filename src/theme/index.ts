@@ -68,7 +68,7 @@ const fontWeights: IFontWeights = {
 };
 
 const gutters: IGutters = {
-  borderRadius: "4px",
+  borderRadius: "6px",
   size0: 0,
   size1: "0.25rem",
   size2: "0.5rem",

@@ -18,14 +18,14 @@ export const UserLoggedIn = () => {
       if (error) {
         showSnackbar({
           type: 'error',
-          body: translation.logOutError,
+          body: translation.signOutError,
         });
       }
       setDisabled(false);
     } catch (error) {
       showSnackbar({
         type: 'error',
-        body: translation.logOutError,
+        body: translation.signOutError,
       });
     }
   };
@@ -36,13 +36,13 @@ export const UserLoggedIn = () => {
 
   return (
     <>
-      <Typography variant="h5" mb={4}>{translation.logIn}</Typography>
+      <Typography variant="h5" mb={4}>{translation.signIn}</Typography>
       <Button
         variant="error"
         disabled={disabled}
         onClick={handleSignOut}
       >
-        {translation.logOut}
+        {translation.signOut}
       </Button>
     </>
   )
