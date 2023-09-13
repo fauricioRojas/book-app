@@ -27,7 +27,7 @@ const StyledSwitch = styled.label<IStyledSwitchProps>`
   }
 
   span {
-    background-color: ${({ theme }) => theme.colors.secondary800};
+    background-color: ${({ theme }) => theme.colors.secondary200};
     border-radius: 23px;
     display: inline-block;
     position: relative;

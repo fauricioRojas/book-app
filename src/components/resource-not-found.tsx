@@ -29,7 +29,7 @@ export const ResourceNotFound: FC<IResourceNotFoundProps> = ({ page }) => {
     <>
       <Typography variant="h1" mb={8}>{title}</Typography>
       <FlexWrap direction="column" gap={3} align="flex-start">
-        <Icon name="sad-emoji" height={75} width={75} color={colors.secondary100} />
+        <Icon name="sad-emoji" height={75} width={75} color={colors.secondary800} />
         <Typography variant="p" color="secondary-text">{translation.weAresorry}</Typography>
         <Typography variant="p" color="secondary-text">{translation.tryThesePages}</Typography>
         <FlexWrap direction="column" gap={1}>

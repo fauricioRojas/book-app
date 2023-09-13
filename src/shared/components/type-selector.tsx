@@ -25,7 +25,7 @@ const StyledTypeSelectorOption = styled.div`
   width: ${({ theme }) => getWidth(theme, 2)};
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary800};
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {

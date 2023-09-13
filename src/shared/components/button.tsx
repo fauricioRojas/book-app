@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { Size } from '@/shared/types';
 
-type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text-primary' | 'text-secondary';
+type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text';
 type Type = 'button' | 'submit' | 'reset';
 
 interface IStyledButtonProps {
@@ -95,7 +95,7 @@ const StyledButton = styled.button<IStyledButtonProps>`
     }
   `}
 
-  ${({ $variant, theme }) => $variant === 'text-primary' && css`
+  ${({ $variant, theme }) => $variant === 'text' && css`
     background-color: transparent;
     border-color: transparent;
     color: ${theme.colors.primary};
@@ -103,17 +103,6 @@ const StyledButton = styled.button<IStyledButtonProps>`
 
     &:focus, &:hover {
       background-color: ${`${theme.colors.primary100}33`};
-    }
-  `}
-
-  ${({ $variant, theme }) => $variant === 'text-secondary' && css`
-    background-color: transparent;
-    border-color: transparent;
-    color: ${theme.colors.secondaryText};
-    padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
-
-    &:focus, &:hover {
-      background-color: ${`${theme.colors.secondary100}33`};
     }
   `}
 

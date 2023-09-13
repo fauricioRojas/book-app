@@ -29,7 +29,7 @@ const StyledIconButton = styled.button<IStyledIconButtonProps>`
     transition: background-color .15s ease-in-out;
 
     &:focus, &:hover {
-      background-color: ${({ theme }) => theme.colors.secondary800};
+      background-color: ${({ theme }) => theme.colors.card};
     }
   }
 `
