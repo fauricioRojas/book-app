@@ -12,10 +12,10 @@ import {
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { MaintenancesSelector } from "./maintenances-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IMaintenancesForm {
@@ -40,7 +40,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   vehicleId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && maintenanceId && noteId;
+  const isUpdateMode = defaultValues && maintenanceId && noteId;
   const {
     control,
     setValue,
@@ -57,11 +57,12 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     },
   });
   const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -82,7 +83,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
 
   const handleShowMaintenancesSelector = () => setMode('selector');
 
-  const addNewMaintenance = async (maintenanceData: IMaintenancesForm) => {
+  const insertMaintenance = async (maintenanceData: IMaintenancesForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
@@ -109,17 +110,17 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     }
   };
 
-  const editExistingMaintenance = async (maintenanceData: IMaintenancesForm) => {
+  const updateMaintenance = async (maintenanceData: IMaintenancesForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
       description: maintenanceData.description,
       photo: maintenanceData.photo,
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: maintenanceError } = await supabaseClient.from(TABLES.MAINTENANCES).update({
       cost: maintenanceData.cost,
       kilometers: maintenanceData.kilometers || null,
-    }).eq('id', maintenanceId);
+    }).match({ id: maintenanceId });
 
     if (noteError || maintenanceError) {
       showSnackbar({
@@ -136,10 +137,10 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
 
   const onSubmit = async (maintenanceData: IMaintenancesForm) => {
     setDisabled(true);
-    if (isEditMode) {
-      await editExistingMaintenance(maintenanceData);
+    if (isUpdateMode) {
+      await updateMaintenance(maintenanceData);
     } else {
-      await addNewMaintenance(maintenanceData);
+      await insertMaintenance(maintenanceData);
     }
     setDisabled(false);
     hideDrawer();
@@ -241,7 +242,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
       </Row>
       <FormButtons
         disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowMaintenancesSelector}
+        onClickBack={isUpdateMode ? undefined : handleShowMaintenancesSelector}
       />
     </form>
   );

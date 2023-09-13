@@ -1,4 +1,7 @@
-import { IPet, SELECT, TABLES, supabaseClient } from '@/supabase';
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from 'next/headers';
+
+import { IPet, SELECT, TABLES } from '@/supabase';
 import { PetsHeader } from './pets-header';
 import { PetsList } from './pets-list';
 
@@ -7,7 +10,8 @@ export const revalidate = 0;
 const abortController = new AbortController();
 
 const PetsPage = async () => {
-  const { data } = await supabaseClient
+  const supabase = createServerComponentClient({ cookies });
+  const { data } = await supabase
     .from(TABLES.PETS)
     .select<string, IPet>(SELECT.MINIMAL_PET)
     .abortSignal(abortController.signal);

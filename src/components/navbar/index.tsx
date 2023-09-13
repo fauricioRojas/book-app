@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import { INavbarItem } from './navbar.types';
 import { NavbarItem } from './navbar-item';
-import { useLanguage } from '@/contexts';
+import { useLanguage, useSupabaseAuth } from '@/contexts';
 
 const StyledNavbar = styled.nav`
   align-items: center;
@@ -21,6 +21,7 @@ const StyledNavbar = styled.nav`
 `;
 
 export const Navbar = () => {
+  const { user } = useSupabaseAuth();
   const { language, translation } = useLanguage();
 
   const navbarItems = useMemo(() => {
@@ -44,6 +45,10 @@ export const Navbar = () => {
     return items;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [language]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <StyledNavbar>

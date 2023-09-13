@@ -12,10 +12,10 @@ import {
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IVehiclesForm {
@@ -39,7 +39,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   vehicleId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && vehicleId && noteId;
+  const isUpdateMode = defaultValues && vehicleId && noteId;
   const {
     control,
     setValue,
@@ -57,11 +57,12 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     },
   });
   const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -83,7 +84,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
 
   const handleShowVehiclesSelector = () => setMode('selector');
 
-  const addNewVehicle = async (vehicleDate: IVehiclesForm) => {
+  const insertVehicle = async (vehicleDate: IVehiclesForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
@@ -110,18 +111,18 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     }
   };
 
-  const editExistingVehicle = async (vehicleDate: IVehiclesForm) => {
+  const updateVehicle = async (vehicleDate: IVehiclesForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description || '',
       photo: vehicleDate.photo || '',
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).update({
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
       model: vehicleDate.model,
-    }).eq('id', vehicleId);
+    }).match({ id: vehicleId });
 
     if (noteError || vehicleError) {
       showSnackbar({
@@ -138,10 +139,10 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
 
   const onSubmit = async (vehicleData: IVehiclesForm) => {
     setDisabled(true);
-    if (isEditMode) {
-      await editExistingVehicle(vehicleData);
+    if (isUpdateMode) {
+      await updateVehicle(vehicleData);
     } else {
-      await addNewVehicle(vehicleData);
+      await insertVehicle(vehicleData);
     }
     setDisabled(false);
     hideDrawer();
@@ -260,7 +261,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
       </Row>
       <FormButtons
         disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowVehiclesSelector}
+        onClickBack={isUpdateMode ? undefined : handleShowVehiclesSelector}
       />
     </form>
   );

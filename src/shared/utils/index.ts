@@ -69,3 +69,14 @@ export const formatWeight = (
 
   return `${value.toLocaleString("en-US")} ${weightMapper[weightUnit]}`;
 };
+
+export const getDeviceDarkMode = () => {
+  // return typeof window === "undefined"
+  //   ? false
+  //   : window.matchMedia &&
+  //     window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+};

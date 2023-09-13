@@ -3,22 +3,13 @@
 import { FC, useEffect, useState } from 'react';
 
 import { Col, Row } from '@/shared/components';
-import { supabaseClient, IVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
+import { IVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { VehiclesListItem } from './vehicles-list-item';
 import { NoVehicles } from './no-vehicles';
+import { useSupabase } from '@/contexts';
 
 const abortController = new AbortController();
-
-const findVehicleById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.VEHICLES)
-    .select<string, IVehicle>(SELECT.MINIMAL_VEHICLE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
 
 interface IVehiclesListProps {
   serverVehicles: IVehicle[];
@@ -26,6 +17,7 @@ interface IVehiclesListProps {
 
 export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
   const [vehicles, setVehicles] = useState<IVehicle[]>(serverVehicles);
+  const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setVehicles(serverVehicles), [serverVehicles]);
 
@@ -46,8 +38,19 @@ export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
 
     return () => {
       supabaseClient.removeChannel(channel);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const findVehicleById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.VEHICLES)
+      .select<string, IVehicle>(SELECT.MINIMAL_VEHICLE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
 
   if (!vehicles.length) {
     return <NoVehicles />;

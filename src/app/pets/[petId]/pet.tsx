@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IPet, IProcedure, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IPet, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { ProceduresForm } from "./procedures-form";
 import { ProceduresList } from "./procedures-list";
@@ -15,26 +15,6 @@ import { PetsForm } from "../pets-form";
 import { useDidUpdate } from "@/hooks";
 
 const abortController = new AbortController();
-
-const findPetById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.PETS)
-    .select<string, IPet>(SELECT.FULL_PET)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
-
-const findProcedureById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.PROCEDURES)
-    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
 
 interface IPetProps {
   serverPet: IPet;
@@ -54,6 +34,7 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setPet(serverPet), [serverPet]);
 
@@ -91,8 +72,29 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
     return () => {
       supabaseClient.removeChannel(petChannel);
       supabaseClient.removeChannel(procedureChannel);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const findPetById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.PETS)
+      .select<string, IPet>(SELECT.FULL_PET)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
+
+  const findProcedureById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.PROCEDURES)
+      .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
 
   const handleShowProceduresForm = () => {
     showDrawer({

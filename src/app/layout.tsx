@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Lato } from 'next/font/google'
 import { FC, PropsWithChildren } from 'react';
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 import { Container, GlobalStyles } from '@/shared/components';
 import {
@@ -10,6 +12,8 @@ import {
   MeasureProvider,
   ModalProvider,
   SnackbarProvider,
+  SupabaseProvider,
+  SupabaseAuthProvider,
 } from '@/contexts';
 import { StyledComponentsRegistry } from './registry';
 import { Navbar } from '@/components';
@@ -24,30 +28,41 @@ const lato = Lato({
   subsets: ["latin"],
 });
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-  <html lang="en">
-    <body className={lato.className}>
-      <StyledComponentsRegistry>
-        <CustomThemeProvider>
-          <LanguageProvider>
-            <MeasureProvider>
-              <ModalProvider>
-                <SnackbarProvider>
-                  <DrawerProvider>
-                    <GlobalStyles />
-                    <Container>
-                      {children}
-                    </Container>
-                    <Navbar />
-                  </DrawerProvider>
-                </SnackbarProvider>
-              </ModalProvider>
-            </MeasureProvider>
-          </LanguageProvider>
-        </CustomThemeProvider>
-      </StyledComponentsRegistry>
-    </body>
-  </html>
-);
+const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
+  const supabaseServer = createServerComponentClient({ cookies });
+  const {
+    data: { session },
+  } = await supabaseServer.auth.getSession();
+
+  return (
+    <html lang="en">
+      <body className={lato.className}>
+        <StyledComponentsRegistry>
+          <CustomThemeProvider>
+            <LanguageProvider>
+              <MeasureProvider>
+                <SupabaseProvider>
+                  <SupabaseAuthProvider serverSession={session}>
+                    <ModalProvider>
+                      <SnackbarProvider>
+                        <DrawerProvider>
+                          <GlobalStyles />
+                          <Container>
+                            {children}
+                          </Container>
+                          <Navbar />
+                        </DrawerProvider>
+                      </SnackbarProvider>
+                    </ModalProvider>
+                  </SupabaseAuthProvider>
+                </SupabaseProvider>
+              </MeasureProvider>
+            </LanguageProvider>
+          </CustomThemeProvider>
+        </StyledComponentsRegistry>
+      </body>
+    </html>
+  );
+};
 
 export default RootLayout;

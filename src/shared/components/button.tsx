@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { Size } from '@/shared/types';
 
-type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error';
+type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text-primary' | 'text-secondary';
 type Type = 'button' | 'submit' | 'reset';
 
 interface IStyledButtonProps {
@@ -95,6 +95,28 @@ const StyledButton = styled.button<IStyledButtonProps>`
     }
   `}
 
+  ${({ $variant, theme }) => $variant === 'text-primary' && css`
+    background-color: transparent;
+    border-color: transparent;
+    color: ${theme.colors.primary};
+    padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
+
+    &:focus, &:hover {
+      background-color: ${`${theme.colors.primary100}33`};
+    }
+  `}
+
+  ${({ $variant, theme }) => $variant === 'text-secondary' && css`
+    background-color: transparent;
+    border-color: transparent;
+    color: ${theme.colors.secondaryText};
+    padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
+
+    &:focus, &:hover {
+      background-color: ${`${theme.colors.secondary100}33`};
+    }
+  `}
+
   ${({ $block }) => $block && css`
     display: block;
     width: 100%;
@@ -131,8 +153,8 @@ const StyledButton = styled.button<IStyledButtonProps>`
 interface IButtonProps extends PropsWithChildren {
   className?: string;
   disabled?: boolean;
-  variant?: Variant
-  type?: Type
+  variant?: Variant;
+  type?: Type;
   block?: boolean;
   mb?: Size;
   mbSm?: Size;

@@ -151,6 +151,14 @@ export interface ILanguageTranslation extends Language {
   editedMaintenance: string;
   notEditedMaintenance: string;
   nextDateHint: string;
+  email: string;
+  password: string;
+  loginInWithEmail: string;
+  loginInWithGithub: string;
+  logIn: string;
+  logInError: string;
+  logOut: string;
+  logOutError: string;
   // Form error messages
   required: string;
   validEmail: string;

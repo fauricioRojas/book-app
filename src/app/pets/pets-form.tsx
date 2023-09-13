@@ -11,10 +11,10 @@ import {
   Textarea,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IPetsForm {
@@ -37,7 +37,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
   petId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && petId && noteId;
+  const isUpdateMode = defaultValues && petId && noteId;
   const {
     control,
     setValue,
@@ -54,11 +54,12 @@ export const PetsForm: FC<IPetsFormProps> = ({
     },
   });
   const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -79,7 +80,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
 
   const handleShowPetsSelector = () => setMode('selector');
 
-  const addNewPet = async (petData: IPetsForm) => {
+  const insertPet = async (petData: IPetsForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
@@ -105,17 +106,17 @@ export const PetsForm: FC<IPetsFormProps> = ({
     }
   };
 
-  const editExistingPet = async (petData: IPetsForm) => {
+  const updatePet = async (petData: IPetsForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description || null,
       photo: petData.photo || null,
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: petError } = await supabaseClient.from(TABLES.PETS).update({
       name: petData.name,
       breed: petData.breed,
-    }).eq('id', petId);
+    }).match({ id: petId });
 
     if (noteError || petError) {
       showSnackbar({
@@ -132,10 +133,10 @@ export const PetsForm: FC<IPetsFormProps> = ({
 
   const onSubmit = async (petData: IPetsForm) => {
     setDisabled(true);
-    if (isEditMode) {
-      await editExistingPet(petData);
+    if (isUpdateMode) {
+      await updatePet(petData);
     } else {
-      await addNewPet(petData);
+      await insertPet(petData);
     }
     setDisabled(false);
     hideDrawer();
@@ -234,7 +235,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
       </Row>
       <FormButtons
         disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowPetsSelector}
+        onClickBack={isUpdateMode ? undefined : handleShowPetsSelector}
       />
     </form>
   );

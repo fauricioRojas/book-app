@@ -155,6 +155,14 @@ export const SPANISH: ILanguageTranslation = {
   notEditedMaintenance: "Mantenimiento no editado",
   nextDateHint:
     "En la pantalla de inicio se mostrará un recordatorio de la próxima fecha",
+  email: "Correo",
+  password: "Contraseña",
+  loginInWithEmail: "Iniciar con el correo",
+  loginInWithGithub: "Iniciar con Github",
+  logOut: "Cerrar sesión",
+  logIn: "Inicio de sesión",
+  logInError: "Hubo un error al iniciar sesión",
+  logOutError: "Hubo un error al cerrar sesión",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts';
 import { Box, FlexWrap, Icon, IconName, Typography } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
-type Type = 'text' | 'number' | 'date';
+type Type = 'text' | 'password' | 'number' | 'date';
 
 interface IInputProps {
   value?: any;

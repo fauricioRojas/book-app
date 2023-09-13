@@ -4,10 +4,10 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IMaintenance, IVehicle, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IMaintenance, IVehicle, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
@@ -15,26 +15,6 @@ import { VehiclesForm } from "../vehicles-form";
 import { useDidUpdate } from "@/hooks";
 
 const abortController = new AbortController();
-
-const findVehicleById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.VEHICLES)
-    .select<string, IVehicle>(SELECT.FULL_VEHICLE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
-
-const findMaintenanceById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.MAINTENANCES)
-    .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
 
 interface IVehicleProps {
   serverVehicle: IVehicle;
@@ -55,6 +35,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setVehicle(serverVehicle), [serverVehicle]);
 
@@ -95,8 +76,29 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
     return () => {
       supabaseClient.removeChannel(vehicleChannel);
       supabaseClient.removeChannel(maintenanceChannel);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const findVehicleById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.VEHICLES)
+      .select<string, IVehicle>(SELECT.FULL_VEHICLE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
+  
+  const findMaintenanceById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.MAINTENANCES)
+      .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
 
   const handleShowMaintenancesForm = () => {
     showDrawer({

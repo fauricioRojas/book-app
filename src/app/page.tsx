@@ -1,9 +1,9 @@
 import { Typography } from "@/shared/components";
 
-const Home = () => (
+const HomePage = () => (
   <main>
     <Typography variant="h1">Home</Typography>
   </main>
 );
 
-export default Home;
+export default HomePage;

@@ -12,10 +12,10 @@ import {
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IProceduresForm {
@@ -41,7 +41,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   petId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && procedureId && noteId;
+  const isUpdateMode = defaultValues && procedureId && noteId;
   const {
     control,
     setValue,
@@ -59,11 +59,12 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     },
   });
   const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -85,7 +86,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
 
   const handleShowProceduresSelector = () => setMode('selector');
 
-  const addNewProcedure = async (procedureData: IProceduresForm) => {
+  const insertProcedure = async (procedureData: IProceduresForm) => {
     const { data: noteDate, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: procedureData.type,
       date: new Date(procedureData.date),
@@ -113,18 +114,18 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     }
   };
 
-  const editExistingProcedure = async (procedureData: IProceduresForm) => {
+  const updateProcedure = async (procedureData: IProceduresForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: procedureData.type,
       date: new Date(procedureData.date),
       description: procedureData.description,
       photo: procedureData.photo,
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).update({
       cost: procedureData.cost,
       weight: procedureData.weight || null,
       nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,
-    }).eq('id', procedureId);
+    }).match({ id: procedureId });
 
     if (noteError || procedureError) {
       showSnackbar({
@@ -141,10 +142,10 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
 
   const onSubmit = async (procedureData: IProceduresForm) => {
     setDisabled(true);
-    if (isEditMode) {
-      await editExistingProcedure(procedureData);
+    if (isUpdateMode) {
+      await updateProcedure(procedureData);
     } else {
-      await addNewProcedure(procedureData);
+      await insertProcedure(procedureData);
     }
     setDisabled(false);
     hideDrawer();
@@ -264,7 +265,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
       </Row>
       <FormButtons
         disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowProceduresSelector}
+        onClickBack={isUpdateMode ? undefined : handleShowProceduresSelector}
       />
     </form>
   );
