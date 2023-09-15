@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from "@/contexts";
-import { Button, Typography } from "@/shared/components";
+import { Box, Button, Typography } from "@/shared/components";
 
-export const UserLoggedIn = () => {
+export const Account = () => {
   const [disabled, setDisabled] = useState(false);
   const { user, signOut } = useSupabaseAuth();
   const { translation } = useLanguage();
@@ -35,8 +35,8 @@ export const UserLoggedIn = () => {
   }
 
   return (
-    <>
-      <Typography variant="h5" mb={4}>{translation.signIn}</Typography>
+    <Box>
+      <Typography variant="h6" fontWeight="bold" mb={4}>{translation.account}</Typography>
       <Button
         variant="error"
         rightIconName="sign-out"
@@ -45,6 +45,6 @@ export const UserLoggedIn = () => {
       >
         {translation.signOut}
       </Button>
-    </>
+    </Box>
   )
 };

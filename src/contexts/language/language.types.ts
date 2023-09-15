@@ -6,6 +6,7 @@ export interface ILanguageTranslation extends Language {
   vehicles: string;
   pets: string;
   settings: string;
+  generalSettings: string;
   theme: string;
   language: string;
   cost: string;
@@ -156,7 +157,7 @@ export interface ILanguageTranslation extends Language {
   password: string;
   signInWithEmail: string;
   signInWithGithub: string;
-  signIn: string;
+  account: string;
   signInError: string;
   signOut: string;
   signOutError: string;

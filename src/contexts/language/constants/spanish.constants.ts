@@ -6,6 +6,7 @@ export const SPANISH: ILanguageTranslation = {
   vehicles: "Vehículos",
   pets: "Mascotas",
   settings: "Configuración",
+  generalSettings: "Configuraciones generales",
   theme: "Modo Oscuro",
   language: "Lenguaje",
   save: "Guardar",
@@ -161,7 +162,7 @@ export const SPANISH: ILanguageTranslation = {
   signInWithEmail: "Continuar con el correo",
   signInWithGithub: "Continuar con Github",
   signOut: "Cerrar sesión",
-  signIn: "Inicio de sesión",
+  account: "Cuenta",
   signInError: "Hubo un error al iniciar sesión",
   signOutError: "Hubo un error al cerrar sesión",
   // Form error messages

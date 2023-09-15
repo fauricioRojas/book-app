@@ -6,6 +6,7 @@ export const ENGLISH: ILanguageTranslation = {
   vehicles: "Vehicles",
   pets: "Pets",
   settings: "Settings",
+  generalSettings: "General settings",
   theme: "Dark Mode",
   language: "Language",
   cost: "Cost",
@@ -159,7 +160,7 @@ export const ENGLISH: ILanguageTranslation = {
   signInWithEmail: "Continue with Email",
   signInWithGithub: "Continue with Github",
   signOut: "Sign out",
-  signIn: "Sign in",
+  account: "Account",
   signInError: "There wa an error signing in",
   signOutError: "There was an error signing out",
   // Form error messages

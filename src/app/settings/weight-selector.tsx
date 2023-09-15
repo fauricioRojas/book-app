@@ -2,7 +2,7 @@
 
 import styled, { useTheme } from 'styled-components';
 
-import { FlexWrap, Icon, Select, Typography } from '@/shared/components';
+import { Card, FlexWrap, Icon, Select, Typography } from '@/shared/components';
 import { useLanguage, useMeasure } from '@/contexts';
 
 const StyledFlexWrap = styled(FlexWrap)`
@@ -18,23 +18,25 @@ export const WeightSelector = () => {
   const { colors } = useTheme();
 
   return (
-    <StyledFlexWrap justify="space-between" align="center">
-      <FlexWrap align="center" gap={2}>
-        <StyledIconWrapper>
-          <Icon name="weight"
-            color={colors.secondaryText}
-            width={18}
-            height={18}
-          />
-        </StyledIconWrapper>
-        <Typography variant="label">{translation.weight}</Typography>
+    <Card>
+      <FlexWrap justify="space-between" align="center">
+        <FlexWrap align="center" gap={2}>
+          <StyledIconWrapper>
+            <Icon name="weight"
+              color={colors.secondaryText}
+              width={18}
+              height={18}
+            />
+          </StyledIconWrapper>
+          <Typography variant="label">{translation.weight}</Typography>
+        </FlexWrap>
+        <Select
+          value={weightUnit}
+          borderless
+          options={weightUnitOptions}
+          onChange={changeWeightUnit}
+        />
       </FlexWrap>
-      <Select
-        value={weightUnit}
-        borderless
-        options={weightUnitOptions}
-        onChange={changeWeightUnit}
-      />
-    </StyledFlexWrap>
+    </Card>
   );
 };
