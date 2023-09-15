@@ -19,7 +19,7 @@ const commonColors = {
   primary100: "#A4B6F1",
   primary200: "#7194E9",
   primary: "#2474E1",
-  primary800: "#2656A4",
+  primary800: "#005ce6",
   primary900: "#213A6A",
   white: "#FFF",
   black: "#000",
@@ -37,13 +37,13 @@ export const lightColors: IColors = {
   secondary: "#E8EAED",
   secondary800: "#A8AAAC",
   secondary900: "#6D6E6F",
-  neutral: "#FEFEFE",
+  neutral: "#F8F8F8",
   neutralTransparent: "rgba(255,255,255,0.9)",
   primaryText: "#292A36",
   secondaryText: "#444444",
   skeleton: "#ADB5BD",
   border: "rgba(0, 0, 0, 0.23)",
-  card: "#F3F4F6",
+  card: "#FFFFFF",
 };
 
 export const darkColors: IColors = {
@@ -59,7 +59,7 @@ export const darkColors: IColors = {
   secondaryText: "#B0B3B8",
   skeleton: "#1F1E1E",
   border: "rgba(255, 255, 255, 0.23)",
-  card: "#3F3F3F",
+  card: "#222121", // "#3F3F3F",
 };
 
 const fontWeights: IFontWeights = {

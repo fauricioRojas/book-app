@@ -67,7 +67,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   animation-duration: .3s;
   animation-name: ${slideIn};
   background-color: ${({ theme }) => theme.colors.neutral};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => `${theme.gutters.borderRadius} ${theme.gutters.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -83,6 +83,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     animation-name: ${fadeIn};
+    border-radius: ${({ theme }) => theme.gutters.borderRadius};
     bottom: auto;
     gap: ${({ theme }) => theme.gutters.size6};
     left: 50%;

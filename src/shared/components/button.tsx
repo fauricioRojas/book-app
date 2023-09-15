@@ -37,11 +37,11 @@ const StyledButton = styled.button<IStyledButtonProps>`
   height: 40px;
   justify-content: center;
   letter-spacing: 0.00938rem;
-  line-height: normal;
+  line-height: 1;
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   min-width: 64px;
   margin-top: ${({ $mt, theme }) => theme.gutters[`size${$mt}`]};
-  padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size4}`};
+  padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   text-align: center;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   vertical-align: middle;
@@ -113,7 +113,6 @@ const StyledButton = styled.button<IStyledButtonProps>`
   `}
 
   ${({ $block }) => $block && css`
-    display: block;
     width: 100%;
   `}
 

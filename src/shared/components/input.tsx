@@ -45,9 +45,14 @@ const StyledInput = styled.input<IStyledInputProps>`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%;
 
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
+
   &:hover {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
   }
+
   &:focus {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;
