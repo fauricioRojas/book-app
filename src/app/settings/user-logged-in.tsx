@@ -39,6 +39,7 @@ export const UserLoggedIn = () => {
       <Typography variant="h5" mb={4}>{translation.signIn}</Typography>
       <Button
         variant="error"
+        rightIconName="sign-out"
         disabled={disabled}
         onClick={handleSignOut}
       >

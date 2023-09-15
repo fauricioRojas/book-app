@@ -78,7 +78,6 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
-    animation-duration: .3s;
     animation-name: ${slideOut};
   `};
 

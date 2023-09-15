@@ -34,7 +34,11 @@ export const NoVehicles = () => {
       >
         {translation.noVehicles}
       </Typography>
-      <Button onClick={handleShowVehicleForm}>
+      <Button
+        variant="primary"
+        rightIconName="add"
+        onClick={handleShowVehicleForm}
+      >
         {translation.addVehicle}
       </Button>
     </StyledFlexWrap>

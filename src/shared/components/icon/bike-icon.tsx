@@ -19,6 +19,7 @@ export const BikeIcon: FC<ICommonIconProps> = ({
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
+    transform="scale(1.25)"
     {...props}
   >
     <path

@@ -19,6 +19,7 @@ export const PickupIcon: FC<ICommonIconProps> = ({
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
+    transform="scale(1.5)"
     {...props}
   >
     <path

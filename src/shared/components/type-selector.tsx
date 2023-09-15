@@ -22,6 +22,7 @@ const StyledTypeSelectorOption = styled.div`
   height: 6.5rem;
   justify-content: center;
   padding: ${({ theme }) => theme.gutters.size4};
+  transition: background-color .2s ease-in-out;
   width: ${({ theme }) => getWidth(theme, 2)};
 
   &:hover {

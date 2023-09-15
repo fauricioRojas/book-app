@@ -56,6 +56,7 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.rabbit]: "rabbit",
   [ENGLISH.hamster]: "hamster",
   [ENGLISH.pig]: "pig",
+  [ENGLISH.horse]: "horse",
   // Procedure types
   [ENGLISH.vaccine]: "syringe",
   [ENGLISH.dewormer]: "tick",

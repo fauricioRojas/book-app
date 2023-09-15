@@ -65,6 +65,7 @@ export const SignInForm = () => {
       <FlexWrap direction="column" gap={6}>
         <Button
           variant="secondary"
+          rightIconName="github"
           onClick={signInWithGithub}
         >
           {translation.signInWithGithub}
@@ -116,6 +117,7 @@ export const SignInForm = () => {
             </Col>
             <Col cols={12}>
               <Button
+                variant="primary"
                 type="submit"
                 block
                 disabled={disabled}

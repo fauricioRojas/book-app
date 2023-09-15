@@ -125,6 +125,7 @@ export interface ILanguageTranslation extends Language {
   rabbit: string;
   hamster: string;
   pig: string;
+  horse: string;
   optional: string;
   currency: string;
   dollar: string;

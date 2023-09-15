@@ -34,7 +34,11 @@ export const NoPets = () => {
       >
         {translation.noPets}
       </Typography>
-      <Button onClick={handleShowPetForm}>
+      <Button
+        variant="primary"
+        rightIconName="add"
+        onClick={handleShowPetForm}
+      >
         {translation.addPet}
       </Button>
     </StyledFlexWrap>

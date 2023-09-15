@@ -1,8 +1,11 @@
-import { FC, PropsWithChildren } from 'react';
-import styled, { css } from 'styled-components';
+import { FC, ReactNode, useEffect, useState } from 'react';
+import styled, { css, useTheme } from 'styled-components';
 
 import { Size } from '@/shared/types';
+import { Icon, IconName } from '.';
 
+type SolidVariant = 'primary' | 'secondary' | 'error';
+type NonSolidVariant = 'outline-primary' | 'outline-secondary' | 'text';
 type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text';
 type Type = 'button' | 'submit' | 'reset';
 
@@ -24,13 +27,17 @@ interface IStyledButtonProps {
 }
 
 const StyledButton = styled.button<IStyledButtonProps>`
+  align-items: center;
   border: 1px solid transparent;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   cursor: pointer;
+  display: inline-flex;
   font-size: 1rem;
   font-weight: ${({ theme }) => `${theme.fontWeights.regular}`};
+  height: 40px;
+  justify-content: center;
   letter-spacing: 0.00938rem;
-  line-height: inherit;
+  line-height: normal;
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   min-width: 64px;
   margin-top: ${({ $mt, theme }) => theme.gutters[`size${$mt}`]};
@@ -64,12 +71,11 @@ const StyledButton = styled.button<IStyledButtonProps>`
   ${({ $variant, theme }) => $variant === 'secondary' && css`
     background-color: ${theme.colors.secondary};
     border-color: ${theme.colors.secondary};
-    color: ${theme.colors.primaryText};
+    color: ${theme.colors.white};
 
     &:focus, &:hover {
       background-color: ${theme.colors.secondary800};
       border-color: ${theme.colors.secondary800};
-      color: ${theme.colors.white};
     }
   `}
 
@@ -139,10 +145,17 @@ const StyledButton = styled.button<IStyledButtonProps>`
   }
 `
 
-interface IButtonProps extends PropsWithChildren {
+type SolidButtonProps = {
+  variant: SolidVariant;
+  leftIconName?: IconName;
+  rightIconName?: IconName;
+}
+type NonSolidButtonProps = {
+  variant: NonSolidVariant;
+}
+type ButtonProps = {
   className?: string;
   disabled?: boolean;
-  variant?: Variant;
   type?: Type;
   block?: boolean;
   mb?: Size;
@@ -158,45 +171,68 @@ interface IButtonProps extends PropsWithChildren {
   mtXl?: Size;
   mtXxl?: Size;
   onClick?: () => void;
-}
+  children?: ReactNode;
+} & (SolidButtonProps | NonSolidButtonProps)
 
-export const Button: FC<IButtonProps> = ({
-  variant = 'primary',
-  block,
-  mb,
-  mbSm,
-  mbMd,
-  mbLg,
-  mbXl,
-  mbXxl,
-  mt,
-  mtSm,
-  mtMd,
-  mtLg,
-  mtXl,
-  mtXxl,
-  type = 'button',
-  children,
-  ...props
-}) => (
-  <StyledButton
-    $variant={variant}
-    $block={block}
-    $mb={mb}
-    $mbSm={mbSm}
-    $mbMd={mbMd}
-    $mbLg={mbLg}
-    $mbXl={mbXl}
-    $mbXxl={mbXxl}
-    $mt={mt}
-    $mtSm={mtSm}
-    $mtMd={mtMd}
-    $mtLg={mtLg}
-    $mtXl={mtXl}
-    $mtXxl={mtXxl}
-    type={type}
-    {...props}
-  >
-    {children}
-  </StyledButton>
-);
+export const Button: FC<ButtonProps> = (props) => {
+  const [leftIcon, setLeftIcon] = useState<ReactNode | null>(null);
+  const [rightIcon, setRightIcon] = useState<ReactNode | null>(null);
+  const { colors } = useTheme();
+
+  useEffect(() => {
+    if (props.variant === 'primary' || props.variant === 'secondary' || props.variant === 'error') {
+      if (props.leftIconName) {
+        setLeftIcon(
+          <Icon
+            name={props.leftIconName}
+            width={18}
+            height={18}
+            color={colors.white}
+            mr={2}
+            pointer
+          />
+        );
+      }
+      if (props.rightIconName) {
+        setRightIcon(
+          <Icon
+            name={props.rightIconName}
+            width={18}
+            height={18}
+            color={colors.white}
+            ml={2}
+            pointer
+          />
+        );
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props]);
+
+  return (
+    <StyledButton
+      $variant={props.variant || 'primary'}
+      $block={props.block}
+      $mb={props.mb}
+      $mbSm={props.mbSm}
+      $mbMd={props.mbMd}
+      $mbLg={props.mbLg}
+      $mbXl={props.mbXl}
+      $mbXxl={props.mbXxl}
+      $mt={props.mt}
+      $mtSm={props.mtSm}
+      $mtMd={props.mtMd}
+      $mtLg={props.mtLg}
+      $mtXl={props.mtXl}
+      $mtXxl={props.mtXxl}
+      type={props.type || 'button'}
+      className={props.className}
+      disabled={props.disabled}
+      onClick={props.onClick}
+    >
+      {leftIcon}
+      {props.children}
+      {rightIcon}
+    </StyledButton>
+  );
+};

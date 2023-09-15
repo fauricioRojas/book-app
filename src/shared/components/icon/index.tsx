@@ -37,10 +37,12 @@ import { FootprintIcon } from './footprint-icon';
 import { FuelFilterIcon } from './fuel-filter-icon';
 import { FusesIcon } from './fuses-icon';
 import { GearIcon } from './gear-icon';
+import { GithubIcon } from './github-icon';
 import { GreaseGunIcon } from './grease-gun-icon';
 import { HandleBarIcon } from './handle-bar-icon';
 import { HairCutIcon } from './hair-cut-icon';
 import { HamsterIcon } from './hamster-icon';
+import { HorseIcon } from './horse-icon';
 import { HoseIcon } from './hose-icon';
 import { InfoIcon } from './info-icon';
 import { InjectorIcon } from './injector-icon';
@@ -134,10 +136,12 @@ export type IconName =
   | 'fuel-filter'
   | 'fuses'
   | 'gear'
+  | 'github'
   | 'grease-gun'
   | 'handle-bar'
   | 'hair-cut'
   | 'hamster'
+  | 'horse'
   | 'hose'
   | 'info'
   | 'injector'
@@ -223,10 +227,12 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'fuel-filter': FuelFilterIcon,
   fuses: FusesIcon,
   gear: GearIcon,
+  github: GithubIcon,
   'grease-gun': GreaseGunIcon,
   'handle-bar': HandleBarIcon,
   'hair-cut': HairCutIcon,
   hamster: HamsterIcon,
+  horse: HorseIcon,
   hose: HoseIcon,
   info: InfoIcon,
   injector: InjectorIcon,

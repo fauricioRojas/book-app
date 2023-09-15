@@ -127,6 +127,7 @@ export const ENGLISH: ILanguageTranslation = {
   rabbit: "Rabbit",
   hamster: "Hamster",
   pig: "Pig",
+  horse: "Horse",
   optional: "Optional",
   currency: "Currency",
   dollar: "Dollar",

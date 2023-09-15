@@ -186,20 +186,20 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
           <IconButton
             iconName="trash"
             variant="error"
-            height={22}
-            width={22}
+            height={30}
+            width={30}
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton
             iconName="pencil"
-            height={25}
-            width={25}
+            height={30}
+            width={30}
             onClick={handleShowVehiclesFormInEditMode}
           />
           <IconButton
             iconName="add"
-            height={22}
-            width={22}
+            height={30}
+            width={30}
             onClick={handleShowMaintenancesForm}
           />
         </FlexWrap>

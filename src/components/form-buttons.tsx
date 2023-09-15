@@ -28,6 +28,7 @@ export const FormButtons: FC<IFormButtonsProps> = ({
         </Button>
       )}
       <Button
+        variant="primary"
         type="submit"
         block
         disabled={disabledSave}

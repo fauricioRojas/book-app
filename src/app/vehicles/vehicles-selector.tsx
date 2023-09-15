@@ -17,15 +17,11 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
         id: 1,
         label: translation.bike,
         value: ENGLISH.bike,
-        width: 40,
-        height: 40,
       },
       {
         id: 2,
         label: translation.motorcycle,
         value: ENGLISH.motorcycle,
-        width: 35,
-        height: 35,
       },
       {
         id: 3,
@@ -41,15 +37,11 @@ export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
         id: 5,
         label: translation.pickup,
         value: ENGLISH.pickup,
-        width: 45,
-        height: 45,
       },
       {
         id: 6,
         label: translation.tractor,
         value: ENGLISH.tractor,
-        width: 35,
-        height: 35,
       },
       {
         id: 7,
