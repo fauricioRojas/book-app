@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from "@/contexts";
-import { Box, Button, Typography } from "@/shared/components";
+import { Box, Button, Card, FlexWrap, IconButton, Typography } from "@/shared/components";
 
 export const Account = () => {
   const [disabled, setDisabled] = useState(false);
@@ -35,16 +35,21 @@ export const Account = () => {
   }
 
   return (
-    <Box>
+    <Box mb={8}>
       <Typography variant="h6" fontWeight="bold" mb={4}>{translation.account}</Typography>
-      <Button
-        variant="error"
-        rightIconName="sign-out"
-        disabled={disabled}
-        onClick={handleSignOut}
-      >
-        {translation.signOut}
-      </Button>
+      <Card>
+        <FlexWrap align="center" justify="space-between">
+          <Typography variant="h6">{user.email}</Typography>
+          <IconButton
+            iconName="sign-out"
+            variant="error"
+            height={20}
+            width={20}
+            disabled={disabled}
+            onClick={handleSignOut}
+          />
+        </FlexWrap>
+      </Card>
     </Box>
   )
 };

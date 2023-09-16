@@ -70,10 +70,11 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
 
 export enum ROUTES {
   HOME = "/",
-  SIGN_IN = "/sign-in",
   MAINTENANCES = "/maintenances",
   PETS = "/pets",
   PROCEDURES = "/procedures",
   SETTINGS = "/settings",
+  SIGN_IN = "/sign-in",
+  SIGN_UP = "/sign-up",
   VEHICLES = "/vehicles",
 }

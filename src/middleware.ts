@@ -22,7 +22,7 @@ export async function middleware(req: NextRequest) {
     url.pathname = ROUTES.SIGN_IN;
     return NextResponse.redirect(url);
   }
-  if (session && pathname === ROUTES.SIGN_IN) {
+  if (session && (pathname === ROUTES.SIGN_IN || pathname === ROUTES.SIGN_UP)) {
     const url = new URL(req.url);
     url.pathname = ROUTES.HOME;
     return NextResponse.redirect(url);

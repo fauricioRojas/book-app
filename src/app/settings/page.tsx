@@ -5,8 +5,8 @@ import { GeneralSettings } from "./general-settings";
 const SettingsPage = () => (
   <main>
     <SettingsHeader />
-    <GeneralSettings />
     <Account />
+    <GeneralSettings />
   </main>
 );
 

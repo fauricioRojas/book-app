@@ -12,7 +12,7 @@ export const GeneralSettings = () => {
   const { translation } = useLanguage();
 
   return (
-    <FlexWrap direction="column" gap={2} mb={8}>
+    <FlexWrap direction="column" gap={2}>
       <Typography variant="h6" fontWeight="bold" mb={2}>
         {translation.generalSettings}
       </Typography>

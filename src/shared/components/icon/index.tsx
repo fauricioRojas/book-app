@@ -29,6 +29,7 @@ import { CheckIcon } from './check-icon';
 import { CoolantIcon } from './coolant-icon';
 import { CurrencyIcon } from './currency-icon';
 import { DogIcon } from './dog-icon';
+import { EmailIcon } from './email-icon';
 import { EngineAirFilterIcon } from './engine-air-filter-icon';
 import { EngineIcon } from './engine-icon';
 import { ErrorIcon } from './error-icon';
@@ -128,6 +129,7 @@ export type IconName =
   | 'coolant'
   | 'currency'
   | 'dog'
+  | 'email'
   | 'engine'
   | 'engine-air-filter'
   | 'error'
@@ -219,6 +221,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   coolant: CoolantIcon,
   currency: CurrencyIcon,
   dog: DogIcon,
+  email: EmailIcon,
   engine: EngineIcon,
   'engine-air-filter': EngineAirFilterIcon,
   error: ErrorIcon,

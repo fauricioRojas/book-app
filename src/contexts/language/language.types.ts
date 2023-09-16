@@ -155,12 +155,16 @@ export interface ILanguageTranslation extends Language {
   nextDateHint: string;
   email: string;
   password: string;
+  signIn: string;
   signInWithEmail: string;
   signInWithGithub: string;
   account: string;
   signInError: string;
-  signOut: string;
+  signUp: string;
+  signUpError: string;
   signOutError: string;
+  dontHaveAnAccount: string;
+  alreadyHaveAnAccount: string;
   // Form error messages
   required: string;
   validEmail: string;

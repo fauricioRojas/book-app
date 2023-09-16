@@ -6,7 +6,7 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { AuthSession, User } from "@supabase/supabase-js";
 import { ROUTES } from "@/shared/constants";
 import { SupabaseAuthContext } from ".";
-import { useSupabase } from "..";
+import { useSnackbar, useSupabase } from "..";
 
 interface ISupabaseAuthProviderProps extends PropsWithChildren {
   serverSession?: AuthSession | null;
@@ -17,6 +17,7 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
   children,
 }) => {
   const { supabaseClient } = useSupabase();
+  const { showSnackbar } = useSnackbar();
   const router = useRouter();
   const [user, setUser] = useState<User | undefined>(undefined);
 
@@ -43,7 +44,23 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     if (error) {
       return error.message;
     }
-    router.push('/');
+    router.push(ROUTES.HOME);
+    return null;
+  };
+
+  const signUp = async (email: string, password: string) => {
+    const { error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      // options: {
+      //   emailRedirectTo: window.location.origin,
+      // },
+    });
+
+    if (error) {
+      return error.message;
+    }
+
     return null;
   };
 
@@ -69,6 +86,7 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     <SupabaseAuthContext.Provider value={{
       user,
       signOut,
+      signUp,
       signInWithGithub,
       signInWithEmail,
     }}>

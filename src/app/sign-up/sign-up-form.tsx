@@ -4,12 +4,12 @@ import { useState } from 'react'
 import styled from 'styled-components';
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
-import { Button, Col, Divider, FlexWrap, Input, Link, Row, Typography } from '@/shared/components';
+import { Button, Col, FlexWrap, Input, Link, Row, Typography } from '@/shared/components';
 import { Controller, useForm } from 'react-hook-form';
 import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
 
-const StyledSignInForm = styled(FlexWrap)`
+const StyledSignUpForm = styled(FlexWrap)`
   width: 100%;
   /* height: calc(100vh - 100px); */
 `;
@@ -19,17 +19,17 @@ const StyledFlexWrap = styled(FlexWrap)`
   }
 `;
 
-interface ISignInForm {
+interface ISignUpForm {
   email: string;
   password: string;
 }
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<ISignInForm>({
+  } = useForm<ISignUpForm>({
     defaultValues: {
       email: "",
       password: "",
@@ -37,51 +37,44 @@ export const SignInForm = () => {
   });
   const [disabled, setDisabled] = useState(false);
   const { REQUIRED } = useFormRules();
-  const { signInWithEmail, signInWithGithub } = useSupabaseAuth();
+  const { signUp } = useSupabaseAuth();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const onSubmit = async ({ email, password }: ISignInForm) => {
+  const onSubmit = async ({ email, password }: ISignUpForm) => {
     try {
       setDisabled(true);
-      const error = await signInWithEmail(email, password);
+      const error = await signUp(email, password);
       if (error) {
         showSnackbar({
           type: "error",
-          body: translation.signInError
+          body: error,
+        });
+      } else {
+        showSnackbar({
+          type: "success",
+          body: "Please check you email for further instructions",
+          durationInSeconds: 8,
         });
       }
       setDisabled(false);
     } catch (error) {
       showSnackbar({
         type: "error",
-        body: translation.signInError
+        body: translation.signUpError,
       });
     }
   };
 
   return (
-    <StyledSignInForm
+    <StyledSignUpForm
       direction="column"
       align="center"
       justify="center"
       gap={12}
     >
-      <Typography variant="h1" fontWeight="bold">{translation.signIn}</Typography>
+      <Typography variant="h1" fontWeight="bold">{translation.signUp}</Typography>
       <StyledFlexWrap direction="column" align="center" gap={6}>
-        <Button
-          variant="secondary"
-          block
-          rightIconName="github"
-          onClick={signInWithGithub}
-        >
-          {translation.signInWithGithub}
-        </Button>
-        <FlexWrap align="center" justify="center" gap={3}>
-          <Divider />
-          <Typography variant="h6">{translation.or}</Typography>
-          <Divider />
-        </FlexWrap>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Row>
             <Col cols={12} mb={4}>
@@ -126,17 +119,16 @@ export const SignInForm = () => {
               <Button
                 variant="primary"
                 type="submit"
-                rightIconName="email"
                 block
                 disabled={disabled}
               >
-                {translation.signInWithEmail}
+                {translation.signUp}
               </Button>
             </Col>
           </Row>
         </form>
-        <Link href={ROUTES.SIGN_UP}>{translation.dontHaveAnAccount}</Link>
+        <Link href={ROUTES.SIGN_IN}>{translation.alreadyHaveAnAccount}</Link>
       </StyledFlexWrap>
-    </StyledSignInForm>
+    </StyledSignUpForm>
   );
 };

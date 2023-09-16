@@ -6,6 +6,7 @@ import { createContext, useContext } from "react";
 interface ISubabaseAuthContext {
   user?: User;
   signOut: () => Promise<string | null>;
+  signUp: (email: string, password: string) => Promise<string | null>;
   signInWithGithub: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
 }
@@ -13,6 +14,7 @@ interface ISubabaseAuthContext {
 export const SupabaseAuthContext = createContext<ISubabaseAuthContext>({
   user: undefined,
   signOut: async () => null,
+  signUp: async () => null,
   signInWithGithub: async () => {},
   signInWithEmail: async () => null,
 });
