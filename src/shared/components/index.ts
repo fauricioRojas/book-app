@@ -1,5 +1,6 @@
 "use client";
 
+export * from "./badge";
 export * from "./box";
 export * from "./browse-files";
 export * from "./button";
