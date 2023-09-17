@@ -45,7 +45,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IMaintenancesForm>({
     defaultValues: {
       cost: "",
@@ -56,7 +56,6 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -136,13 +135,11 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   };
 
   const onSubmit = async (maintenanceData: IMaintenancesForm) => {
-    setDisabled(true);
     if (isUpdateMode) {
       await updateMaintenance(maintenanceData);
     } else {
       await insertMaintenance(maintenanceData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -241,7 +238,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
         </Col>
       </Row>
       <FormButtons
-        disabledSave={disabled}
+        disabledSave={isSubmitting}
         onClickBack={isUpdateMode ? undefined : handleShowMaintenancesSelector}
       />
     </form>

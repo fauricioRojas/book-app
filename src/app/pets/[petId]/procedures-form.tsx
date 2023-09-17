@@ -46,7 +46,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IProceduresForm>({
     defaultValues: {
       cost: "",
@@ -58,7 +58,6 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -141,13 +140,11 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   };
 
   const onSubmit = async (procedureData: IProceduresForm) => {
-    setDisabled(true);
     if (isUpdateMode) {
       await updateProcedure(procedureData);
     } else {
       await insertProcedure(procedureData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -264,7 +261,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
         </Col>
       </Row>
       <FormButtons
-        disabledSave={disabled}
+        disabledSave={isSubmitting}
         onClickBack={isUpdateMode ? undefined : handleShowProceduresSelector}
       />
     </form>

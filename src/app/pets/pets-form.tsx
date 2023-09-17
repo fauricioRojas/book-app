@@ -42,7 +42,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IPetsForm>({
     defaultValues: {
       name: "",
@@ -53,7 +53,6 @@ export const PetsForm: FC<IPetsFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -132,13 +131,11 @@ export const PetsForm: FC<IPetsFormProps> = ({
   };
 
   const onSubmit = async (petData: IPetsForm) => {
-    setDisabled(true);
     if (isUpdateMode) {
       await updatePet(petData);
     } else {
       await insertPet(petData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -234,7 +231,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
         </Col>
       </Row>
       <FormButtons
-        disabledSave={disabled}
+        disabledSave={isSubmitting}
         onClickBack={isUpdateMode ? undefined : handleShowPetsSelector}
       />
     </form>

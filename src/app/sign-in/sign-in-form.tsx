@@ -28,14 +28,13 @@ export const SignInForm = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ISignInForm>({
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  const [disabled, setDisabled] = useState(false);
   const { REQUIRED } = useFormRules();
   const { signInWithEmail, signInWithGithub } = useSupabaseAuth();
   const { translation } = useLanguage();
@@ -43,7 +42,6 @@ export const SignInForm = () => {
 
   const onSubmit = async ({ email, password }: ISignInForm) => {
     try {
-      setDisabled(true);
       const error = await signInWithEmail(email, password);
       if (error) {
         showSnackbar({
@@ -51,7 +49,6 @@ export const SignInForm = () => {
           body: translation.signInError
         });
       }
-      setDisabled(false);
     } catch (error) {
       showSnackbar({
         type: "error",
@@ -128,7 +125,7 @@ export const SignInForm = () => {
                 type="submit"
                 rightIconName="email"
                 block
-                disabled={disabled}
+                disabled={isSubmitting}
               >
                 {translation.signInWithEmail}
               </Button>

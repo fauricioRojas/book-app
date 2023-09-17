@@ -59,7 +59,7 @@ export const darkColors: IColors = {
   secondaryText: "#B0B3B8",
   skeleton: "#1F1E1E",
   border: "rgba(255, 255, 255, 0.23)",
-  card: "#222121", // "#3F3F3F",
+  card: "#2D2D2D",
 };
 
 const fontWeights: IFontWeights = {

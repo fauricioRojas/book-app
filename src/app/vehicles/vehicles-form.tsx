@@ -44,7 +44,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IVehiclesForm>({
     defaultValues: {
       plateNumber: "",
@@ -56,7 +56,6 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
@@ -138,13 +137,11 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   };
 
   const onSubmit = async (vehicleData: IVehiclesForm) => {
-    setDisabled(true);
     if (isUpdateMode) {
       await updateVehicle(vehicleData);
     } else {
       await insertVehicle(vehicleData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -260,7 +257,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
         </Col>
       </Row>
       <FormButtons
-        disabledSave={disabled}
+        disabledSave={isSubmitting}
         onClickBack={isUpdateMode ? undefined : handleShowVehiclesSelector}
       />
     </form>
