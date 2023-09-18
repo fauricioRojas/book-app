@@ -1,22 +1,19 @@
-import { Col, Row, Skeleton } from "@/shared/components";
+import { GridWrap, Skeleton } from "@/shared/components";
 
 const Loading = () => (
   <>
     <Skeleton height={14} width="full" mb={8} />
-    <Row>
+    <GridWrap
+      cols={12}
+      sm={6}
+      lg={4}
+      xl={3}
+      gap={4}
+    >
       {Array.from(Array(8).keys()).map(index => (
-        <Col
-          key={index}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <Skeleton height={19} width="full" />
-        </Col>
+        <Skeleton key={index} height="77px" width="full" />
       ))}
-    </Row>
+    </GridWrap>
   </>
 );
 

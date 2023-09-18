@@ -1,4 +1,4 @@
-import { Col, Row, Skeleton } from "@/shared/components";
+import { GridWrap, Skeleton } from "@/shared/components";
 
 const Loading = () => (
   <>
@@ -14,20 +14,17 @@ const Loading = () => (
     <Skeleton height={5} width="full" widthMd="quarter" mb={2} />
     <Skeleton height="150px" width="full" widthMd="quarter" mb={4} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={2} />
-    <Row>
+    <GridWrap
+      cols={12}
+      sm={6}
+      lg={4}
+      xl={3}
+      gap={4}
+    >
       {Array.from(Array(8).keys()).map(index => (
-        <Col
-          key={index}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <Skeleton height="106px" width="full" />
-        </Col>
+        <Skeleton key={index} height="78px" width="full" />
       ))}
-    </Row>
+    </GridWrap>
   </>
 );
 

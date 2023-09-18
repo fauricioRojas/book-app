@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from 'react';
 
-import { Col, Row } from '@/shared/components';
+import { GridWrap } from '@/shared/components';
 import { IVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { VehiclesListItem } from './vehicles-list-item';
@@ -57,19 +57,16 @@ export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
   }
 
   return (
-    <Row>
+    <GridWrap
+      cols={12}
+      sm={6}
+      lg={4}
+      xl={3}
+      gap={4}
+    >
       {vehicles.map((vehicle) => (
-        <Col
-          key={vehicle.id}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <VehiclesListItem {...vehicle} />
-        </Col>
+        <VehiclesListItem key={vehicle.id} {...vehicle} />
       ))}
-    </Row>
+    </GridWrap>
   );
 };
