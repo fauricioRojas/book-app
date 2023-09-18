@@ -167,6 +167,9 @@ export const ENGLISH: ILanguageTranslation = {
   signOutError: "There was an error signing out",
   dontHaveAnAccount: "Don't have an account? Sign up",
   alreadyHaveAnAccount: "Already have an account? Sign in",
+  reminders: "Reminders",
+  noReminders:
+    "You don't have any reminder, once you add a new procedure with next date, you'll see it here",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

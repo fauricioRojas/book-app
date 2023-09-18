@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from "@/contexts";
-import { Box, Button, Card, FlexWrap, IconButton, Typography } from "@/shared/components";
+import { Box, Card, FlexWrap, IconButton, Typography } from "@/shared/components";
 
 export const Account = () => {
   const [disabled, setDisabled] = useState(false);

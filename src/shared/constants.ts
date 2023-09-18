@@ -73,6 +73,7 @@ export enum ROUTES {
   MAINTENANCES = "/maintenances",
   PETS = "/pets",
   PROCEDURES = "/procedures",
+  REMINDERS = "/reminders",
   SETTINGS = "/settings",
   SIGN_IN = "/sign-in",
   SIGN_UP = "/sign-up",

@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { INavbarItem } from './navbar.types';
 import { NavbarItem } from './navbar-item';
 import { useLanguage, useSupabaseAuth } from '@/contexts';
+import { ROUTES } from '@/shared/constants';
 
 const StyledNavbar = styled.nav`
   align-items: center;
@@ -27,19 +28,24 @@ export const Navbar = () => {
   const navbarItems = useMemo(() => {
     const items: INavbarItem[] = [
       {
+        iconName: 'bell',
+        text: translation.reminders,
+        href: ROUTES.REMINDERS,
+      },
+      {
         iconName: 'tire',
         text: translation.vehicles,
-        href: '/vehicles',
+        href: ROUTES.VEHICLES,
       },
       {
         iconName: 'footprint',
         text: translation.pets,
-        href: '/pets',
+        href: ROUTES.PETS,
       },
       {
         iconName: 'settings',
         text: translation.settings,
-        href: '/settings',
+        href: ROUTES.SETTINGS,
       },
     ];
     return items;

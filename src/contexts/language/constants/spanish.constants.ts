@@ -169,6 +169,9 @@ export const SPANISH: ILanguageTranslation = {
   signOutError: "Hubo un error al cerrar sesión",
   dontHaveAnAccount: "No tiene una cuenta? Registrese aquí",
   alreadyHaveAnAccount: "Ya tienes una cuenta? Inicie sesión aquí",
+  reminders: "Recordatorios",
+  noReminders:
+    "No tiene ningún recordatorio, una vez agregue un procedimiento aparecerán aquí",
   // Form error messages
   required: "Requerido",
   validEmail: "Debe ser un email válido",

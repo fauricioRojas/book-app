@@ -165,6 +165,8 @@ export interface ILanguageTranslation extends Language {
   signOutError: string;
   dontHaveAnAccount: string;
   alreadyHaveAnAccount: string;
+  reminders: string;
+  noReminders: string;
   // Form error messages
   required: string;
   validEmail: string;

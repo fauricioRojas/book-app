@@ -14,8 +14,9 @@ export async function middleware(req: NextRequest) {
   const isValidRoute =
     pathname === ROUTES.HOME ||
     pathname.startsWith(ROUTES.PETS) ||
-    pathname.startsWith(ROUTES.VEHICLES) ||
-    pathname === ROUTES.SETTINGS;
+    pathname === ROUTES.REMINDERS ||
+    pathname === ROUTES.SETTINGS ||
+    pathname.startsWith(ROUTES.VEHICLES);
 
   if (!session && isValidRoute) {
     const url = new URL(req.url);
@@ -24,7 +25,7 @@ export async function middleware(req: NextRequest) {
   }
   if (session && (pathname === ROUTES.SIGN_IN || pathname === ROUTES.SIGN_UP)) {
     const url = new URL(req.url);
-    url.pathname = ROUTES.HOME;
+    url.pathname = ROUTES.REMINDERS;
     return NextResponse.redirect(url);
   }
 

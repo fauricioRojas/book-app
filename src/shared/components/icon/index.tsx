@@ -8,6 +8,7 @@ import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
 import { BallJointsIcon } from './ball-joints-icon';
 import { BatteryIcon } from './battery-icon';
+import { BellIcon } from './bell-icon';
 import { BeltIcon } from './belt-icon';
 import { BikeIcon } from './bike-icon';
 import { BrakeIcon } from './brake-icon';
@@ -108,6 +109,7 @@ export type IconName =
   | 'arrow-down'
   | 'ball-joints'
   | 'battery'
+  | 'bell'
   | 'belt'
   | 'bike'
   | 'brake'
@@ -200,6 +202,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'arrow-down': ArrowDownIcon,
   'ball-joints': BallJointsIcon,
   battery: BatteryIcon,
+  bell: BellIcon,
   belt: BeltIcon,
   bike: BikeIcon,
   brake: BrakeIcon,
