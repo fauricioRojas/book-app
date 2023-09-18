@@ -44,7 +44,7 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     if (error) {
       return error.message;
     }
-    router.push(ROUTES.HOME);
+    router.push(ROUTES.REMINDERS);
     return null;
   };
 
