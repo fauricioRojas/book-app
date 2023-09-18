@@ -41,7 +41,7 @@ export const lightColors: IColors = {
   neutralTransparent: "rgba(255,255,255,0.9)",
   primaryText: "#292A36",
   secondaryText: "#444444",
-  skeleton: "#ADB5BD",
+  skeleton: "#E0E4E7",
   border: "rgba(0, 0, 0, 0.23)",
   card: "#FFFFFF",
 };
@@ -57,7 +57,7 @@ export const darkColors: IColors = {
   neutralTransparent: "rgba(16, 20, 24, 0.8)",
   primaryText: "#E4E6EB",
   secondaryText: "#B0B3B8",
-  skeleton: "#1F1E1E",
+  skeleton: "#1E1B1B",
   border: "rgba(255, 255, 255, 0.23)",
   card: "#2D2D2D",
 };

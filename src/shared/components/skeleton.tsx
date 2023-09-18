@@ -25,20 +25,27 @@ const WIDTH_MAPPER = {
 };
 
 const skeletonAnimation = keyframes`
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
 `;
 
 const StyledSkeleton = styled.div<IStyledSkeletonProps>`
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-name: ${skeletonAnimation};
-  animation-timing-function: ease;
-  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.secondary} 63%)`};
-  background-size: 400% 100%;
+  background-color: ${({ theme }) => theme.colors.card};
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  overflow: hidden;
+  position: relative;
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
+
+  &:after {
+    animation: 1.5s ${skeletonAnimation} linear 0.5s infinite;
+    background: ${({ theme }) => `linear-gradient(90deg, transparent, ${theme.colors.skeleton}, transparent)`};
+    content: "";
+    display: block;
+    height: 100%;
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
