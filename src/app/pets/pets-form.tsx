@@ -4,10 +4,9 @@ import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
-  Col,
+  GridWrap,
   Input,
   Photo,
-  Row,
   Textarea,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
@@ -145,95 +144,85 @@ export const PetsForm: FC<IPetsFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="name"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.name}
-                errorMessage={errors.name?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="breed"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.breed}
-                errorMessage={errors.breed?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="dateOfBirth"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                type="date"
-                value={value}
-                label={translation.dateOfBirth}
-                errorMessage={errors.dateOfBirth?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="description"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Textarea
-                value={value}
-                label={translation.description}
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={5}>
-          <Controller
-            control={control}
-            name="photo"
-            render={({
-              field: { onChange, value },
-            }) => (
-              <Photo photo={value} onChangePhoto={onChange} />
-            )}
-          />
-        </Col>
-      </Row>
-      <FormButtons
-        disabledSave={isSubmitting}
-        onClickBack={isUpdateMode ? undefined : handleShowPetsSelector}
-      />
+      <GridWrap gap={4}>
+        <Controller
+          control={control}
+          name="name"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.name}
+              errorMessage={errors.name?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="breed"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.breed}
+              errorMessage={errors.breed?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="dateOfBirth"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              type="date"
+              value={value}
+              label={translation.dateOfBirth}
+              errorMessage={errors.dateOfBirth?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Textarea
+              value={value}
+              label={translation.description}
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="photo"
+          render={({
+            field: { onChange, value },
+          }) => (
+            <Photo photo={value} onChangePhoto={onChange} />
+          )}
+        />
+        <FormButtons
+          disabledSave={isSubmitting}
+          onClickBack={isUpdateMode ? undefined : handleShowPetsSelector}
+        />
+      </GridWrap>
     </form>
   );
 };

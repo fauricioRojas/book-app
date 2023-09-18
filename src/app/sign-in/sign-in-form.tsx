@@ -3,7 +3,15 @@
 import styled from 'styled-components';
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
-import { Button, Col, Divider, FlexWrap, Input, Link, Row, Typography } from '@/shared/components';
+import {
+  Button,
+  Divider,
+  FlexWrap,
+  GridWrap,
+  Input,
+  Link,
+  Typography
+} from '@/shared/components';
 import { Controller, useForm } from 'react-hook-form';
 import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
@@ -11,6 +19,9 @@ import { ROUTES } from '@/shared/constants';
 const StyledSignInForm = styled(FlexWrap)`
   width: 100%;
   /* height: calc(100vh - 100px); */
+`;
+const StyledForm = styled.form`
+  width: 100%;
 `;
 const StyledFlexWrap = styled(FlexWrap)`
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
@@ -78,59 +89,53 @@ export const SignInForm = () => {
           <Typography variant="h6">{translation.or}</Typography>
           <Divider />
         </FlexWrap>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Row>
-            <Col cols={12} mb={4}>
-              <Controller
-                control={control}
-                name="email"
-                rules={REQUIRED}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    inputMode="email"
-                    label={translation.email}
-                    errorMessage={errors.email?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-            </Col>
-            <Col cols={12} mb={4}>
-              <Controller
-                control={control}
-                name="password"
-                rules={REQUIRED}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    type="password"
-                    label={translation.password}
-                    errorMessage={errors.password?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-            </Col>
-            <Col cols={12}>
-              <Button
-                variant="primary"
-                type="submit"
-                rightIconName="email"
-                block
-                disabled={isSubmitting}
-              >
-                {translation.signInWithEmail}
-              </Button>
-            </Col>
-          </Row>
-        </form>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <GridWrap gap={4}>
+            <Controller
+              control={control}
+              name="email"
+              rules={REQUIRED}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  inputMode="email"
+                  label={translation.email}
+                  errorMessage={errors.email?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="password"
+              rules={REQUIRED}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  type="password"
+                  label={translation.password}
+                  errorMessage={errors.password?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+            <Button
+              variant="primary"
+              type="submit"
+              rightIconName="email"
+              block
+              disabled={isSubmitting}
+            >
+              {translation.signInWithEmail}
+            </Button>
+          </GridWrap>
+        </StyledForm>
         <Link href={ROUTES.SIGN_UP}>{translation.dontHaveAnAccount}</Link>
       </StyledFlexWrap>
     </StyledSignInForm>

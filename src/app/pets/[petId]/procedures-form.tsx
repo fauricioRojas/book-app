@@ -4,10 +4,9 @@ import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
-  Col,
+  GridWrap,
   Input,
   Photo,
-  Row,
   Textarea,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
@@ -154,116 +153,104 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="cost"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.cost}
-                errorMessage={errors.cost?.message}
-                inputMode="numeric"
-                onChange={onChange}
-                onBlur={onBlur}
-                onKeyDown={handleOnlyAllowNumbers}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="weight"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.weight}
-                inputMode="numeric"
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-                onKeyDown={handleOnlyAllowNumbers}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="date"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                type="date"
-                value={value}
-                label={translation.date}
-                errorMessage={errors.date?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="nextDate"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                type="date"
-                value={value}
-                label={translation.nextDate}
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="description"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Textarea
-                value={value}
-                label={translation.description}
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={5}>
-          <Controller
-            control={control}
-            name="photo"
-            render={({
-              field: { onChange, value },
-            }) => (
-              <Photo photo={value} onChangePhoto={onChange} />
-            )}
-          />
-        </Col>
-      </Row>
-      <FormButtons
-        disabledSave={isSubmitting}
-        onClickBack={isUpdateMode ? undefined : handleShowProceduresSelector}
-      />
+      <GridWrap gap={4}>
+        <Controller
+          control={control}
+          name="cost"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.cost}
+              errorMessage={errors.cost?.message}
+              inputMode="numeric"
+              onChange={onChange}
+              onBlur={onBlur}
+              onKeyDown={handleOnlyAllowNumbers}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="weight"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.weight}
+              inputMode="numeric"
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+              onKeyDown={handleOnlyAllowNumbers}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="date"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              type="date"
+              value={value}
+              label={translation.date}
+              errorMessage={errors.date?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="nextDate"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              type="date"
+              value={value}
+              label={translation.nextDate}
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Textarea
+              value={value}
+              label={translation.description}
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="photo"
+          render={({
+            field: { onChange, value },
+          }) => (
+            <Photo photo={value} onChangePhoto={onChange} />
+          )}
+        />
+        <FormButtons
+          disabledSave={isSubmitting}
+          onClickBack={isUpdateMode ? undefined : handleShowProceduresSelector}
+        />
+      </GridWrap>
     </form>
   );
 };
