@@ -13,6 +13,7 @@ export * from "./container";
 export * from "./drawer";
 export * from "./divider";
 export * from "./flex-wrap";
+export * from "./grid-wrap";
 export * from "./global-styles";
 export * from "./icon";
 export * from "./icon-button";
