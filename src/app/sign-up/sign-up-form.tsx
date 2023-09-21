@@ -24,7 +24,7 @@ const StyledForm = styled.form`
   width: 100%;
 `;
 const StyledFlexWrap = styled(FlexWrap)`
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: 500px;
   }
 `;

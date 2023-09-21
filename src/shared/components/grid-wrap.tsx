@@ -28,23 +28,23 @@ const StyledGridWrap = styled.div<IStyledGridWrapProps>`
   margin-bottom: ${({ theme, $mb }) => theme.gutters[`size${$mb}`]};
   width: 100%;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
     grid-template-columns: ${({ $sm }) => $sm ? `repeat(${COLS_PER_ROW / $sm}, 1fr)` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
     grid-template-columns: ${({ $md }) => $md ? `repeat(${COLS_PER_ROW / $md}, 1fr)` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
     grid-template-columns: ${({ $lg }) => $lg ? `repeat(${COLS_PER_ROW / $lg}, 1fr)` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
     grid-template-columns: ${({ $xl }) => $xl ? `repeat(${COLS_PER_ROW / $xl}, 1fr)` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
     grid-template-columns: ${({ $xxl }) => $xxl ? `repeat(${COLS_PER_ROW / $xxl}, 1fr)` : undefined};
   }

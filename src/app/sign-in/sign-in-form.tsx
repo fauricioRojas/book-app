@@ -24,7 +24,7 @@ const StyledForm = styled.form`
   width: 100%;
 `;
 const StyledFlexWrap = styled(FlexWrap)`
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: 500px;
   }
 `;
@@ -46,7 +46,7 @@ export const SignInForm = () => {
     },
   });
   const { REQUIRED } = useFormRules();
-  const { signInWithEmail, signInWithGithub } = useSupabaseAuth();
+  const { signInWithEmail, signInWithGithub, signInWithFacebook } = useSupabaseAuth();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
@@ -83,6 +83,14 @@ export const SignInForm = () => {
           onClick={signInWithGithub}
         >
           {translation.signInWithGithub}
+        </Button>
+        <Button
+          variant="secondary"
+          block
+          rightIconName="facebook"
+          onClick={signInWithFacebook}
+        >
+          {translation.signInWithFacebook}
         </Button>
         <FlexWrap align="center" justify="center" gap={3}>
           <Divider />

@@ -25,41 +25,34 @@ const WIDTH_MAPPER = {
 };
 
 const skeletonAnimation = keyframes`
-  0% { transform: translateX(-100%); }
-  60% { transform: translateX(100%); }
-  100% { transform: translateX(100%); }
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 `;
 
 const StyledSkeleton = styled.div<IStyledSkeletonProps>`
-  background-color: ${({ theme }) => theme.colors.card};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: ${skeletonAnimation};
+  animation-timing-function: ease;
+  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.card} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.card} 63%)`};
+  background-size: 400% 100%;
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
-  overflow: hidden;
-  position: relative;
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 
-  &:after {
-    animation: 1.5s ${skeletonAnimation} linear 0.5s infinite;
-    background: ${({ theme }) => `linear-gradient(90deg, transparent, ${theme.colors.skeleton}, transparent)`};
-    content: "";
-    display: block;
-    height: 100%;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: ${({ $widthMd }) => $widthMd ? WIDTH_MAPPER[$widthMd] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     width: ${({ $widthLg }) => $widthLg ? WIDTH_MAPPER[$widthLg] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     width: ${({ $widthXl }) => $widthXl ? WIDTH_MAPPER[$widthXl] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     width: ${({ $widthXxl }) => $widthXxl ? WIDTH_MAPPER[$widthXxl] : undefined};
   }
 `

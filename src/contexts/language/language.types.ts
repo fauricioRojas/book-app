@@ -158,6 +158,7 @@ export interface ILanguageTranslation extends Language {
   signIn: string;
   signInWithEmail: string;
   signInWithGithub: string;
+  signInWithFacebook: string;
   account: string;
   signInError: string;
   signUp: string;

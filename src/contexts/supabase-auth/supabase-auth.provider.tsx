@@ -35,6 +35,10 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     await supabaseClient.auth.signInWithOAuth({ provider: 'github' });
   };
 
+  const signInWithFacebook = async () => {
+    await supabaseClient.auth.signInWithOAuth({ provider: 'facebook' });
+  }
+
   const signInWithEmail = async (email: string, password: string) => {
     const { error } = await supabaseClient.auth.signInWithPassword({
       email,
@@ -88,6 +92,7 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
       signOut,
       signUp,
       signInWithGithub,
+      signInWithFacebook,
       signInWithEmail,
     }}>
       {children}

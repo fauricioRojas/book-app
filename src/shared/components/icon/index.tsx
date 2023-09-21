@@ -35,6 +35,7 @@ import { EngineAirFilterIcon } from './engine-air-filter-icon';
 import { EngineIcon } from './engine-icon';
 import { ErrorIcon } from './error-icon';
 import { ExpandIcon } from './expand-icon';
+import { FacebookIcon } from './facebook-icon';
 import { FootprintIcon } from './footprint-icon';
 import { FuelFilterIcon } from './fuel-filter-icon';
 import { FusesIcon } from './fuses-icon';
@@ -136,6 +137,7 @@ export type IconName =
   | 'engine-air-filter'
   | 'error'
   | 'expand'
+  | 'facebook'
   | 'footprint'
   | 'fuel-filter'
   | 'fuses'
@@ -229,6 +231,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'engine-air-filter': EngineAirFilterIcon,
   error: ErrorIcon,
   expand: ExpandIcon,
+  facebook: FacebookIcon,
   footprint: FootprintIcon,
   'fuel-filter': FuelFilterIcon,
   fuses: FusesIcon,

@@ -25,7 +25,7 @@ const StyledTypeSelectorOption = styled.div`
     background-color: ${({ theme }) => theme.colors.secondary};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     height: 8rem;
   }
 `;

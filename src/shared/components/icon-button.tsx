@@ -22,7 +22,7 @@ const StyledIconButton = styled.button<IStyledIconButtonProps>`
     pointer-events: none;
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     border: 2px solid transparent;
     border-radius: 50%;
     padding: ${({ theme }) => theme.gutters.size1};

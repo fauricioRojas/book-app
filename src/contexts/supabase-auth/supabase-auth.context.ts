@@ -8,6 +8,7 @@ interface ISubabaseAuthContext {
   signOut: () => Promise<string | null>;
   signUp: (email: string, password: string) => Promise<string | null>;
   signInWithGithub: () => Promise<void>;
+  signInWithFacebook: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
 }
 
@@ -16,6 +17,7 @@ export const SupabaseAuthContext = createContext<ISubabaseAuthContext>({
   signOut: async () => null,
   signUp: async () => null,
   signInWithGithub: async () => {},
+  signInWithFacebook: async () => {},
   signInWithEmail: async () => null,
 });
 

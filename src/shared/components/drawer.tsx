@@ -38,7 +38,7 @@ const StyledDrawer = styled.div<IStyledDrawerProps>`
     transform: translateY(0);
   `};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     height: 100%;
@@ -51,15 +51,15 @@ const StyledDrawer = styled.div<IStyledDrawerProps>`
       transform: translateX(0);
     `};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     left: 50%;
     width: 50%;
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     left: 60%;
     width: 40%;
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     left: 70%;
     width: 30%;
   }

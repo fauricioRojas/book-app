@@ -160,6 +160,7 @@ export const ENGLISH: ILanguageTranslation = {
   signIn: "Sign in",
   signInWithEmail: "Sign in with Email",
   signInWithGithub: "Continue with Github",
+  signInWithFacebook: "Continue with Facebook",
   signUp: "Sign up",
   signUpError: "There was an error signing up",
   account: "Account",

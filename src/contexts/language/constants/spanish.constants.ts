@@ -162,6 +162,7 @@ export const SPANISH: ILanguageTranslation = {
   signIn: "Iniciar sesión",
   signInWithEmail: "Iniciar con el correo",
   signInWithGithub: "Continuar con Github",
+  signInWithFacebook: "Continuar with Facebook",
   signUp: "Registrarme",
   signUpError: "Hubo un error al registrarse",
   account: "Cuenta",

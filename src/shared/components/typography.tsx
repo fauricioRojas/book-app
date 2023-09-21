@@ -55,27 +55,27 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypograph
   text-align: ${$textAlign};
   transition: color .2s ease;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     ${({ $displaySm }: IStyledTypographyProps) => typeof $displaySm === 'boolean' && css`
       display: ${$displaySm ? 'block' : 'none'};
     `}
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     ${({ $displayMd }: IStyledTypographyProps) => typeof $displayMd === 'boolean' && css`
       display: ${$displayMd ? 'block' : 'none'};
     `}
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     ${({ $displayLg }: IStyledTypographyProps) => typeof $displayLg === 'boolean' && css`
       display: ${$displayLg ? 'block' : 'none'};
     `}
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     ${({ $displayXl }: IStyledTypographyProps) => typeof $displayXl === 'boolean' && css`
       display: ${$displayXl ? 'block' : 'none'};
     `}
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     ${({ $displayXxl }: IStyledTypographyProps) => typeof $displayXxl === 'boolean' && css`
       display: ${$displayXxl ? 'block' : 'none'};
     `}
@@ -84,28 +84,28 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypograph
 
 const H1 = styled.h1`
   font-size: calc(1.375rem + 1.5vw);
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 3rem;
   }
   ${sharedCss};
 `;
 const H2 = styled.h2`
   font-size: calc(1.325rem + 0.9vw);
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 2.5rem;
   }
   ${sharedCss};
 `;
 const H3 = styled.h3`
   font-size: calc(1.3rem + 0.6vw);
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 2rem;
   }
   ${sharedCss};
 `;
 const H4 = styled.h4`
   font-size: calc(1.275rem + 0.3vw);
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     font-size: 1.5rem;
   }
   ${sharedCss};
@@ -129,7 +129,7 @@ const P = styled.p`
 `;
 const SPAN = styled.span`
   font-size: calc(0.6rem + 0.3vw);
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     font-size: 0.875rem;
   }
   ${sharedCss};

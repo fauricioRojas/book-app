@@ -81,7 +81,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
     animation-name: ${slideOut};
   `};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     animation-name: ${fadeIn};
     border-radius: ${({ theme }) => theme.gutters.borderRadius};
     bottom: auto;
