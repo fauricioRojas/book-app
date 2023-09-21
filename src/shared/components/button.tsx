@@ -71,7 +71,7 @@ const StyledButton = styled.button<IStyledButtonProps>`
   ${({ $variant, theme }) => $variant === 'secondary' && css`
     background-color: ${theme.colors.secondary};
     border-color: ${theme.colors.secondary};
-    color: ${theme.colors.white};
+    color: ${theme.colors.primaryText};
 
     &:focus, &:hover {
       background-color: ${theme.colors.secondary800};
@@ -186,7 +186,7 @@ export const Button: FC<ButtonProps> = (props) => {
             name={props.leftIconName}
             width={18}
             height={18}
-            color={colors.white}
+            color={props.variant === 'secondary' ? colors.primaryText : colors.white}
             mr={2}
             pointer
           />
@@ -198,7 +198,7 @@ export const Button: FC<ButtonProps> = (props) => {
             name={props.rightIconName}
             width={18}
             height={18}
-            color={colors.white}
+            color={props.variant === 'secondary' ? colors.primaryText : colors.white}
             ml={2}
             pointer
           />
