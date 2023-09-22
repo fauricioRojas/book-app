@@ -22,12 +22,12 @@ const StyledSwitch = styled.label<IStyledSwitchProps>`
     }
 
     &:checked + span:after {
-      transform: translate3d(22px, 2px, 0);
+      transform: translate3d(22px, 3px, 0);
     }
   }
 
   span {
-    background-color: ${({ theme }) => theme.colors.secondary200};
+    background-color: ${({ theme }) => theme.colors.secondary};
     border-radius: 23px;
     display: inline-block;
     position: relative;
@@ -41,12 +41,12 @@ const StyledSwitch = styled.label<IStyledSwitchProps>`
       border-radius: 11px;
       box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
       content: "";
-      height: 22px;
+      height: 20px;
       left: 0;
       position: absolute;
-      transform: translate3d(2px, 2px, 0);
+      transform: translate3d(4px, 3px, 0);
       transition: all 0.2s ease-in-out;
-      width: 22px;
+      width: 20px;
     }
   }
 `;

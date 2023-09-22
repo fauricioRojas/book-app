@@ -36,6 +36,7 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   animation-timing-function: ease;
   background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.card} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.card} 63%)`};
   background-size: 400% 100%;
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};

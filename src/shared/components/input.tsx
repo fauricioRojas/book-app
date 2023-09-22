@@ -45,8 +45,24 @@ const StyledInput = styled.input<IStyledInputProps>`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%;
 
-  &::-webkit-date-and-time-value {
-    text-align: left;
+  &[type="date"] {
+    &::-webkit-date-and-time-value {
+      text-align: left;
+    }
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
+    &:after {
+      content: '📅';
+      display: block;
+      font-size: 1.15rem;
+      height: 25px;
+      position: absolute;
+      right: 7px;
+      top: 6px;
+      width: 25px;
+      z-index: -1;
+    }
   }
 
   &:hover {
