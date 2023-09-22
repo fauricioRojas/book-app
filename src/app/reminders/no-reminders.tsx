@@ -1,17 +1,30 @@
 'use client';
+import { useTheme } from 'styled-components';
 
 import { useLanguage } from "@/contexts";
-import { Typography } from "@/shared/components";
+import { AbsoluteWrap, Icon, Typography } from "@/shared/components";
 
 export const NoReminders = () => {
   const { translation } = useLanguage();
+  const { colors } = useTheme();
 
   return (
-    <Typography
-      variant="h5"
-      color="secondary-text"
-    >
-      {translation.noReminders}
-    </Typography>
+    <AbsoluteWrap gap={4} isNavbarVisible>
+      <Icon name="bell" height={50} width={50} color={colors.secondary800} />
+      <Typography
+        variant="h5"
+        color="primary-text"
+        fontWeight="bold"
+      >
+        {translation.noReminders}
+      </Typography>
+      <Typography
+        variant="label"
+        color="secondary-text"
+        textAlign="center"
+      >
+        {translation.noRemindersMessage}
+      </Typography>
+    </AbsoluteWrap>
   );
 };

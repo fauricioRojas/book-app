@@ -168,6 +168,7 @@ export interface ILanguageTranslation extends Language {
   alreadyHaveAnAccount: string;
   reminders: string;
   noReminders: string;
+  noRemindersMessage: string;
   // Form error messages
   required: string;
   validEmail: string;

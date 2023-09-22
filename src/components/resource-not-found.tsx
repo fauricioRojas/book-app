@@ -4,7 +4,8 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
-import { FlexWrap, Icon, Link, Typography } from '@/shared/components';
+import { AbsoluteWrap, FlexWrap, Icon, Link, Typography } from '@/shared/components';
+import { ROUTES } from '@/shared/constants';
 
 type Page = 'vehicle' | 'pet' | 'maintenance' | 'procedure';
 
@@ -26,19 +27,31 @@ export const ResourceNotFound: FC<IResourceNotFoundProps> = ({ page }) => {
   const title = titleMapper[page];
 
   return (
-    <>
-      <Typography variant="h1" mb={8}>{title}</Typography>
-      <FlexWrap direction="column" gap={3} align="flex-start">
-        <Icon name="sad-emoji" height={75} width={75} color={colors.secondary800} />
-        <Typography variant="p" color="secondary-text">{translation.weAresorry}</Typography>
-        <Typography variant="p" color="secondary-text">{translation.tryThesePages}</Typography>
-        <FlexWrap direction="column" gap={1}>
-          <Link href="/">{translation.home}</Link>
-          <Link href="/pets">{translation.pets}</Link>
-          <Link href="/vehicles">{translation.vehicles}</Link>
+    <AbsoluteWrap gap={4} isNavbarVisible>
+      <Icon name="sad-emoji" height={75} width={75} color={colors.secondary800} />
+      <FlexWrap direction="column" gap={3} align="center">
+        <Typography variant="h1" mb={4}>{title}</Typography>
+        <Typography
+          variant="p"
+          color="secondary-text"
+          textAlign="center"
+        >
+          {translation.weAresorry}
+        </Typography>
+        <Typography
+          variant="p"
+          color="secondary-text"
+          textAlign="center"
+        >
+          {translation.tryThesePages}
+        </Typography>
+        <FlexWrap direction="column" align="center" gap={1}>
+          <Link href={ROUTES.PETS}>{translation.pets}</Link>
+          <Link href={ROUTES.REMINDERS}>{translation.reminders}</Link>
+          <Link href={ROUTES.VEHICLES}>{translation.vehicles}</Link>
         </FlexWrap>
       </FlexWrap>
-    </>
+    </AbsoluteWrap>
   );
 };
 

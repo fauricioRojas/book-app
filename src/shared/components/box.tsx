@@ -1,15 +1,15 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Position } from '@/shared/types';
+import { Position, Size } from '@/shared/types';
 
 interface IStyledBoxProps {
-  $mb?: number;
-  $mbSm?: number;
-  $mbMd?: number;
-  $mbLg?: number;
-  $mbXl?: number;
-  $mbXxl?: number;
+  $mb?: Size;
+  $mbSm?: Size;
+  $mbMd?: Size;
+  $mbLg?: Size;
+  $mbXl?: Size;
+  $mbXxl?: Size;
   $position?: Position;
 }
 
@@ -46,12 +46,12 @@ const StyledBox = styled.div<IStyledBoxProps>`
 `
 
 interface IBoxProps extends PropsWithChildren {
-  mb?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  mbSm?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  mbMd?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  mbLg?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  mbXl?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  mbXxl?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  mb?: Size;
+  mbSm?: Size;
+  mbMd?: Size;
+  mbLg?: Size;
+  mbXl?: Size;
+  mbXxl?: Size;
   position?: Position;
 }
 

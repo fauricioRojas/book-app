@@ -169,8 +169,8 @@ export const ENGLISH: ILanguageTranslation = {
   dontHaveAnAccount: "Don't have an account? Sign up",
   alreadyHaveAnAccount: "Already have an account? Sign in",
   reminders: "Reminders",
-  noReminders:
-    "You don't have any reminder, once you add a new procedure with next date, you'll see it here",
+  noReminders: "No reminders",
+  noRemindersMessage: "Procedures with next date will appear here.",
   // Form error messages
   required: "Required",
   validEmail: "Must be a valid email",

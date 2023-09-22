@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
 import {
+  AbsoluteWrap,
   Button,
   Divider,
   FlexWrap,
@@ -16,15 +17,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
 
-const StyledSignInForm = styled(FlexWrap)`
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 100%;
-`;
 const StyledForm = styled.form`
   width: 100%;
 `;
@@ -75,12 +67,7 @@ export const SignInForm = () => {
   };
 
   return (
-    <StyledSignInForm
-      direction="column"
-      align="center"
-      justify="center"
-      gap={12}
-    >
+    <AbsoluteWrap gap={12}>
       <Typography variant="h1" fontWeight="bold">{translation.signIn}</Typography>
       <StyledFlexWrap direction="column" align="center" gap={6}>
         <GridWrap gap={3}>
@@ -155,6 +142,6 @@ export const SignInForm = () => {
         </StyledForm>
         <Link href={ROUTES.SIGN_UP}>{translation.dontHaveAnAccount}</Link>
       </StyledFlexWrap>
-    </StyledSignInForm>
+    </AbsoluteWrap>
   );
 };
