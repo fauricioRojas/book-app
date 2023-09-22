@@ -1,11 +1,9 @@
-'use client';
-
 import { FC } from 'react';
 
-import { Col, Row, Typography } from '@/shared/components';
+import { GridWrap } from '@/shared/components';
 import { IMaintenance } from '@/supabase';
 import { MaintenancesListItem } from './maintenances-list-item';
-import { useLanguage } from '@/contexts';
+import { NoMaintenances } from './no-maintenances';
 
 interface IMaintenancesListProps {
   maintenances: IMaintenance[];
@@ -14,26 +12,21 @@ interface IMaintenancesListProps {
 export const MaintenancesList: FC<IMaintenancesListProps> = ({
   maintenances,
 }) => {
-  const { translation } = useLanguage();
+  if (!maintenances.length) {
+    return <NoMaintenances />;
+  }
 
   return (
-    <Row>
-      {maintenances.length ? maintenances.map((maintenance) => (
-        <Col
-          key={maintenance.id}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <MaintenancesListItem {...maintenance} />
-        </Col>
-      )) : (
-        <Col>
-          <Typography variant="label" color="secondary-text">{translation.noMaintenances}</Typography>
-        </Col>
-      )}
-    </Row>
+    <GridWrap
+      cols={12}
+      sm={6}
+      lg={4}
+      xl={3}
+      gap={4}
+    >
+      {maintenances.map((maintenance) => (
+        <MaintenancesListItem key={maintenance.id} {...maintenance} />
+      ))}
+    </GridWrap>
   );
 };

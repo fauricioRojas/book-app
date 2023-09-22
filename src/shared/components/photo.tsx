@@ -40,7 +40,7 @@ export const Photo: FC<IPhotoProps> = ({ photo, onChangePhoto }) => {
   };
 
   return (
-    <FlexWrap direction="column" gap={1}>
+    <FlexWrap direction="column" gap={2}>
       <Typography variant="label">{translation.photo} <Typography variant="span" color="secondary-text">({translation.optional})</Typography></Typography>
       {!photo && (
         <FlexWrap align="center" justify="flex-start" gap={3}>

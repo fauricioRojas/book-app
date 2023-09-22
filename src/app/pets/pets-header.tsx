@@ -25,8 +25,8 @@ export const PetsHeader = () => {
       </Typography>
       <IconButton
         iconName="add"
-        height={22}
-        width={22}
+        height={30}
+        width={30}
         onClick={handleShowPetForm}
       />
     </FlexWrap>

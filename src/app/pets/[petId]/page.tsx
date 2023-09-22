@@ -1,7 +1,9 @@
+import { cookies } from 'next/headers';
 import { notFound } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { IPet, TABLES, SELECT, supabaseClient } from "@/supabase";
+import { IPet, TABLES, SELECT } from "@/supabase";
 import { Pet } from "./pet";
 
 const abortController = new AbortController();
@@ -13,7 +15,8 @@ interface IPetPageProps {
 }
 
 const PetPage: FC<IPetPageProps> = async ({ params: { petId } }) => {
-  const { data: pet } = await supabaseClient
+  const supabase = createServerComponentClient({ cookies });
+  const { data: pet } = await supabase
     .from(TABLES.PETS)
     .select<string, IPet>(SELECT.FULL_PET)
     .match({ id: petId })

@@ -12,4 +12,12 @@ export const ModalContext = createContext<IModalContext>({
   showConfirmationModal: () => undefined,
 });
 
-export const useModal = () => useContext(ModalContext);
+export const useModal = () => {
+  const context = useContext(ModalContext);
+
+  if (!context) {
+    throw new Error("useModal must be used inside ModalProvider");
+  }
+
+  return context;
+};

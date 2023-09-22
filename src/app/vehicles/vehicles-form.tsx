@@ -4,18 +4,17 @@ import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
-  Col,
+  GridWrap,
   Input,
   Photo,
-  Row,
   Textarea,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IVehiclesForm {
@@ -39,12 +38,12 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   vehicleId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && vehicleId && noteId;
+  const isUpdateMode = defaultValues && vehicleId && noteId;
   const {
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IVehiclesForm>({
     defaultValues: {
       plateNumber: "",
@@ -56,12 +55,12 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -83,7 +82,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
 
   const handleShowVehiclesSelector = () => setMode('selector');
 
-  const addNewVehicle = async (vehicleDate: IVehiclesForm) => {
+  const insertVehicle = async (vehicleDate: IVehiclesForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
@@ -110,18 +109,18 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     }
   };
 
-  const editExistingVehicle = async (vehicleDate: IVehiclesForm) => {
+  const updateVehicle = async (vehicleDate: IVehiclesForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
       description: vehicleDate.description || '',
       photo: vehicleDate.photo || '',
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: vehicleError } = await supabaseClient.from(TABLES.VEHICLES).update({
       plateNumber: vehicleDate.plateNumber,
       brand: vehicleDate.brand,
       model: vehicleDate.model,
-    }).eq('id', vehicleId);
+    }).match({ id: vehicleId });
 
     if (noteError || vehicleError) {
       showSnackbar({
@@ -137,13 +136,11 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   };
 
   const onSubmit = async (vehicleData: IVehiclesForm) => {
-    setDisabled(true);
-    if (isEditMode) {
-      await editExistingVehicle(vehicleData);
+    if (isUpdateMode) {
+      await updateVehicle(vehicleData);
     } else {
-      await addNewVehicle(vehicleData);
+      await insertVehicle(vehicleData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -153,115 +150,103 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="plateNumber"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.plateNumber}
-                errorMessage={errors.plateNumber?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="brand"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.brand}
-                errorMessage={errors.brand?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="model"
-            rules={{ ...REQUIRED, ...YEAR }}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.model}
-                errorMessage={errors.model?.message}
-                inputMode="numeric"
-                onChange={onChange}
-                onBlur={onBlur}
-                onKeyDown={handleOnlyAllowNumbers}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="dateOfPurchase"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                type="date"
-                value={value}
-                label={translation.dateOfPurchase}
-                errorMessage={errors.dateOfPurchase?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="description"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Textarea
-                value={value}
-                label={translation.description}
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={5}>
-          <Controller
-            control={control}
-            name="photo"
-            render={({
-              field: { onChange, value },
-            }) => (
-              <Photo photo={value} onChangePhoto={onChange} />
-            )}
-          />
-        </Col>
-      </Row>
-      <FormButtons
-        disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowVehiclesSelector}
-      />
+      <GridWrap gap={4}>
+        <Controller
+          control={control}
+          name="plateNumber"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.plateNumber}
+              errorMessage={errors.plateNumber?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="brand"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.brand}
+              errorMessage={errors.brand?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="model"
+          rules={{ ...REQUIRED, ...YEAR }}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.model}
+              errorMessage={errors.model?.message}
+              inputMode="numeric"
+              onChange={onChange}
+              onBlur={onBlur}
+              onKeyDown={handleOnlyAllowNumbers}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="dateOfPurchase"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              type="date"
+              value={value}
+              label={translation.dateOfPurchase}
+              errorMessage={errors.dateOfPurchase?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Textarea
+              value={value}
+              label={translation.description}
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="photo"
+          render={({
+            field: { onChange, value },
+          }) => (
+            <Photo photo={value} onChangePhoto={onChange} />
+          )}
+        />
+        <FormButtons
+          disabledSave={isSubmitting}
+          onClickBack={isUpdateMode ? undefined : handleShowVehiclesSelector}
+        />
+      </GridWrap>
     </form>
   );
 };

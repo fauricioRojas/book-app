@@ -13,7 +13,7 @@ export const PencilIcon: FC<ICommonIconProps> = ({
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 512 512"
+    viewBox="0 0 24 24"
     width={width}
     height={height}
     $ml={ml}
@@ -22,8 +22,12 @@ export const PencilIcon: FC<ICommonIconProps> = ({
     {...props}
   >
     <path
+      fill="none"
+      d="M0 0h24v24H0V0z"
+    />
+    <path
+      d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
       fill={color}
-      d="M64 368v80h80l235.727-235.729-79.999-79.998L64 368zm377.602-217.602c8.531-8.531 8.531-21.334 0-29.865l-50.135-50.135c-8.531-8.531-21.334-8.531-29.865 0l-39.468 39.469 79.999 79.998 39.469-39.467z"
     />
   </StyledSvg>
 );

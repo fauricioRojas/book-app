@@ -8,6 +8,7 @@ import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
 import { BallJointsIcon } from './ball-joints-icon';
 import { BatteryIcon } from './battery-icon';
+import { BellIcon } from './bell-icon';
 import { BeltIcon } from './belt-icon';
 import { BikeIcon } from './bike-icon';
 import { BrakeIcon } from './brake-icon';
@@ -29,18 +30,22 @@ import { CheckIcon } from './check-icon';
 import { CoolantIcon } from './coolant-icon';
 import { CurrencyIcon } from './currency-icon';
 import { DogIcon } from './dog-icon';
+import { EmailIcon } from './email-icon';
 import { EngineAirFilterIcon } from './engine-air-filter-icon';
 import { EngineIcon } from './engine-icon';
 import { ErrorIcon } from './error-icon';
 import { ExpandIcon } from './expand-icon';
+import { FacebookIcon } from './facebook-icon';
 import { FootprintIcon } from './footprint-icon';
 import { FuelFilterIcon } from './fuel-filter-icon';
 import { FusesIcon } from './fuses-icon';
 import { GearIcon } from './gear-icon';
+import { GithubIcon } from './github-icon';
 import { GreaseGunIcon } from './grease-gun-icon';
 import { HandleBarIcon } from './handle-bar-icon';
 import { HairCutIcon } from './hair-cut-icon';
 import { HamsterIcon } from './hamster-icon';
+import { HorseIcon } from './horse-icon';
 import { HoseIcon } from './hose-icon';
 import { InfoIcon } from './info-icon';
 import { InjectorIcon } from './injector-icon';
@@ -61,6 +66,7 @@ import { PetrolPumpIcon } from './petrol-pump-icon';
 import { PickupIcon } from './pickup-icon';
 import { PigIcon } from './pig-icon';
 import { PillsBottleIcon } from './pills-bottle-icon';
+import { Profilecon } from './profile-icon';
 import { RabbitIcon } from './rabbit-icon';
 import { RadiatorIcon } from './radiator-icon';
 import { RimIcon } from './rim-icon';
@@ -105,6 +111,7 @@ export type IconName =
   | 'arrow-down'
   | 'ball-joints'
   | 'battery'
+  | 'bell'
   | 'belt'
   | 'bike'
   | 'brake'
@@ -126,18 +133,22 @@ export type IconName =
   | 'coolant'
   | 'currency'
   | 'dog'
+  | 'email'
   | 'engine'
   | 'engine-air-filter'
   | 'error'
   | 'expand'
+  | 'facebook'
   | 'footprint'
   | 'fuel-filter'
   | 'fuses'
   | 'gear'
+  | 'github'
   | 'grease-gun'
   | 'handle-bar'
   | 'hair-cut'
   | 'hamster'
+  | 'horse'
   | 'hose'
   | 'info'
   | 'injector'
@@ -158,6 +169,7 @@ export type IconName =
   | 'pickup'
   | 'pig'
   | 'pills-bottle'
+  | 'profile'
   | 'rabbit'
   | 'radiator'
   | 'rim'
@@ -194,6 +206,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   'arrow-down': ArrowDownIcon,
   'ball-joints': BallJointsIcon,
   battery: BatteryIcon,
+  bell: BellIcon,
   belt: BeltIcon,
   bike: BikeIcon,
   brake: BrakeIcon,
@@ -215,18 +228,22 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   coolant: CoolantIcon,
   currency: CurrencyIcon,
   dog: DogIcon,
+  email: EmailIcon,
   engine: EngineIcon,
   'engine-air-filter': EngineAirFilterIcon,
   error: ErrorIcon,
   expand: ExpandIcon,
+  facebook: FacebookIcon,
   footprint: FootprintIcon,
   'fuel-filter': FuelFilterIcon,
   fuses: FusesIcon,
   gear: GearIcon,
+  github: GithubIcon,
   'grease-gun': GreaseGunIcon,
   'handle-bar': HandleBarIcon,
   'hair-cut': HairCutIcon,
   hamster: HamsterIcon,
+  horse: HorseIcon,
   hose: HoseIcon,
   info: InfoIcon,
   injector: InjectorIcon,
@@ -247,6 +264,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   pickup: PickupIcon,
   pig: PigIcon,
   'pills-bottle': PillsBottleIcon,
+  profile: Profilecon,
   rabbit: RabbitIcon,
   radiator: RadiatorIcon,
   rim: RimIcon,

@@ -4,25 +4,15 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { ProceduresForm } from "../../procedures-form";
 
 const abortController = new AbortController();
-
-const findProcedureById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.PROCEDURES)
-    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
 
 interface IProcedureProps {
   serverProcedure: IProcedure;
@@ -48,6 +38,7 @@ export const Procedure: FC<IProcedureProps> = ({
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
   const { currency, weightUnit } = useMeasure();
+  const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setProcedure(serverProcedure), [serverProcedure]);
 
@@ -68,9 +59,20 @@ export const Procedure: FC<IProcedureProps> = ({
 
     return () => {
       supabaseClient.removeChannel(channel);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+    
+  const findProcedureById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.PROCEDURES)
+      .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
+    
   const handleShowFormInEditMode = () => {
     const defaultValues = {
       cost: cost.toString(),
@@ -147,14 +149,14 @@ export const Procedure: FC<IProcedureProps> = ({
           <IconButton
             iconName="trash"
             variant="error"
-            height={22}
-            width={22}
+            height={30}
+            width={30}
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton
             iconName="pencil"
-            height={25}
-            width={25}
+            height={30}
+            width={30}
             onClick={handleShowFormInEditMode}
           />
         </FlexWrap>

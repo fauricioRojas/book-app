@@ -5,7 +5,8 @@ type Language = { [K in LanguageType]: string };
 export interface ILanguageTranslation extends Language {
   vehicles: string;
   pets: string;
-  settings: string;
+  profile: string;
+  settingsAndPreferences: string;
   theme: string;
   language: string;
   cost: string;
@@ -125,6 +126,7 @@ export interface ILanguageTranslation extends Language {
   rabbit: string;
   hamster: string;
   pig: string;
+  horse: string;
   optional: string;
   currency: string;
   dollar: string;
@@ -151,6 +153,21 @@ export interface ILanguageTranslation extends Language {
   editedMaintenance: string;
   notEditedMaintenance: string;
   nextDateHint: string;
+  email: string;
+  password: string;
+  signIn: string;
+  signInWithEmail: string;
+  signInWithGithub: string;
+  signInWithFacebook: string;
+  account: string;
+  signInError: string;
+  signUp: string;
+  signUpError: string;
+  signOutError: string;
+  dontHaveAnAccount: string;
+  alreadyHaveAnAccount: string;
+  reminders: string;
+  noReminders: string;
   // Form error messages
   required: string;
   validEmail: string;

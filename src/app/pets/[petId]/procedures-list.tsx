@@ -1,11 +1,9 @@
-'use client';
-
 import { FC } from 'react';
 
-import { Col, Row, Typography } from '@/shared/components';
+import { GridWrap } from '@/shared/components';
 import { IProcedure } from '@/supabase';
 import { ProceduresListItem } from './procedures-list-item';
-import { useLanguage } from '@/contexts';
+import { NoProcedures } from './no-procedures';
 
 interface IProceduresListProps {
   procedures: IProcedure[];
@@ -14,26 +12,21 @@ interface IProceduresListProps {
 export const ProceduresList: FC<IProceduresListProps> = ({
   procedures,
 }) => {
-  const { translation } = useLanguage();
+  if (!procedures.length) {
+    return <NoProcedures />;
+  }
 
   return (
-    <Row>
-      {procedures.length ? procedures.map((procedure) => (
-        <Col
-          key={procedure.id}
-          cols={12}
-          sm={6}
-          lg={4}
-          xl={3}
-          mb={4}
-        >
-          <ProceduresListItem {...procedure} />
-        </Col>
-      )) : (
-        <Col>
-          <Typography variant="label" color="secondary-text">{translation.noProcedures}</Typography>
-        </Col>
-      )}
-    </Row>
+    <GridWrap
+      cols={12}
+      sm={6}
+      lg={4}
+      xl={3}
+      gap={4}
+    >
+      {procedures.map((procedure) => (
+        <ProceduresListItem key={procedure.id} {...procedure} />
+      ))}
+    </GridWrap>
   );
 };

@@ -1,5 +1,8 @@
 import type { CurrencyType, LengthUnitType, WeightUnitType } from "@/contexts";
 
+const fillWithZeros = (value: string | number) =>
+  value.toString().padStart(2, "0");
+
 export const handleOnlyAllowNumbers = (event: KeyboardEvent) => {
   const numbericKey = +event.key;
   const isBackspacing = event.key === "Backspace";
@@ -23,8 +26,8 @@ export const detectMobileDevice = () => {
 
 export const formatDate = (date: Date): string => {
   const newDate = typeof date === "string" ? new Date(date) : date;
-  const day = newDate.getDate().toString().padStart(2, "0");
-  const month = (newDate.getMonth() + 1).toString().padStart(2, "0");
+  const day = fillWithZeros(newDate.getDate());
+  const month = fillWithZeros(newDate.getMonth() + 1);
   const year = newDate.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -68,4 +71,24 @@ export const formatWeight = (
   };
 
   return `${value.toLocaleString("en-US")} ${weightMapper[weightUnit]}`;
+};
+
+export const getDeviceDarkMode = () => {
+  // return typeof window === "undefined"
+  //   ? false
+  //   : window.matchMedia &&
+  //     window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
+};
+
+export const getNextDateIn = (days: number = 0): string => {
+  const today = new Date();
+  today.setDate(today.getDate() + days);
+  const day = fillWithZeros(today.getDate());
+  const month = fillWithZeros(today.getMonth() + 1);
+  const year = today.getFullYear();
+  return `${year}-${month}-${day}`;
 };

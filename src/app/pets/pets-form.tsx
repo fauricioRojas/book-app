@@ -4,17 +4,16 @@ import { FC, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import {
-  Col,
+  GridWrap,
   Input,
   Photo,
-  Row,
   Textarea,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
-import { useDrawer, useLanguage, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { ITypeSelectorOption } from "@/shared/types";
-import { TABLES, supabaseClient } from "@/supabase";
+import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
 interface IPetsForm {
@@ -37,12 +36,12 @@ export const PetsForm: FC<IPetsFormProps> = ({
   petId,
   noteId,
 }) => {
-  const isEditMode = defaultValues && petId && noteId;
+  const isUpdateMode = defaultValues && petId && noteId;
   const {
     control,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IPetsForm>({
     defaultValues: {
       name: "",
@@ -53,12 +52,12 @@ export const PetsForm: FC<IPetsFormProps> = ({
       photo: undefined,
     },
   });
-  const [disabled, setDisabled] = useState(false);
-  const [mode, setMode] = useState<'selector' | 'form'>(isEditMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
+  const { supabaseClient } = useSupabase();
 
   useEffect(() => {
     if (defaultValues) {
@@ -79,7 +78,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
 
   const handleShowPetsSelector = () => setMode('selector');
 
-  const addNewPet = async (petData: IPetsForm) => {
+  const insertPet = async (petData: IPetsForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
@@ -105,17 +104,17 @@ export const PetsForm: FC<IPetsFormProps> = ({
     }
   };
 
-  const editExistingPet = async (petData: IPetsForm) => {
+  const updatePet = async (petData: IPetsForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
       description: petData.description || null,
       photo: petData.photo || null,
-    }).eq('id', noteId);
+    }).match({ id: noteId });
     const { error: petError } = await supabaseClient.from(TABLES.PETS).update({
       name: petData.name,
       breed: petData.breed,
-    }).eq('id', petId);
+    }).match({ id: petId });
 
     if (noteError || petError) {
       showSnackbar({
@@ -131,13 +130,11 @@ export const PetsForm: FC<IPetsFormProps> = ({
   };
 
   const onSubmit = async (petData: IPetsForm) => {
-    setDisabled(true);
-    if (isEditMode) {
-      await editExistingPet(petData);
+    if (isUpdateMode) {
+      await updatePet(petData);
     } else {
-      await addNewPet(petData);
+      await insertPet(petData);
     }
-    setDisabled(false);
     hideDrawer();
   };
 
@@ -147,95 +144,85 @@ export const PetsForm: FC<IPetsFormProps> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Row>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="name"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.name}
-                errorMessage={errors.name?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="breed"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                value={value}
-                label={translation.breed}
-                errorMessage={errors.breed?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="dateOfBirth"
-            rules={REQUIRED}
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Input
-                type="date"
-                value={value}
-                label={translation.dateOfBirth}
-                errorMessage={errors.dateOfBirth?.message}
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={4}>
-          <Controller
-            control={control}
-            name="description"
-            render={({
-              field: { onChange, onBlur, value },
-            }) => (
-              <Textarea
-                value={value}
-                label={translation.description}
-                optional
-                onChange={onChange}
-                onBlur={onBlur}
-              />
-            )}
-          />
-        </Col>
-        <Col cols={12} mb={5}>
-          <Controller
-            control={control}
-            name="photo"
-            render={({
-              field: { onChange, value },
-            }) => (
-              <Photo photo={value} onChangePhoto={onChange} />
-            )}
-          />
-        </Col>
-      </Row>
-      <FormButtons
-        disabledSave={disabled}
-        onClickBack={isEditMode ? undefined : handleShowPetsSelector}
-      />
+      <GridWrap gap={4}>
+        <Controller
+          control={control}
+          name="name"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.name}
+              errorMessage={errors.name?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="breed"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              value={value}
+              label={translation.breed}
+              errorMessage={errors.breed?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="dateOfBirth"
+          rules={REQUIRED}
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Input
+              type="date"
+              value={value}
+              label={translation.dateOfBirth}
+              errorMessage={errors.dateOfBirth?.message}
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="description"
+          render={({
+            field: { onChange, onBlur, value },
+          }) => (
+            <Textarea
+              value={value}
+              label={translation.description}
+              optional
+              onChange={onChange}
+              onBlur={onBlur}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="photo"
+          render={({
+            field: { onChange, value },
+          }) => (
+            <Photo photo={value} onChangePhoto={onChange} />
+          )}
+        />
+        <FormButtons
+          disabledSave={isSubmitting}
+          onClickBack={isUpdateMode ? undefined : handleShowPetsSelector}
+        />
+      </GridWrap>
     </form>
   );
 };

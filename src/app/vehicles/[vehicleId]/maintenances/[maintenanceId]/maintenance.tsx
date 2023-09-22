@@ -4,25 +4,15 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IMaintenance, SCHEMAS, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { ACTIONS, IMaintenance, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar } from "@/contexts";
+import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { MaintenancesForm } from "../../maintenances-form";
 import { useDidUpdate } from "@/hooks";
 
 const abortController = new AbortController();
-
-const findMaintenanceById = async (id: number) => {
-  const { data } = await supabaseClient
-    .from(TABLES.MAINTENANCES)
-    .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
-    .match({ id })
-    .abortSignal(abortController.signal)
-    .single();
-  return data;
-};
 
 interface IMaintenanceProps {
   serverMaintenance: IMaintenance;
@@ -47,6 +37,7 @@ export const Maintenance: FC<IMaintenanceProps> = ({
   const { showConfirmationModal } = useModal();
   const { showSnackbar } = useSnackbar();
   const { currency, lengthUnit } = useMeasure();
+  const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setMaintenance(serverMaintenance), [serverMaintenance]);
 
@@ -67,8 +58,19 @@ export const Maintenance: FC<IMaintenanceProps> = ({
 
     return () => {
       supabaseClient.removeChannel(channel);
-    }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const findMaintenanceById = async (id: number) => {
+    const { data } = await supabaseClient
+      .from(TABLES.MAINTENANCES)
+      .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+      .match({ id })
+      .abortSignal(abortController.signal)
+      .single();
+    return data;
+  };
 
   const handleShowFormInEditMode = () => {
     const defaultValues = {
@@ -147,14 +149,14 @@ export const Maintenance: FC<IMaintenanceProps> = ({
           <IconButton
             iconName="trash"
             variant="error"
-            height={22}
-            width={22}
+            height={30}
+            width={30}
             onClick={handleShowDeleteConfirmation}
           />
           <IconButton
             iconName="pencil"
-            height={25}
-            width={25}
+            height={30}
+            width={30}
             onClick={handleShowFormInEditMode}
           />
         </FlexWrap>

@@ -1,5 +1,6 @@
 "use client";
 
+export * from "./badge";
 export * from "./box";
 export * from "./browse-files";
 export * from "./button";
@@ -12,6 +13,7 @@ export * from "./container";
 export * from "./drawer";
 export * from "./divider";
 export * from "./flex-wrap";
+export * from "./grid-wrap";
 export * from "./global-styles";
 export * from "./icon";
 export * from "./icon-button";

@@ -57,7 +57,7 @@ export const Textarea: FC<ITextareaProps> = ({
   const { translation } = useLanguage();
 
   return (
-    <FlexWrap direction="column" gap={1}>
+    <FlexWrap direction="column" gap={2}>
       {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
       <StyledTextarea
         rows={rows}

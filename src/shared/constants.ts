@@ -56,6 +56,7 @@ export const ICON_BY_TYPE: Record<string, IconName> = {
   [ENGLISH.rabbit]: "rabbit",
   [ENGLISH.hamster]: "hamster",
   [ENGLISH.pig]: "pig",
+  [ENGLISH.horse]: "horse",
   // Procedure types
   [ENGLISH.vaccine]: "syringe",
   [ENGLISH.dewormer]: "tick",
@@ -72,5 +73,9 @@ export enum ROUTES {
   MAINTENANCES = "/maintenances",
   PETS = "/pets",
   PROCEDURES = "/procedures",
+  PROFILE = "/profile",
+  REMINDERS = "/reminders",
+  SIGN_IN = "/sign-in",
+  SIGN_UP = "/sign-up",
   VEHICLES = "/vehicles",
 }

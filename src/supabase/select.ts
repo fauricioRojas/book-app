@@ -52,6 +52,18 @@ export enum SELECT {
       nextDate
     )
   `,
+  PROCEDURE_REMINDER = `
+    id,
+    pets (
+      id,
+      name
+    ),
+    notes (
+      id,
+      type
+    ),
+    nextDate
+  `,
   FULL_PROCEDURE = `
     id,
     pets (

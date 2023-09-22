@@ -29,27 +29,27 @@ const StyledCol = styled.div<IStyledColProps>`
   padding-right: ${({ theme }) => theme.gutters.size4};
   width: ${({ $cols }) => $cols ? `${COL_WIDTH * $cols}%` : '100%'};
   
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     flex: ${({ $sm }) => $sm ? `0 0 ${COL_WIDTH * $sm}%` : undefined};
     margin-left: ${({ $offsetSm }) => $offsetSm ? `${COL_WIDTH * $offsetSm}%` : undefined};
     width: ${({ $sm }) => $sm ? `${COL_WIDTH * $sm}%` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     flex: ${({ $md }) => $md ? `0 0 ${COL_WIDTH * $md}%` : undefined};
     margin-left: ${({ $offsetMd }) => $offsetMd ? `${COL_WIDTH * $offsetMd}%` : undefined};
     width: ${({ $md }) => $md ? `${COL_WIDTH * $md}%` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     flex: ${({ $lg }) => $lg ? `0 0 ${COL_WIDTH * $lg}%` : undefined};
     margin-left: ${({ $offsetLg}) => $offsetLg ? `${COL_WIDTH * $offsetLg}%` : undefined};
     width: ${({ $lg }) => $lg ? `${COL_WIDTH * $lg}%` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     flex: ${({ $xl }) => $xl ? `0 0 ${COL_WIDTH * $xl}%` : undefined};
     margin-left: ${({ $offsetXl }) => $offsetXl ? `${COL_WIDTH * $offsetXl}%` : undefined};
     width: ${({ $xl }) => $xl ? `${COL_WIDTH * $xl}%` : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     flex: ${({ $xxl }) => $xxl ? `0 0 ${COL_WIDTH * $xxl}%` : undefined};
     margin-left: ${({ $offsetXxl }) => $offsetXxl ? `${COL_WIDTH * $offsetXxl}%` : undefined};
     width: ${({ $xxl }) => $xxl ? `${COL_WIDTH * $xxl}%` : undefined};

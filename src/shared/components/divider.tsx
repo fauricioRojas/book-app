@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const StyledDivider = styled.hr`
-  background-color: ${({ theme }) => theme.colors.border};
-  border: none;
-  height: 1px;
-  margin: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size0}`};
+  border-color: ${({ theme }) => theme.colors.border};
+  border-style: solid;
+  border-width: 0px 0px thin;
+  flex-shrink: 0;
+  margin: ${({ theme }) => theme.gutters.size0};
   width: 100%;
 `;
 

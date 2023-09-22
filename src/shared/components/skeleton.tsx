@@ -34,25 +34,26 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   animation-iteration-count: infinite;
   animation-name: ${skeletonAnimation};
   animation-timing-function: ease;
-  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.secondary} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.secondary} 63%)`};
+  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.card} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.card} 63%)`};
   background-size: 400% 100%;
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: ${({ $widthMd }) => $widthMd ? WIDTH_MAPPER[$widthMd] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     width: ${({ $widthLg }) => $widthLg ? WIDTH_MAPPER[$widthLg] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     width: ${({ $widthXl }) => $widthXl ? WIDTH_MAPPER[$widthXl] : undefined};
   }
-  @media (min-width: ${({ theme }) => theme.breakpoints.xxl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     width: ${({ $widthXxl }) => $widthXxl ? WIDTH_MAPPER[$widthXxl] : undefined};
   }
 `

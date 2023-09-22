@@ -31,7 +31,7 @@ const StyledSnackbar = styled.div<IStyledSkeletonProps>`
   bottom: ${({ theme }) => theme.gutters.size8};
   align-items: center;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
-  background-color: ${({ theme }) => theme.colors.secondary800};
+  background-color: ${({ theme }) => theme.colors.card};
   color: ${({ theme }) => theme.colors.primaryText};
   max-width: 320px;
   width: auto;

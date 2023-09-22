@@ -22,14 +22,14 @@ const StyledIconButton = styled.button<IStyledIconButtonProps>`
     pointer-events: none;
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     border: 2px solid transparent;
     border-radius: 50%;
     padding: ${({ theme }) => theme.gutters.size1};
     transition: background-color .15s ease-in-out;
 
     &:focus, &:hover {
-      background-color: ${({ theme }) => theme.colors.secondary800};
+      background-color: ${({ theme }) => theme.colors.secondary};
     }
   }
 `

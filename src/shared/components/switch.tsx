@@ -1,81 +1,64 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import { Typography } from '.';
 import { Size } from '@/shared/types';
 
 interface IStyledSwitchProps {
   $mb?: Size;
 }
 
-const StyledSwitch = styled.div<IStyledSwitchProps>`
-  display: flex;
-  gap: ${({ theme }) => theme.gutters.size2};
+const StyledSwitch = styled.label<IStyledSwitchProps>`
+  cursor: pointer;
+  display: inline-block;
+  height: 26px;
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  width: 46px;
+  
+  input {
+    display: none;
 
-  .switch {
-    display: inline-block;
-    height: 18px;
-    position: relative;
-    width: 42px;
-  
-    input { 
-      height: 0;
-      opacity: 0;
-      width: 0;
-  
-      &:checked + .slider {
-        background-color: ${({ theme }) => theme.colors.primary100};
-      }
-  
-      &:checked + .slider:before {
-        transform: translateX(18px);
-        -webkit-transform: translateX(18px);
-        -ms-transform: translateX(18px);
-      }
+    &:checked + span {
+      background-color: ${({ theme }) => theme.colors.primary};
     }
-  
-    .slider {
-      background-color: ${({ theme }) => theme.colors.secondary};
-      border-radius: 9px;
-      bottom: 0;
-      cursor: pointer;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      transition: .4s;
-      -webkit-transition: .4s;
-      
-      &:before {
-        background-color: ${({ theme }) => theme.colors.primary};
-        border-radius: 50%;
-        bottom: -3px;
-        content: "";
-        height: 24px;
-        left: 0px;
-        position: absolute;
-        transition: .4s;
-        width: 24px;
-        -webkit-transition: .4s;
-      }
+
+    &:checked + span:after {
+      transform: translate3d(22px, 3px, 0);
     }
   }
-`
+
+  span {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    border-radius: 23px;
+    display: inline-block;
+    position: relative;
+    height: 26px;
+    vertical-align: text-bottom;
+    width: 46px;
+
+    &:after {
+      background-color: ${({ theme }) => theme.colors.white};
+      border-radius: 11px;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+      content: "";
+      height: 20px;
+      left: 0;
+      position: absolute;
+      transform: translate3d(4px, 3px, 0);
+      transition: all 0.2s ease-in-out;
+      width: 20px;
+    }
+  }
+`;
 
 interface ISwitchProps {
   checked: boolean;
-  onChange: () => void;
   mb?: Size;
-  showText?: boolean
+  onChange: () => void;
 }
 
-export const Switch: FC<ISwitchProps> = ({ checked, mb, showText, onChange }) => (
+export const Switch: FC<ISwitchProps> = ({ checked, mb, onChange }) => (
   <StyledSwitch $mb={mb}>
-    <label className="switch">
-      <input type="checkbox" checked={checked} onChange={onChange} />
-      <span className="slider" />
-    </label>
-    {showText && <Typography variant="label">{checked ? 'Yes' : 'No'}</Typography>}
+    <input type="checkbox" checked={checked} onChange={onChange} />
+    <span />
   </StyledSwitch>
 );

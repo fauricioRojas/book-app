@@ -29,4 +29,12 @@ export const MeasureContext = createContext<IMeasureContext>({
   changeWeightUnit: () => undefined,
 });
 
-export const useMeasure = () => useContext(MeasureContext);
+export const useMeasure = () => {
+  const context = useContext(MeasureContext);
+
+  if (!context) {
+    throw new Error("useMeasure must be used inside MeasureProvider");
+  }
+
+  return context;
+};

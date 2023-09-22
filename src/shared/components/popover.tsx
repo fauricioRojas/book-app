@@ -11,7 +11,7 @@ interface IStyledArrowProps {
 }
 
 const StyledPopover = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.card};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   bottom: 0;
@@ -40,13 +40,13 @@ const StyledArrow = styled.div<IStyledArrowProps>`
   }
 
   &::after {
-    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.secondary800 : theme.colors.secondary};
+    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.secondary : theme.colors.card};
     top: 1px;
   }
 `;
 
 const StyledHeader = styled.div`
-  background-color: ${({ theme }) => theme.colors.secondary800};
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;

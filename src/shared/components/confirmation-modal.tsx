@@ -67,7 +67,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   animation-duration: .3s;
   animation-name: ${slideIn};
   background-color: ${({ theme }) => theme.colors.neutral};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => `${theme.gutters.borderRadius} ${theme.gutters.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -78,12 +78,12 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
-    animation-duration: .3s;
     animation-name: ${slideOut};
   `};
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     animation-name: ${fadeIn};
+    border-radius: ${({ theme }) => theme.gutters.borderRadius};
     bottom: auto;
     gap: ${({ theme }) => theme.gutters.size6};
     left: 50%;
@@ -149,10 +149,17 @@ export const ConfirmationModal: FC<IConfirmationModalProps> = ({
           {title}
         </Typography>
         <FlexWrap gap={4}>
-          <Button variant="outline-secondary" onClick={handleCloseConfirmationModal}>
+          <Button
+            variant="outline-secondary"
+            onClick={handleCloseConfirmationModal}
+          >
             {translation.cancel}
           </Button>
-          <Button variant="error" disabled={disabled} onClick={handleClick}>
+          <Button
+            variant="error"
+            disabled={disabled}
+            onClick={handleClick}
+          >
             {buttonText}
           </Button>
         </FlexWrap>

@@ -19,7 +19,7 @@ const commonColors = {
   primary100: "#A4B6F1",
   primary200: "#7194E9",
   primary: "#2474E1",
-  primary800: "#2656A4",
+  primary800: "#005ce6",
   primary900: "#213A6A",
   white: "#FFF",
   black: "#000",
@@ -32,17 +32,18 @@ const commonColors = {
 
 export const lightColors: IColors = {
   ...commonColors,
-  secondary100: "#6D6E6F",
-  secondary200: "#A8AAAC",
-  secondary: "#E8EAED",
-  secondary800: "#EEEFF1",
-  secondary900: "#F3F4F6",
+  secondary100: "#F3F4F6",
+  secondary200: "#EEEFF1",
+  secondary: "#AFB3BB",
+  secondary800: "#A8AAAC",
+  secondary900: "#6D6E6F",
   neutral: "#FEFEFE",
   neutralTransparent: "rgba(255,255,255,0.9)",
   primaryText: "#292A36",
   secondaryText: "#444444",
-  skeleton: "#ADB5BD",
+  skeleton: "#DBDDDF",
   border: "rgba(0, 0, 0, 0.23)",
+  card: "#F2F2F4",
 };
 
 export const darkColors: IColors = {
@@ -52,12 +53,13 @@ export const darkColors: IColors = {
   secondary: "#3C4043",
   secondary800: "#2E3133",
   secondary900: "#212324",
-  neutral: "#1A1A1A",
+  neutral: "#0D0D10",
   neutralTransparent: "rgba(16, 20, 24, 0.8)",
   primaryText: "#E4E6EB",
   secondaryText: "#B0B3B8",
-  skeleton: "#1F1E1E",
+  skeleton: "#1E1B1B",
   border: "rgba(255, 255, 255, 0.23)",
+  card: "#211F2A",
 };
 
 const fontWeights: IFontWeights = {
@@ -68,7 +70,7 @@ const fontWeights: IFontWeights = {
 };
 
 const gutters: IGutters = {
-  borderRadius: "4px",
+  borderRadius: "6px",
   size0: 0,
   size1: "0.25rem",
   size2: "0.5rem",

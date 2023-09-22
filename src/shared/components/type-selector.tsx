@@ -1,20 +1,16 @@
 import { ChangeEvent, FC, useState } from "react";
-import styled, { DefaultTheme, useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
-import { FlexWrap, Icon, Input, Typography } from "@/shared/components";
+import { FlexWrap, GridWrap, Icon, Input, Typography } from "@/shared/components";
 import { ITypeSelectorOption } from "@/shared/types";
 import { useLanguage } from "@/contexts";
 import { ICON_BY_TYPE } from "@/shared/constants";
-
-const getWidth = ({ gutters }: DefaultTheme, cols: number) =>
-  `calc((100% / ${cols}) - ${gutters.size2} + (${gutters.size2} / ${cols}))`;
 
 const StyledTypeSelectorOption = styled.div`
   align-items: center;
   background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
-  color: ${({ theme }) => theme.colors.primary};
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -22,18 +18,15 @@ const StyledTypeSelectorOption = styled.div`
   height: 6.5rem;
   justify-content: center;
   padding: ${({ theme }) => theme.gutters.size4};
-  width: ${({ theme }) => getWidth(theme, 2)};
+  transition: background-color .2s ease-in-out;
+  width: 100%;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary800};
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     height: 8rem;
-    width: ${({ theme }) => getWidth(theme, 3)};
-  }
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: ${({ theme }) => getWidth(theme, 2)};
   }
 `;
 
@@ -72,9 +65,15 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
           onChange={handleChangeSearchTerm}
         />
       )}
-      <FlexWrap gap={2} wrap="wrap">
-        {filteredTypes.length
-          ? filteredTypes.map((type) => (
+      {filteredTypes.length
+        ? (
+          <GridWrap
+            cols={6}
+            sm={4}
+            md={6}
+            gap={2}
+          >
+            {filteredTypes.map((type) => (
               <StyledTypeSelectorOption
                 key={type.id}
                 onClick={() => onSelect(type)}
@@ -95,17 +94,16 @@ export const TypeSelector: FC<ITypeSelectorProps> = ({
                   {type.label}
                 </Typography>
               </StyledTypeSelectorOption>
-            ))
-          : (
-            <Typography
-              variant="label"
-              color="secondary-text"
-            >
-              {translation.noResultsFound}
-            </Typography>
-          )
-      }
-      </FlexWrap>
+            ))}
+          </GridWrap>
+        ) : (
+          <Typography
+            variant="label"
+            color="secondary-text"
+          >
+            {translation.noResultsFound}
+          </Typography>
+        )}
     </FlexWrap>
   );
 };

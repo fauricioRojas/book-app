@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts';
 import { Box, FlexWrap, Icon, IconName, Typography } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
-type Type = 'text' | 'number' | 'date';
+type Type = 'text' | 'password' | 'number' | 'date';
 
 interface IInputProps {
   value?: any;
@@ -45,9 +45,30 @@ const StyledInput = styled.input<IStyledInputProps>`
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   width: 100%;
 
+  &[type="date"] {
+    &::-webkit-date-and-time-value {
+      text-align: left;
+    }
+    &::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
+    &:after {
+      content: '📅';
+      display: block;
+      font-size: 1.15rem;
+      height: 25px;
+      position: absolute;
+      right: 7px;
+      top: 6px;
+      width: 25px;
+      z-index: -1;
+    }
+  }
+
   &:hover {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
   }
+
   &:focus {
     border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;
@@ -80,7 +101,7 @@ export const Input: FC<IInputProps> = ({
   const { translation } = useLanguage();
 
   return (
-    <FlexWrap direction="column" gap={1}>
+    <FlexWrap direction="column" gap={2}>
       {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
       <Box position="relative">
         {leftIconName && (

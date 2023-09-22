@@ -1,7 +1,9 @@
+import { cookies } from 'next/headers';
 import { notFound } from "next/navigation";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { IVehicle, SELECT, TABLES, supabaseClient } from "@/supabase";
+import { IVehicle, SELECT, TABLES } from "@/supabase";
 import { Vehicle } from "./vehicle";
 
 const abortController = new AbortController();
@@ -13,7 +15,8 @@ interface IVehiclePageProps {
 }
 
 const VehiclePage: FC<IVehiclePageProps> = async ({ params: { vehicleId } }) => {
-  const { data: vehicle } = await supabaseClient
+  const supabase = createServerComponentClient({ cookies });
+  const { data: vehicle } = await supabase
     .from(TABLES.VEHICLES)
     .select<string, IVehicle>(SELECT.FULL_VEHICLE)
     .match({ id: vehicleId })

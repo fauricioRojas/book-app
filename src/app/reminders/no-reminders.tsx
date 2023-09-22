@@ -3,16 +3,15 @@
 import { useLanguage } from "@/contexts";
 import { Typography } from "@/shared/components";
 
-export const SettingsHeader = () => {
+export const NoReminders = () => {
   const { translation } = useLanguage();
 
   return (
     <Typography
-      variant="h1"
-      fontWeight="bold"
-      mb={8}
+      variant="h5"
+      color="secondary-text"
     >
-      {translation.settings}
+      {translation.noReminders}
     </Typography>
   );
 };

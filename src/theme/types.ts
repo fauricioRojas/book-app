@@ -30,6 +30,7 @@ export interface IColors {
   warning: string;
   skeleton: string;
   border: string;
+  card: string;
 }
 
 export interface IFontWeights {

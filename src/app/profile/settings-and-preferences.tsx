@@ -1,26 +1,26 @@
-import { Divider, FlexWrap } from "@/shared/components";
+'use client';
+
+import { useLanguage } from "@/contexts";
+import { FlexWrap, Typography } from "@/shared/components";
 import { CurrencySelector } from "./currency-selector";
 import { LanguageSelector } from "./language-selector";
 import { LengthSelector } from "./length-selector";
 import { ThemeSelector } from "./theme-selector";
 import { WeightSelector } from "./weight-selector";
-import { SettingsHeader } from "./settings-header";
 
-const Settings = () => (
-  <main>
-    <SettingsHeader />
+export const SettingsAndPreferences = () => {
+  const { translation } = useLanguage();
+
+  return (
     <FlexWrap direction="column" gap={2}>
+      <Typography variant="h6" fontWeight="bold" mb={2}>
+        {translation.settingsAndPreferences}
+      </Typography>
       <ThemeSelector />
-      <Divider />
       <LanguageSelector />
-      <Divider />
       <CurrencySelector />
-      <Divider />
       <LengthSelector />
-      <Divider />
       <WeightSelector />
     </FlexWrap>
-  </main>
-);
-
-export default Settings;
+  );
+};
