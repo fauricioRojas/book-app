@@ -43,9 +43,9 @@ export const Navbar = () => {
         href: ROUTES.PETS,
       },
       {
-        iconName: 'settings',
-        text: translation.settings,
-        href: ROUTES.SETTINGS,
+        iconName: 'profile',
+        text: translation.profile,
+        href: ROUTES.PROFILE,
       },
     ];
     return items;

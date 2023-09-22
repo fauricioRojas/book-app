@@ -32,7 +32,6 @@ const StyledSwitch = styled.label<IStyledSwitchProps>`
     display: inline-block;
     position: relative;
     height: 26px;
-    margin-right: 0.5rem;
     vertical-align: text-bottom;
     width: 46px;
 

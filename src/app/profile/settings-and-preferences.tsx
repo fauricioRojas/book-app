@@ -8,13 +8,13 @@ import { LengthSelector } from "./length-selector";
 import { ThemeSelector } from "./theme-selector";
 import { WeightSelector } from "./weight-selector";
 
-export const GeneralSettings = () => {
+export const SettingsAndPreferences = () => {
   const { translation } = useLanguage();
 
   return (
     <FlexWrap direction="column" gap={2}>
       <Typography variant="h6" fontWeight="bold" mb={2}>
-        {translation.generalSettings}
+        {translation.settingsAndPreferences}
       </Typography>
       <ThemeSelector />
       <LanguageSelector />

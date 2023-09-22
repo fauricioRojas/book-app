@@ -5,8 +5,8 @@ type Language = { [K in LanguageType]: string };
 export interface ILanguageTranslation extends Language {
   vehicles: string;
   pets: string;
-  settings: string;
-  generalSettings: string;
+  profile: string;
+  settingsAndPreferences: string;
   theme: string;
   language: string;
   cost: string;

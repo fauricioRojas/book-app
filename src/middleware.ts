@@ -14,8 +14,8 @@ export async function middleware(req: NextRequest) {
   const isValidRoute =
     pathname === ROUTES.HOME ||
     pathname.startsWith(ROUTES.PETS) ||
+    pathname === ROUTES.PROFILE ||
     pathname === ROUTES.REMINDERS ||
-    pathname === ROUTES.SETTINGS ||
     pathname.startsWith(ROUTES.VEHICLES);
 
   if (!session && isValidRoute) {

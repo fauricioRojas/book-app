@@ -66,6 +66,7 @@ import { PetrolPumpIcon } from './petrol-pump-icon';
 import { PickupIcon } from './pickup-icon';
 import { PigIcon } from './pig-icon';
 import { PillsBottleIcon } from './pills-bottle-icon';
+import { Profilecon } from './profile-icon';
 import { RabbitIcon } from './rabbit-icon';
 import { RadiatorIcon } from './radiator-icon';
 import { RimIcon } from './rim-icon';
@@ -168,6 +169,7 @@ export type IconName =
   | 'pickup'
   | 'pig'
   | 'pills-bottle'
+  | 'profile'
   | 'rabbit'
   | 'radiator'
   | 'rim'
@@ -262,6 +264,7 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   pickup: PickupIcon,
   pig: PigIcon,
   'pills-bottle': PillsBottleIcon,
+  profile: Profilecon,
   rabbit: RabbitIcon,
   radiator: RadiatorIcon,
   rim: RimIcon,

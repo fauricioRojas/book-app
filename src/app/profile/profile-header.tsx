@@ -3,7 +3,7 @@
 import { useLanguage } from "@/contexts";
 import { Typography } from "@/shared/components";
 
-export const SettingsHeader = () => {
+export const ProfileHeader = () => {
   const { translation } = useLanguage();
 
   return (
@@ -12,7 +12,7 @@ export const SettingsHeader = () => {
       fontWeight="bold"
       mb={8}
     >
-      {translation.settings}
+      {translation.profile}
     </Typography>
   );
 };
