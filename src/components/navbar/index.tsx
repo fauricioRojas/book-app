@@ -14,8 +14,7 @@ const StyledNavbar = styled.nav`
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   bottom: ${({ theme }) => theme.gutters.size0};
   display: flex;
-  height: 58px;
-  padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
+  height: 50px;
   position: fixed;
   transition: background-color .3s;
   width: 100%;

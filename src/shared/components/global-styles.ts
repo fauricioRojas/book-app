@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
     padding-top: ${({ theme }) => theme.gutters.size4};
     padding-bottom: ${({ theme }) =>
-      `calc(${theme.gutters.size4} + 58px)`}; /* Based on navbar height */
+      `calc(${theme.gutters.size4} + 50px)`}; /* Based on navbar height */
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */

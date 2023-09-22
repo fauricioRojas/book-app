@@ -17,13 +17,20 @@ import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
 
 const StyledSignInForm = styled(FlexWrap)`
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 100%;
-  /* height: calc(100vh - 100px); */
 `;
 const StyledForm = styled.form`
   width: 100%;
 `;
 const StyledFlexWrap = styled(FlexWrap)`
+  width: 90%;
+
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: 500px;
   }
@@ -76,22 +83,24 @@ export const SignInForm = () => {
     >
       <Typography variant="h1" fontWeight="bold">{translation.signIn}</Typography>
       <StyledFlexWrap direction="column" align="center" gap={6}>
-        <Button
-          variant="secondary"
-          block
-          rightIconName="github"
-          onClick={signInWithGithub}
-        >
-          {translation.signInWithGithub}
-        </Button>
-        <Button
-          variant="secondary"
-          block
-          rightIconName="facebook"
-          onClick={signInWithFacebook}
-        >
-          {translation.signInWithFacebook}
-        </Button>
+        <GridWrap gap={3}>
+          <Button
+            variant="secondary"
+            block
+            rightIconName="github"
+            onClick={signInWithGithub}
+          >
+            {translation.signInWithGithub}
+          </Button>
+          <Button
+            variant="secondary"
+            block
+            rightIconName="facebook"
+            onClick={signInWithFacebook}
+          >
+            {translation.signInWithFacebook}
+          </Button>
+        </GridWrap>
         <FlexWrap align="center" justify="center" gap={3}>
           <Divider />
           <Typography variant="h6">{translation.or}</Typography>

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
 import {
   Button,
-  Divider,
   FlexWrap,
   GridWrap,
   Input,
@@ -17,13 +16,20 @@ import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
 
 const StyledSignUpForm = styled(FlexWrap)`
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
   width: 100%;
-  /* height: calc(100vh - 100px); */
 `;
 const StyledForm = styled.form`
   width: 100%;
 `;
 const StyledFlexWrap = styled(FlexWrap)`
+  width: 90%;
+
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     width: 500px;
   }
