@@ -6,7 +6,7 @@ import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { AuthSession, User } from "@supabase/supabase-js";
 import { ROUTES } from "@/shared/constants";
 import { SupabaseAuthContext } from ".";
-import { useSnackbar, useSupabase } from "..";
+import { useSupabase } from "..";
 
 interface ISupabaseAuthProviderProps extends PropsWithChildren {
   serverSession?: AuthSession | null;
@@ -17,7 +17,6 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
   children,
 }) => {
   const { supabaseClient } = useSupabase();
-  const { showSnackbar } = useSnackbar();
   const router = useRouter();
   const [user, setUser] = useState<User | undefined>(undefined);
 
@@ -32,11 +31,21 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
   };
 
   const signInWithGithub = async () => {
-    await supabaseClient.auth.signInWithOAuth({ provider: 'github' });
+    await supabaseClient.auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
   };
 
   const signInWithFacebook = async () => {
-    await supabaseClient.auth.signInWithOAuth({ provider: 'facebook' });
+    await supabaseClient.auth.signInWithOAuth({
+      provider: 'facebook',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
   }
 
   const signInWithEmail = async (email: string, password: string) => {
@@ -56,9 +65,9 @@ export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
     const { error } = await supabaseClient.auth.signUp({
       email,
       password,
-      // options: {
-      //   emailRedirectTo: window.location.origin,
-      // },
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
     });
 
     if (error) {

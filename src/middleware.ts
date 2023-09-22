@@ -23,7 +23,12 @@ export async function middleware(req: NextRequest) {
     url.pathname = ROUTES.SIGN_IN;
     return NextResponse.redirect(url);
   }
-  if (session && (pathname === ROUTES.SIGN_IN || pathname === ROUTES.SIGN_UP)) {
+  if (
+    session &&
+    (pathname === ROUTES.SIGN_IN ||
+      pathname === ROUTES.SIGN_UP ||
+      pathname === ROUTES.HOME)
+  ) {
     const url = new URL(req.url);
     url.pathname = ROUTES.REMINDERS;
     return NextResponse.redirect(url);
