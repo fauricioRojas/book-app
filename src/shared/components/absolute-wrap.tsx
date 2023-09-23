@@ -22,10 +22,12 @@ const StyledAbsoluteWrap = styled.div<IStyledAbsoluteWrapProps>`
   justify-content: center;
   left: 0;
   margin: auto;
+  padding-left: ${({ theme }) => theme.gutters.size4};
+  padding-right: ${({ theme }) => theme.gutters.size4};
   position: absolute;
   right: 0;
   top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '-50px' : 0};
-  width: 90%;
+  width: 100%;
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
@@ -35,7 +37,6 @@ const StyledAbsoluteWrap = styled.div<IStyledAbsoluteWrapProps>`
   }
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
-    width: 100%;
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
