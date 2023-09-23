@@ -206,31 +206,31 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
       </FlexWrap>
       <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.plateNumber}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.plateNumber}</Typography>
           <Typography variant="label" color="secondary-text">{plateNumber}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.model}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.model}</Typography>
           <Typography variant="label" color="secondary-text">{model}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.dateOfPurchase}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.dateOfPurchase}</Typography>
           <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.maintenances}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.maintenances}</Typography>
           <MaintenancesList maintenances={maintenances} />
         </FlexWrap>
       </FlexWrap>

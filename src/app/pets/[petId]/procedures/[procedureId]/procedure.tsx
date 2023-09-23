@@ -5,7 +5,7 @@ import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Typography } from "@/shared/components";
+import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Skeleton, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
@@ -164,25 +164,25 @@ export const Procedure: FC<IProcedureProps> = ({
       <FlexWrap direction="column" gap={4}>
         <FlexWrap gap={4}>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.date}</Typography>
             <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
           </FlexWrap>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.cost}</Typography>
             <Typography variant="label" color="secondary-text">{formatMoney(cost, currency)}</Typography>
           </FlexWrap>
         </FlexWrap>
         <FlexWrap gap={4}>
           {weight && (
             <FlexWrap direction="column" basis="50%" gap={2}>
-              <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
+              <Typography variant="h5" fontWeight="bold">{translation.weight}</Typography>
               <Typography variant="label" color="secondary-text">{formatWeight(weight, weightUnit)}</Typography>
             </FlexWrap>
           )}
           {nextDate && (
             <FlexWrap direction="column" basis="50%" gap={2}>
               <FlexWrap align="center" gap={1}>
-                <Typography variant="h6" fontWeight="bold">{translation.nextDate}</Typography>
+                <Typography variant="h5" fontWeight="bold">{translation.nextDate}</Typography>
                 <Popover description={translation.nextDateHint} />
               </FlexWrap>
               <Typography variant="label" color="secondary-text">{formatDate(nextDate)}</Typography>
@@ -191,13 +191,13 @@ export const Procedure: FC<IProcedureProps> = ({
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}

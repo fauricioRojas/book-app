@@ -203,27 +203,27 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.breed}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.breed}</Typography>
           <Typography variant="label" color="secondary-text">{breed}</Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.dateOfBirth}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.dateOfBirth}</Typography>
           <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h6" fontWeight="bold">{translation.procedures}</Typography>
+          <Typography variant="h5" fontWeight="bold">{translation.procedures}</Typography>
           <ProceduresList procedures={procedures} />
         </FlexWrap>
       </FlexWrap>

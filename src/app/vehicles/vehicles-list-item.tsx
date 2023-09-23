@@ -31,7 +31,7 @@ export const VehiclesListItem: FC<IVehiclesListItemProps> = ({
             />
           </FlexWrap>
           <FlexWrap direction="column" gap={1}>
-            <Typography variant="h6" fontWeight="bold">{brand}</Typography>
+            <Typography variant="h5" fontWeight="bold">{brand}</Typography>
             <Typography variant="label">{plateNumber}</Typography>
           </FlexWrap>
         </FlexWrap>

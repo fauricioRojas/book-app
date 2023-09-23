@@ -33,7 +33,7 @@ export const PetsListItem: FC<IPetsListItemProps> = ({
             />
           </FlexWrap>
           <FlexWrap direction="column" gap={1}>
-            <Typography variant="h6" fontWeight="bold">{name}</Typography>
+            <Typography variant="h5" fontWeight="bold">{name}</Typography>
             <Typography variant="label">{breed}</Typography>
           </FlexWrap>
         </FlexWrap>

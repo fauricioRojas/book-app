@@ -9,8 +9,8 @@ import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/c
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
-import { MaintenancesForm } from "../../maintenances-form";
 import { useDidUpdate } from "@/hooks";
+import { MaintenancesForm } from "../../maintenances-form";
 
 const abortController = new AbortController();
 
@@ -164,29 +164,29 @@ export const Maintenance: FC<IMaintenanceProps> = ({
       <FlexWrap direction="column" gap={4}>
         <FlexWrap gap={4}>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.date}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.date}</Typography>
             <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
           </FlexWrap>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.cost}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.cost}</Typography>
             <Typography variant="label" color="secondary-text">{formatMoney(cost, currency)}</Typography>
           </FlexWrap>
         </FlexWrap>
         {kilometers && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.weight}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.weight}</Typography>
             <Typography variant="label" color="secondary-text">{formatLength(kilometers, lengthUnit)}</Typography>
           </FlexWrap>
         )}
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
             <Typography variant="p" color="secondary-text">{notes.description}</Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h6" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
