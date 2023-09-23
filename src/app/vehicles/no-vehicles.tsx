@@ -1,18 +1,15 @@
 'use client';
 
-import styled from 'styled-components';
+import { useTheme } from 'styled-components';
 
-import { Button, FlexWrap, Typography } from '@/shared/components';
+import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
 import { useDrawer, useLanguage } from '@/contexts';
 import { VehiclesForm } from './vehicles-form';
-
-const StyledFlexWrap = styled(FlexWrap)`
-  padding-top: ${({ theme }) => theme.gutters.size8};
-`;
 
 export const NoVehicles = () => {
   const { translation } = useLanguage();
   const { showDrawer } = useDrawer();
+  const { colors } = useTheme();
 
   const handleShowVehicleForm = () => {
     showDrawer({
@@ -22,17 +19,25 @@ export const NoVehicles = () => {
   };
 
   return (
-    <StyledFlexWrap
-      direction="column"
-      gap={4}
-      align="center"
-      justify="center"
-    >
+    <AbsoluteWrap gap={4} isNavbarVisible>
+      <Icon
+        name="tire"
+        height={50}
+        width={50}
+        color={colors.secondary800}
+      />
       <Typography
-        variant="h5"
-        color="secondary-text"
+        variant="h3"
+        color="primary-text"
+        fontWeight="bold"
       >
         {translation.noVehicles}
+      </Typography>
+      <Typography
+        variant="label"
+        color="secondary-text"
+      >
+        {translation.noVehiclesMessage}
       </Typography>
       <Button
         variant="primary"
@@ -41,6 +46,6 @@ export const NoVehicles = () => {
       >
         {translation.addVehicle}
       </Button>
-    </StyledFlexWrap>
+    </AbsoluteWrap>
   );
 };

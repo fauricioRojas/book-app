@@ -28,9 +28,23 @@ export const ResourceNotFound: FC<IResourceNotFoundProps> = ({ page }) => {
 
   return (
     <AbsoluteWrap gap={4} isNavbarVisible>
-      <Icon name="sad-emoji" height={75} width={75} color={colors.secondary800} />
-      <FlexWrap direction="column" gap={3} align="center">
-        <Typography variant="h1" mb={4}>{title}</Typography>
+      <Icon
+        name="sad-emoji"
+        height={75}
+        width={75}
+        color={colors.secondary800}
+      />
+      <Typography
+        variant="h3"
+        color="primary-text"
+        fontWeight="bold"
+      >
+        {title}
+      </Typography>
+      <FlexWrap
+        direction="column"
+        gap={1}
+      >
         <Typography
           variant="p"
           color="secondary-text"
@@ -45,12 +59,22 @@ export const ResourceNotFound: FC<IResourceNotFoundProps> = ({ page }) => {
         >
           {translation.tryThesePages}
         </Typography>
-        <FlexWrap direction="column" align="center" gap={1}>
-          <Link href={ROUTES.PETS}>{translation.pets}</Link>
-          <Link href={ROUTES.REMINDERS}>{translation.reminders}</Link>
-          <Link href={ROUTES.VEHICLES}>{translation.vehicles}</Link>
-        </FlexWrap>
       </FlexWrap>
+      <FlexWrap
+        direction="column"
+        align="center"
+        gap={1}
+      >
+        <Link href={ROUTES.PETS}>
+          {translation.pets}
+        </Link>
+        <Link href={ROUTES.REMINDERS}>
+          {translation.reminders}
+        </Link>
+        <Link href={ROUTES.VEHICLES}>
+          {translation.vehicles}
+        </Link>
+        </FlexWrap>
     </AbsoluteWrap>
   );
 };

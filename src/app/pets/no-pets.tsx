@@ -1,18 +1,15 @@
 'use client';
 
-import styled from 'styled-components';
+import { useTheme } from 'styled-components';
 
-import { Button, FlexWrap, Typography } from '@/shared/components';
+import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
 import { useDrawer, useLanguage } from '@/contexts';
 import { PetsForm } from './pets-form';
-
-const StyledFlexWrap = styled(FlexWrap)`
-  padding-top: ${({ theme }) => theme.gutters.size8};
-`;
 
 export const NoPets = () => {
   const { translation } = useLanguage();
   const { showDrawer } = useDrawer();
+  const { colors } = useTheme();
 
   const handleShowPetForm = () => {
     showDrawer({
@@ -22,17 +19,25 @@ export const NoPets = () => {
   };
 
   return (
-    <StyledFlexWrap
-      direction="column"
-      gap={4}
-      align="center"
-      justify="center"
-    >
+    <AbsoluteWrap gap={4} isNavbarVisible>
+      <Icon
+        name="footprint"
+        height={50}
+        width={50}
+        color={colors.secondary800}
+      />
       <Typography
-        variant="h5"
-        color="secondary-text"
+        variant="h3"
+        color="primary-text"
+        fontWeight="bold"
       >
         {translation.noPets}
+      </Typography>
+      <Typography
+        variant="label"
+        color="secondary-text"
+      >
+        {translation.noPetsMessage}
       </Typography>
       <Button
         variant="primary"
@@ -41,6 +46,6 @@ export const NoPets = () => {
       >
         {translation.addPet}
       </Button>
-    </StyledFlexWrap>
+    </AbsoluteWrap>
   );
 };

@@ -1,4 +1,5 @@
 'use client';
+
 import { useTheme } from 'styled-components';
 
 import { useLanguage } from "@/contexts";
@@ -10,9 +11,14 @@ export const NoReminders = () => {
 
   return (
     <AbsoluteWrap gap={4} isNavbarVisible>
-      <Icon name="bell" height={50} width={50} color={colors.secondary800} />
+      <Icon
+        name="bell"
+        height={50}
+        width={50}
+        color={colors.secondary800}
+      />
       <Typography
-        variant="h5"
+        variant="h3"
         color="primary-text"
         fontWeight="bold"
       >
