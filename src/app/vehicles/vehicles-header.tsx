@@ -1,8 +1,9 @@
 'use client';
 
 import { useDrawer, useLanguage } from "@/contexts";
-import { FlexWrap, IconButton, Typography } from "@/shared/components";
+import { FlexWrap, Typography } from "@/shared/components";
 import { VehiclesForm } from "./vehicles-form";
+import { Actions } from "@/components";
 
 export const VehiclesHeader = () => {
   const { translation } = useLanguage();
@@ -23,12 +24,7 @@ export const VehiclesHeader = () => {
       >
         {translation.vehicles}
       </Typography>
-      <IconButton
-        iconName="add"
-        height={30}
-        width={30}
-        onClick={handleShowVehicleForm}
-      />
+      <Actions onAdd={handleShowVehicleForm} />
     </FlexWrap>
   );
 };

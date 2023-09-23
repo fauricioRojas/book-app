@@ -1,7 +1,8 @@
 'use client';
 
 import { useDrawer, useLanguage } from "@/contexts";
-import { FlexWrap, IconButton, Typography } from "@/shared/components";
+import { FlexWrap, Typography } from "@/shared/components";
+import { Actions } from "@/components";
 import { PetsForm } from "./pets-form";
 
 export const PetsHeader = () => {
@@ -23,12 +24,7 @@ export const PetsHeader = () => {
       >
         {translation.pets}
       </Typography>
-      <IconButton
-        iconName="add"
-        height={30}
-        width={30}
-        onClick={handleShowPetForm}
-      />
+      <Actions onAdd={handleShowPetForm} />
     </FlexWrap>
   );
 };

@@ -5,14 +5,15 @@ import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ACTIONS, IMaintenance, IVehicle, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, IconButton, PhotoPreview, Typography } from "@/shared/components";
+import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
+import { useDidUpdate } from "@/hooks";
+import { Actions } from "@/components";
 import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
 import { VehiclesForm } from "../vehicles-form";
-import { useDidUpdate } from "@/hooks";
 
 const abortController = new AbortController();
 
@@ -176,33 +177,17 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
             </Typography>
             <Icon
               name={ICON_BY_TYPE[notes.type]}
-              height={30}
-              width={30}
+              height={25}
+              width={25}
               color={colors.primaryText}
             />
           </FlexWrap>
         </FlexWrap>
-        <FlexWrap align="center" gap={2} gapMd={1}>
-          <IconButton
-            iconName="trash"
-            variant="error"
-            height={30}
-            width={30}
-            onClick={handleShowDeleteConfirmation}
-          />
-          <IconButton
-            iconName="pencil"
-            height={30}
-            width={30}
-            onClick={handleShowVehiclesFormInEditMode}
-          />
-          <IconButton
-            iconName="add"
-            height={30}
-            width={30}
-            onClick={handleShowMaintenancesForm}
-          />
-        </FlexWrap>
+        <Actions
+          onDelete={handleShowDeleteConfirmation}
+          onEdit={handleShowVehiclesFormInEditMode}
+          onAdd={handleShowMaintenancesForm}
+        />
       </FlexWrap>
       <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>

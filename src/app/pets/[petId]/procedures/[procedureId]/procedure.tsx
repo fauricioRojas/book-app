@@ -5,11 +5,12 @@ import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, IconButton, PhotoPreview, Popover, Skeleton, Typography } from "@/shared/components";
+import { FlexWrap, Icon, PhotoPreview, Popover, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
+import { Actions } from "@/components";
 import { ProceduresForm } from "../../procedures-form";
 
 const abortController = new AbortController();
@@ -145,21 +146,10 @@ export const Procedure: FC<IProcedureProps> = ({
             color={colors.primaryText}
           />
         </FlexWrap>
-        <FlexWrap align="center" gap={2} gapMd={1}>
-          <IconButton
-            iconName="trash"
-            variant="error"
-            height={30}
-            width={30}
-            onClick={handleShowDeleteConfirmation}
-          />
-          <IconButton
-            iconName="pencil"
-            height={30}
-            width={30}
-            onClick={handleShowFormInEditMode}
-          />
-        </FlexWrap>
+        <Actions
+          onDelete={handleShowDeleteConfirmation}
+          onEdit={handleShowFormInEditMode}
+        />
       </FlexWrap>
       <FlexWrap direction="column" gap={4}>
         <FlexWrap gap={4}>
