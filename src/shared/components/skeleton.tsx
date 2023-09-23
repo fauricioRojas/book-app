@@ -25,17 +25,22 @@ const WIDTH_MAPPER = {
 };
 
 const skeletonAnimation = keyframes`
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  from { background-position: 100%; }
+  to { background-position: 0% }
 `;
 
 const StyledSkeleton = styled.div<IStyledSkeletonProps>`
-  animation-duration: 1.4s;
-  animation-iteration-count: infinite;
-  animation-name: ${skeletonAnimation};
-  animation-timing-function: ease;
-  background: ${({ theme }) => `linear-gradient(90deg, ${theme.colors.card} 25%, ${theme.colors.skeleton} 37%, ${theme.colors.card} 63%)`};
-  background-size: 400% 100%;
+  animation: ${skeletonAnimation} 1.5s infinite;
+  background: ${({ theme }) => `linear-gradient(
+    90deg,
+    ${theme.colors.card} 0%,
+    ${theme.colors.card} 40%,
+    ${theme.colors.skeleton} 50%,
+    ${theme.colors.skeleton} 55%,
+    ${theme.colors.card} 65%,
+    ${theme.colors.card} 100%
+  )`};
+  background-size: 300%;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
@@ -56,7 +61,7 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     width: ${({ $widthXxl }) => $widthXxl ? WIDTH_MAPPER[$widthXxl] : undefined};
   }
-`
+`;
 
 interface ISkeletonProps {
   height: Height;

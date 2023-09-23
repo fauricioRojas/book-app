@@ -51,21 +51,18 @@ const StyledConfirmationModal = styled.div`
   z-index: 2;
 `;
 const StyledConfirmationModalBackdrop = styled.div<IStyledConfirmationModalProps>`
-  animation-duration: .3s;
-  animation-name: ${fadeIn};
+  animation: ${fadeIn} .3s;
   background-color: rgba(0, 0, 0, 0.54);
   height: 100%;
   width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
-    animation-duration: .3s;
-    animation-name: ${fadeOut};
+    animation: ${fadeOut} .3s;
   `};
 `;
 const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>`
   align-items: center;
-  animation-duration: .3s;
-  animation-name: ${slideIn};
+  animation: ${slideIn} .3s;
   background-color: ${({ theme }) => theme.colors.neutral};
   border-radius: ${({ theme }) => `${theme.gutters.borderRadius} ${theme.gutters.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   bottom: 0;
@@ -78,11 +75,11 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
-    animation-name: ${slideOut};
+    animation: ${slideOut} .3s;
   `};
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
-    animation-name: ${fadeIn};
+    animation: ${fadeIn} .3s;
     border-radius: ${({ theme }) => theme.gutters.borderRadius};
     bottom: auto;
     gap: ${({ theme }) => theme.gutters.size6};
@@ -93,7 +90,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
     width: auto;
 
     ${({ $isHiding }) => $isHiding && css`
-      animation-name: ${fadeOut};
+      animation: ${fadeOut} .3s;
     `};
   }
 `;

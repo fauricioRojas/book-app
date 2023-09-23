@@ -41,7 +41,7 @@ const StyledSnackbar = styled.div<IStyledSkeletonProps>`
   animation-duration: ${({ $duration }) => `${$duration}s`};
   animation-name: ${fadeInAnimation};
   animation-timing-function: linear;
-`
+`;
 const StyledSnackbarBody = styled.div`
   padding: ${({ theme }) => theme.gutters.size3};
 `;
