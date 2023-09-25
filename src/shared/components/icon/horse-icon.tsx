@@ -19,7 +19,6 @@ export const HorseIcon: FC<CommonIconProps> = ({
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
-    transform="scale(1.15)"
     {...props}
   >
     <path
