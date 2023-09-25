@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
+import { useKeyPress } from '@/hooks';
 import { Icon, Typography } from '.';
 
 type StyledDrawerProps = {
@@ -91,6 +92,7 @@ export const Drawer: FC<DrawerProps> = ({
   onHideDrawer,
 }) => {
   const { colors } = useTheme();
+  useKeyPress({ key: 'Escape', callback: onHideDrawer });
 
   return (
     <>

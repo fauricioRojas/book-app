@@ -2,6 +2,7 @@ import { useCallback, useState, FC } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
+import { useKeyPress } from '@/hooks';
 import { Button, FlexWrap, Typography } from '.';
 
 type StyledConfirmationModalProps = {
@@ -130,6 +131,8 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
     handleCloseConfirmationModal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onClick]);
+
+  useKeyPress({ key: 'Escape', callback: handleCloseConfirmationModal });
 
   return isOpen ? (
     <StyledConfirmationModal>
