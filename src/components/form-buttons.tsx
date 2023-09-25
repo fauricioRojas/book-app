@@ -5,12 +5,12 @@ import { FC } from "react";
 import { Button, FlexWrap } from "@/shared/components";
 import { useLanguage } from "@/contexts";
 
-interface IFormButtonsProps {
+type FormButtonsProps = {
   disabledSave?: boolean;
   onClickBack?: () => void;
 }
 
-export const FormButtons: FC<IFormButtonsProps> = ({
+export const FormButtons: FC<FormButtonsProps> = ({
   disabledSave,
   onClickBack,
 }) => {

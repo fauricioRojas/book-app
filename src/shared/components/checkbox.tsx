@@ -14,13 +14,13 @@ const StyledLabel = styled.label`
   margin-left: ${({ theme }) => theme.gutters.size1};
 `;
 
-interface ICheckboxProps {
+type CheckboxProps = {
   checked: boolean;
   label: string;
   onChange: () => void;
 }
 
-export const Checkbox: FC<ICheckboxProps> = ({
+export const Checkbox: FC<CheckboxProps> = ({
   checked,
   label,
   onChange,

@@ -2,14 +2,14 @@
 
 import { createContext, useContext } from "react";
 
-import { IDrawerArgs } from "./drawer.types";
+import { DrawerArgs } from "./drawer.types";
 
-interface IDrawerContext {
-  showDrawer: (args: IDrawerArgs) => void;
+type TDrawerContext = {
+  showDrawer: (args: DrawerArgs) => void;
   hideDrawer: () => void;
-}
+};
 
-export const DrawerContext = createContext<IDrawerContext>({
+export const DrawerContext = createContext<TDrawerContext>({
   showDrawer: () => undefined,
   hideDrawer: () => undefined,
 });

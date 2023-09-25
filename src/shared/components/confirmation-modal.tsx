@@ -4,7 +4,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { useLanguage } from '@/contexts';
 import { Button, FlexWrap, Typography } from '.';
 
-interface IStyledConfirmationModalProps {
+type StyledConfirmationModalProps = {
   $isHiding: boolean;
 }
 
@@ -50,7 +50,7 @@ const StyledConfirmationModal = styled.div`
   width: 100%;
   z-index: 2;
 `;
-const StyledConfirmationModalBackdrop = styled.div<IStyledConfirmationModalProps>`
+const StyledConfirmationModalBackdrop = styled.div<StyledConfirmationModalProps>`
   animation: ${fadeIn} .3s;
   background-color: rgba(0, 0, 0, 0.54);
   height: 100%;
@@ -60,7 +60,7 @@ const StyledConfirmationModalBackdrop = styled.div<IStyledConfirmationModalProps
     animation: ${fadeOut} .3s;
   `};
 `;
-const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>`
+const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   align-items: center;
   animation: ${slideIn} .3s;
   background-color: ${({ theme }) => theme.colors.neutral};
@@ -95,7 +95,7 @@ const StyledConfirmationModalContent = styled.div<IStyledConfirmationModalProps>
   }
 `;
 
-interface IConfirmationModalProps {
+type ConfirmationModalProps = {
   title: string;
   isOpen: boolean;
   buttonText: string;
@@ -103,7 +103,7 @@ interface IConfirmationModalProps {
   onClose: () => void;
 }
 
-export const ConfirmationModal: FC<IConfirmationModalProps> = ({
+export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   title,
   isOpen,
   buttonText,

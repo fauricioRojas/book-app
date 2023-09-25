@@ -3,24 +3,24 @@
 import { useCallback, useState, FC, PropsWithChildren } from 'react';
 
 import { ConfirmationModal } from '@/shared/components';
-import { IConfirmationModalArgs } from './modal.types';
+import type { ConfirmationModalArgs } from './modal.types';
 import { ModalContext } from './modal.context';
 
-interface IModalState {
+type ModalState = {
   isConfirmationModalOpen: boolean;
-  confirmationModalConfig: IConfirmationModalArgs;
+  confirmationModalConfig: ConfirmationModalArgs;
 }
 
 export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
   const [
     { isConfirmationModalOpen, confirmationModalConfig },
     setState,
-  ] = useState<IModalState>({
+  ] = useState<ModalState>({
     isConfirmationModalOpen: false,
-    confirmationModalConfig: {} as IConfirmationModalArgs,
+    confirmationModalConfig: {} as ConfirmationModalArgs,
   });
 
-  const showConfirmationModal = useCallback((args: IConfirmationModalArgs) => {
+  const showConfirmationModal = useCallback((args: ConfirmationModalArgs) => {
     setState(prevState => ({
       ...prevState,
       isConfirmationModalOpen: true,
@@ -32,7 +32,7 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
     setState(prevState => ({
       ...prevState,
       isConfirmationModalOpen: false,
-      confirmationModalConfig: {} as IConfirmationModalArgs,
+      confirmationModalConfig: {} as ConfirmationModalArgs,
     }));
   }, []);
 

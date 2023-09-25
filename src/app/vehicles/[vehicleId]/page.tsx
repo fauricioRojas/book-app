@@ -3,22 +3,22 @@ import { notFound } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { IVehicle, SELECT, TABLES } from "@/supabase";
+import { TVehicle, SELECT, TABLES } from "@/supabase";
 import { Vehicle } from "./vehicle";
 
 const abortController = new AbortController();
 
-interface IVehiclePageProps {
+type VehiclePageProps = {
   params: {
     vehicleId: string;
   };
 }
 
-const VehiclePage: FC<IVehiclePageProps> = async ({ params: { vehicleId } }) => {
+const VehiclePage: FC<VehiclePageProps> = async ({ params: { vehicleId } }) => {
   const supabase = createServerComponentClient({ cookies });
   const { data: vehicle } = await supabase
     .from(TABLES.VEHICLES)
-    .select<string, IVehicle>(SELECT.FULL_VEHICLE)
+    .select<string, TVehicle>(SELECT.FULL_VEHICLE)
     .match({ id: vehicleId })
     .abortSignal(abortController.signal)
     .single();

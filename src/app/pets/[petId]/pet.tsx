@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IPet, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
+import { ACTIONS, TPet, TProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
@@ -17,18 +17,18 @@ import { PetsForm } from "../pets-form";
 
 const abortController = new AbortController();
 
-interface IPetProps {
-  serverPet: IPet;
+type PetProps = {
+  serverPet: TPet;
 }
 
-export const Pet: FC<IPetProps> = ({ serverPet }) => {
+export const Pet: FC<PetProps> = ({ serverPet }) => {
   const [{
     id,
     name,
     breed,
     notes,
     procedures,
-  }, setPet] = useState<IPet>(serverPet);
+  }, setPet] = useState<TPet>(serverPet);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -49,7 +49,7 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
       }, async (payload: any) => {
         const updatedPet = await findPetById(payload.new.id);
         if (updatedPet) {
-          setPet((prevPet: IPet) => ({ ...prevPet, ...updatedPet }));
+          setPet((prevPet: TPet) => ({ ...prevPet, ...updatedPet }));
         }
       })
       .subscribe();
@@ -62,7 +62,7 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
       }, async (payload: any) => {
         const newlyAddedProcedure = await findProcedureById(payload.new.id);
         if (newlyAddedProcedure) {
-          setPet((prevPet: IPet) => ({
+          setPet((prevPet: TPet) => ({
             ...prevPet,
             procedures: prevPet.procedures.concat(newlyAddedProcedure),
           }));
@@ -80,7 +80,7 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
   const findPetById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.PETS)
-      .select<string, IPet>(SELECT.FULL_PET)
+      .select<string, TPet>(SELECT.FULL_PET)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();
@@ -90,7 +90,7 @@ export const Pet: FC<IPetProps> = ({ serverPet }) => {
   const findProcedureById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.PROCEDURES)
-      .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+      .select<string, TProcedure>(SELECT.FULL_PROCEDURE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

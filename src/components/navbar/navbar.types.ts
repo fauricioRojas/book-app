@@ -1,7 +1,7 @@
 import { IconName } from "@/shared/components";
 
-export interface INavbarItem {
+export type TNavbarItem = {
   iconName: IconName;
   text: string;
   href: string;
-}
+};

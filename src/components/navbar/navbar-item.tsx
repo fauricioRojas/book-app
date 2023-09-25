@@ -6,7 +6,7 @@ import { FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Icon, Typography } from '@/shared/components';
-import { INavbarItem } from './navbar.types';
+import { TNavbarItem } from './navbar.types';
 
 const StyledLink = styled(NextLink)`
   align-items: center;
@@ -17,8 +17,7 @@ const StyledLink = styled(NextLink)`
   text-decoration: none;
 `;
 
-
-interface NavbarItemProps extends INavbarItem {}
+type NavbarItemProps = TNavbarItem;
 
 export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
   const pathname = usePathname()

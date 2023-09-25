@@ -13,11 +13,11 @@ import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
-import { ITypeSelectorOption } from "@/shared/types";
+import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
-interface IProceduresForm {
+type ProceduresForm = {
   cost: string;
   weight?: string;
   nextDate?: Date | string;
@@ -27,14 +27,14 @@ interface IProceduresForm {
   photo?: string;
 }
 
-interface IProceduresFormProps {
-  defaultValues?: IProceduresForm;
+type ProceduresFormProps = {
+  defaultValues?: ProceduresForm;
   procedureId?: number;
   petId: number;
   noteId?: number;
 }
 
-export const ProceduresForm: FC<IProceduresFormProps> = ({
+export const ProceduresForm: FC<ProceduresFormProps> = ({
   defaultValues,
   procedureId,
   petId,
@@ -46,7 +46,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     setValue,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<IProceduresForm>({
+  } = useForm<ProceduresForm>({
     defaultValues: {
       cost: "",
       weight: "",
@@ -77,14 +77,14 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
-  const handleSetType = (type: ITypeSelectorOption) => {
+  const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
     setMode('form')
   };
 
   const handleShowProceduresSelector = () => setMode('selector');
 
-  const insertProcedure = async (procedureData: IProceduresForm) => {
+  const insertProcedure = async (procedureData: ProceduresForm) => {
     const { data: noteDate, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: procedureData.type,
       date: new Date(procedureData.date),
@@ -112,7 +112,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     }
   };
 
-  const updateProcedure = async (procedureData: IProceduresForm) => {
+  const updateProcedure = async (procedureData: ProceduresForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: procedureData.type,
       date: new Date(procedureData.date),
@@ -138,7 +138,7 @@ export const ProceduresForm: FC<IProceduresFormProps> = ({
     }
   };
 
-  const onSubmit = async (procedureData: IProceduresForm) => {
+  const onSubmit = async (procedureData: ProceduresForm) => {
     if (isUpdateMode) {
       await updateProcedure(procedureData);
     } else {

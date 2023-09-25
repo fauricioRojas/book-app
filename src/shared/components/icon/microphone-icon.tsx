@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const MicrophoneIcon: FC<ICommonIconProps> = ({
+export const MicrophoneIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

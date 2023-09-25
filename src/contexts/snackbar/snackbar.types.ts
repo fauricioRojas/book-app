@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
-import { MessageType } from "@/shared/types";
+import type { MessageType } from "@/shared/types";
 
-export interface ISnackbarArgs {
+export type SnackbarArgs = {
   type: MessageType;
   body: ReactNode;
   durationInSeconds?: number;
-}
+};

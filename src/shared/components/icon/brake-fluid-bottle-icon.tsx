@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const BrakeFluidBottleIcon: FC<ICommonIconProps> = ({
+export const BrakeFluidBottleIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

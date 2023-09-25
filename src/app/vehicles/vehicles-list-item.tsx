@@ -4,12 +4,12 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { IVehicle } from '@/supabase';
+import { TVehicle } from '@/supabase';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 
-interface IVehiclesListItemProps extends IVehicle {}
+type VehiclesListItemProps = TVehicle;
 
-export const VehiclesListItem: FC<IVehiclesListItemProps> = ({
+export const VehiclesListItem: FC<VehiclesListItemProps> = ({
   id,
   brand,
   plateNumber,

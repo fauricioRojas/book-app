@@ -2,22 +2,26 @@
 
 import { ChangeEvent, createContext, useContext } from "react";
 
-import { ISelectOption } from "@/shared/types";
-import { CurrencyType, LengthUnitType, WeightUnitType } from "./measure.types";
+import type { SelectOption } from "@/shared/types";
+import type {
+  CurrencyType,
+  LengthUnitType,
+  WeightUnitType,
+} from "./measure.types";
 
-interface IMeasureContext {
+type MeasureContext = {
   currency: CurrencyType;
-  currencyOptions: ISelectOption<CurrencyType>[];
+  currencyOptions: SelectOption<CurrencyType>[];
   changeCurrency: (event: ChangeEvent<HTMLSelectElement>) => void;
   lengthUnit: LengthUnitType;
-  lengthUnitOptions: ISelectOption<LengthUnitType>[];
+  lengthUnitOptions: SelectOption<LengthUnitType>[];
   changeLengthUnit: (event: ChangeEvent<HTMLSelectElement>) => void;
   weightUnit: WeightUnitType;
-  weightUnitOptions: ISelectOption<WeightUnitType>[];
+  weightUnitOptions: SelectOption<WeightUnitType>[];
   changeWeightUnit: (event: ChangeEvent<HTMLSelectElement>) => void;
-}
+};
 
-export const MeasureContext = createContext<IMeasureContext>({
+export const MeasureContext = createContext<MeasureContext>({
   currency: "colon",
   currencyOptions: [],
   changeCurrency: () => undefined,

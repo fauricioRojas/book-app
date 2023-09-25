@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const EmailIcon: FC<ICommonIconProps> = ({
+export const EmailIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

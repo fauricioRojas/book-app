@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const EngineIcon: FC<ICommonIconProps> = ({
+export const EngineIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

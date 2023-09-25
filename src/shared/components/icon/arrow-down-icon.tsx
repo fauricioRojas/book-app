@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const ArrowDownIcon: FC<ICommonIconProps> = ({
+export const ArrowDownIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

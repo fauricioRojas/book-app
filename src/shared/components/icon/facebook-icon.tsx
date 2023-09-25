@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const FacebookIcon: FC<ICommonIconProps> = ({
+export const FacebookIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

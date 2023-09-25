@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useLanguage } from '@/contexts';
 import { FlexWrap, Typography } from '.';
 
-interface ITextareaProps {
+type TextareaProps = {
   value: any;
   name?: string;
   label?: string;
@@ -17,12 +17,12 @@ interface ITextareaProps {
   onKeyDown?: (event: KeyboardEvent) => void;
 }
 
-interface IStyledTextareaProps extends Pick<ITextareaProps, 'onChange' | 'onBlur' | 'onKeyDown'> {
+type StyledTextareaProps = Pick<TextareaProps, 'onChange' | 'onBlur' | 'onKeyDown'> & {
   $isInvalid: boolean;
   $rows: number;
 }
 
-const StyledTextarea = styled.textarea<IStyledTextareaProps>`
+const StyledTextarea = styled.textarea<StyledTextareaProps>`
   background-color: transparent;
   border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
     ? theme.colors.error
@@ -47,7 +47,7 @@ const StyledTextarea = styled.textarea<IStyledTextareaProps>`
   }
 `;
 
-export const Textarea: FC<ITextareaProps> = ({
+export const Textarea: FC<TextareaProps> = ({
   label,
   errorMessage,
   optional,

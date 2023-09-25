@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const TickIcon: FC<ICommonIconProps> = ({
+export const TickIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

@@ -1,11 +1,11 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
 const COLS_PER_ROW = 12;
 
-interface IStyledGridWrapProps {
+type StyledGridWrapProps = {
   $cols?: Size;
   $sm?: Size;
   $md?: Size;
@@ -21,7 +21,7 @@ interface IStyledGridWrapProps {
   $gapXxl?: Size;
 }
 
-const StyledGridWrap = styled.div<IStyledGridWrapProps>`
+const StyledGridWrap = styled.div<StyledGridWrapProps>`
   display: grid;
   gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
   grid-template-columns: ${({ $cols }) => $cols ? `repeat(${COLS_PER_ROW / $cols}, 1fr)` : undefined};
@@ -50,7 +50,7 @@ const StyledGridWrap = styled.div<IStyledGridWrapProps>`
   }
 `
 
-interface IGridWrapProps extends PropsWithChildren {
+type GridWrapProps = PropsWithChildren & {
   cols?: Size;
   sm?: Size;
   md?: Size;
@@ -66,7 +66,7 @@ interface IGridWrapProps extends PropsWithChildren {
   mb?: Size;
 }
 
-export const GridWrap: FC<IGridWrapProps> = ({
+export const GridWrap: FC<GridWrapProps> = ({
   cols,
   sm,
   md,

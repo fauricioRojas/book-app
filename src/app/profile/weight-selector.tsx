@@ -5,9 +5,6 @@ import styled, { useTheme } from 'styled-components';
 import { Card, FlexWrap, Icon, Select, Typography } from '@/shared/components';
 import { useLanguage, useMeasure } from '@/contexts';
 
-const StyledFlexWrap = styled(FlexWrap)`
-  margin: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
-`;
 const StyledIconWrapper = styled(FlexWrap)`
   width: 25px;
 `;

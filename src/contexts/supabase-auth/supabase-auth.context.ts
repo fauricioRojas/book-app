@@ -1,18 +1,18 @@
 "use client";
 
-import { User } from "@supabase/supabase-js";
+import type { User } from "@supabase/supabase-js";
 import { createContext, useContext } from "react";
 
-interface ISubabaseAuthContext {
+type TSubabaseAuthContext = {
   user?: User;
   signOut: () => Promise<string | null>;
   signUp: (email: string, password: string) => Promise<string | null>;
   signInWithGithub: () => Promise<void>;
   signInWithFacebook: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
-}
+};
 
-export const SupabaseAuthContext = createContext<ISubabaseAuthContext>({
+export const SupabaseAuthContext = createContext<TSubabaseAuthContext>({
   user: undefined,
   signOut: async () => null,
   signUp: async () => null,

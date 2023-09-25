@@ -6,7 +6,7 @@ import styled, { useTheme } from 'styled-components';
 import { FlexWrap, Icon, Typography } from '.';
 import { useOutsideClick } from '@/hooks';
 
-interface IStyledArrowProps {
+type StyledArrowProps = {
   $hasTitle: boolean;
 }
 
@@ -21,7 +21,7 @@ const StyledPopover = styled.div`
   transform: translate(0, calc(100% + 10px));
   z-index: 999;
 `;
-const StyledArrow = styled.div<IStyledArrowProps>`
+const StyledArrow = styled.div<StyledArrowProps>`
   left: 10px;
   position: absolute;
   top: calc(-0.5rem - 1px);
@@ -59,12 +59,12 @@ const StyledBody = styled.div`
   padding: ${({ theme }) => theme.gutters.size2};
 `;
 
-interface IPopoverProps {
+type PopoverProps = {
   title?: string;
   description: string;
 }
 
-export const Popover: FC<IPopoverProps> = ({ title, description }) => {
+export const Popover: FC<PopoverProps> = ({ title, description }) => {
   const [isVisible, setIsVisible] = useState(false);
   const theme = useTheme()
   const popoverRef = useRef(null);

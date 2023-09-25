@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const WaterDropIcon: FC<ICommonIconProps> = ({
+export const WaterDropIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

@@ -1,15 +1,15 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
-import { Size } from '@/shared/types';
-import { Icon, IconName } from '.';
+import type { Size } from '@/shared/types';
+import { Icon, type IconName } from '.';
 
 type SolidVariant = 'primary' | 'secondary' | 'error';
 type NonSolidVariant = 'outline-primary' | 'outline-secondary' | 'text';
 type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text';
 type Type = 'button' | 'submit' | 'reset';
 
-interface IStyledButtonProps {
+type StyledButtonProps = {
   $variant: Variant;
   $block?: boolean;
   $mb?: Size;
@@ -26,7 +26,7 @@ interface IStyledButtonProps {
   $mtXxl?: Size;
 }
 
-const StyledButton = styled.button<IStyledButtonProps>`
+const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   border: 1px solid transparent;
   border-radius: ${({ theme }) => theme.gutters.borderRadius};

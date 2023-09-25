@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const SignOutIcon: FC<ICommonIconProps> = ({
+export const SignOutIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

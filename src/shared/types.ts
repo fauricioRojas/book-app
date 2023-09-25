@@ -26,36 +26,15 @@ export type Position = "absolute" | "fixed" | "relative" | "sticky";
 
 export type MessageType = "success" | "error" | "warning";
 
-export interface ISelectOption<T = any> {
+export type SelectOption<T = any> = {
   label: string;
   value?: T;
-}
+};
 
-export interface ITypeSelectorOption {
+export type TypeSelectorOption = {
   id: number;
   label: string;
   value: string;
   height?: number;
   width?: number;
-}
-
-export interface IPet {
-  id: number;
-  name: string;
-  breed: string;
-  type: "dog" | "cat";
-  dateOfBirth: number;
-  description?: string;
-  photo?: string;
-}
-
-export interface IVehicle {
-  id: number;
-  plateNumber: string;
-  brand: string;
-  model: number;
-  type: "car" | "motorcycle";
-  dateOfPurchase: number;
-  description?: string;
-  photo?: string;
-}
+};

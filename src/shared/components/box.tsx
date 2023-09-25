@@ -1,9 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Position, Size } from '@/shared/types';
+import type { Position, Size } from '@/shared/types';
 
-interface IStyledBoxProps {
+type StyledBoxProps = {
   $mb?: Size;
   $mbSm?: Size;
   $mbMd?: Size;
@@ -13,7 +13,7 @@ interface IStyledBoxProps {
   $position?: Position;
 }
 
-const StyledBox = styled.div<IStyledBoxProps>`
+const StyledBox = styled.div<StyledBoxProps>`
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   ${({ $position }) => $position === 'absolute' && css`
     position: absolute;
@@ -45,7 +45,7 @@ const StyledBox = styled.div<IStyledBoxProps>`
   }
 `
 
-interface IBoxProps extends PropsWithChildren {
+type BoxProps = PropsWithChildren & {
   mb?: Size;
   mbSm?: Size;
   mbMd?: Size;
@@ -55,7 +55,7 @@ interface IBoxProps extends PropsWithChildren {
   position?: Position;
 }
 
-export const Box: FC<IBoxProps> = ({
+export const Box: FC<BoxProps> = ({
   mb,
   mbSm,
   mbMd,

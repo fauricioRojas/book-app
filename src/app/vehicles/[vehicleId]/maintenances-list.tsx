@@ -1,15 +1,15 @@
 import { FC } from 'react';
 
 import { GridWrap } from '@/shared/components';
-import { IMaintenance } from '@/supabase';
+import { TMaintenance } from '@/supabase';
 import { MaintenancesListItem } from './maintenances-list-item';
 import { NoMaintenances } from './no-maintenances';
 
-interface IMaintenancesListProps {
-  maintenances: IMaintenance[];
+type MaintenancesListProps = {
+  maintenances: TMaintenance[];
 }
 
-export const MaintenancesList: FC<IMaintenancesListProps> = ({
+export const MaintenancesList: FC<MaintenancesListProps> = ({
   maintenances,
 }) => {
   if (!maintenances.length) {

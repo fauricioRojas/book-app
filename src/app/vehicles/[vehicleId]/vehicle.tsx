@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IMaintenance, IVehicle, SCHEMAS, SELECT, TABLES } from "@/supabase";
+import { ACTIONS, TMaintenance, TVehicle, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
 import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
@@ -17,11 +17,11 @@ import { VehiclesForm } from "../vehicles-form";
 
 const abortController = new AbortController();
 
-interface IVehicleProps {
-  serverVehicle: IVehicle;
+type VehicleProps = {
+  serverVehicle: TVehicle;
 }
 
-export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
+export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
   const [{
     id,
     brand,
@@ -29,7 +29,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
     plateNumber,
     notes,
     maintenances,
-  }, setVehicle] = useState<IVehicle>(serverVehicle);
+  }, setVehicle] = useState<TVehicle>(serverVehicle);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -50,7 +50,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
       }, async (payload: any) => {
         const updatedVehicle = await findVehicleById(payload.new.id);
         if (updatedVehicle) {
-          setVehicle((prevVehicle: IVehicle) => ({
+          setVehicle((prevVehicle: TVehicle) => ({
             ...prevVehicle,
             ...updatedVehicle,
           }));
@@ -66,7 +66,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
       }, async (payload: any) => {
         const newlyAddedMaintenance = await findMaintenanceById(payload.new.id);
         if (newlyAddedMaintenance) {
-          setVehicle((prevVehicle: IVehicle) => ({
+          setVehicle((prevVehicle: TVehicle) => ({
             ...prevVehicle,
             maintenances: prevVehicle.maintenances.concat(newlyAddedMaintenance),
           }));
@@ -84,7 +84,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
   const findVehicleById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.VEHICLES)
-      .select<string, IVehicle>(SELECT.FULL_VEHICLE)
+      .select<string, TVehicle>(SELECT.FULL_VEHICLE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();
@@ -94,7 +94,7 @@ export const Vehicle: FC<IVehicleProps> = ({ serverVehicle }) => {
   const findMaintenanceById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.MAINTENANCES)
-      .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+      .select<string, TMaintenance>(SELECT.FULL_MAINTENANCE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

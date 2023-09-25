@@ -2,12 +2,12 @@ import { ChangeEvent, FC, FocusEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
-import { Box, FlexWrap, Icon, IconName, Typography } from '.';
+import { Box, FlexWrap, Icon, type IconName, Typography } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
 type Type = 'text' | 'password' | 'number' | 'date';
 
-interface IInputProps {
+type InputProps = {
   value?: any;
   type?: Type;
   name?: string;
@@ -23,13 +23,13 @@ interface IInputProps {
   onKeyDown?: (event: KeyboardEvent) => void;
 }
 
-interface IStyledInputProps extends Pick<IInputProps, 'onChange' | 'onBlur' | 'onKeyDown'> {
+type StyledInputProps = Pick<InputProps, 'onChange' | 'onBlur' | 'onKeyDown'> & {
   $isInvalid: boolean;
   $hasLeftIcon: boolean;
   $hasRightIcon: boolean;
 }
 
-const StyledInput = styled.input<IStyledInputProps>`
+const StyledInput = styled.input<StyledInputProps>`
   background-color: transparent;
   border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
     ? theme.colors.error
@@ -88,7 +88,7 @@ const StyledRightIcon = styled(Icon)`
   top: 11px;
 `;
 
-export const Input: FC<IInputProps> = ({
+export const Input: FC<InputProps> = ({
   type = 'text',
   label,
   errorMessage,

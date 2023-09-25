@@ -2,12 +2,12 @@ import { FC, ReactNode } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
 
 import { MessageType } from '@/shared/types';
-import { Icon, IconName, FlexWrap, Typography } from '.';
+import { Icon, type IconName, FlexWrap, Typography } from '.';
 
-interface IStyledSkeletonProps {
+type StyledSkeletonProps = {
   $duration: number;
 }
-interface IStyledSkeletonProgressProps extends IStyledSkeletonProps {
+type StyledSkeletonProgressProps = StyledSkeletonProps & {
   $color: string;
 }
 
@@ -26,7 +26,7 @@ const progressAnimation = keyframes`
   to { transform: scaleX(1); }
 `;
 
-const StyledSnackbar = styled.div<IStyledSkeletonProps>`
+const StyledSnackbar = styled.div<StyledSkeletonProps>`
   position: absolute;
   bottom: ${({ theme }) => theme.gutters.size8};
   align-items: center;
@@ -45,7 +45,7 @@ const StyledSnackbar = styled.div<IStyledSkeletonProps>`
 const StyledSnackbarBody = styled.div`
   padding: ${({ theme }) => theme.gutters.size3};
 `;
-const StyledSnackbarProgress = styled.div<IStyledSkeletonProgressProps>`
+const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
   position: absolute;
   left: 8px;
   bottom: 4px;
@@ -65,7 +65,7 @@ const StyledSnackbarProgress = styled.div<IStyledSkeletonProgressProps>`
   animation-timing-function: linear;
 `;
 
-interface ISnackbarProps {
+type SnackbarProps = {
   body: ReactNode;
   type: MessageType;
   durationInSeconds: number;
@@ -77,7 +77,7 @@ const ICON_NAME_MAPPER: Record<MessageType, IconName> = {
   warning: 'warning',
 };
 
-export const Snackbar: FC<ISnackbarProps> = ({ body, type, durationInSeconds }) => {
+export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) => {
   const { colors } = useTheme();
   const color = colors[type];
 

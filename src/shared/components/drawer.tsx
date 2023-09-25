@@ -3,11 +3,11 @@ import styled, { css, useTheme } from 'styled-components';
 
 import { Icon, Typography } from '.';
 
-interface IStyledDrawerProps {
+type StyledDrawerProps = {
   $isVisible: boolean;
 }
 
-const StyledDrawerBackdrop = styled.div<IStyledDrawerProps>`
+const StyledDrawerBackdrop = styled.div<StyledDrawerProps>`
   background-color: rgba(0, 0, 0, 0.54);
   bottom: 0;
   left: 0;
@@ -20,7 +20,7 @@ const StyledDrawerBackdrop = styled.div<IStyledDrawerProps>`
     display: none;
   `};
 `;
-const StyledDrawer = styled.div<IStyledDrawerProps>`
+const StyledDrawer = styled.div<StyledDrawerProps>`
   background-color: ${({ theme }) => theme.colors.neutral};
   border-top-left-radius: ${({ theme }) => theme.gutters.borderRadius};
   border-top-right-radius: ${({ theme }) => theme.gutters.borderRadius};
@@ -77,14 +77,14 @@ const StyledDrawerBody = styled.div`
   padding: ${({ theme }) => theme.gutters.size4};
 `
 
-interface IDrawerProps {
+type DrawerProps = {
   body: ReactNode;
   title: string;
   isVisible: boolean;
   onHideDrawer: () => void;
 }
 
-export const Drawer: FC<IDrawerProps> = ({
+export const Drawer: FC<DrawerProps> = ({
   body,
   title,
   isVisible,

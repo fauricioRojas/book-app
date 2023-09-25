@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const OilFilterIcon: FC<ICommonIconProps> = ({
+export const OilFilterIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

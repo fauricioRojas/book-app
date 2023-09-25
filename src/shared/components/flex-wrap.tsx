@@ -1,14 +1,14 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
-import { Position, Size } from '@/shared/types';
+import type { Position, Size } from '@/shared/types';
 
 type Align = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 type Justify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
 type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-interface IStyledFlexWrapProps {
+type StyledFlexWrapProps = {
   $align?: Align;
   $alignSm?: Align;
   $alignMd?: Align;
@@ -56,7 +56,7 @@ interface IStyledFlexWrapProps {
   $wrapXxl?: Wrap;
 }
 
-const StyledFlexWrap = styled.div<IStyledFlexWrapProps>`
+const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
   align-items: ${({ $align }) => $align};
   display: flex;
   flex-basis: ${({ $basis }) => $basis};
@@ -128,7 +128,7 @@ const StyledFlexWrap = styled.div<IStyledFlexWrapProps>`
   }
 `;
 
-interface IFlexWrapProps extends PropsWithChildren {
+type FlexWrapProps = PropsWithChildren & {
   align?: Align;
   alignSm?: Align;
   alignMd?: Align;
@@ -177,7 +177,7 @@ interface IFlexWrapProps extends PropsWithChildren {
   wrapXxl?: Wrap;
 }
 
-export const FlexWrap: FC<IFlexWrapProps> = ({
+export const FlexWrap: FC<FlexWrapProps> = ({
   align,
   alignSm,
   alignMd,

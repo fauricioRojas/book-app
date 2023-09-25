@@ -1,41 +1,41 @@
-interface INote {
+type Note = {
   id: number;
   type: string;
   date: Date;
   description?: string;
   photo?: string;
-}
+};
 
-export interface IVehicle {
+export type TVehicle = {
   id: number;
-  notes: INote;
-  maintenances: IMaintenance[];
+  notes: Note;
+  maintenances: TMaintenance[];
   plateNumber: string;
   brand: string;
   model: number;
-}
+};
 
-export interface IPet {
+export type TPet = {
   id: number;
-  notes: INote;
-  procedures: IProcedure[];
+  notes: Note;
+  procedures: TProcedure[];
   name: string;
   breed: string;
-}
+};
 
-export interface IMaintenance {
+export type TMaintenance = {
   id: number;
-  vehicles: IVehicle;
-  notes: INote;
+  vehicles: TVehicle;
+  notes: Note;
   cost: number;
   kilometers?: number;
-}
+};
 
-export interface IProcedure {
+export type TProcedure = {
   id: number;
-  pets: IPet;
-  notes: INote;
+  pets: TPet;
+  notes: Note;
   cost: number;
   weight?: number;
   nextDate?: Date;
-}
+};

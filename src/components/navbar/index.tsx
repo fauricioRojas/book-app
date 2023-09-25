@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { INavbarItem } from './navbar.types';
+import { TNavbarItem } from './navbar.types';
 import { NavbarItem } from './navbar-item';
 import { useLanguage, useSupabaseAuth } from '@/contexts';
 import { ROUTES } from '@/shared/constants';
@@ -24,32 +24,29 @@ export const Navbar = () => {
   const { user } = useSupabaseAuth();
   const { language, translation } = useLanguage();
 
-  const navbarItems = useMemo(() => {
-    const items: INavbarItem[] = [
-      {
-        iconName: 'bell',
-        text: translation.reminders,
-        href: ROUTES.REMINDERS,
-      },
-      {
-        iconName: 'tire',
-        text: translation.vehicles,
-        href: ROUTES.VEHICLES,
-      },
-      {
-        iconName: 'footprint',
-        text: translation.pets,
-        href: ROUTES.PETS,
-      },
-      {
-        iconName: 'profile',
-        text: translation.profile,
-        href: ROUTES.PROFILE,
-      },
-    ];
-    return items;
+  const navbarItems = useMemo((): TNavbarItem[] => [
+    {
+      iconName: 'bell',
+      text: translation.reminders,
+      href: ROUTES.REMINDERS,
+    },
+    {
+      iconName: 'tire',
+      text: translation.vehicles,
+      href: ROUTES.VEHICLES,
+    },
+    {
+      iconName: 'footprint',
+      text: translation.pets,
+      href: ROUTES.PETS,
+    },
+    {
+      iconName: 'profile',
+      text: translation.profile,
+      href: ROUTES.PROFILE,
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language]);
+  ], [language]);
 
   if (!user) {
     return null;

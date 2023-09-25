@@ -2,13 +2,13 @@ import { FC } from "react";
 
 import { FlexWrap, IconButton } from "@/shared/components";
 
-interface IActionsProps {
+type ActionsProps = {
   onDelete?: () => void;
   onEdit?: () => void;
   onAdd?: () => void;
 }
 
-export const Actions: FC<IActionsProps> = ({
+export const Actions: FC<ActionsProps> = ({
   onDelete,
   onEdit,
   onAdd,

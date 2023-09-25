@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const CableIcon: FC<ICommonIconProps> = ({
+export const CableIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

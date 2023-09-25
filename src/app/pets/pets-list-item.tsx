@@ -4,12 +4,12 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { IPet } from '@/supabase';
+import { TPet } from '@/supabase';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 
-interface IPetsListItemProps extends IPet {}
+type PetsListItemProps = TPet;
 
-export const PetsListItem: FC<IPetsListItemProps> = ({
+export const PetsListItem: FC<PetsListItemProps> = ({
   id,
   name,
   breed,

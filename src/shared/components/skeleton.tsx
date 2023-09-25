@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import { FullSize, Size } from '@/shared/types';
+import type { FullSize, Size } from '@/shared/types';
 
 type Height = FullSize | string;
 type Width = 'quarter' | 'half' | 'three-quarters' | 'full';
 
-interface IStyledSkeletonProps {
+type StyledSkeletonProps = {
   $height: Height;
   $width: Width;
   $widthSm?: Width;
@@ -29,7 +29,7 @@ const skeletonAnimation = keyframes`
   to { background-position: 0% }
 `;
 
-const StyledSkeleton = styled.div<IStyledSkeletonProps>`
+const StyledSkeleton = styled.div<StyledSkeletonProps>`
   animation: ${skeletonAnimation} 1.5s infinite;
   background: ${({ theme }) => `linear-gradient(
     90deg,
@@ -63,7 +63,7 @@ const StyledSkeleton = styled.div<IStyledSkeletonProps>`
   }
 `;
 
-interface ISkeletonProps {
+type SkeletonProps = {
   height: Height;
   width: Width;
   widthSm?: Width;
@@ -74,7 +74,7 @@ interface ISkeletonProps {
   mb?: Size;
 }
 
-export const Skeleton: FC<ISkeletonProps> = ({
+export const Skeleton: FC<SkeletonProps> = ({
   height,
   width,
   widthSm,

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const VideoCameraIcon: FC<ICommonIconProps> = ({
+export const VideoCameraIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

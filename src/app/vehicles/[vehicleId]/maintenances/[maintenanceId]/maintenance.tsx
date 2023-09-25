@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IMaintenance, SCHEMAS, SELECT, TABLES } from "@/supabase";
+import { ACTIONS, TMaintenance, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
@@ -15,11 +15,11 @@ import { MaintenancesForm } from "../../maintenances-form";
 
 const abortController = new AbortController();
 
-interface IMaintenanceProps {
-  serverMaintenance: IMaintenance;
+type MaintenanceProps = {
+  serverMaintenance: TMaintenance;
 }
 
-export const Maintenance: FC<IMaintenanceProps> = ({
+export const Maintenance: FC<MaintenanceProps> = ({
   serverMaintenance
 }) => {
   const [{
@@ -30,7 +30,7 @@ export const Maintenance: FC<IMaintenanceProps> = ({
     vehicles: {
       id: vehicleId,
     }
-  }, setMaintenance] = useState<IMaintenance>(serverMaintenance);
+  }, setMaintenance] = useState<TMaintenance>(serverMaintenance);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -66,7 +66,7 @@ export const Maintenance: FC<IMaintenanceProps> = ({
   const findMaintenanceById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.MAINTENANCES)
-      .select<string, IMaintenance>(SELECT.FULL_MAINTENANCE)
+      .select<string, TMaintenance>(SELECT.FULL_MAINTENANCE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

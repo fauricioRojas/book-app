@@ -3,14 +3,14 @@
 import { useMemo, FC, PropsWithChildren } from 'react';
 import styled, { DefaultTheme, css } from 'styled-components';
 
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
 type Color = 'primary' | 'primary-text' | 'secondary-text' | 'error';
 type FontWeight = 'bold' | 'regular';
 type TextAlign = 'left' | 'center' | 'right';
 type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'label' | 'p' | 'span';
 
-interface IStyledTypographyProps {
+type StyledTypographyProps = {
   $color?: Color;
   $italic?: boolean;
   $fontWeight?: FontWeight;
@@ -25,7 +25,7 @@ interface IStyledTypographyProps {
   theme: DefaultTheme;
 }
 
-const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypographyProps) => css`
+const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypographyProps) => css`
   ${$color === 'primary' && css`
     color: ${theme.colors.primary};
   `}
@@ -42,10 +42,10 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypograph
     display: ${$display ? 'block' : 'none'};
   `}
   font-style: ${$italic ? 'italic' : undefined};
-  ${({ $fontWeight }: IStyledTypographyProps) => $fontWeight === 'bold' && css`
+  ${({ $fontWeight }: StyledTypographyProps) => $fontWeight === 'bold' && css`
     font-weight: ${theme.fontWeights.bold};
   `}
-  ${({ $fontWeight }: IStyledTypographyProps) => $fontWeight === 'regular' && css`
+  ${({ $fontWeight }: StyledTypographyProps) => $fontWeight === 'regular' && css`
     font-weight: ${theme.fontWeights.regular};
   `}
   letter-spacing: 0.00938rem;
@@ -56,27 +56,27 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: IStyledTypograph
   transition: color .2s ease;
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
-    ${({ $displaySm }: IStyledTypographyProps) => typeof $displaySm === 'boolean' && css`
+    ${({ $displaySm }: StyledTypographyProps) => typeof $displaySm === 'boolean' && css`
       display: ${$displaySm ? 'block' : 'none'};
     `}
   }
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
-    ${({ $displayMd }: IStyledTypographyProps) => typeof $displayMd === 'boolean' && css`
+    ${({ $displayMd }: StyledTypographyProps) => typeof $displayMd === 'boolean' && css`
       display: ${$displayMd ? 'block' : 'none'};
     `}
   }
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
-    ${({ $displayLg }: IStyledTypographyProps) => typeof $displayLg === 'boolean' && css`
+    ${({ $displayLg }: StyledTypographyProps) => typeof $displayLg === 'boolean' && css`
       display: ${$displayLg ? 'block' : 'none'};
     `}
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
-    ${({ $displayXl }: IStyledTypographyProps) => typeof $displayXl === 'boolean' && css`
+    ${({ $displayXl }: StyledTypographyProps) => typeof $displayXl === 'boolean' && css`
       display: ${$displayXl ? 'block' : 'none'};
     `}
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
-    ${({ $displayXxl }: IStyledTypographyProps) => typeof $displayXxl === 'boolean' && css`
+    ${({ $displayXxl }: StyledTypographyProps) => typeof $displayXxl === 'boolean' && css`
       display: ${$displayXxl ? 'block' : 'none'};
     `}
   }
@@ -148,7 +148,7 @@ const TYPOGRAPHY_MAPPER: Record<Variant, any> = {
   span: SPAN,
 };
 
-interface ITypographyProps extends PropsWithChildren {
+type TypographyProps = PropsWithChildren & {
   variant: Variant;
   className?: string;
   fontWeight?: FontWeight;
@@ -164,7 +164,7 @@ interface ITypographyProps extends PropsWithChildren {
   displayXxl?: boolean;
 }
 
-export const Typography: FC<ITypographyProps> = ({
+export const Typography: FC<TypographyProps> = ({
   variant,
   fontWeight = 'regular',
   textAlign,

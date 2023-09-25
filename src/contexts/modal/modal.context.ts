@@ -2,13 +2,13 @@
 
 import { createContext, useContext } from "react";
 
-import { IConfirmationModalArgs } from "./modal.types";
+import { ConfirmationModalArgs } from "./modal.types";
 
-interface IModalContext {
-  showConfirmationModal: (args: IConfirmationModalArgs) => void;
-}
+type TModalContext = {
+  showConfirmationModal: (args: ConfirmationModalArgs) => void;
+};
 
-export const ModalContext = createContext<IModalContext>({
+export const ModalContext = createContext<TModalContext>({
   showConfirmationModal: () => undefined,
 });
 

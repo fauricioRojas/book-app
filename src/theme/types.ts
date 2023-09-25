@@ -1,12 +1,12 @@
-export interface IBreakpoints {
+export type Breakpoints = {
   sm: string;
   md: string;
   lg: string;
   xl: string;
   xxl: string;
-}
+};
 
-export interface IColors {
+export type Colors = {
   primary100: string;
   primary200: string;
   primary: string; // 10
@@ -31,16 +31,16 @@ export interface IColors {
   skeleton: string;
   border: string;
   card: string;
-}
+};
 
-export interface IFontWeights {
+export type FontWeights = {
   bold: number;
   regular: number;
   light: number;
   thin: number;
-}
+};
 
-export interface IGutters {
+export type Gutters = {
   borderRadius: string;
   size0: number;
   size1: string;
@@ -63,18 +63,18 @@ export interface IGutters {
   size18: string;
   size19: string;
   size20: string;
-}
+};
 
-export interface IShadows {
+export type Shadows = {
   sm: string;
   md: string;
   lg: string;
-}
+};
 
-export interface ITheme {
-  breakpoints: IBreakpoints;
-  colors: IColors;
-  fontWeights: IFontWeights;
-  gutters: IGutters;
-  shadows: IShadows;
-}
+export type Theme = {
+  breakpoints: Breakpoints;
+  colors: Colors;
+  fontWeights: FontWeights;
+  gutters: Gutters;
+  shadows: Shadows;
+};

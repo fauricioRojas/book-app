@@ -4,14 +4,14 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { IMaintenance } from '@/supabase';
+import { TMaintenance } from '@/supabase';
 import { formatDate, formatMoney, formatLength } from '@/shared/utils';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
 
-interface IMaintenancesListItemProps extends IMaintenance {}
+type MaintenancesListItemProps = TMaintenance;
 
-export const MaintenancesListItem: FC<IMaintenancesListItemProps> = ({
+export const MaintenancesListItem: FC<MaintenancesListItemProps> = ({
   id,
   cost,
   kilometers,

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, IProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
+import { ACTIONS, TProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
 import { FlexWrap, Icon, PhotoPreview, Popover, Typography } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
 import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
@@ -15,11 +15,11 @@ import { ProceduresForm } from "../../procedures-form";
 
 const abortController = new AbortController();
 
-interface IProcedureProps {
-  serverProcedure: IProcedure;
+type ProcedureProps = {
+  serverProcedure: TProcedure;
 }
 
-export const Procedure: FC<IProcedureProps> = ({
+export const Procedure: FC<ProcedureProps> = ({
   serverProcedure,
 }) => {
   const [{
@@ -31,7 +31,7 @@ export const Procedure: FC<IProcedureProps> = ({
     pets: {
       id: petId,
     }
-  }, setProcedure] = useState<IProcedure>(serverProcedure);
+  }, setProcedure] = useState<TProcedure>(serverProcedure);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -67,7 +67,7 @@ export const Procedure: FC<IProcedureProps> = ({
   const findProcedureById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.PROCEDURES)
-      .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+      .select<string, TProcedure>(SELECT.FULL_PROCEDURE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

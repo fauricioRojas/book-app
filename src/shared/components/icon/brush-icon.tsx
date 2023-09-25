@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const BrushIcon: FC<ICommonIconProps> = ({
+export const BrushIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

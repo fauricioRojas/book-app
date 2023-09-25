@@ -3,22 +3,22 @@ import { notFound } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { IPet, TABLES, SELECT } from "@/supabase";
+import { TPet, TABLES, SELECT } from "@/supabase";
 import { Pet } from "./pet";
 
 const abortController = new AbortController();
 
-interface IPetPageProps {
+type PetPageProps = {
   params: {
     petId: string;
   };
 }
 
-const PetPage: FC<IPetPageProps> = async ({ params: { petId } }) => {
+const PetPage: FC<PetPageProps> = async ({ params: { petId } }) => {
   const supabase = createServerComponentClient({ cookies });
   const { data: pet } = await supabase
     .from(TABLES.PETS)
-    .select<string, IPet>(SELECT.FULL_PET)
+    .select<string, TPet>(SELECT.FULL_PET)
     .match({ id: petId })
     .abortSignal(abortController.signal)
     .single();

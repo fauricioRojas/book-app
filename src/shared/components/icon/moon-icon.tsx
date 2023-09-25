@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const MoonIcon: FC<ICommonIconProps> = ({
+export const MoonIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

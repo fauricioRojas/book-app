@@ -9,13 +9,13 @@ import {
 } from 'react';
 
 import { Snackbar } from '@/shared/components';
-import { ISnackbarArgs } from './snackbar.types';
+import type { SnackbarArgs } from './snackbar.types';
 import { SnackbarContext } from './snackbar.context'
-import { MessageType } from '@/shared/types'
+import type { MessageType } from '@/shared/types'
 
 const DEFAULT_DURATION = 5;
 
-interface ISnackbarState {
+type SnackbarState = {
   isVisible: boolean;
   durationInSeconds: number;
   type: MessageType;
@@ -23,7 +23,7 @@ interface ISnackbarState {
 }
 
 export const SnackbarProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [{ isVisible, durationInSeconds, type, body }, setState] = useState<ISnackbarState>({
+  const [{ isVisible, durationInSeconds, type, body }, setState] = useState<SnackbarState>({
     isVisible: false,
     durationInSeconds: DEFAULT_DURATION,
     type: 'success',
@@ -38,7 +38,7 @@ export const SnackbarProvider: FC<PropsWithChildren> = ({ children }) => {
     }));
   }, []);
 
-  const showSnackbar = useCallback((args: ISnackbarArgs) => {
+  const showSnackbar = useCallback((args: SnackbarArgs) => {
     const duration = args.durationInSeconds || DEFAULT_DURATION;
 
     setState((prevState) => ({

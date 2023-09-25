@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const ACAirFilterIcon: FC<ICommonIconProps> = ({
+export const ACAirFilterIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

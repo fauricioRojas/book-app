@@ -8,11 +8,11 @@ import { ROUTES } from "@/shared/constants";
 import { SupabaseAuthContext } from ".";
 import { useSupabase } from "..";
 
-interface ISupabaseAuthProviderProps extends PropsWithChildren {
+type SupabaseAuthProviderProps = PropsWithChildren & {
   serverSession?: AuthSession | null;
 }
 
-export const SupabaseAuthProvider: FC<ISupabaseAuthProviderProps> = ({
+export const SupabaseAuthProvider: FC<SupabaseAuthProviderProps> = ({
   serverSession,
   children,
 }) => {

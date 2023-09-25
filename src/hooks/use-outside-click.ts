@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 
-interface Props {
+type UseOutsideClickProps = {
   ref: any;
   callback: (event: Event) => void;
-}
-export const useOutsideClick = ({ ref, callback }: Props) => {
+};
+
+export const useOutsideClick = ({ ref, callback }: UseOutsideClickProps) => {
   useEffect(() => {
     const handleClickOutside = (event: Event) => {
       if (ref.current && !ref.current.contains(event.target)) {

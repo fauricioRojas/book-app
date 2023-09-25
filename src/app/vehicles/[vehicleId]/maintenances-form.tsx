@@ -13,11 +13,11 @@ import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { MaintenancesSelector } from "./maintenances-selector";
-import { ITypeSelectorOption } from "@/shared/types";
+import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
-interface IMaintenancesForm {
+type MaintenancesForm = {
   cost: string;
   kilometers?: string;
   type: string;
@@ -26,14 +26,14 @@ interface IMaintenancesForm {
   photo?: string;
 }
 
-interface IMaintenancesFormProps {
-  defaultValues?: IMaintenancesForm;
+type MaintenancesFormProps = {
+  defaultValues?: MaintenancesForm;
   maintenanceId?: number;
   vehicleId: number;
   noteId?: number;
 }
 
-export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
+export const MaintenancesForm: FC<MaintenancesFormProps> = ({
   defaultValues,
   maintenanceId,
   vehicleId,
@@ -45,7 +45,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     setValue,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<IMaintenancesForm>({
+  } = useForm<MaintenancesForm>({
     defaultValues: {
       cost: "",
       kilometers: "",
@@ -74,14 +74,14 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
-  const handleSetType = (type: ITypeSelectorOption) => {
+  const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
     setMode('form')
   };
 
   const handleShowMaintenancesSelector = () => setMode('selector');
 
-  const insertMaintenance = async (maintenanceData: IMaintenancesForm) => {
+  const insertMaintenance = async (maintenanceData: MaintenancesForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
@@ -108,7 +108,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     }
   };
 
-  const updateMaintenance = async (maintenanceData: IMaintenancesForm) => {
+  const updateMaintenance = async (maintenanceData: MaintenancesForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: maintenanceData.type,
       date: new Date(maintenanceData.date),
@@ -133,7 +133,7 @@ export const MaintenancesForm: FC<IMaintenancesFormProps> = ({
     }
   };
 
-  const onSubmit = async (maintenanceData: IMaintenancesForm) => {
+  const onSubmit = async (maintenanceData: MaintenancesForm) => {
     if (isUpdateMode) {
       await updateMaintenance(maintenanceData);
     } else {

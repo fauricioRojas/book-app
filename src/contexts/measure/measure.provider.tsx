@@ -3,10 +3,10 @@
 import { ChangeEvent, FC, PropsWithChildren, useMemo } from "react";
 
 import { useLocalStorage } from '@/hooks';
-import { ISelectOption } from "@/shared/types";
+import type { SelectOption } from "@/shared/types";
 import { MeasureContext } from './measure.context';
 import { useLanguage } from "..";
-import { CurrencyType, LengthUnitType, WeightUnitType } from "./measure.types";
+import type { CurrencyType, LengthUnitType, WeightUnitType } from "./measure.types";
 
 export const MeasureProvider: FC<PropsWithChildren> = ({ children }) => {
   const [currency, setCurrency] = useLocalStorage<CurrencyType>('currency', 'colon');
@@ -19,7 +19,7 @@ export const MeasureProvider: FC<PropsWithChildren> = ({ children }) => {
     lengthUnitOptions,
     weightUnitOptions,
   } = useMemo(() => {
-    const currencyOptions: ISelectOption<CurrencyType>[] = [
+    const currencyOptions: SelectOption<CurrencyType>[] = [
       {
         label: translation.colon,
         value: 'colon',
@@ -29,7 +29,7 @@ export const MeasureProvider: FC<PropsWithChildren> = ({ children }) => {
         value: 'dollar',
       },
     ];
-    const lengthUnitOptions: ISelectOption<LengthUnitType>[] = [
+    const lengthUnitOptions: SelectOption<LengthUnitType>[] = [
       {
         label: translation.meters,
         value: 'meters',
@@ -39,7 +39,7 @@ export const MeasureProvider: FC<PropsWithChildren> = ({ children }) => {
         value: 'miles',
       },
     ];
-    const weightUnitOptions: ISelectOption<WeightUnitType>[] = [
+    const weightUnitOptions: SelectOption<WeightUnitType>[] = [
       {
         label: translation.grams,
         value: 'grams',

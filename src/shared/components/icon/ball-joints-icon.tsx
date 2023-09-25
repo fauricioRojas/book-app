@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const BallJointsIcon: FC<ICommonIconProps> = ({
+export const BallJointsIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

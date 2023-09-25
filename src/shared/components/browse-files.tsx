@@ -29,11 +29,12 @@ const StyledInputFileLabel = styled.label`
   }
 `
 
-interface IBrowseFilesProps {
+type BrowseFilesProps = {
   accept?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
-export const BrowseFiles: FC<IBrowseFilesProps> = ({
+
+export const BrowseFiles: FC<BrowseFilesProps> = ({
   accept,
   onChange,
 }) => {

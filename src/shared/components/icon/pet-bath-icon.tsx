@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const PetBathIcon: FC<ICommonIconProps> = ({
+export const PetBathIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

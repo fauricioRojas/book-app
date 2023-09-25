@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export interface IDrawerArgs {
+export type DrawerArgs = {
   title: string;
   body: ReactNode;
-}
+};

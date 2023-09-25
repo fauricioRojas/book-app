@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const SadEmojiIcon: FC<ICommonIconProps> = ({
+export const SadEmojiIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

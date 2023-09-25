@@ -2,20 +2,20 @@
 
 import { ChangeEvent, createContext, useContext } from "react";
 
-import { ISelectOption } from "@/shared/types";
-import { ILanguageTranslation, LanguageType } from "./language.types";
+import { SelectOption } from "@/shared/types";
+import type { LanguageTranslation, LanguageType } from "./language.types";
 
-interface ILanguageContext {
+type TLanguageContext = {
   language: LanguageType;
-  languageOptions: ISelectOption<string>[];
-  translation: ILanguageTranslation;
+  languageOptions: SelectOption<string>[];
+  translation: LanguageTranslation;
   changeLanguage: (event: ChangeEvent<HTMLSelectElement>) => void;
-}
+};
 
-export const LanguageContext = createContext<ILanguageContext>({
+export const LanguageContext = createContext<TLanguageContext>({
   language: "es",
   languageOptions: [],
-  translation: {} as ILanguageTranslation,
+  translation: {} as LanguageTranslation,
   changeLanguage: () => undefined,
 });
 

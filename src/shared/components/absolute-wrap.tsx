@@ -1,9 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
-interface IStyledAbsoluteWrapProps {
+type StyledAbsoluteWrapProps = {
   $gap?: Size;
   $gapSm?: Size;
   $gapMd?: Size;
@@ -13,7 +13,7 @@ interface IStyledAbsoluteWrapProps {
   $isNavbarVisible: boolean;
 }
 
-const StyledAbsoluteWrap = styled.div<IStyledAbsoluteWrapProps>`
+const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   align-items: center;
   bottom: 0;
   display: flex;
@@ -46,7 +46,7 @@ const StyledAbsoluteWrap = styled.div<IStyledAbsoluteWrapProps>`
   }
 `
 
-interface IAbsoluteWrapProps extends PropsWithChildren {
+type AbsoluteWrapProps = PropsWithChildren & {
   className?: string;
   gap?: Size;
   gapSm?: Size;
@@ -57,7 +57,7 @@ interface IAbsoluteWrapProps extends PropsWithChildren {
   isNavbarVisible?: boolean;
 }
 
-export const AbsoluteWrap: FC<IAbsoluteWrapProps> = ({
+export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
   className,
   gap,
   gapSm,

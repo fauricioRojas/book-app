@@ -1,11 +1,11 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
 const COL_WIDTH = 100 / 12;
 
-interface IStyledColProps {
+type StyledColProps = {
   $cols?: Size;
   $sm?: Size;
   $md?: Size;
@@ -21,7 +21,7 @@ interface IStyledColProps {
   $mb?: Size;
 }
 
-const StyledCol = styled.div<IStyledColProps>`
+const StyledCol = styled.div<StyledColProps>`
   flex: ${({ $cols }) => $cols ? `0 0 ${COL_WIDTH * $cols}%` : '1 0 0%'};
   margin-bottom: ${({ theme, $mb }) => theme.gutters[`size${$mb}`]};
   margin-left: ${({ $offset }) => $offset ? `${COL_WIDTH * $offset}%` : undefined};
@@ -56,7 +56,7 @@ const StyledCol = styled.div<IStyledColProps>`
   }
 `
 
-interface IColProps extends PropsWithChildren {
+type ColProps = PropsWithChildren & {
   cols?: Size;
   sm?: Size;
   md?: Size;
@@ -72,7 +72,7 @@ interface IColProps extends PropsWithChildren {
   mb?: Size;
 }
 
-export const Col: FC<IColProps> = ({
+export const Col: FC<ColProps> = ({
   cols,
   sm,
   md,

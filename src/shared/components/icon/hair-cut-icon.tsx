@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const HairCutIcon: FC<ICommonIconProps> = ({
+export const HairCutIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

@@ -4,25 +4,25 @@ import { useCallback, useState, FC, PropsWithChildren } from 'react';
 
 import { Drawer } from '@/shared/components';
 import { DrawerContext } from './drawer.context';
-import { IDrawerArgs } from './drawer.types';
+import { DrawerArgs } from './drawer.types';
 
-interface IDrawerState extends IDrawerArgs {
+type DrawerState = DrawerArgs & {
   isVisible: boolean;
 }
 
-export const DEFAULT_DRAWER_STATE: IDrawerState = {
+export const DEFAULT_DRAWER_STATE: DrawerState = {
   isVisible: false,
   title: '',
   body: null,
 };
 
 export const DrawerProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [{ isVisible, title, body }, setState] = useState<IDrawerState>(DEFAULT_DRAWER_STATE);
+  const [{ isVisible, title, body }, setState] = useState<DrawerState>(DEFAULT_DRAWER_STATE);
 
   const resetState = useCallback(() => setState(DEFAULT_DRAWER_STATE), []);
 
   const hideDrawer = useCallback(() => {
-    setState((prevState: IDrawerState) => ({
+    setState((prevState: DrawerState) => ({
       ...prevState,
       isVisible: false,
     }));
@@ -30,7 +30,7 @@ export const DrawerProvider: FC<PropsWithChildren> = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const showDrawer = useCallback((args: IDrawerArgs) => {
+  const showDrawer = useCallback((args: DrawerArgs) => {
     setState({ isVisible: true, ...args });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

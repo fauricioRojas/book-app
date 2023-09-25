@@ -1,15 +1,15 @@
 import { FC } from 'react';
 
 import { GridWrap } from '@/shared/components';
-import { IProcedure } from '@/supabase';
+import { TProcedure } from '@/supabase';
 import { ProceduresListItem } from './procedures-list-item';
 import { NoProcedures } from './no-procedures';
 
-interface IProceduresListProps {
-  procedures: IProcedure[];
+type ProceduresListProps = {
+  procedures: TProcedure[];
 }
 
-export const ProceduresList: FC<IProceduresListProps> = ({
+export const ProceduresList: FC<ProceduresListProps> = ({
   procedures,
 }) => {
   if (!procedures.length) {

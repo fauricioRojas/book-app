@@ -13,11 +13,11 @@ import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
 import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
-import { ITypeSelectorOption } from "@/shared/types";
+import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
-interface IVehiclesForm {
+type VehiclesForm = {
   plateNumber: string;
   brand: string;
   model: string;
@@ -27,13 +27,13 @@ interface IVehiclesForm {
   photo?: string;
 }
 
-interface IVehiclesFormProps {
-  defaultValues?: IVehiclesForm;
+type VehiclesFormProps = {
+  defaultValues?: VehiclesForm;
   vehicleId?: number;
   noteId?: number;
 }
 
-export const VehiclesForm: FC<IVehiclesFormProps> = ({
+export const VehiclesForm: FC<VehiclesFormProps> = ({
   defaultValues,
   vehicleId,
   noteId,
@@ -44,7 +44,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     setValue,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<IVehiclesForm>({
+  } = useForm<VehiclesForm>({
     defaultValues: {
       plateNumber: "",
       brand: "",
@@ -75,14 +75,14 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
-  const handleSetType = (type: ITypeSelectorOption) => {
+  const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
     setMode('form')
   };
 
   const handleShowVehiclesSelector = () => setMode('selector');
 
-  const insertVehicle = async (vehicleDate: IVehiclesForm) => {
+  const insertVehicle = async (vehicleDate: VehiclesForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
@@ -109,7 +109,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     }
   };
 
-  const updateVehicle = async (vehicleDate: IVehiclesForm) => {
+  const updateVehicle = async (vehicleDate: VehiclesForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: vehicleDate.type,
       date: new Date(vehicleDate.dateOfPurchase),
@@ -135,7 +135,7 @@ export const VehiclesForm: FC<IVehiclesFormProps> = ({
     }
   };
 
-  const onSubmit = async (vehicleData: IVehiclesForm) => {
+  const onSubmit = async (vehicleData: VehiclesForm) => {
     if (isUpdateMode) {
       await updateVehicle(vehicleData);
     } else {

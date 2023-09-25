@@ -1,7 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from 'next/headers';
 
-import { IPet, SELECT, TABLES } from '@/supabase';
+import { TPet, SELECT, TABLES } from '@/supabase';
 import { PetsHeader } from './pets-header';
 import { PetsList } from './pets-list';
 
@@ -13,7 +13,7 @@ const PetsPage = async () => {
   const supabase = createServerComponentClient({ cookies });
   const { data } = await supabase
     .from(TABLES.PETS)
-    .select<string, IPet>(SELECT.MINIMAL_PET)
+    .select<string, TPet>(SELECT.MINIMAL_PET)
     .abortSignal(abortController.signal);
 
   return (

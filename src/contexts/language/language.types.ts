@@ -2,7 +2,7 @@ export type LanguageType = "es" | "en";
 
 type Language = { [K in LanguageType]: string };
 
-export interface ILanguageTranslation extends Language {
+export type LanguageTranslation = Language & {
   vehicles: string;
   pets: string;
   profile: string;
@@ -176,4 +176,4 @@ export interface ILanguageTranslation extends Language {
   validEmail: string;
   validPhoneNumber: string;
   validYear: string;
-}
+};

@@ -4,14 +4,14 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
-import { IProcedure } from '@/supabase';
+import { TProcedure } from '@/supabase';
 import { useLanguage } from '@/contexts';
 import { ICON_BY_TYPE } from '@/shared/constants';
 import { formatDate } from '@/shared/utils';
 
-interface IRemindersListItemProps extends IProcedure {}
+type RemindersListItemProps = TProcedure;
 
-export const RemindersListItem: FC<IRemindersListItemProps> = ({
+export const RemindersListItem: FC<RemindersListItemProps> = ({
   nextDate,
   notes: { type },
   pets: { name },

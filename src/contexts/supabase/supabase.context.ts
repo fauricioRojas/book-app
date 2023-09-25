@@ -1,13 +1,13 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { type SupabaseClient } from "@supabase/auth-helpers-nextjs";
+import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 
-interface ISubabaseContext {
+type TSubabaseContext = {
   supabaseClient: SupabaseClient;
-}
+};
 
-export const SupabaseContext = createContext<ISubabaseContext>({
+export const SupabaseContext = createContext<TSubabaseContext>({
   supabaseClient: {} as SupabaseClient,
 });
 

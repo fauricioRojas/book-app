@@ -5,7 +5,7 @@ import styled, { useTheme } from 'styled-components';
 
 import { Box, Icon } from '.';
 
-interface StyledPhotoPreviewProps {
+type StyledPhotoPreviewProps = {
   $backgroundImage: string;
 }
 
@@ -30,12 +30,12 @@ const StyledTrashIconWrap = styled.div`
   width: 30px;
 `
 
-interface IPhotoPreviewProps {
+type PhotoPreviewProps = {
   photo?: string;
   onRemovePhoto?: () => void;
 }
 
-export const PhotoPreview: FC<IPhotoPreviewProps> = ({ photo, onRemovePhoto }) => {
+export const PhotoPreview: FC<PhotoPreviewProps> = ({ photo, onRemovePhoto }) => {
   const { colors } = useTheme();
 
   return photo && (

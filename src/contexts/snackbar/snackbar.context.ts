@@ -2,13 +2,13 @@
 
 import { createContext, useContext } from "react";
 
-import { ISnackbarArgs } from "./snackbar.types";
+import { SnackbarArgs } from "./snackbar.types";
 
-interface ISnackbarContext {
-  showSnackbar: (args: ISnackbarArgs) => void;
-}
+type TSnackbarContext = {
+  showSnackbar: (args: SnackbarArgs) => void;
+};
 
-export const SnackbarContext = createContext<ISnackbarContext>({
+export const SnackbarContext = createContext<TSnackbarContext>({
   showSnackbar: () => undefined,
 });
 

@@ -1,13 +1,13 @@
-import {
-  type IBreakpoints,
-  type IColors,
-  type IGutters,
-  type IFontWeights,
-  type IShadows,
-  type ITheme,
+import type {
+  Breakpoints,
+  Colors,
+  Gutters,
+  FontWeights,
+  Shadows,
+  Theme,
 } from "./types";
 
-const breakpoints: IBreakpoints = {
+const breakpoints: Breakpoints = {
   sm: "36rem",
   md: "48rem",
   lg: "62rem",
@@ -30,7 +30,7 @@ const commonColors = {
   warning: "#FC6E20",
 };
 
-export const lightColors: IColors = {
+export const lightColors: Colors = {
   ...commonColors,
   secondary100: "#F3F4F6",
   secondary200: "#EEEFF1",
@@ -46,7 +46,7 @@ export const lightColors: IColors = {
   card: "#F2F2F4",
 };
 
-export const darkColors: IColors = {
+export const darkColors: Colors = {
   ...commonColors,
   secondary100: "#989A9C",
   secondary200: "#686B6E",
@@ -62,14 +62,14 @@ export const darkColors: IColors = {
   card: "#211F2A",
 };
 
-const fontWeights: IFontWeights = {
+const fontWeights: FontWeights = {
   bold: 700,
   regular: 400,
   light: 300,
   thin: 100,
 };
 
-const gutters: IGutters = {
+const gutters: Gutters = {
   borderRadius: "6px",
   size0: 0,
   size1: "0.25rem",
@@ -94,7 +94,7 @@ const gutters: IGutters = {
   size20: "5rem",
 };
 
-const shadows: IShadows = {
+const shadows: Shadows = {
   sm: "0 0.125rem 0.25rem rgba(0, 0, 0, 0.075)",
   md: "0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)",
   lg: "0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15)",
@@ -107,12 +107,12 @@ const commonTheme = {
   shadows,
 };
 
-export const LIGHT_THEME: ITheme = {
+export const LIGHT_THEME: Theme = {
   ...commonTheme,
   colors: lightColors,
 };
 
-export const DARK_THEME: ITheme = {
+export const DARK_THEME: Theme = {
   ...commonTheme,
   colors: darkColors,
 };

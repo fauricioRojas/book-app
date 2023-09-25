@@ -4,14 +4,14 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { IProcedure } from '@/supabase';
+import { TProcedure } from '@/supabase';
 import { formatDate, formatMoney, formatWeight } from '@/shared/utils';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
 
-interface IProceduresListItemProps extends IProcedure {}
+type ProceduresListItemProps = TProcedure;
 
-export const ProceduresListItem: FC<IProceduresListItemProps> = ({
+export const ProceduresListItem: FC<ProceduresListItemProps> = ({
   id,
   cost,
   weight,

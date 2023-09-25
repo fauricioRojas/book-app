@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const CatIcon: FC<ICommonIconProps> = ({
+export const CatIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

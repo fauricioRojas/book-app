@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { Icon, IconName } from '.';
+import { Icon, type IconName } from '.';
 
 type Variant = 'primary' | 'secondary' | 'error' | 'warning';
 
-interface IStyledIconButtonProps {
+type StyledIconButtonProps = {
   $variant: Variant;
 }
 
-const StyledIconButton = styled.button<IStyledIconButtonProps>`
+const StyledIconButton = styled.button<StyledIconButtonProps>`
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -34,7 +34,7 @@ const StyledIconButton = styled.button<IStyledIconButtonProps>`
   }
 `
 
-interface IIconButtonProps {
+type IconButtonProps = {
   iconName: IconName
   variant?: Variant
   width?: number;
@@ -43,7 +43,7 @@ interface IIconButtonProps {
   onClick?: () => void;
 }
 
-export const IconButton: FC<IIconButtonProps> = ({
+export const IconButton: FC<IconButtonProps> = ({
   variant = 'primary',
   iconName,
   width = 25,

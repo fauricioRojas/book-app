@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const HamsterIcon: FC<ICommonIconProps> = ({
+export const HamsterIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

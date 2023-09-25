@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import { GridWrap } from '@/shared/components';
-import { IPet, TABLES, SCHEMAS, ACTIONS, SELECT } from '@/supabase';
+import { TPet, TABLES, SCHEMAS, ACTIONS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { PetsListItem } from './pets-list-item';
 import { NoPets } from './no-pets';
@@ -11,12 +11,12 @@ import { useSupabase } from '@/contexts';
 
 const abortController = new AbortController();
 
-interface IPetsListProps {
-  serverPets: IPet[];
+type PetsListProps = {
+  serverPets: TPet[];
 }
 
-export const PetsList: FC<IPetsListProps> = ({ serverPets }) => {
-  const [pets, setPets] = useState<IPet[]>(serverPets);
+export const PetsList: FC<PetsListProps> = ({ serverPets }) => {
+  const [pets, setPets] = useState<TPet[]>(serverPets);
   const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setPets(serverPets), [serverPets]);
@@ -31,7 +31,7 @@ export const PetsList: FC<IPetsListProps> = ({ serverPets }) => {
       }, async (payload: any) => {
         const newlyAddedPet = await findPetById(payload.new.id);
         if (newlyAddedPet) {
-          setPets((prevPets: IPet[]) => prevPets.concat(newlyAddedPet));
+          setPets((prevPets: TPet[]) => prevPets.concat(newlyAddedPet));
         }
       })
       .subscribe();
@@ -45,7 +45,7 @@ export const PetsList: FC<IPetsListProps> = ({ serverPets }) => {
   const findPetById = async(id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.PETS)
-      .select<string, IPet>(SELECT.MINIMAL_PET)
+      .select<string, TPet>(SELECT.MINIMAL_PET)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

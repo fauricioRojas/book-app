@@ -1,14 +1,14 @@
 import { ChangeEvent, FC } from 'react';
 import styled, { css } from 'styled-components';
 
-import { ISelectOption } from "@/shared/types";
+import type { SelectOption } from "@/shared/types";
 
-interface IStyledSelectProps {
+type StyledSelectProps = {
   $block?: boolean;
   $borderless?: boolean;
 }
 
-const StyledSelect = styled.select<IStyledSelectProps>`
+const StyledSelect = styled.select<StyledSelectProps>`
   appearance: none;
   background-color: transparent;
   background-image: ${({ theme }) => `
@@ -49,15 +49,15 @@ const StyledSelect = styled.select<IStyledSelectProps>`
   `};
 `;
 
-interface ISelectProps {
+type SelectProps = {
   value: any;
-  options: ISelectOption<string>[];
+  options: SelectOption<string>[];
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   block?: boolean;
   borderless?: boolean;
 }
 
-export const Select: FC<ISelectProps> = ({
+export const Select: FC<SelectProps> = ({
   options,
   block,
   borderless,

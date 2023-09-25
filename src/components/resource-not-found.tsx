@@ -9,22 +9,20 @@ import { ROUTES } from '@/shared/constants';
 
 type Page = 'vehicle' | 'pet' | 'maintenance' | 'procedure';
 
-interface IResourceNotFoundProps {
+type ResourceNotFoundProps = {
   page: Page;
 }
 
-export const ResourceNotFound: FC<IResourceNotFoundProps> = ({ page }) => {
+export const ResourceNotFound: FC<ResourceNotFoundProps> = ({ page }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
-
-  const titleMapper: Record<Page, string> = {
-    vehicle: translation.vehicleNotFound,
-    pet: translation.petNotFound,
-    maintenance: translation.maintenanceNotFound,
-    procedure: translation.procedureNotFound,
-  };
-
-  const title = titleMapper[page];
+  const titleMapper = new Map<Page, string>([
+    ['vehicle', translation.vehicleNotFound],
+    ['pet', translation.petNotFound],
+    ['maintenance', translation.maintenanceNotFound],
+    ['procedure', translation.procedureNotFound],
+  ]);
+  const title = titleMapper.get(page);
 
   return (
     <AbsoluteWrap gap={4} isNavbarVisible>

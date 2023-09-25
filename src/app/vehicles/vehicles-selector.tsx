@@ -2,56 +2,53 @@ import { FC, useMemo } from "react";
 
 import { useLanguage } from "@/contexts";
 import { TypeSelector } from "@/shared/components";
-import { ITypeSelectorOption } from "@/shared/types";
+import { TypeSelectorOption } from "@/shared/types";
 import { ENGLISH } from "@/contexts/language/constants/english.constants";
 
-interface IVehiclesSelectorProps {
-  onSelect: (type: ITypeSelectorOption) => void;
+type VehiclesSelectorProps = {
+  onSelect: (type: TypeSelectorOption) => void;
 }
 
-export const VehiclesSelector: FC<IVehiclesSelectorProps> = ({ onSelect }) => {
+export const VehiclesSelector: FC<VehiclesSelectorProps> = ({ onSelect }) => {
   const { language, translation } = useLanguage();
-  const vehiclesTypes = useMemo(() => {
-    const types: ITypeSelectorOption[] = [
-      {
-        id: 1,
-        label: translation.bike,
-        value: ENGLISH.bike,
-      },
-      {
-        id: 2,
-        label: translation.motorcycle,
-        value: ENGLISH.motorcycle,
-      },
-      {
-        id: 3,
-        label: translation.car,
-        value: ENGLISH.car,
-      },
-      {
-        id: 4,
-        label: translation.truck,
-        value: ENGLISH.truck,
-      },
-      {
-        id: 5,
-        label: translation.pickup,
-        value: ENGLISH.pickup,
-      },
-      {
-        id: 6,
-        label: translation.tractor,
-        value: ENGLISH.tractor,
-      },
-      {
-        id: 7,
-        label: translation.trailer,
-        value: ENGLISH.trailer,
-      },
-    ];
-    return types;
+  const vehiclesTypes = useMemo((): TypeSelectorOption[] => [
+    {
+      id: 1,
+      label: translation.bike,
+      value: ENGLISH.bike,
+    },
+    {
+      id: 2,
+      label: translation.motorcycle,
+      value: ENGLISH.motorcycle,
+    },
+    {
+      id: 3,
+      label: translation.car,
+      value: ENGLISH.car,
+    },
+    {
+      id: 4,
+      label: translation.truck,
+      value: ENGLISH.truck,
+    },
+    {
+      id: 5,
+      label: translation.pickup,
+      value: ENGLISH.pickup,
+    },
+    {
+      id: 6,
+      label: translation.tractor,
+      value: ENGLISH.tractor,
+    },
+    {
+      id: 7,
+      label: translation.trailer,
+      value: ENGLISH.trailer,
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [language]);
+  ], [language]);
 
   return (
     <TypeSelector

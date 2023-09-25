@@ -2,7 +2,7 @@ import { ChangeEvent, FC, useState } from "react";
 import styled, { useTheme } from 'styled-components';
 
 import { FlexWrap, GridWrap, Icon, Input, Typography } from "@/shared/components";
-import { ITypeSelectorOption } from "@/shared/types";
+import type { TypeSelectorOption } from "@/shared/types";
 import { useLanguage } from "@/contexts";
 import { ICON_BY_TYPE } from "@/shared/constants";
 
@@ -30,12 +30,12 @@ const StyledTypeSelectorOption = styled.div`
   }
 `;
 
-interface ITypeSelectorProps {
-  types: ITypeSelectorOption[];
-  onSelect: (type: ITypeSelectorOption) => void;
+type TypeSelectorProps = {
+  types: TypeSelectorOption[];
+  onSelect: (type: TypeSelectorOption) => void;
 }
 
-export const TypeSelector: FC<ITypeSelectorProps> = ({
+export const TypeSelector: FC<TypeSelectorProps> = ({
   types,
   onSelect,
 }) => {

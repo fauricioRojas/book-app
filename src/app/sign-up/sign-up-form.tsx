@@ -27,7 +27,7 @@ const StyledFlexWrap = styled(FlexWrap)`
   }
 `;
 
-interface ISignUpForm {
+type SignUpForm = {
   email: string;
   password: string;
 }
@@ -37,7 +37,7 @@ export const SignUpForm = () => {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<ISignUpForm>({
+  } = useForm<SignUpForm>({
     defaultValues: {
       email: "",
       password: "",
@@ -48,7 +48,7 @@ export const SignUpForm = () => {
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const onSubmit = async ({ email, password }: ISignUpForm) => {
+  const onSubmit = async ({ email, password }: SignUpForm) => {
     try {
       const error = await signUp(email, password);
       if (error) {

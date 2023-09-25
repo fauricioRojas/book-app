@@ -12,14 +12,14 @@ import {
 import { useLanguage } from '@/contexts';
 import { detectMobileDevice } from '@/shared/utils';
 
-interface IPhotoProps {
+type PhotoProps = {
   photo?: string;
   onChangePhoto: (photo?: string) => void;
 }
 
 const isMobileDevice = detectMobileDevice();
 
-export const Photo: FC<IPhotoProps> = ({ photo, onChangePhoto }) => {
+export const Photo: FC<PhotoProps> = ({ photo, onChangePhoto }) => {
   const { translation } = useLanguage();
 
   const handleChangePhoto = (browsedPhoto?: string) => {

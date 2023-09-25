@@ -1,6 +1,6 @@
-import { ILanguageTranslation } from "../language.types";
+import type { LanguageTranslation } from "../language.types";
 
-export const SPANISH: ILanguageTranslation = {
+export const SPANISH: LanguageTranslation = {
   es: "Español",
   en: "Inglés",
   vehicles: "Vehículos",

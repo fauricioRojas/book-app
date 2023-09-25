@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const HandleBarIcon: FC<ICommonIconProps> = ({
+export const HandleBarIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

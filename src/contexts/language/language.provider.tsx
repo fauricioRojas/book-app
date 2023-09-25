@@ -4,11 +4,11 @@ import { ChangeEvent, FC, PropsWithChildren } from 'react';
 
 import { useLocalStorage } from '@/hooks';
 import { LANGUAGES, languageTypes } from './constants/language.constants';
-import { LanguageType, ILanguageTranslation } from './language.types';
 import { LanguageContext } from './language.context';
-import { ISelectOption } from '@/shared/types';
+import type { LanguageType, LanguageTranslation } from './language.types';
+import type { SelectOption } from '@/shared/types';
 
-const getLanguageOptions = (translation: ILanguageTranslation): ISelectOption<LanguageType>[] =>
+const getLanguageOptions = (translation: LanguageTranslation): SelectOption<LanguageType>[] =>
   languageTypes.map(type => ({ label: translation[type], value: type }));
 
 export const LanguageProvider: FC<PropsWithChildren> = ({ children }) => {

@@ -3,22 +3,22 @@ import { notFound } from "next/navigation";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { IProcedure, SELECT, TABLES } from "@/supabase";
+import { TProcedure, SELECT, TABLES } from "@/supabase";
 import { Procedure } from "./procedure";
 
 const abortController = new AbortController();
 
-interface IProcedurePageProps {
+type ProcedurePageProps = {
   params: {
     procedureId: string;
   };
 }
 
-const ProcedurePage: FC<IProcedurePageProps> = async ({ params: { procedureId } }) => {
+const ProcedurePage: FC<ProcedurePageProps> = async ({ params: { procedureId } }) => {
   const supabase = createServerComponentClient({ cookies });
   const { data: procedure } = await supabase
     .from(TABLES.PROCEDURES)
-    .select<string, IProcedure>(SELECT.FULL_PROCEDURE)
+    .select<string, TProcedure>(SELECT.FULL_PROCEDURE)
     .match({ id: procedureId })
     .abortSignal(abortController.signal)
     .single();

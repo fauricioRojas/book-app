@@ -29,11 +29,11 @@ const StyledInputFileLabel = styled.label`
   }
 `
 
-interface ICameraProps {
+type CameraProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Camera: FC<ICameraProps> = ({ onChange }) => {
+export const Camera: FC<CameraProps> = ({ onChange }) => {
   const { translation } = useLanguage();
 
   return (

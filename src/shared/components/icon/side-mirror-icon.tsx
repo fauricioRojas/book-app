@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const SideMirrorIcon: FC<ICommonIconProps> = ({
+export const SideMirrorIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

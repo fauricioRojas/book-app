@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const PigIcon: FC<ICommonIconProps> = ({
+export const PigIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

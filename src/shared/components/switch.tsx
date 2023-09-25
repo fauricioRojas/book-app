@@ -1,13 +1,13 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
-interface IStyledSwitchProps {
+type StyledSwitchProps = {
   $mb?: Size;
 }
 
-const StyledSwitch = styled.label<IStyledSwitchProps>`
+const StyledSwitch = styled.label<StyledSwitchProps>`
   cursor: pointer;
   display: inline-block;
   height: 26px;
@@ -50,13 +50,13 @@ const StyledSwitch = styled.label<IStyledSwitchProps>`
   }
 `;
 
-interface ISwitchProps {
+type SwitchProps = {
   checked: boolean;
   mb?: Size;
   onChange: () => void;
 }
 
-export const Switch: FC<ISwitchProps> = ({ checked, mb, onChange }) => (
+export const Switch: FC<SwitchProps> = ({ checked, mb, onChange }) => (
   <StyledSwitch $mb={mb}>
     <input type="checkbox" checked={checked} onChange={onChange} />
     <span />

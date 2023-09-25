@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { ICommonIconProps, StyledSvg } from '.';
+import { type CommonIconProps, StyledSvg } from '.';
 
-export const GreaseGunIcon: FC<ICommonIconProps> = ({
+export const GreaseGunIcon: FC<CommonIconProps> = ({
   color,
   pointer,
   ml,

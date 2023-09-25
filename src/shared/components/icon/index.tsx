@@ -90,115 +90,22 @@ import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
 import { WeightIcon } from './weight-icon';
-import { Size } from '@/shared/types';
+import type { Size } from '@/shared/types';
 
-export interface ICommonIconProps {
-  className?: string;
-  pointer?: boolean;
-  color?: string;
-  width?: number;
-  height?: number;
-  mr?: Size;
-  ml?: Size;
-  onClick?: () => void;
-};
-
-export type IconName =
-  | 'ac'
-  | 'ac-air-filter'
-  | 'add'
-  | 'arrow-back'
-  | 'arrow-down'
-  | 'ball-joints'
-  | 'battery'
-  | 'bell'
-  | 'belt'
-  | 'bike'
-  | 'brake'
-  | 'brake-fiber'
-  | 'brake-fluid-bottle'
-  | 'brush'
-  | 'bull'
-  | 'bushing'
-  | 'cable'
-  | 'camera'
-  | 'cancel'
-  | 'car'
-  | 'carburetor'
-  | 'car-chasis'
-  | 'car-fuse'
-  | 'cat'
-  | 'chain'
-  | 'check'
-  | 'coolant'
-  | 'currency'
-  | 'dog'
-  | 'email'
-  | 'engine'
-  | 'engine-air-filter'
-  | 'error'
-  | 'expand'
-  | 'facebook'
-  | 'footprint'
-  | 'fuel-filter'
-  | 'fuses'
-  | 'gear'
-  | 'github'
-  | 'grease-gun'
-  | 'handle-bar'
-  | 'hair-cut'
-  | 'hamster'
-  | 'horse'
-  | 'hose'
-  | 'info'
-  | 'injector'
-  | 'length-meter'
-  | 'light-bulb'
-  | 'microphone'
-  | 'moon'
-  | 'motorcycle'
-  | 'motorcycle-seat'
-  | 'oil'
-  | 'oil-filter'
-  | 'paint-gun'
-  | 'pencil'
-  | 'pet-bath'
-  | 'pet-grooming-brush'
-  | 'pet-nail-clippers'
-  | 'petrol-pump'
-  | 'pickup'
-  | 'pig'
-  | 'pills-bottle'
-  | 'profile'
-  | 'rabbit'
-  | 'radiator'
-  | 'rim'
-  | 'sad-emoji'
-  | 'search'
-  | 'settings'
-  | 'shock-absorbers'
-  | 'side-mirror'
-  | 'sign-out'
-  | 'star'
-  | 'surgery-knife'
-  | 'syringe'
-  | 'tick'
-  | 'tire'
-  | 'tractor'
-  | 'trailer'
-  | 'translate'
-  | 'trash'
-  | 'truck'
-  | 'video-camera'
-  | 'warning'
-  | 'water-drop'
-  | 'weight';
-
-interface IIconProps extends ICommonIconProps {
-  name: IconName;
+type StyledIconProps = {
+  $isClickable?: boolean;
+  $ml?: Size;
+  $mr?: Size;
 }
 
-const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
+export const StyledSvg = styled.svg<StyledIconProps>`
+  cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
+  margin-left: ${({ $ml, theme }) => theme.gutters[`size${$ml}`]};
+  margin-right: ${({ $mr, theme }) => theme.gutters[`size${$mr}`]};
+  transition: color .2s ease;
+`;
+
+const ICON_MAPPER = {
   ac: ACIcon,
   'ac-air-filter': ACAirFilterIcon,
   add: AddIcon,
@@ -290,20 +197,24 @@ const ICON_MAPPER: Record<IconName, FC<ICommonIconProps>> = {
   weight: WeightIcon,
 };
 
-interface IStyledIconProps {
-  $isClickable?: boolean;
-  $ml?: Size;
-  $mr?: Size;
+type IconName = keyof typeof ICON_MAPPER;
+
+export type CommonIconProps = {
+  className?: string;
+  pointer?: boolean;
+  color?: string;
+  width?: number;
+  height?: number;
+  mr?: Size;
+  ml?: Size;
+  onClick?: () => void;
+};
+
+type IconProps = CommonIconProps & {
+  name: IconName;
 }
 
-export const StyledSvg = styled.svg<IStyledIconProps>`
-  cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
-  margin-left: ${({ $ml, theme }) => theme.gutters[`size${$ml}`]};
-  margin-right: ${({ $mr, theme }) => theme.gutters[`size${$mr}`]};
-  transition: color .2s ease;
-`
-
-export const Icon: FC<IIconProps> = ({
+export const Icon: FC<IconProps> = ({
   name,
   color = '#000',
   ...props

@@ -12,11 +12,11 @@ import {
 import { useFormRules } from "@/hooks";
 import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
-import { ITypeSelectorOption } from "@/shared/types";
+import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
-interface IPetsForm {
+type PetsForm = {
   name: string;
   breed: string;
   type: string;
@@ -25,13 +25,13 @@ interface IPetsForm {
   photo?: string;
 }
 
-interface IPetsFormProps {
-  defaultValues?: IPetsForm;
+type PetsFormProps = {
+  defaultValues?: PetsForm;
   petId?: number;
   noteId?: number;
 }
 
-export const PetsForm: FC<IPetsFormProps> = ({
+export const PetsForm: FC<PetsFormProps> = ({
   defaultValues,
   petId,
   noteId,
@@ -42,7 +42,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
     setValue,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<IPetsForm>({
+  } = useForm<PetsForm>({
     defaultValues: {
       name: "",
       breed: "",
@@ -71,14 +71,14 @@ export const PetsForm: FC<IPetsFormProps> = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
-  const handleSetType = (type: ITypeSelectorOption) => {
+  const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
     setMode('form')
   };
 
   const handleShowPetsSelector = () => setMode('selector');
 
-  const insertPet = async (petData: IPetsForm) => {
+  const insertPet = async (petData: PetsForm) => {
     const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
@@ -104,7 +104,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
     }
   };
 
-  const updatePet = async (petData: IPetsForm) => {
+  const updatePet = async (petData: PetsForm) => {
     const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
       type: petData.type,
       date: new Date(petData.dateOfBirth),
@@ -129,7 +129,7 @@ export const PetsForm: FC<IPetsFormProps> = ({
     }
   };
 
-  const onSubmit = async (petData: IPetsForm) => {
+  const onSubmit = async (petData: PetsForm) => {
     if (isUpdateMode) {
       await updatePet(petData);
     } else {

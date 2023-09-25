@@ -4,14 +4,14 @@ import styled, { DefaultTheme, css, keyframes } from 'styled-components';
 type Color = 'primary' | 'secondary' | 'error';
 type Variant = 'circular' | 'pill';
 
-interface IStyledBadgeProps {
+type StyledBadgeProps = {
   $color: Color;
   $animate: boolean;
   $variant: Variant;
   theme: DefaultTheme
 }
 
-const getPulseAnimation = ({ $color, theme }: IStyledBadgeProps) => keyframes`
+const getPulseAnimation = ({ $color, theme }: StyledBadgeProps) => keyframes`
   0% {
     box-shadow: 0 0 0 0px ${`${theme.colors[$color]}40`};
   }
@@ -20,7 +20,7 @@ const getPulseAnimation = ({ $color, theme }: IStyledBadgeProps) => keyframes`
   }
 `;
 
-const StyledBadge = styled.span<IStyledBadgeProps>`
+const StyledBadge = styled.span<StyledBadgeProps>`
   background-color: ${({ $color, theme }) => theme.colors[$color]};
   color: ${({ theme }) => theme.colors.white};
   display: grid;
@@ -44,13 +44,13 @@ const StyledBadge = styled.span<IStyledBadgeProps>`
   `};
 `;
 
-interface IBadgeProps extends PropsWithChildren {
+type BadgeProps = PropsWithChildren & {
   color: Color;
   variant: Variant;
   animate?: boolean;
 }
   
-export const Badge: FC<IBadgeProps> = ({
+export const Badge: FC<BadgeProps> = ({
   color,
   variant,
   animate = false,

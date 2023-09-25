@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import { GridWrap } from '@/shared/components';
-import { IVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
+import { TVehicle, TABLES, ACTIONS, SCHEMAS, SELECT } from '@/supabase';
 import { useDidUpdate } from '@/hooks';
 import { VehiclesListItem } from './vehicles-list-item';
 import { NoVehicles } from './no-vehicles';
@@ -11,12 +11,12 @@ import { useSupabase } from '@/contexts';
 
 const abortController = new AbortController();
 
-interface IVehiclesListProps {
-  serverVehicles: IVehicle[];
+type VehiclesListProps = {
+  serverVehicles: TVehicle[];
 }
 
-export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
-  const [vehicles, setVehicles] = useState<IVehicle[]>(serverVehicles);
+export const VehiclesList: FC<VehiclesListProps> = ({ serverVehicles }) => {
+  const [vehicles, setVehicles] = useState<TVehicle[]>(serverVehicles);
   const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setVehicles(serverVehicles), [serverVehicles]);
@@ -31,7 +31,7 @@ export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
       }, async (payload: any) => {
         const newlyAddedVehicle = await findVehicleById(payload.new.id);
         if (newlyAddedVehicle) {
-          setVehicles((prevVehicles: IVehicle[]) => prevVehicles.concat(newlyAddedVehicle));
+          setVehicles((prevVehicles: TVehicle[]) => prevVehicles.concat(newlyAddedVehicle));
         }
       })
       .subscribe();
@@ -45,7 +45,7 @@ export const VehiclesList: FC<IVehiclesListProps> = ({ serverVehicles }) => {
   const findVehicleById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.VEHICLES)
-      .select<string, IVehicle>(SELECT.MINIMAL_VEHICLE)
+      .select<string, TVehicle>(SELECT.MINIMAL_VEHICLE)
       .match({ id })
       .abortSignal(abortController.signal)
       .single();

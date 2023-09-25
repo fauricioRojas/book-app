@@ -2,12 +2,12 @@
 
 import { createContext, useContext } from "react";
 
-interface ICustomThemeContext {
+type TCustomThemeContext = {
   isDarkTheme: boolean;
   toggleTheme: () => void;
-}
+};
 
-export const CustomThemeContext = createContext<ICustomThemeContext>({
+export const CustomThemeContext = createContext<TCustomThemeContext>({
   isDarkTheme: false,
   toggleTheme: () => undefined,
 });
