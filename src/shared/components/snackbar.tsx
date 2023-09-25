@@ -17,7 +17,7 @@ const fadeInAnimation = keyframes`
     visibility: visible;
     transform: translateY(0);
   }
-  95% {
+  90% {
     opacity: 1;
     transform: translateY(0px);
   }
@@ -27,42 +27,34 @@ const progressAnimation = keyframes`
 `;
 
 const StyledSnackbar = styled.div<StyledSkeletonProps>`
-  position: absolute;
-  bottom: ${({ theme }) => theme.gutters.size8};
-  align-items: center;
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  animation: ${fadeInAnimation} ${({ $duration }) => `${$duration}s`} linear forwards;
   background-color: ${({ theme }) => theme.colors.card};
+  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  bottom: ${({ theme }) => theme.gutters.size15};
   color: ${({ theme }) => theme.colors.primaryText};
   max-width: 320px;
-  width: auto;
-  transform: translateY(30px);
   opacity: 0;
+  position: absolute;
+  transform: translateY(30px);
   visibility: hidden;
-  animation-duration: ${({ $duration }) => `${$duration}s`};
-  animation-name: ${fadeInAnimation};
-  animation-timing-function: linear;
-`;
-const StyledSnackbarBody = styled.div`
+  width: auto;
   padding: ${({ theme }) => theme.gutters.size3};
 `;
 const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
-  position: absolute;
-  left: 8px;
-  bottom: 4px;
-  width: calc(100% - 16px);
-  height: 3px;
-  transform: scaleX(0);
-  transform-origin: left;
+  animation: ${progressAnimation} ${({ $duration }) => `${$duration - 1}s`} 0.25s forwards;
   background: linear-gradient(
     to right,
     ${({ theme }) => theme.colors.secondary},
     ${({ $color }) => $color}
   );
   border-radius: inherit;
-  animation-duration: ${({ $duration }) => `${$duration}s`};
-  animation-delay: 0.3s;
-  animation-name: ${progressAnimation};
-  animation-timing-function: linear;
+  bottom: 4px;
+  height: 3px;
+  left: 8px;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  width: calc(100% - 16px);
 `;
 
 type SnackbarProps = {
@@ -84,17 +76,15 @@ export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) =
   return (
     <FlexWrap justify="center">
       <StyledSnackbar $duration={durationInSeconds}>
-        <StyledSnackbarBody>
-          <FlexWrap align="center" gap={2}>
-            <Icon
-              name={ICON_NAME_MAPPER[type]}
-              color={color}
-              width={22}
-              height={22}
-            />
-            <Typography variant="label">{body}</Typography>
-          </FlexWrap>
-        </StyledSnackbarBody>
+        <FlexWrap align="center" gap={2}>
+          <Icon
+            name={ICON_NAME_MAPPER[type]}
+            color={color}
+            width={22}
+            height={22}
+          />
+          <Typography variant="label">{body}</Typography>
+        </FlexWrap>
         <StyledSnackbarProgress
           $color={color}
           $duration={durationInSeconds}
