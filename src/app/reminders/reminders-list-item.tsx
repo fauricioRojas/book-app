@@ -30,7 +30,7 @@ export const RemindersListItem: FC<RemindersListItemProps> = ({
             color={colors.primaryText}
           />
           <Typography
-            variant="h6"
+            variant="h5"
             fontWeight="bold"
           >
             {name}

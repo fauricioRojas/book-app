@@ -15,6 +15,8 @@ const StyledNavbar = styled.nav`
   bottom: ${({ theme }) => theme.gutters.size0};
   display: flex;
   height: 50px;
+  justify-content: space-between;
+  padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   position: fixed;
   transition: background-color .3s;
   width: 100%;

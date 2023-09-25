@@ -11,7 +11,6 @@ import { TNavbarItem } from './navbar.types';
 const StyledLink = styled(NextLink)`
   align-items: center;
   display: flex;
-  flex: 1;
   flex-direction: column;
   gap: ${({ theme }) => theme.gutters.size1};
   text-decoration: none;

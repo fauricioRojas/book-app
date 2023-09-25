@@ -38,7 +38,7 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypography
   ${$color === 'error' && css`
     color: ${theme.colors.error};
   `}
-  ${({ $display }: any) => typeof $display === 'boolean' && css`
+  ${({ $display }: StyledTypographyProps) => typeof $display === 'boolean' && css`
     display: ${$display ? 'block' : 'none'};
   `}
   font-style: ${$italic ? 'italic' : undefined};
@@ -80,38 +80,53 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypography
       display: ${$displayXxl ? 'block' : 'none'};
     `}
   }
-`
+`;
 
 const H1 = styled.h1`
-  font-size: calc(1.375rem + 1.5vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
-    font-size: 3rem;
+  font-size: 2rem;
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 2.25rem;
   }
-  ${sharedCss};
-`;
-const H2 = styled.h2`
-  font-size: calc(1.325rem + 0.9vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 2.5rem;
   }
   ${sharedCss};
 `;
+const H2 = styled.h2`
+  font-size: 1.75rem;
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 2rem;
+  }
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    font-size: 2.25rem;
+  }
+  ${sharedCss};
+`;
 const H3 = styled.h3`
-  font-size: calc(1.3rem + 0.6vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  font-size: 1.5rem;
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 1.75rem;
+  }
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 2rem;
   }
   ${sharedCss};
 `;
 const H4 = styled.h4`
-  font-size: calc(1.275rem + 0.3vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  font-size: 1.25rem;
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 1.375rem;
+  }
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 1.5rem;
   }
   ${sharedCss};
 `;
 const H5 = styled.h5`
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 1.25rem;
+  }
   ${sharedCss};
 `;
 const H6 = styled.h6`
@@ -129,7 +144,7 @@ const P = styled.p`
 `;
 const SPAN = styled.span`
   font-size: calc(0.6rem + 0.3vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     font-size: 0.875rem;
   }
   ${sharedCss};

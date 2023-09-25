@@ -2,18 +2,24 @@ import { GridWrap, Skeleton } from "@/shared/components";
 
 const Loading = () => (
   <>
-    <Skeleton height={11} width="full" mb={8} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton
+      height="29px"
+      heightSm="33.5px"
+      heightLg="38px"
+      width="full"
+      mb={8}
+    />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={4} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={4} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={4} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <Skeleton height={5} width="full" widthMd="quarter" mb={4} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <Skeleton height="150px" width="full" widthMd="quarter" mb={4} />
-    <Skeleton height={6} width="full" widthMd="quarter" mb={2} />
+    <Skeleton height="21.5px" heightSm={6} width="full" widthMd="quarter" mb={2} />
     <GridWrap
       cols={12}
       sm={6}

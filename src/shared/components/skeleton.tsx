@@ -8,6 +8,11 @@ type Width = 'quarter' | 'half' | 'three-quarters' | 'full';
 
 type StyledSkeletonProps = {
   $height: Height;
+  $heightSm?: Height;
+  $heightMd?: Height;
+  $heightLg?: Height;
+  $heightXl?: Height;
+  $heightXxl?: Height;
   $width: Width;
   $widthSm?: Width;
   $widthMd?: Width;
@@ -47,24 +52,34 @@ const StyledSkeleton = styled.div<StyledSkeletonProps>`
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+    height: ${({ $heightSm, theme }) => typeof $heightSm === 'number' ? theme.gutters[`size${$heightSm}`] : $heightSm};
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+    height: ${({ $heightMd, theme }) => typeof $heightMd === 'number' ? theme.gutters[`size${$heightMd}`] : $heightMd};
     width: ${({ $widthMd }) => $widthMd ? WIDTH_MAPPER[$widthMd] : undefined};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    height: ${({ $heightLg, theme }) => typeof $heightLg === 'number' ? theme.gutters[`size${$heightLg}`] : $heightLg};
     width: ${({ $widthLg }) => $widthLg ? WIDTH_MAPPER[$widthLg] : undefined};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+    height: ${({ $heightXl, theme }) => typeof $heightXl === 'number' ? theme.gutters[`size${$heightXl}`] : $heightXl};
     width: ${({ $widthXl }) => $widthXl ? WIDTH_MAPPER[$widthXl] : undefined};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+    height: ${({ $heightXxl, theme }) => typeof $heightXxl === 'number' ? theme.gutters[`size${$heightXxl}`] : $heightXxl};
     width: ${({ $widthXxl }) => $widthXxl ? WIDTH_MAPPER[$widthXxl] : undefined};
   }
 `;
 
 type SkeletonProps = {
   height: Height;
+  heightSm?: Height;
+  heightMd?: Height;
+  heightLg?: Height;
+  heightXl?: Height;
+  heightXxl?: Height;
   width: Width;
   widthSm?: Width;
   widthMd?: Width;
@@ -76,6 +91,11 @@ type SkeletonProps = {
 
 export const Skeleton: FC<SkeletonProps> = ({
   height,
+  heightSm,
+  heightMd,
+  heightLg,
+  heightXl,
+  heightXxl,
   width,
   widthSm,
   widthMd,
@@ -86,6 +106,11 @@ export const Skeleton: FC<SkeletonProps> = ({
 }) => (
   <StyledSkeleton
     $height={height}
+    $heightSm={heightSm}
+    $heightMd={heightMd}
+    $heightLg={heightLg}
+    $heightXl={heightXl}
+    $heightXxl={heightXxl}
     $width={width}
     $widthSm={widthSm}
     $widthMd={widthMd}
