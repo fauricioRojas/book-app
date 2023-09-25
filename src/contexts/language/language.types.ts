@@ -3,17 +3,8 @@ export type LanguageType = "es" | "en";
 type Language = { [K in LanguageType]: string };
 
 export type LanguageTranslation = Language & {
+  // Vehicles
   vehicles: string;
-  pets: string;
-  profile: string;
-  settingsAndPreferences: string;
-  theme: string;
-  language: string;
-  cost: string;
-  date: string;
-  save: string;
-  cancel: string;
-  delete: string;
   addVehicle: string;
   newVehicle: string;
   savedVehicle: string;
@@ -23,6 +14,20 @@ export type LanguageTranslation = Language & {
   vehicleDeleteConfirmation: string;
   noVehicles: string;
   noVehiclesMessage: string;
+  vehicleNotFound: string;
+  editVehicle: string;
+  editedVehicle: string;
+  notEditedVehicle: string;
+  // Vehicles types
+  car: string;
+  motorcycle: string;
+  truck: string;
+  pickup: string;
+  tractor: string;
+  trailer: string;
+  bike: string;
+  // Pets
+  pets: string;
   addPet: string;
   newPet: string;
   savedPet: string;
@@ -32,14 +37,19 @@ export type LanguageTranslation = Language & {
   petDeleteConfirmation: string;
   noPets: string;
   noPetsMessage: string;
-  maintenances: string;
-  noMaintenances: string;
-  newMaintenance: string;
-  savedMaintenance: string;
-  notSavedMaintenance: string;
-  deletedMaintenance: string;
-  notDeletedMaintenance: string;
-  maintenanceDeleteConfirmation: string;
+  petNotFound: string;
+  editPet: string;
+  editedPet: string;
+  notEditedPet: string;
+  // Pets types
+  dog: string;
+  cat: string;
+  bull: string;
+  rabbit: string;
+  hamster: string;
+  pig: string;
+  horse: string;
+  // Procedures
   procedures: string;
   noProcedures: string;
   newProcedure: string;
@@ -48,6 +58,33 @@ export type LanguageTranslation = Language & {
   deletedProcedure: string;
   notDeletedProcedure: string;
   procedureDeleteConfirmation: string;
+  procedureNotFound: string;
+  editProcedure: string;
+  editedProcedure: string;
+  notEditedProcedure: string;
+  // Procedures types
+  vaccine: string;
+  dewormer: string;
+  hairCut: string;
+  nailsCut: string;
+  bath: string;
+  hairBrushing: string;
+  pills: string;
+  surgery: string;
+  // Maintenances
+  maintenances: string;
+  noMaintenances: string;
+  newMaintenance: string;
+  savedMaintenance: string;
+  notSavedMaintenance: string;
+  deletedMaintenance: string;
+  notDeletedMaintenance: string;
+  maintenanceDeleteConfirmation: string;
+  maintenanceNotFound: string;
+  editMaintenance: string;
+  editedMaintenance: string;
+  notEditedMaintenance: string;
+  // Maintenances types
   engineOilChange: string;
   tireReplacement: string;
   refuel: string;
@@ -73,7 +110,6 @@ export type LanguageTranslation = Language & {
   motorcycleSeatChange: string;
   gearChange: string;
   cablesChange: string;
-  plateNumber: string;
   paintDetailing: string;
   motorcycleFuseReplacement: string;
   bushingChange: string;
@@ -86,7 +122,18 @@ export type LanguageTranslation = Language & {
   injectorCleaning: string;
   hosesReplacement: string;
   carburetorReplacement: string;
-  vaccine: string;
+  // Reminders
+  reminders: string;
+  noReminders: string;
+  noRemindersMessage: string;
+  // Not found
+  weAresorry: string;
+  tryThesePages: string;
+  noResultsFound: string;
+  // Form labels
+  cost: string;
+  date: string;
+  plateNumber: string;
   breed: string;
   brand: string;
   model: string;
@@ -97,39 +144,40 @@ export type LanguageTranslation = Language & {
   photo: string;
   name: string;
   browse: string;
-  or: string;
   openCamera: string;
-  car: string;
-  motorcycle: string;
-  truck: string;
-  pickup: string;
-  dog: string;
-  cat: string;
-  bull: string;
-  back: string;
-  home: string;
-  petNotFound: string;
-  vehicleNotFound: string;
-  procedureNotFound: string;
-  maintenanceNotFound: string;
-  weAresorry: string;
-  tryThesePages: string;
-  search: string;
-  noResultsFound: string;
   weight: string;
   nextDate: string;
-  dewormer: string;
-  hairCut: string;
-  nailsCut: string;
-  bath: string;
-  hairBrushing: string;
-  pills: string;
-  surgery: string;
-  rabbit: string;
-  hamster: string;
-  pig: string;
-  horse: string;
   optional: string;
+  email: string;
+  password: string;
+  // Form error messages
+  required: string;
+  validEmail: string;
+  validPhoneNumber: string;
+  validYear: string;
+  // Auth
+  signIn: string;
+  signInWithEmail: string;
+  signInWithGithub: string;
+  signInWithFacebook: string;
+  signInError: string;
+  dontHaveAnAccount: string;
+  signUp: string;
+  signUpError: string;
+  alreadyHaveAnAccount: string;
+  signOutError: string;
+  // Other
+  save: string;
+  cancel: string;
+  back: string;
+  profile: string;
+  settingsAndPreferences: string;
+  theme: string;
+  language: string;
+  delete: string;
+  or: string;
+  home: string;
+  search: string;
   currency: string;
   dollar: string;
   colon: string;
@@ -139,41 +187,6 @@ export type LanguageTranslation = Language & {
   miles: string;
   grams: string;
   pounds: string;
-  tractor: string;
-  trailer: string;
-  bike: string;
-  editPet: string;
-  editVehicle: string;
-  editProcedure: string;
-  editMaintenance: string;
-  editedPet: string;
-  notEditedPet: string;
-  editedVehicle: string;
-  notEditedVehicle: string;
-  editedProcedure: string;
-  notEditedProcedure: string;
-  editedMaintenance: string;
-  notEditedMaintenance: string;
   nextDateHint: string;
-  email: string;
-  password: string;
-  signIn: string;
-  signInWithEmail: string;
-  signInWithGithub: string;
-  signInWithFacebook: string;
   account: string;
-  signInError: string;
-  signUp: string;
-  signUpError: string;
-  signOutError: string;
-  dontHaveAnAccount: string;
-  alreadyHaveAnAccount: string;
-  reminders: string;
-  noReminders: string;
-  noRemindersMessage: string;
-  // Form error messages
-  required: string;
-  validEmail: string;
-  validPhoneNumber: string;
-  validYear: string;
 };
