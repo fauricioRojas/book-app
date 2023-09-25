@@ -39,3 +39,7 @@ export type TProcedure = {
   weight?: number;
   nextDate?: Date;
 };
+
+export type TTransfer = {
+  id: number;
+};

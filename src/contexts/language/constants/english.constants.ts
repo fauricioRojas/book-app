@@ -168,6 +168,10 @@ export const ENGLISH: LanguageTranslation = {
   signUpError: "There was an error signing up",
   alreadyHaveAnAccount: "Already have an account? Sign in",
   signOutError: "There was an error signing out",
+  // Transfer
+  transfers: "Transfers",
+  noTransfers: "No transfers",
+  noTransfersMessage: "Transfers you make will appear here",
   // Other
   save: "Save",
   cancel: "Cancel",

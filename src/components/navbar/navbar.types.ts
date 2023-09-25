@@ -1,4 +1,4 @@
-import { IconName } from "@/shared/components";
+import type { IconName } from "@/shared/components";
 
 export type TNavbarItem = {
   iconName: IconName;

@@ -1,5 +1,5 @@
 import { ENGLISH } from "@/contexts/language/constants/english.constants";
-import { IconName } from "./components";
+import type { IconName } from "./components";
 
 export const ICON_BY_TYPE: Record<string, IconName> = {
   // Vehicle types
@@ -77,5 +77,6 @@ export enum ROUTES {
   REMINDERS = "/reminders",
   SIGN_IN = "/sign-in",
   SIGN_UP = "/sign-up",
+  TRANSFERS = "/transfers",
   VEHICLES = "/vehicles",
 }

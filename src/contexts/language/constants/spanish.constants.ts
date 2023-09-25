@@ -169,6 +169,10 @@ export const SPANISH: LanguageTranslation = {
   signUpError: "Hubo un error al registrarse",
   alreadyHaveAnAccount: "Ya tienes una cuenta? Inicie sesión aquí",
   signOutError: "Hubo un error al cerrar sesión",
+  // Transfer
+  transfers: "Transferencias",
+  noTransfers: "No tiene transferencias",
+  noTransfersMessage: "Las transferencias que haga aparecerán aquí",
   // Other
   save: "Guardar",
   cancel: "Cancelar",

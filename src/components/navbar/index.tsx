@@ -43,6 +43,11 @@ export const Navbar = () => {
       href: ROUTES.PETS,
     },
     {
+      iconName: 'transfer',
+      text: translation.transfers,
+      href: ROUTES.TRANSFERS,
+    },
+    {
       iconName: 'profile',
       text: translation.profile,
       href: ROUTES.PROFILE,

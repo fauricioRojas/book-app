@@ -83,6 +83,7 @@ import { TickIcon } from './tick-icon';
 import { TireIcon } from './tire-icon';
 import { TractorIcon } from './tractor-icon';
 import { TrailerIcon } from './trailer-icon';
+import { TransferIcon } from './transfer-icon';
 import { TranslateIcon } from './translate-icon';
 import { TrashIcon } from './trash-icon';
 import { TruckIcon } from './truck-icon';
@@ -188,6 +189,7 @@ const ICON_MAPPER = {
   tire: TireIcon,
   tractor: TractorIcon,
   trailer: TrailerIcon,
+  transfer: TransferIcon,
   translate: TranslateIcon,
   trash: TrashIcon,
   truck: TruckIcon,
@@ -197,7 +199,7 @@ const ICON_MAPPER = {
   weight: WeightIcon,
 };
 
-type IconName = keyof typeof ICON_MAPPER;
+export type IconName = keyof typeof ICON_MAPPER;
 
 export type CommonIconProps = {
   className?: string;

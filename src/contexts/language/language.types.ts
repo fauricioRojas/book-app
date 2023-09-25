@@ -166,6 +166,10 @@ export type LanguageTranslation = Language & {
   signUpError: string;
   alreadyHaveAnAccount: string;
   signOutError: string;
+  // Transfers
+  transfers: string;
+  noTransfers: string;
+  noTransfersMessage: string;
   // Other
   save: string;
   cancel: string;
