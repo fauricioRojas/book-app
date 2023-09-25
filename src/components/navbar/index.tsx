@@ -11,7 +11,7 @@ import { ROUTES } from '@/shared/constants';
 const StyledNavbar = styled.nav`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.neutralTransparent};
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  border-top: 0.5px solid ${({ theme }) => theme.colors.border};
   bottom: ${({ theme }) => theme.gutters.size0};
   display: flex;
   height: 50px;
