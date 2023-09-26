@@ -215,6 +215,11 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({ onSelect }
       label: translation.carburetorReplacement,
       value: ENGLISH.carburetorReplacement,
     },
+    {
+      id: 38,
+      label: translation.motorcycleGripsReplacement,
+      value: ENGLISH.motorcycleGripsReplacement,
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
   ], [language]);
 

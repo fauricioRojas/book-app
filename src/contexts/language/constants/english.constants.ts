@@ -123,6 +123,7 @@ export const ENGLISH: LanguageTranslation = {
   injectorCleaning: "Injector cleaning",
   hosesReplacement: "Hoses replacement",
   carburetorReplacement: "Carburetor replacement",
+  motorcycleGripsReplacement: "Motorcycle grips replacement",
   // Reminders
   reminders: "Reminders",
   noReminders: "No reminders",

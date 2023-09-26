@@ -124,6 +124,7 @@ export const SPANISH: LanguageTranslation = {
   injectorCleaning: "Limpieza de inyectores",
   hosesReplacement: "Cambio de mangueras",
   carburetorReplacement: "Cambio de carburador",
+  motorcycleGripsReplacement: "Cambio de puños de moto",
   // Reminders
   reminders: "Recordatorios",
   noReminders: "No tiene recordatorios",

@@ -54,6 +54,7 @@ import { LightBulbIcon } from './light-bulb-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MoonIcon } from './moon-icon';
 import { MotorcycleIcon } from './motorcycle-icon';
+import { MotorcycleGripIcon } from './motorcycle-grip-icon';
 import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
 import { OilIcon } from './oil-icon';
 import { OilFilterIcon } from './oil-filter-icon';
@@ -160,6 +161,7 @@ const ICON_MAPPER = {
   microphone: MicrophoneIcon,
   moon: MoonIcon,
   motorcycle: MotorcycleIcon,
+  'motorcycle-grip': MotorcycleGripIcon,
   'motorcycle-seat': MotorcycleSeatIcon,
   oil: OilIcon,
   'oil-filter': OilFilterIcon,

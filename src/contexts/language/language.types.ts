@@ -122,6 +122,7 @@ export type LanguageTranslation = Language & {
   injectorCleaning: string;
   hosesReplacement: string;
   carburetorReplacement: string;
+  motorcycleGripsReplacement: string;
   // Reminders
   reminders: string;
   noReminders: string;
