@@ -1,5 +1,6 @@
 'use client';
 
+import { Martel } from 'next/font/google';
 import { useMemo, FC, PropsWithChildren } from 'react';
 import styled, { DefaultTheme, css } from 'styled-components';
 
@@ -24,6 +25,11 @@ type StyledTypographyProps = {
   $displayXxl?: boolean;
   theme: DefaultTheme;
 }
+
+const martel = Martel({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypographyProps) => css`
   ${$color === 'primary' && css`
@@ -199,6 +205,7 @@ export const Typography: FC<TypographyProps> = ({
 
   return (
     <Element
+      className={variant === 'h1' ? martel.className : undefined}
       $textAlign={textAlign}
       $fontWeight={fontWeight}
       $italic={italic}

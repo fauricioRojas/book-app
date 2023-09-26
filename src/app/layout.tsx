@@ -1,5 +1,5 @@
-import type { Metadata } from 'next'
-import { Lato } from 'next/font/google'
+import type { Metadata } from 'next';
+import { Lato } from 'next/font/google';
 import { FC, PropsWithChildren } from 'react';
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
