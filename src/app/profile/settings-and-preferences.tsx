@@ -13,7 +13,7 @@ export const SettingsAndPreferences = () => {
 
   return (
     <FlexWrap direction="column" gap={2}>
-      <Typography variant="h6" fontWeight="bold" mb={2}>
+      <Typography variant="h6" fontWeight="bold" mb={1}>
         {translation.settingsAndPreferences}
       </Typography>
       <ThemeSelector />

@@ -19,7 +19,7 @@ const StyledPhotoPreview = styled.div<StyledPhotoPreviewProps>`
 `
 const StyledTrashIconWrap = styled.div`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.neutralTransparent};
+  backdrop-filter: blur(8px);
   border-radius: ${({ theme }) => theme.gutters.borderRadius};
   display: flex;
   height: 30px;
@@ -28,6 +28,7 @@ const StyledTrashIconWrap = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.gutters.size1};
   width: 30px;
+  -webkit-backdrop-filter: blur(8px);
 `
 
 type PhotoPreviewProps = {

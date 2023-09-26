@@ -22,7 +22,7 @@ const StyledTypeSelectorOption = styled.div`
   width: 100%;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
+    background-color: ${({ theme }) => theme.colors.card};
   }
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {

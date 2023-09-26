@@ -10,7 +10,7 @@ import { ROUTES } from '@/shared/constants';
 
 const StyledNavbar = styled.nav`
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.neutralTransparent};
+  backdrop-filter: blur(8px);
   border-top: 0.5px solid ${({ theme }) => theme.colors.border};
   bottom: ${({ theme }) => theme.gutters.size0};
   display: flex;
@@ -20,6 +20,7 @@ const StyledNavbar = styled.nav`
   position: fixed;
   transition: background-color .3s;
   width: 100%;
+  -webkit-backdrop-filter: blur(8px);
 `;
 
 export const Navbar = () => {
