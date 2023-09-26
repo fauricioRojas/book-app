@@ -10,13 +10,13 @@ export type Colors = {
   primary100: string;
   primary200: string;
   primary: string; // 10
-  primary800: string;
-  primary900: string;
+  primary400: string;
+  primary500: string;
   secondary100: string;
   secondary200: string;
   secondary: string; // 30
-  secondary800: string;
-  secondary900: string;
+  secondary400: string;
+  secondary500: string;
   neutral: string; // 60
   primaryText: string;
   secondaryText: string;

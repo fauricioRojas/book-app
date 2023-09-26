@@ -52,8 +52,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     color: ${theme.colors.white};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.primary800};
-      border-color: ${theme.colors.primary800};
+      background-color: ${theme.colors.primary400};
+      border-color: ${theme.colors.primary400};
     }
   `}
 
@@ -74,8 +74,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     color: ${theme.colors.white};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.secondary800};
-      border-color: ${theme.colors.secondary800};
+      background-color: ${theme.colors.secondary400};
+      border-color: ${theme.colors.secondary400};
     }
   `}
 
@@ -105,7 +105,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   ${({ $variant, theme }) => $variant === 'text' && css`
     background-color: transparent;
     border-color: transparent;
-    color: ${theme.colors.primary};
+    color: ${theme.colors.primary200};
     padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
 
     &:focus, &:hover {

@@ -24,7 +24,7 @@ export const NoVehicles = () => {
         name="tire"
         height={50}
         width={50}
-        color={colors.secondary800}
+        color={colors.secondary400}
       />
       <Typography
         variant="h3"

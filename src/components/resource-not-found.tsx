@@ -30,7 +30,7 @@ export const ResourceNotFound: FC<ResourceNotFoundProps> = ({ page }) => {
         name="sad-emoji"
         height={75}
         width={75}
-        color={colors.secondary800}
+        color={colors.secondary400}
       />
       <Typography
         variant="h3"
