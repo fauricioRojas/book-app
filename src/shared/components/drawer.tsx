@@ -64,19 +64,26 @@ const StyledDrawer = styled.div<StyledDrawerProps>`
     left: 70%;
     width: 30%;
   }
-`
+`;
 const StyledDrawerHeader = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: ${({ theme }) => theme.gutters.size4};
-`
+`;
 const StyledDrawerBody = styled.div`
-  height: calc(100% - 56px);
+  height: calc(100% - 58px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: ${({ theme }) => theme.gutters.size4};
-`
+  padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size4} ${theme.gutters.size4}`};
+
+  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.gutters.size4};
+  }
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    height: calc(100% - 61px);
+  }
+`;
 
 type DrawerProps = {
   body: ReactNode;
@@ -102,7 +109,7 @@ export const Drawer: FC<DrawerProps> = ({
       />
       <StyledDrawer $isVisible={isVisible}>
         <StyledDrawerHeader>
-          <Typography variant="h5" fontWeight="bold">
+          <Typography variant="h4" fontWeight="bold">
             {title}
           </Typography>
           <Icon

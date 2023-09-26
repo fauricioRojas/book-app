@@ -26,7 +26,7 @@ const Loading = () => (
       gap={4}
     >
       {Array.from(Array(8).keys()).map(index => (
-        <Skeleton key={index} height="78px" width="full" />
+        <Skeleton key={index} height="86px" width="full" />
       ))}
     </GridWrap>
   </>

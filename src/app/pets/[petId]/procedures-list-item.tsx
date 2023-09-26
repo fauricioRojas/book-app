@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { TProcedure } from '@/supabase';
-import { formatDate, formatMoney, formatWeight } from '@/shared/utils';
+import { formatDate, formatMoney } from '@/shared/utils';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
 
@@ -14,7 +14,6 @@ type ProceduresListItemProps = TProcedure;
 export const ProceduresListItem: FC<ProceduresListItemProps> = ({
   id,
   cost,
-  weight,
   notes: {
     type,
     date,
@@ -24,28 +23,24 @@ export const ProceduresListItem: FC<ProceduresListItemProps> = ({
   },
 }) => {
   const { colors } = useTheme();
-  const { currency, weightUnit } = useMeasure();
+  const { currency } = useMeasure();
 
   return (
     <Link href={`${ROUTES.PETS}/${petId}${ROUTES.PROCEDURES}/${id}`} asContainer>
       <Card>
-        <FlexWrap gap={4} fullHeight>
-          <FlexWrap align="center">
+        <FlexWrap justify="space-between" gap={2}>
+          <FlexWrap direction="column" gap={4}>
+            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
+            <Typography variant="label">{formatDate(date)}</Typography>
+          </FlexWrap>
+          <FlexWrap align="center" justify="center">
             <Icon
               name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
-              height={35}
-              width={35}
+              height={45}
+              width={45}
+              pointer
             />
-          </FlexWrap>
-          <FlexWrap direction="column" justify="center" gap={2}>
-            <Typography variant="label">{formatDate(date)}</Typography>
-            <Typography variant="label">{formatMoney(cost, currency)}</Typography>
-            {weight && (
-              <Typography variant="label">
-                {formatWeight(weight, weightUnit)}
-              </Typography>
-            )}
           </FlexWrap>
         </FlexWrap>
       </Card>
