@@ -1,6 +1,6 @@
 'use client';
 
-import { Martel } from 'next/font/google';
+import { Merriweather } from 'next/font/google';
 import { useMemo, FC, PropsWithChildren } from 'react';
 import styled, { DefaultTheme, css } from 'styled-components';
 
@@ -26,7 +26,7 @@ type StyledTypographyProps = {
   theme: DefaultTheme;
 }
 
-const martel = Martel({
+const merriweather = Merriweather({
   weight: ["400", "700"],
   subsets: ["latin"],
 });
@@ -205,7 +205,7 @@ export const Typography: FC<TypographyProps> = ({
 
   return (
     <Element
-      className={variant === 'h1' ? martel.className : undefined}
+      className={variant === 'h1' ? merriweather.className : undefined}
       $textAlign={textAlign}
       $fontWeight={fontWeight}
       $italic={italic}
