@@ -156,12 +156,16 @@ export type LanguageTranslation = Language & {
   validEmail: string;
   validPhoneNumber: string;
   validYear: string;
+  minLength: string;
+  maxLength: string;
   // Auth
   signIn: string;
   signInWithEmail: string;
   signInWithGithub: string;
   signInWithFacebook: string;
+  signInInstructions: string;
   signInError: string;
+  signInCredentialsError: string;
   dontHaveAnAccount: string;
   signUp: string;
   signUpError: string;

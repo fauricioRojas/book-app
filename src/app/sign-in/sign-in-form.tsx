@@ -44,7 +44,7 @@ export const SignInForm = () => {
       password: "",
     },
   });
-  const { REQUIRED } = useFormRules();
+  const { EMAIL, MIN_LENGTH, REQUIRED } = useFormRules({ minLength: 6 });
   const { signInWithEmail, signInWithGithub, signInWithFacebook } = useSupabaseAuth();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
@@ -55,13 +55,13 @@ export const SignInForm = () => {
       if (error) {
         showSnackbar({
           type: "error",
-          body: translation.signInError
+          body: translation.signInCredentialsError,
         });
       }
     } catch (error) {
       showSnackbar({
         type: "error",
-        body: translation.signInError
+        body: translation.signInError,
       });
     }
   };
@@ -98,7 +98,7 @@ export const SignInForm = () => {
             <Controller
               control={control}
               name="email"
-              rules={REQUIRED}
+              rules={{ ...REQUIRED, ...EMAIL }}
               render={({
                 field: { onChange, onBlur, value },
               }) => (
@@ -115,7 +115,7 @@ export const SignInForm = () => {
             <Controller
               control={control}
               name="password"
-              rules={REQUIRED}
+              rules={{ ...REQUIRED, ...MIN_LENGTH}}
               render={({
                 field: { onChange, onBlur, value },
               }) => (

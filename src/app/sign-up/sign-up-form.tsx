@@ -43,7 +43,7 @@ export const SignUpForm = () => {
       password: "",
     },
   });
-  const { REQUIRED } = useFormRules();
+  const { EMAIL, MIN_LENGTH, REQUIRED } = useFormRules({ minLength: 6 });
   const { signUp } = useSupabaseAuth();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
@@ -59,7 +59,7 @@ export const SignUpForm = () => {
       } else {
         showSnackbar({
           type: "success",
-          body: "Please check you email for further instructions",
+          body: translation.signInInstructions,
           durationInSeconds: 8,
         });
       }
@@ -80,7 +80,7 @@ export const SignUpForm = () => {
             <Controller
               control={control}
               name="email"
-              rules={REQUIRED}
+              rules={{ ...REQUIRED, ...EMAIL}}
               render={({
                 field: { onChange, onBlur, value },
               }) => (
@@ -97,7 +97,7 @@ export const SignUpForm = () => {
             <Controller
               control={control}
               name="password"
-              rules={REQUIRED}
+              rules={{ ...REQUIRED, ...MIN_LENGTH }}
               render={({
                 field: { onChange, onBlur, value },
               }) => (

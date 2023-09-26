@@ -4,7 +4,15 @@ import { useMemo } from "react";
 
 import { useLanguage } from "@/contexts";
 
-export const useFormRules = () => {
+type UseFormRulesProps = {
+  minLength?: number;
+  maxLength?: number;
+};
+
+export const useFormRules = ({
+  minLength = 2,
+  maxLength = 4,
+}: UseFormRulesProps = {}) => {
   const { language, translation } = useLanguage();
 
   const formRules = useMemo(
@@ -28,6 +36,18 @@ export const useFormRules = () => {
         pattern: {
           value: /[0-9]{4}/,
           message: translation.validYear,
+        },
+      },
+      MIN_LENGTH: {
+        minLength: {
+          value: minLength,
+          message: translation.minLength.replace("{min}", minLength.toString()),
+        },
+      },
+      MAX_LENGTH: {
+        maxLength: {
+          value: maxLength,
+          message: translation.maxLength.replace("{max}", maxLength.toString()),
         },
       },
     }),
