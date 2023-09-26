@@ -19,8 +19,8 @@ const Loading = () => (
       {Array.from(Array(8).keys()).map(index => (
         <Skeleton
           key={index}
-          height="77px"
-          heightSm="79px"
+          height="112px"
+          heightSm="114px"
           width="full"
         />
       ))}

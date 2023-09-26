@@ -6,6 +6,7 @@ import { useTheme } from 'styled-components';
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
 import { TPet } from '@/supabase';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
+import { formatDate } from '@/shared/utils';
 
 type PetsListItemProps = TPet;
 
@@ -14,7 +15,8 @@ export const PetsListItem: FC<PetsListItemProps> = ({
   name,
   breed,
   notes: {
-    type
+    date,
+    type,
   },
 }) => {
   const { colors } = useTheme();
@@ -22,19 +24,22 @@ export const PetsListItem: FC<PetsListItemProps> = ({
   return (
     <Link href={`${ROUTES.PETS}/${id}`} asContainer>
       <Card>
-        <FlexWrap gap={4}>
-          <FlexWrap align="center">
+        <FlexWrap justify="space-between" gap={4}>
+          <FlexWrap direction="column" gap={4}>
+            <FlexWrap direction="column" gap={1}>
+              <Typography variant="h5" fontWeight="bold">{name}</Typography>
+              <Typography variant="label">{breed}</Typography>
+            </FlexWrap>
+            <Typography variant="label">{formatDate(date)}</Typography>
+          </FlexWrap>
+          <FlexWrap align="center" justify="center">
             <Icon
               name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
-              height={35}
-              width={35}
+              height={50}
+              width={50}
               pointer
             />
-          </FlexWrap>
-          <FlexWrap direction="column" gap={1}>
-            <Typography variant="h5" fontWeight="bold">{name}</Typography>
-            <Typography variant="label">{breed}</Typography>
           </FlexWrap>
         </FlexWrap>
       </Card>
