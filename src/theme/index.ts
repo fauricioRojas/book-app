@@ -23,11 +23,15 @@ const commonColors = {
   primary500: "#1d4ed8",
   white: "#FFF",
   black: "#000",
+  success100: "#22C55E",
   success: "#31A24C",
+  success300: "#16A34A",
   error100: "#EC716F",
   error: "#DC3545",
-  error900: "#A12D35",
-  warning: "#FC6E20",
+  error300: "#A12D35",
+  warning100: "#FDBA74",
+  warning: "#F97316",
+  warning300: "#EA580C",
 };
 
 export const lightColors: Colors = {

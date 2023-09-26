@@ -97,8 +97,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     color: ${theme.colors.white};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.error900};
-      border-color: ${theme.colors.error900};
+      background-color: ${theme.colors.error300};
+      border-color: ${theme.colors.error300};
     }
   `}
 

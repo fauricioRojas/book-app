@@ -22,11 +22,15 @@ export type Colors = {
   secondaryText: string;
   white: string;
   black: string;
+  success100: string;
   success: string;
+  success300: string;
   error100: string;
   error: string;
-  error900: string;
+  error300: string;
+  warning100: string;
   warning: string;
+  warning300: string;
   skeleton: string;
   border: string;
   card: string;

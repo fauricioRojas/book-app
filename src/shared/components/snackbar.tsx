@@ -44,8 +44,8 @@ const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
   animation: ${progressAnimation} ${({ $duration }) => `${$duration - 1}s`} 0.25s forwards;
   background: linear-gradient(
     to right,
-    ${({ theme }) => theme.colors.secondary},
-    ${({ $color }) => $color}
+    ${({ $color, theme }) => theme.colors[`${$color}100`]},
+    ${({ $color, theme }) => theme.colors[$color]}
   );
   border-radius: inherit;
   bottom: 4px;
@@ -71,7 +71,6 @@ const ICON_NAME_MAPPER: Record<MessageType, IconName> = {
 
 export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) => {
   const { colors } = useTheme();
-  const color = colors[type];
 
   return (
     <FlexWrap justify="center">
@@ -79,14 +78,14 @@ export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) =
         <FlexWrap align="center" gap={2}>
           <Icon
             name={ICON_NAME_MAPPER[type]}
-            color={color}
+            color={colors[type]}
             width={22}
             height={22}
           />
           <Typography variant="label">{body}</Typography>
         </FlexWrap>
         <StyledSnackbarProgress
-          $color={color}
+          $color={type}
           $duration={durationInSeconds}
         />
       </StyledSnackbar>
