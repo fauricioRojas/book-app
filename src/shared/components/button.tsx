@@ -29,7 +29,7 @@ type StyledButtonProps = {
 const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   border: 1px solid transparent;
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   display: inline-flex;
   font-size: 1rem;

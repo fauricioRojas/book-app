@@ -29,7 +29,7 @@ const progressAnimation = keyframes`
 const StyledSnackbar = styled.div<StyledSkeletonProps>`
   animation: ${fadeInAnimation} ${({ $duration }) => `${$duration}s`} linear forwards;
   background-color: ${({ theme }) => theme.colors.card};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   bottom: ${({ theme }) => theme.gutters.size15};
   color: ${({ theme }) => theme.colors.primaryText};
   max-width: 320px;

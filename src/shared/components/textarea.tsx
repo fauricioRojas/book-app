@@ -27,7 +27,7 @@ const StyledTextarea = styled.textarea<StyledTextareaProps>`
   border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
     ? theme.colors.error
     : theme.colors.border};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
   letter-spacing: 0.00938rem;

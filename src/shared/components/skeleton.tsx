@@ -46,7 +46,7 @@ const StyledSkeleton = styled.div<StyledSkeletonProps>`
     ${theme.colors.card} 100%
   )`};
   background-size: 300%;
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};

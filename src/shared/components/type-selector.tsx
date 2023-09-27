@@ -10,7 +10,7 @@ const StyledTypeSelectorOption = styled.div`
   align-items: center;
   background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   display: flex;
   flex-direction: column;

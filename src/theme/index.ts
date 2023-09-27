@@ -72,7 +72,6 @@ const fontWeights: FontWeights = {
 };
 
 const gutters: Gutters = {
-  borderRadius: "6px",
   size0: 0,
   size1: "0.25rem",
   size2: "0.5rem",
@@ -102,7 +101,9 @@ const shadows: Shadows = {
   lg: "0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15)",
 };
 
-const commonTheme = {
+const commonTheme: Omit<Theme, "colors"> = {
+  backdropBlur: "blur(8px)",
+  borderRadius: "6px",
   breakpoints,
   fontWeights,
   gutters,

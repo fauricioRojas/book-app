@@ -26,7 +26,7 @@ const StyledSelect = styled.select<StyledSelectProps>`
   background-repeat: no-repeat;
   background-size: 6px 6px;
   border: ${({ $borderless, theme }) => `1px solid ${$borderless ? 'transparent' : theme.colors.border}`};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   cursor: pointer;
   font-size: 1rem;

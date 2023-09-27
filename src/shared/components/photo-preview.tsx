@@ -19,8 +19,8 @@ const StyledPhotoPreview = styled.div<StyledPhotoPreviewProps>`
 `
 const StyledTrashIconWrap = styled.div`
   align-items: center;
-  backdrop-filter: blur(8px);
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  backdrop-filter: ${({ theme }) => theme.backdropBlur};
+  border-radius: ${({ theme }) => theme.borderRadius};
   display: flex;
   height: 30px;
   justify-content: center;
@@ -28,7 +28,7 @@ const StyledTrashIconWrap = styled.div`
   position: absolute;
   top: ${({ theme }) => theme.gutters.size1};
   width: 30px;
-  -webkit-backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: ${({ theme }) => theme.backdropBlur};
 `
 
 type PhotoPreviewProps = {

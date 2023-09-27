@@ -44,7 +44,6 @@ export type FontWeights = {
 };
 
 export type Gutters = {
-  borderRadius: string;
   size0: number;
   size1: string;
   size2: string;
@@ -75,6 +74,8 @@ export type Shadows = {
 };
 
 export type Theme = {
+  backdropBlur: string;
+  borderRadius: string;
   breakpoints: Breakpoints;
   colors: Colors;
   fontWeights: FontWeights;

@@ -23,8 +23,7 @@ const StyledDrawerBackdrop = styled.div<StyledDrawerProps>`
 `;
 const StyledDrawer = styled.div<StyledDrawerProps>`
   background-color: ${({ theme }) => theme.colors.neutral};
-  border-top-left-radius: ${({ theme }) => theme.gutters.borderRadius};
-  border-top-right-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   height: 95%;
   left: 0;
@@ -40,8 +39,7 @@ const StyledDrawer = styled.div<StyledDrawerProps>`
   `};
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0;
     height: 100%;
     left: 40%;
     top: 0;

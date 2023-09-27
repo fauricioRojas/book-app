@@ -13,7 +13,7 @@ type StyledArrowProps = {
 const StyledPopover = styled.div`
   background-color: ${({ theme }) => theme.colors.card};
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   bottom: 0;
   box-shadow: ${({ theme }) => theme.shadows.sm};
   left: -10px;

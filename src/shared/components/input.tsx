@@ -34,7 +34,7 @@ const StyledInput = styled.input<StyledInputProps>`
   border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
     ? theme.colors.error
     : theme.colors.border};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
   height: 40px;

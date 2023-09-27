@@ -10,7 +10,7 @@ const StyledInputFile = styled.input`
 const StyledInputFileLabel = styled.label`
   background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
-  border-radius: ${({ theme }) => theme.gutters.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.primaryText};
   cursor: pointer;
   display: block;
