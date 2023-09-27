@@ -12,7 +12,7 @@ const StyledIconWrapper = styled(FlexWrap)`
 export const ThemeSelector = () => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
-  const { isDarkTheme, toggleTheme } = useCustomTheme();
+  const { isDarkMode, toggleTheme } = useCustomTheme();
 
   return (
     <Card>
@@ -27,7 +27,7 @@ export const ThemeSelector = () => {
           </StyledIconWrapper>
           <Typography variant="label">{translation.theme}</Typography>
         </FlexWrap>
-        <Switch checked={isDarkTheme} onChange={toggleTheme} />
+        <Switch checked={isDarkMode} onChange={toggleTheme} />
       </FlexWrap>
     </Card>
   );

@@ -3,12 +3,12 @@
 import { createContext, useContext } from "react";
 
 type TCustomThemeContext = {
-  isDarkTheme: boolean;
+  isDarkMode: boolean;
   toggleTheme: () => void;
 };
 
 export const CustomThemeContext = createContext<TCustomThemeContext>({
-  isDarkTheme: false,
+  isDarkMode: false,
   toggleTheme: () => undefined,
 });
 

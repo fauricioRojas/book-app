@@ -11,13 +11,13 @@ import { getDeviceDarkMode } from "@/shared/utils";
 const isDeviceDarkTheme = getDeviceDarkMode();
 
 export const CustomThemeProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isDarkTheme, setIsDarkTheme] = useLocalStorage<boolean>('dark-theme', isDeviceDarkTheme);
+  const [isDarkMode, setIsDarkMode] = useLocalStorage('dark-theme', isDeviceDarkTheme);
 
-  const toggleTheme = () => setIsDarkTheme(prevIsDarkTheme => !prevIsDarkTheme);
+  const toggleTheme = () => setIsDarkMode(prevIsDarkMode => !prevIsDarkMode);
 
   return (
-    <ThemeProvider theme={isDarkTheme ? DARK_THEME : LIGHT_THEME}>
-      <CustomThemeContext.Provider value={{ isDarkTheme, toggleTheme }}>
+    <ThemeProvider theme={isDarkMode ? DARK_THEME : LIGHT_THEME}>
+      <CustomThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
         {children}
       </CustomThemeContext.Provider>
     </ThemeProvider>
