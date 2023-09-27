@@ -53,7 +53,7 @@ const StyledConfirmationModal = styled.div`
 `;
 const StyledConfirmationModalBackdrop = styled.div<StyledConfirmationModalProps>`
   animation: ${fadeIn} .3s;
-  background-color: rgba(0, 0, 0, 0.54);
+  background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
   width: 100%;
 
@@ -66,6 +66,7 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   animation: ${slideIn} .3s;
   background-color: ${({ theme }) => theme.colors.neutral};
   border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -81,6 +82,7 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
     animation: ${fadeIn} .3s;
+    border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.borderRadius};
     bottom: auto;
     gap: ${({ theme }) => theme.gutters.size6};

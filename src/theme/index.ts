@@ -45,7 +45,7 @@ export const lightColors: Colors = {
   primaryText: "#171717",
   secondaryText: "#666666",
   skeleton: "#DBDDDF",
-  border: "rgba(0, 0, 0, 0.23)",
+  border: "#E4E4E7",
   card: "#F2F2F4",
 };
 
@@ -60,7 +60,7 @@ export const darkColors: Colors = {
   primaryText: "#EDEDED",
   secondaryText: "#888888",
   skeleton: "#1E1B1B",
-  border: "rgba(255, 255, 255, 0.23)",
+  border: "#27272A",
   card: "#211F2A",
 };
 

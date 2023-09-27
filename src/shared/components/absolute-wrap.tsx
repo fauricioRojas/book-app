@@ -33,6 +33,7 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   right: 0;
   top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '-50px' : 0};
   width: 100%;
+  z-index: -1;
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
