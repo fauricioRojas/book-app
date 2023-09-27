@@ -7,7 +7,6 @@ import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
 import {
   AbsoluteWrap,
   Button,
-  Card,
   Divider,
   FlexWrap,
   GridWrap,
@@ -21,7 +20,7 @@ import { ROUTES } from '@/shared/constants';
 const StyledForm = styled.form`
   width: 100%;
 `;
-const StyledCard = styled(Card)`
+const StyledFlexWrap = styled(FlexWrap)`
   width: 100%;
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
@@ -68,89 +67,86 @@ export const SignInForm = () => {
   };
 
   return (
-    <AbsoluteWrap gradient>
-      <StyledCard fullHeight={false} glassEffect>
-        <FlexWrap direction="column" align="center" gap={6}>
-          <Typography
-            variant="h1"
-            fontWeight="bold"
-            mb={6}
+    <AbsoluteWrap gap={12}>
+      <Typography
+        variant="h1"
+        fontWeight="bold"
+      >
+        {translation.signIn}
+      </Typography>
+      <StyledFlexWrap direction="column" align="center" gap={6}>
+        <GridWrap gap={3}>
+          <Button
+            variant="secondary"
+            block
+            rightIconName="github"
+            onClick={signInWithGithub}
           >
-            {translation.signIn}
-          </Typography>
-          <GridWrap gap={3}>
+            {translation.signInWithGithub}
+          </Button>
+          <Button
+            variant="secondary"
+            block
+            rightIconName="facebook"
+            onClick={signInWithFacebook}
+          >
+            {translation.signInWithFacebook}
+          </Button>
+        </GridWrap>
+        <FlexWrap align="center" justify="center" gap={3}>
+          <Divider />
+          <Typography variant="h6">{translation.or}</Typography>
+          <Divider />
+        </FlexWrap>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <GridWrap gap={4}>
+            <Controller
+              control={control}
+              name="email"
+              rules={{ ...REQUIRED, ...EMAIL }}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  inputMode="email"
+                  label={translation.email}
+                  errorMessage={errors.email?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="password"
+              rules={{ ...REQUIRED, ...MIN_LENGTH}}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  type="password"
+                  label={translation.password}
+                  errorMessage={errors.password?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
             <Button
-              variant="secondary"
+              variant="primary"
+              type="submit"
+              rightIconName="email"
               block
-              rightIconName="github"
-              onClick={signInWithGithub}
+              disabled={isSubmitting}
             >
-              {translation.signInWithGithub}
-            </Button>
-            <Button
-              variant="secondary"
-              block
-              rightIconName="facebook"
-              onClick={signInWithFacebook}
-            >
-              {translation.signInWithFacebook}
+              {translation.signInWithEmail}
             </Button>
           </GridWrap>
-          <FlexWrap align="center" justify="center" gap={3}>
-            <Divider />
-            <Typography variant="h6">{translation.or}</Typography>
-            <Divider />
-          </FlexWrap>
-          <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <GridWrap gap={4}>
-              <Controller
-                control={control}
-                name="email"
-                rules={{ ...REQUIRED, ...EMAIL }}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    inputMode="email"
-                    label={translation.email}
-                    errorMessage={errors.email?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                name="password"
-                rules={{ ...REQUIRED, ...MIN_LENGTH}}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    type="password"
-                    label={translation.password}
-                    errorMessage={errors.password?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-              <Button
-                variant="primary"
-                type="submit"
-                rightIconName="email"
-                block
-                disabled={isSubmitting}
-              >
-                {translation.signInWithEmail}
-              </Button>
-            </GridWrap>
-          </StyledForm>
-          <Link href={ROUTES.SIGN_UP}>{translation.dontHaveAnAccount}</Link>
-        </FlexWrap>
-      </StyledCard>
+        </StyledForm>
+        <Link href={ROUTES.SIGN_UP}>{translation.dontHaveAnAccount}</Link>
+      </StyledFlexWrap>
     </AbsoluteWrap>
   );
 };

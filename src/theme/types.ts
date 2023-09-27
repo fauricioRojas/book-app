@@ -18,7 +18,6 @@ export type Colors = {
   secondary400: string;
   secondary500: string;
   neutral: string; // 60
-  glass: string;
   primaryText: string;
   secondaryText: string;
   white: string;

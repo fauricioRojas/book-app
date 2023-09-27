@@ -7,7 +7,6 @@ import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
 import {
   AbsoluteWrap,
   Button,
-  Card,
   FlexWrap,
   GridWrap,
   Input,
@@ -20,7 +19,7 @@ import { ROUTES } from '@/shared/constants';
 const StyledForm = styled.form`
   width: 100%;
 `;
-const StyledCard = styled(Card)`
+const StyledFlexWrap = styled(FlexWrap)`
   width: 100%;
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
@@ -73,65 +72,62 @@ export const SignUpForm = () => {
   };
 
   return (
-    <AbsoluteWrap gradient>
-      <StyledCard fullHeight={false} glassEffect>
-        <FlexWrap direction="column" align="center" gap={6}>
-          <Typography
-            variant="h1"
-            fontWeight="bold"
-            mb={6}
-          >
-            {translation.signUp}
-          </Typography>
-          <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <GridWrap gap={4}>
-              <Controller
-                control={control}
-                name="email"
-                rules={{ ...REQUIRED, ...EMAIL}}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    inputMode="email"
-                    label={translation.email}
-                    errorMessage={errors.email?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-              <Controller
-                control={control}
-                name="password"
-                rules={{ ...REQUIRED, ...MIN_LENGTH }}
-                render={({
-                  field: { onChange, onBlur, value },
-                }) => (
-                  <Input
-                    value={value}
-                    type="password"
-                    label={translation.password}
-                    errorMessage={errors.password?.message}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                  />
-                )}
-              />
-              <Button
-                variant="primary"
-                type="submit"
-                block
-                disabled={isSubmitting}
-              >
-                {translation.signUp}
-              </Button>
-            </GridWrap>
-          </StyledForm>
-          <Link href={ROUTES.SIGN_IN}>{translation.alreadyHaveAnAccount}</Link>
-        </FlexWrap>
-      </StyledCard>
+    <AbsoluteWrap gap={12}>
+      <Typography
+        variant="h1"
+        fontWeight="bold"
+      >
+        {translation.signUp}
+      </Typography>
+      <StyledFlexWrap direction="column" align="center" gap={6}>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
+          <GridWrap gap={4}>
+            <Controller
+              control={control}
+              name="email"
+              rules={{ ...REQUIRED, ...EMAIL}}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  inputMode="email"
+                  label={translation.email}
+                  errorMessage={errors.email?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="password"
+              rules={{ ...REQUIRED, ...MIN_LENGTH }}
+              render={({
+                field: { onChange, onBlur, value },
+              }) => (
+                <Input
+                  value={value}
+                  type="password"
+                  label={translation.password}
+                  errorMessage={errors.password?.message}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                />
+              )}
+            />
+            <Button
+              variant="primary"
+              type="submit"
+              block
+              disabled={isSubmitting}
+            >
+              {translation.signUp}
+            </Button>
+          </GridWrap>
+        </StyledForm>
+        <Link href={ROUTES.SIGN_IN}>{translation.alreadyHaveAnAccount}</Link>
+      </StyledFlexWrap>
     </AbsoluteWrap>
   );
 };
