@@ -21,7 +21,7 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
   });
 
   const showConfirmationModal = useCallback((args: ConfirmationModalArgs) => {
-    setState(prevState => ({
+    setState((prevState): ModalState => ({
       ...prevState,
       isConfirmationModalOpen: true,
       confirmationModalConfig: args,
@@ -29,7 +29,7 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const hideConfirmationModal = useCallback(() => {
-    setState(prevState => ({
+    setState((prevState): ModalState => ({
       ...prevState,
       isConfirmationModalOpen: false,
       confirmationModalConfig: {} as ConfirmationModalArgs,

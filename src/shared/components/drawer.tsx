@@ -1,68 +1,58 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useCallback, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
 import { useKeyPress } from '@/hooks';
-import { Icon, Typography } from '.';
+import { slideInUp, slideOutDown, slideInRight, slideOutRight } from '@/shared/keyframes';
+import { Backdrop, Icon, Typography } from '.';
 
 type StyledDrawerProps = {
-  $isVisible: boolean;
+  $isHiding: boolean;
 }
 
-const StyledDrawerBackdrop = styled.div<StyledDrawerProps>`
-  background-color: ${({ theme }) => theme.colors.backdrop};
-  bottom: 0;
+const StyledDrawer = styled.div`
+  height: 100%;
   left: 0;
+  overflow: hidden;
   position: fixed;
-  right: 0;
   top: 0;
-  z-index: 4;
-
-  ${({ $isVisible }) => !$isVisible && css`
-    display: none;
-  `};
+  width: 100%;
 `;
-const StyledDrawer = styled.div<StyledDrawerProps>`
+const StyledDrawerContent = styled.div<StyledDrawerProps>`
+  animation: ${slideInUp} .3s;
   background-color: ${({ theme }) => theme.colors.neutral};
   border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
+  bottom: 0;
   box-shadow: ${({ theme }) => theme.shadows.sm};
   height: 95%;
-  left: 0;
-  position: fixed;
-  transform: translateY(100%);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  top: 5%;
+  position: absolute;
   width: 100%;
   z-index: 4;
 
-  ${({ $isVisible }) => $isVisible && css`
-    transform: translateY(0);
+  ${({ $isHiding }) => $isHiding && css`
+    animation: ${slideOutDown} .3s;
   `};
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+    animation: ${slideInRight} .3s;
     border-left: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: 0;
     border-top: none;
     height: 100%;
-    left: 40%;
-    top: 0;
-    transform: translateX(100%);
+    right: 0;
     width: 60%;
 
-    ${({ $isVisible }) => $isVisible && css`
-      transform: translateX(0);
+    ${({ $isHiding }) => $isHiding && css`
+      animation: ${slideOutRight} .3s;
     `};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
-    left: 50%;
     width: 50%;
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
-    left: 60%;
     width: 40%;
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
-    left: 70%;
     width: 30%;
   }
 `;
@@ -89,26 +79,37 @@ const StyledDrawerBody = styled.div`
 type DrawerProps = {
   body: ReactNode;
   title: string;
-  isVisible: boolean;
+  isOpen: boolean;
   onHideDrawer: () => void;
 }
 
 export const Drawer: FC<DrawerProps> = ({
   body,
   title,
-  isVisible,
+  isOpen,
   onHideDrawer,
 }) => {
   const { colors } = useTheme();
-  useKeyPress({ key: 'Escape', callback: onHideDrawer });
+  const [isHiding, setIsHiding] = useState(false);
 
-  return (
-    <>
-      <StyledDrawerBackdrop
-        $isVisible={isVisible}
-        onClick={onHideDrawer}
+  const handleCloseDrawer = useCallback(() => {
+    setIsHiding(true);
+    setTimeout(() => {
+      onHideDrawer();
+      setIsHiding(false);
+    }, 200);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useKeyPress({ key: 'Escape', callback: handleCloseDrawer });
+
+  return isOpen ? (
+    <StyledDrawer>
+      <Backdrop
+        isHiding={isHiding}
+        onClick={handleCloseDrawer}
       />
-      <StyledDrawer $isVisible={isVisible}>
+      <StyledDrawerContent $isHiding={isHiding}>
         <StyledDrawerHeader>
           <Typography variant="h4" fontWeight="bold">
             {title}
@@ -118,11 +119,11 @@ export const Drawer: FC<DrawerProps> = ({
             color={colors.primaryText}
             width={15}
             height={15}
-            onClick={onHideDrawer}
+            onClick={handleCloseDrawer}
           />
         </StyledDrawerHeader>
         <StyledDrawerBody>{body}</StyledDrawerBody>
-      </StyledDrawer>
-    </>
-  );
+      </StyledDrawerContent>
+    </StyledDrawer>
+  ) : null;
 };

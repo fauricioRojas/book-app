@@ -1,69 +1,26 @@
 import { useCallback, useState, FC } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
 import { useKeyPress } from '@/hooks';
-import { Button, FlexWrap, Typography } from '.';
+import { fadeIn, fadeOut, slideInUp, slideOutDown } from '@/shared/keyframes';
+import { Backdrop, Button, FlexWrap, Typography } from '.';
 
 type StyledConfirmationModalProps = {
   $isHiding: boolean;
 }
 
-const slideIn = keyframes`
-  from {
-    bottom: -300px;
-  }
-  to {
-    bottom: 0;
-  }
-`;
-const slideOut = keyframes`
-  from {
-    bottom: 0;
-  }
-  to {
-    bottom: -300px
-  }
-`;
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`;
-
 const StyledConfirmationModal = styled.div`
   height: 100%;
   left: 0;
-  overflow: auto;
+  overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2;
-`;
-const StyledConfirmationModalBackdrop = styled.div<StyledConfirmationModalProps>`
-  animation: ${fadeIn} .3s;
-  background-color: ${({ theme }) => theme.colors.backdrop};
-  height: 100%;
-  width: 100%;
-
-  ${({ $isHiding }) => $isHiding && css`
-    animation: ${fadeOut} .3s;
-  `};
 `;
 const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   align-items: center;
-  animation: ${slideIn} .3s;
+  animation: ${slideInUp} .3s;
   background-color: ${({ theme }) => theme.colors.neutral};
   border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
@@ -77,7 +34,7 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   width: 100%;
 
   ${({ $isHiding }) => $isHiding && css`
-    animation: ${slideOut} .3s;
+    animation: ${slideOutDown} .3s;
   `};
 
   @media (width >= ${({ theme }) => theme.breakpoints.md}) {
@@ -85,6 +42,7 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.borderRadius};
     bottom: auto;
+    box-shadow: ${({ theme }) => theme.shadows.sm};
     gap: ${({ theme }) => theme.gutters.size6};
     left: 50%;
     padding: ${({ theme }) => theme.gutters.size6};
@@ -122,7 +80,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
     setTimeout(() => {
       onClose();
       setIsHiding(false);
-    }, 300);
+    }, 200);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -138,8 +96,8 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
 
   return isOpen ? (
     <StyledConfirmationModal>
-      <StyledConfirmationModalBackdrop
-        $isHiding={isHiding}
+      <Backdrop
+        isHiding={isHiding}
         onClick={handleCloseConfirmationModal}
       />
       <StyledConfirmationModalContent $isHiding={isHiding}>
