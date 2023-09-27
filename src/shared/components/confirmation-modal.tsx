@@ -53,7 +53,7 @@ const StyledConfirmationModal = styled.div`
 `;
 const StyledConfirmationModalBackdrop = styled.div<StyledConfirmationModalProps>`
   animation: ${fadeIn} .3s;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${({ theme }) => theme.colors.backdrop};
   height: 100%;
   width: 100%;
 

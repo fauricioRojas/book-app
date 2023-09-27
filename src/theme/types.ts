@@ -33,6 +33,7 @@ export type Colors = {
   warning300: string;
   skeleton: string;
   border: string;
+  backdrop: string;
   card: string;
 };
 

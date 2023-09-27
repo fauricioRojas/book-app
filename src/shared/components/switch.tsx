@@ -38,7 +38,7 @@ const StyledSwitch = styled.label<StyledSwitchProps>`
     &:after {
       background-color: ${({ theme }) => theme.colors.white};
       border-radius: 11px;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+      box-shadow: ${({ theme }) => theme.shadows.sm};
       content: "";
       height: 20px;
       left: 0;
