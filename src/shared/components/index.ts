@@ -1,6 +1,7 @@
 "use client";
 
 export * from "./absolute-wrap";
+export * from "./backdrop";
 export * from "./badge";
 export * from "./box";
 export * from "./browse-files";
