@@ -15,7 +15,7 @@ export const ThemeSelector = () => {
   const { isDarkMode, toggleTheme } = useCustomTheme();
 
   return (
-    <Card>
+    <Card background>
       <FlexWrap justify="space-between">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>

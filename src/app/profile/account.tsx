@@ -36,7 +36,7 @@ export const Account = () => {
 
   return (
     <Box mb={8}>
-      <Card>
+      <Card background>
         <FlexWrap align="center" justify="space-between">
           <Typography variant="h6">{user.email}</Typography>
           <IconButton

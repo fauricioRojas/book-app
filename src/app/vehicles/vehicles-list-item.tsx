@@ -23,7 +23,7 @@ export const VehiclesListItem: FC<VehiclesListItemProps> = ({
 
   return (
     <Link href={`${ROUTES.VEHICLES}/${id}`} asContainer>
-      <Card>
+      <Card background>
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <FlexWrap direction="column" gap={1}>

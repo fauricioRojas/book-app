@@ -15,7 +15,7 @@ export const WeightSelector = () => {
   const { colors } = useTheme();
 
   return (
-    <Card>
+    <Card background>
       <FlexWrap justify="space-between" align="center">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>

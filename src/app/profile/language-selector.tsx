@@ -14,7 +14,7 @@ export const LanguageSelector = () => {
   const { language, languageOptions, translation, changeLanguage } = useLanguage();
 
   return (
-    <Card>
+    <Card background>
       <FlexWrap justify="space-between" align="center">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>

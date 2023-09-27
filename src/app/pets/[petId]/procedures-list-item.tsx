@@ -27,7 +27,7 @@ export const ProceduresListItem: FC<ProceduresListItemProps> = ({
 
   return (
     <Link href={`${ROUTES.PETS}/${petId}${ROUTES.PROCEDURES}/${id}`} asContainer>
-      <Card>
+      <Card background>
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <Typography variant="label">{formatMoney(cost, currency)}</Typography>

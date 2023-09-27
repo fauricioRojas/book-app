@@ -50,7 +50,7 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
     gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
   }
-`
+`;
 
 type AbsoluteWrapProps = PropsWithChildren & {
   className?: string;

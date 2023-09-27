@@ -23,7 +23,7 @@ export const PetsListItem: FC<PetsListItemProps> = ({
 
   return (
     <Link href={`${ROUTES.PETS}/${id}`} asContainer>
-      <Card>
+      <Card background>
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <FlexWrap direction="column" gap={1}>

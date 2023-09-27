@@ -18,7 +18,7 @@ export const TransfersListItem: FC<TransfersListItemProps> = ({
   const { colors } = useTheme();
 
   return (
-    <Card>
+    <Card background>
       {/* <FlexWrap direction="column" gap={3}>
         <FlexWrap align="center" gap={3}>
           <Icon

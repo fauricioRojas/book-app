@@ -27,7 +27,7 @@ export const MaintenancesListItem: FC<MaintenancesListItemProps> = ({
 
   return (
     <Link href={`${ROUTES.VEHICLES}/${vehicleId}${ROUTES.MAINTENANCES}/${id}`} asContainer>
-      <Card>
+      <Card background>
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <Typography variant="label">{formatMoney(cost, currency)}</Typography>
