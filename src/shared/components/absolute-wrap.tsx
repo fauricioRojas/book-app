@@ -10,11 +10,16 @@ type StyledAbsoluteWrapProps = {
   $gapLg?: Size;
   $gapXl?: Size;
   $gapXxl?: Size;
+  $gradient: boolean;
   $isNavbarVisible: boolean;
 }
 
 const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   align-items: center;
+  background: ${({ $gradient, theme }) => $gradient
+    ? `linear-gradient(to right, ${theme.colors.secondary}, ${theme.colors.secondary400}, ${theme.colors.secondary500})`
+    : undefined
+  };
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -54,6 +59,7 @@ type AbsoluteWrapProps = PropsWithChildren & {
   gapLg?: Size;
   gapXl?: Size;
   gapXxl?: Size;
+  gradient?: boolean;
   isNavbarVisible?: boolean;
 }
 
@@ -65,6 +71,7 @@ export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
   gapLg,
   gapXl,
   gapXxl,
+  gradient = false,
   isNavbarVisible = false,
   children,
 }) => (
@@ -76,6 +83,7 @@ export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
     $gapLg={gapLg}
     $gapXl={gapXl}
     $gapXxl={gapXxl}
+    $gradient={gradient}
     $isNavbarVisible={isNavbarVisible}
   >
     {children}
