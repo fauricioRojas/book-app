@@ -18,9 +18,19 @@ const StyledNavbar = styled.nav`
   justify-content: space-between;
   padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   position: fixed;
-  transition: background-color .3s;
+  transition: background-color .3s, border .3s;
   width: 100%;
   -webkit-backdrop-filter: ${({ theme }) => theme.backdropBlur};
+
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    border-bottom: 0.5px solid ${({ theme }) => theme.colors.border};
+    border-top: none;
+    bottom: auto;
+    gap: ${({ theme }) => theme.gutters.size2};
+    height: 60px;
+    justify-content: center;
+    top: ${({ theme }) => theme.gutters.size0};
+  }
 `;
 
 export const Navbar = () => {

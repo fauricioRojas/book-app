@@ -1,23 +1,23 @@
 import { keyframes } from "styled-components";
 
 export const slideInUp = keyframes`
-  from { transform: translate3d(0, 100%, 0); }
-  to { transform: translate3d(0, 0, 0); }
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
 `;
 
 export const slideInRight = keyframes`
-  from { transform: translate3d(100%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 `;
 
 export const slideOutDown = keyframes`
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, 100%, 0); }
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
 `;
 
 export const slideOutRight = keyframes`
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(100%, 0, 0); }
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
 `;
 
 export const fadeIn = keyframes`

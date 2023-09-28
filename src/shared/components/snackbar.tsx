@@ -29,16 +29,21 @@ const progressAnimation = keyframes`
 const StyledSnackbar = styled.div<StyledSkeletonProps>`
   animation: ${fadeInAnimation} ${({ $duration }) => `${$duration}s`} linear forwards;
   background-color: ${({ theme }) => theme.colors.card};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   bottom: ${({ theme }) => theme.gutters.size15};
   color: ${({ theme }) => theme.colors.primaryText};
   max-width: 320px;
   opacity: 0;
-  position: absolute;
+  position: fixed;
   transform: translateY(30px);
   visibility: hidden;
   width: auto;
   padding: ${({ theme }) => theme.gutters.size3};
+
+  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    bottom: ${({ theme }) => theme.gutters.size8};
+  }
 `;
 const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
   animation: ${progressAnimation} ${({ $duration }) => `${$duration - 1}s`} 0.25s forwards;

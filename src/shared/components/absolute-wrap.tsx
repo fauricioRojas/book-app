@@ -43,6 +43,7 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   }
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
+    top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '60px' : 0};
   }
   @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
