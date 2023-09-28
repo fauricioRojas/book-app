@@ -8,16 +8,18 @@ import {
   Input,
   Photo,
   Textarea,
+  drawerService,
   snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSupabase } from "@/contexts";
+import { useLanguage, useSupabase } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
+const { hideDrawer } = drawerService;
 const { showSnackbar } = snackbarService;
 
 type ProceduresForm = {
@@ -62,7 +64,6 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
-  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { supabaseClient } = useSupabase();
 

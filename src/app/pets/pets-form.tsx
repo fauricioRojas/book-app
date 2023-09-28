@@ -8,15 +8,17 @@ import {
   Input,
   Photo,
   Textarea,
+  drawerService,
   snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
-import { useDrawer, useLanguage, useSupabase } from "@/contexts";
+import { useLanguage, useSupabase } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
 
+const { hideDrawer } = drawerService;
 const { showSnackbar } = snackbarService;
 
 type PetsForm = {
@@ -57,7 +59,6 @@ export const PetsForm: FC<PetsFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
-  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
   const { supabaseClient } = useSupabase();
 

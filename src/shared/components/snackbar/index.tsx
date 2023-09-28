@@ -61,11 +61,8 @@ const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
 
 const DEFAULT_DURATION = 5;
 
-type SnackbarState = {
+type SnackbarState = Required<SnackbarArgs> & {
   isVisible: boolean;
-  durationInSeconds: number;
-  type: MessageType;
-  body: ReactNode;
 }
 
 const ICON_NAME_MAPPER: Record<MessageType, IconName> = {

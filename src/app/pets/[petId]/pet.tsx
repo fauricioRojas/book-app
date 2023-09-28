@@ -10,10 +10,11 @@ import {
   Icon,
   PhotoPreview,
   Typography,
+  drawerService,
   snackbarService,
 } from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal, useSupabase } from "@/contexts";
+import { useLanguage, useModal, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
@@ -21,6 +22,7 @@ import { ProceduresForm } from "./procedures-form";
 import { ProceduresList } from "./procedures-list";
 import { PetsForm } from "../pets-form";
 
+const { showDrawer } = drawerService;
 const { showSnackbar } = snackbarService;
 const abortController = new AbortController();
 
@@ -39,7 +41,6 @@ export const Pet: FC<PetProps> = ({ serverPet }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
-  const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { supabaseClient } = useSupabase();
 

@@ -1,13 +1,14 @@
 'use client';
 
-import { useDrawer, useLanguage } from "@/contexts";
-import { FlexWrap, Typography } from "@/shared/components";
+import { useLanguage } from "@/contexts";
+import { FlexWrap, Typography, drawerService } from "@/shared/components";
 import { Actions } from "@/components";
 import { PetsForm } from "./pets-form";
 
+const { showDrawer } = drawerService;
+
 export const PetsHeader = () => {
   const { translation } = useLanguage();
-  const { showDrawer } = useDrawer();
 
   const handleShowPetForm = () => {
     showDrawer({

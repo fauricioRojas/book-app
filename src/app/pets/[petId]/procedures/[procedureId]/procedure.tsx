@@ -11,15 +11,17 @@ import {
   PhotoPreview,
   Popover,
   Typography,
+  drawerService,
   snackbarService,
 } from "@/shared/components";
 import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSupabase } from "@/contexts";
+import { useLanguage, useMeasure, useModal, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
 import { ProceduresForm } from "../../procedures-form";
 
+const { showDrawer } = drawerService;
 const { showSnackbar } = snackbarService;
 const abortController = new AbortController();
 
@@ -43,7 +45,6 @@ export const Procedure: FC<ProcedureProps> = ({
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
-  const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { currency, weightUnit } = useMeasure();
   const { supabaseClient } = useSupabase();

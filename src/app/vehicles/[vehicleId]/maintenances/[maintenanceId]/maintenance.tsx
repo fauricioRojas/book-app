@@ -10,15 +10,17 @@ import {
   Icon,
   PhotoPreview,
   Typography,
+  drawerService,
   snackbarService,
 } from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSupabase } from "@/contexts";
+import { useLanguage, useMeasure, useModal, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
 import { MaintenancesForm } from "../../maintenances-form";
 
+const { showDrawer } = drawerService;
 const { showSnackbar } = snackbarService;
 const abortController = new AbortController();
 
@@ -41,7 +43,6 @@ export const Maintenance: FC<MaintenanceProps> = ({
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
-  const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
   const { currency, lengthUnit } = useMeasure();
   const { supabaseClient } = useSupabase();
