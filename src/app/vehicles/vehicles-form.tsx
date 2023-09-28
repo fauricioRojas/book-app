@@ -8,19 +8,14 @@ import {
   Input,
   Photo,
   Textarea,
-  drawerService,
-  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useLanguage, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
-
-const { hideDrawer } = drawerService;
-const { showSnackbar } = snackbarService;
 
 type VehiclesForm = {
   plateNumber: string;
@@ -62,7 +57,9 @@ export const VehiclesForm: FC<VehiclesFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED, YEAR } = useFormRules();
+  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
+  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {
@@ -102,12 +99,12 @@ export const VehiclesForm: FC<VehiclesFormProps> = ({
     if (noteError || vehicleError) {
       showSnackbar({
         type: 'error',
-        body: translation.notSavedVehicle,
+        message: translation.notSavedVehicle,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.savedVehicle,
+        message: translation.savedVehicle,
       });
     }
   };
@@ -128,12 +125,12 @@ export const VehiclesForm: FC<VehiclesFormProps> = ({
     if (noteError || vehicleError) {
       showSnackbar({
         type: 'error',
-        body: translation.notEditedVehicle,
+        message: translation.notEditedVehicle,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.editedVehicle,
+        message: translation.editedVehicle,
       });
     }
   };

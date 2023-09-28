@@ -3,7 +3,7 @@
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
-import { useLanguage, useSupabaseAuth } from '@/contexts';
+import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
 import {
   AbsoluteWrap,
   Button,
@@ -11,13 +11,10 @@ import {
   GridWrap,
   Input,
   Link,
-  Typography,
-  snackbarService,
+  Typography
 } from '@/shared/components';
 import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
-
-const { showSnackbar } = snackbarService;
 
 const StyledForm = styled.form`
   width: 100%;
@@ -49,6 +46,7 @@ export const SignUpForm = () => {
   const { EMAIL, MIN_LENGTH, REQUIRED } = useFormRules({ minLength: 6 });
   const { signUp } = useSupabaseAuth();
   const { translation } = useLanguage();
+  const { showSnackbar } = useSnackbar();
 
   const onSubmit = async ({ email, password }: SignUpForm) => {
     try {
@@ -56,19 +54,19 @@ export const SignUpForm = () => {
       if (error) {
         showSnackbar({
           type: "error",
-          body: error,
+          message: error,
         });
       } else {
         showSnackbar({
           type: "success",
-          body: translation.signInInstructions,
+          message: translation.signInInstructions,
           durationInSeconds: 8,
         });
       }
     } catch (error) {
       showSnackbar({
         type: "error",
-        body: translation.signUpError,
+        message: translation.signUpError,
       });
     }
   };

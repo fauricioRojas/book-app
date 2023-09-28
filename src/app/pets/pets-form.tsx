@@ -8,18 +8,13 @@ import {
   Input,
   Photo,
   Textarea,
-  drawerService,
-  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
-import { useLanguage, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { PetsSelector } from "./pets-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
-
-const { hideDrawer } = drawerService;
-const { showSnackbar } = snackbarService;
 
 type PetsForm = {
   name: string;
@@ -59,7 +54,9 @@ export const PetsForm: FC<PetsFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
+  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
+  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {
@@ -97,12 +94,12 @@ export const PetsForm: FC<PetsFormProps> = ({
     if (noteError || petError) {
       showSnackbar({
         type: 'error',
-        body: translation.notSavedPet,
+        message: translation.notSavedPet,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.savedPet,
+        message: translation.savedPet,
       });
     }
   };
@@ -122,12 +119,12 @@ export const PetsForm: FC<PetsFormProps> = ({
     if (noteError || petError) {
       showSnackbar({
         type: 'error',
-        body: translation.notEditedPet,
+        message: translation.notEditedPet,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.editedPet,
+        message: translation.editedPet,
       });
     }
   };

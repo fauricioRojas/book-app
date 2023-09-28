@@ -2,26 +2,19 @@
 
 import { useTheme } from 'styled-components';
 
-import {
-  AbsoluteWrap,
-  Button,
-  Icon,
-  Typography,
-  drawerService,
-} from '@/shared/components';
-import { useLanguage } from '@/contexts';
+import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
+import { useDrawer, useLanguage } from '@/contexts';
 import { VehiclesForm } from './vehicles-form';
-
-const { showDrawer } = drawerService;
 
 export const NoVehicles = () => {
   const { translation } = useLanguage();
+  const { showDrawer } = useDrawer();
   const { colors } = useTheme();
 
   const handleShowVehicleForm = () => {
     showDrawer({
       title: translation.newVehicle,
-      body: <VehiclesForm />,
+      children: <VehiclesForm />,
     });
   };
 
