@@ -8,19 +8,14 @@ import {
   Input,
   Photo,
   Textarea,
-  drawerService,
-  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useLanguage, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
-
-const { hideDrawer } = drawerService;
-const { showSnackbar } = snackbarService;
 
 type ProceduresForm = {
   cost: string;
@@ -64,7 +59,9 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
+  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
+  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {
@@ -105,12 +102,12 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
     if (noteError || procedureError) {
       showSnackbar({
         type: 'error',
-        body: translation.notSavedProcedure,
+        message: translation.notSavedProcedure,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.savedProcedure,
+        message: translation.savedProcedure,
       });
     }
   };
@@ -131,12 +128,12 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
     if (noteError || procedureError) {
       showSnackbar({
         type: 'error',
-        body: translation.notEditedProcedure,
+        message: translation.notEditedProcedure,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.editedProcedure,
+        message: translation.editedProcedure,
       });
     }
   };

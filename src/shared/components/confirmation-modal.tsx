@@ -1,4 +1,4 @@
-import { useCallback, useState, FC } from 'react';
+import { useState, FC } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
@@ -75,30 +75,28 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   const [disabled, setDisabled] = useState(false);
   const [isHiding, setIsHiding] = useState(false);
 
-  const handleCloseConfirmationModal = useCallback(() => {
+  const handleClose = () => {
     setIsHiding(true);
     setTimeout(() => {
       onClose();
       setIsHiding(false);
     }, 200);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
-  const handleClick = useCallback(async () => {
+  const handleClick = async () => {
     setDisabled(true);
     await onClick();
     setDisabled(false);
-    handleCloseConfirmationModal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onClick]);
+    handleClose();
+  };
 
-  useKeyPress({ key: 'Escape', callback: handleCloseConfirmationModal });
+  useKeyPress({ key: 'Escape', callback: handleClose });
 
   return isOpen ? (
     <StyledConfirmationModal>
       <Backdrop
         isHiding={isHiding}
-        onClick={handleCloseConfirmationModal}
+        onClick={handleClose}
       />
       <StyledConfirmationModalContent $isHiding={isHiding}>
         <Typography
@@ -111,7 +109,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
         <FlexWrap gap={4}>
           <Button
             variant="outline-secondary"
-            onClick={handleCloseConfirmationModal}
+            onClick={handleClose}
           >
             {translation.cancel}
           </Button>

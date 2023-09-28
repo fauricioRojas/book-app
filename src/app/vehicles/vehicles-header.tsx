@@ -1,19 +1,18 @@
 'use client';
 
-import { useLanguage } from "@/contexts";
-import { FlexWrap, Typography, drawerService } from "@/shared/components";
+import { useDrawer, useLanguage } from "@/contexts";
+import { FlexWrap, Typography } from "@/shared/components";
 import { VehiclesForm } from "./vehicles-form";
 import { Actions } from "@/components";
 
-const { showDrawer } = drawerService;
-
 export const VehiclesHeader = () => {
   const { translation } = useLanguage();
+  const { showDrawer } = useDrawer();
 
   const handleShowVehicleForm = () => {
     showDrawer({
       title: translation.newVehicle,
-      body: <VehiclesForm />,
+      children: <VehiclesForm />,
     });
   };
 

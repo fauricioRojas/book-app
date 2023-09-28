@@ -8,19 +8,14 @@ import {
   Input,
   Photo,
   Textarea,
-  drawerService,
-  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useLanguage, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
 import { MaintenancesSelector } from "./maintenances-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
-
-const { hideDrawer } = drawerService;
-const { showSnackbar } = snackbarService;
 
 type MaintenancesForm = {
   cost: string;
@@ -62,7 +57,9 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
   });
   const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
   const { REQUIRED } = useFormRules();
+  const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
+  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {
@@ -101,12 +98,12 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
     if (noteError || maintenanceError) {
       showSnackbar({
         type: 'error',
-        body: translation.notSavedMaintenance,
+        message: translation.notSavedMaintenance,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.savedMaintenance,
+        message: translation.savedMaintenance,
       });
     }
   };
@@ -126,12 +123,12 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
     if (noteError || maintenanceError) {
       showSnackbar({
         type: 'error',
-        body: translation.notSavedMaintenance,
+        message: translation.notSavedMaintenance,
       });
     } else {
       showSnackbar({
         type: 'success',
-        body: translation.savedMaintenance,
+        message: translation.savedMaintenance,
       });
     }
   };

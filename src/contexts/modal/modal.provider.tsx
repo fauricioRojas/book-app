@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useState, FC, PropsWithChildren } from 'react';
+import { useState, FC, PropsWithChildren } from 'react';
 
 import { ConfirmationModal } from '@/shared/components';
-import type { ConfirmationModalArgs } from './modal.types';
 import { ModalContext } from './modal.context';
+import type { ConfirmationModalArgs } from './modal.types';
 
 type ModalState = {
   isConfirmationModalOpen: boolean;
@@ -20,21 +20,21 @@ export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
     confirmationModalConfig: {} as ConfirmationModalArgs,
   });
 
-  const showConfirmationModal = useCallback((args: ConfirmationModalArgs) => {
-    setState((prevState): ModalState => ({
-      ...prevState,
-      isConfirmationModalOpen: true,
-      confirmationModalConfig: args,
-    }));
-  }, []);
-
-  const hideConfirmationModal = useCallback(() => {
+  const hideConfirmationModal = () => {
     setState((prevState): ModalState => ({
       ...prevState,
       isConfirmationModalOpen: false,
       confirmationModalConfig: {} as ConfirmationModalArgs,
     }));
-  }, []);
+  };
+
+  const showConfirmationModal = (args: ConfirmationModalArgs) => {
+    setState((prevState): ModalState => ({
+      ...prevState,
+      isConfirmationModalOpen: true,
+      confirmationModalConfig: args,
+    }));
+  };
 
   return (
     <ModalContext.Provider value={{ showConfirmationModal }}>

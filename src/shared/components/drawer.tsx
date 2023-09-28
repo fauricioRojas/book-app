@@ -1,11 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
 import { useKeyPress } from '@/hooks';
 import { slideInUp, slideOutDown, slideInRight, slideOutRight } from '@/shared/keyframes';
-import { Backdrop, Icon, Typography } from '..';
-import { drawerService } from './drawer.service';
-import type { DrawerArgs } from './drawer.types';
+import { Backdrop, Icon, Typography } from '.';
 
 type StyledDrawerProps = {
   $isHiding: boolean;
@@ -78,51 +76,36 @@ const StyledDrawerBody = styled.div`
   }
 `;
 
-type DrawerState = DrawerArgs & {
+type DrawerProps = PropsWithChildren & {
+  title: string;
   isOpen: boolean;
-  isHiding: boolean;
+  onClose: () => void;
 }
 
-const DEFAULT_STATE: DrawerState = {
-  isOpen: false,
-  isHiding: false,
-  title: '',
-  body: null,
-};
-
-const Drawer: FC = () => {
+export const Drawer: FC<DrawerProps> = ({
+  title,
+  isOpen,
+  onClose,
+  children,
+}) => {
   const { colors } = useTheme();
-  const [{ isOpen, isHiding, title, body }, setState] = useState<DrawerState>(DEFAULT_STATE);
+  const [isHiding, setIsHiding] = useState(false);
 
-  const hideDrawer = () => {
-    setState((prevState): DrawerState => ({
-      ...prevState,
-      isHiding: true,
-    }));
-    setTimeout(() => setState(DEFAULT_STATE), 200);
+  const handleClose = () => {
+    setIsHiding(true);
+    setTimeout(() => {
+      onClose();
+      setIsHiding(false);
+    }, 200);
   };
 
-  const showDrawer = (args: DrawerArgs) => {
-    setState((prevState): DrawerState => ({
-      ...prevState,
-      ...args,
-      isOpen: true,
-    }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  };
-
-  useEffect(() => {
-    drawerService.init(showDrawer, hideDrawer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useKeyPress({ key: 'Escape', callback: hideDrawer });
+  useKeyPress({ key: 'Escape', callback: handleClose });
 
   return isOpen ? (
     <StyledDrawer>
       <Backdrop
         isHiding={isHiding}
-        onClick={hideDrawer}
+        onClick={handleClose}
       />
       <StyledDrawerContent $isHiding={isHiding}>
         <StyledDrawerHeader>
@@ -134,13 +117,11 @@ const Drawer: FC = () => {
             color={colors.primaryText}
             width={15}
             height={15}
-            onClick={hideDrawer}
+            onClick={handleClose}
           />
         </StyledDrawerHeader>
-        <StyledDrawerBody>{body}</StyledDrawerBody>
+        <StyledDrawerBody>{children}</StyledDrawerBody>
       </StyledDrawerContent>
     </StyledDrawer>
   ) : null;
 };
-
-export { Drawer, drawerService };

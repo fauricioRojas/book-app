@@ -2,26 +2,19 @@
 
 import { useTheme } from 'styled-components';
 
-import {
-  AbsoluteWrap,
-  Button,
-  Icon,
-  Typography,
-  drawerService,
-} from '@/shared/components';
-import { useLanguage } from '@/contexts';
+import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
+import { useDrawer, useLanguage } from '@/contexts';
 import { PetsForm } from './pets-form';
-
-const { showDrawer } = drawerService;
 
 export const NoPets = () => {
   const { translation } = useLanguage();
+  const { showDrawer } = useDrawer();
   const { colors } = useTheme();
 
   const handleShowPetForm = () => {
     showDrawer({
       title: translation.newPet,
-      body: <PetsForm />,
+      children: <PetsForm />,
     });
   };
 
