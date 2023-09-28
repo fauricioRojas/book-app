@@ -19,7 +19,7 @@ const StyledPopover = styled.div`
   left: -10px;
   position: absolute;
   transform: translate(0, calc(100% + 10px));
-  z-index: 999;
+  z-index: ${({ theme }) => theme.zIndices.popover};
 `;
 const StyledArrow = styled.div<StyledArrowProps>`
   left: 10px;

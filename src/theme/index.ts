@@ -5,6 +5,7 @@ import type {
   FontWeights,
   Shadows,
   Theme,
+  ZIndices,
 } from "./types";
 
 const breakpoints: Breakpoints = {
@@ -103,6 +104,13 @@ const shadows: Shadows = {
   lg: "0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15)",
 };
 
+const zIndices: ZIndices = {
+  hide: -1,
+  drawer: 1400,
+  popover: 1500,
+  snackbar: 1600,
+};
+
 const commonTheme: Omit<Theme, "colors"> = {
   backdropBlur: "blur(8px)",
   borderRadius: "6px",
@@ -110,6 +118,7 @@ const commonTheme: Omit<Theme, "colors"> = {
   fontWeights,
   gutters,
   shadows,
+  zIndices,
 };
 
 export const LIGHT_THEME: Theme = {

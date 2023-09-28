@@ -21,6 +21,7 @@ export * from "./icon";
 export * from "./icon-button";
 export * from "./input";
 export * from "./link";
+export * from "./marquee";
 export * from "./photo";
 export * from "./photo-preview";
 export * from "./popover";

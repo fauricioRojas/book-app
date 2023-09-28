@@ -74,6 +74,13 @@ export type Shadows = {
   lg: string;
 };
 
+export type ZIndices = {
+  hide: number;
+  drawer: number;
+  popover: number;
+  snackbar: number;
+};
+
 export type Theme = {
   backdropBlur: string;
   borderRadius: string;
@@ -82,4 +89,5 @@ export type Theme = {
   fontWeights: FontWeights;
   gutters: Gutters;
   shadows: Shadows;
+  zIndices: ZIndices;
 };

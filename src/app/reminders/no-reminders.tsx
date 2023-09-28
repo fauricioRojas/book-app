@@ -10,7 +10,11 @@ export const NoReminders = () => {
   const { colors } = useTheme();
 
   return (
-    <AbsoluteWrap gap={4} isNavbarVisible>
+    <AbsoluteWrap
+      gap={4}
+      isNavbarVisible
+      zIndex="hide"
+    >
       <Icon
         name="bell"
         height={50}

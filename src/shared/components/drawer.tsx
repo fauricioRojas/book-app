@@ -27,7 +27,7 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
   height: 95%;
   position: absolute;
   width: 100%;
-  z-index: 4;
+  z-index: ${({ theme }) => theme.zIndices.drawer};
 
   ${({ $isHiding }) => $isHiding && css`
     animation: ${slideOutDown} .3s;

@@ -10,7 +10,11 @@ export const NoTransfers = () => {
   const { colors } = useTheme();
 
   return (
-    <AbsoluteWrap gap={4} isNavbarVisible>
+    <AbsoluteWrap
+      gap={4}
+      isNavbarVisible
+      zIndex="hide"
+    >
       <Icon
         name="transfer"
         height={50}

@@ -61,7 +61,7 @@ const StyledInput = styled.input<StyledInputProps>`
       right: 7px;
       top: 6px;
       width: 25px;
-      z-index: -1;
+      z-index: ${({ theme }) => theme.zIndices.hide};
     }
   }
 

@@ -1,3 +1,5 @@
+import type { ZIndices } from "@/theme/types";
+
 export type Size = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
 export type FullSize =
@@ -25,6 +27,8 @@ export type FullSize =
 export type Position = "absolute" | "fixed" | "relative" | "sticky";
 
 export type MessageType = "success" | "error" | "warning";
+
+export type ZIndex = keyof ZIndices;
 
 export type SelectOption<T = any> = {
   label: string;

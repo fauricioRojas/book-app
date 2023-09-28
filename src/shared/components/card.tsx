@@ -15,16 +15,19 @@ const StyledCard = styled.div<StyledCardProps>`
 `;
 
 type CardProps = PropsWithChildren & {
+  className?: string;
   background?: boolean;
   border?: boolean;
 };
 
 export const Card: FC<CardProps> = ({
+  className,
   background = false,
   border = false,
   children,
 }) => (
   <StyledCard
+    className={className}
     $background={background}
     $border={border}
   >

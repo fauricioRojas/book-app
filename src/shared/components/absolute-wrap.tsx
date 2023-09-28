@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import type { Size } from '@/shared/types';
+import type { Size, ZIndex } from '@/shared/types';
 
 type StyledAbsoluteWrapProps = {
   $gap?: Size;
@@ -12,6 +12,7 @@ type StyledAbsoluteWrapProps = {
   $gapXxl?: Size;
   $gradient: boolean;
   $isNavbarVisible: boolean;
+  $zIndex?: ZIndex;
 }
 
 const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
@@ -33,7 +34,7 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   right: 0;
   top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '-50px' : 0};
   width: 100%;
-  z-index: -1;
+  z-index: ${({ $zIndex, theme }) => $zIndex ? theme.zIndices[$zIndex] : undefined};
 
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
@@ -63,6 +64,7 @@ type AbsoluteWrapProps = PropsWithChildren & {
   gapXxl?: Size;
   gradient?: boolean;
   isNavbarVisible?: boolean;
+  zIndex?: ZIndex;
 }
 
 export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
@@ -75,6 +77,7 @@ export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
   gapXxl,
   gradient = false,
   isNavbarVisible = false,
+  zIndex,
   children,
 }) => (
   <StyledAbsoluteWrap
@@ -87,6 +90,7 @@ export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
     $gapXxl={gapXxl}
     $gradient={gradient}
     $isNavbarVisible={isNavbarVisible}
+    $zIndex={zIndex}
   >
     {children}
   </StyledAbsoluteWrap>

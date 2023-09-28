@@ -25,7 +25,11 @@ export const ResourceNotFound: FC<ResourceNotFoundProps> = ({ page }) => {
   const title = titleMapper.get(page);
 
   return (
-    <AbsoluteWrap gap={4} isNavbarVisible>
+    <AbsoluteWrap
+      gap={4}
+      isNavbarVisible
+      zIndex="hide"
+    >
       <Icon
         name="sad-emoji"
         height={75}

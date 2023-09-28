@@ -19,7 +19,11 @@ export const NoPets = () => {
   };
 
   return (
-    <AbsoluteWrap gap={4} isNavbarVisible>
+    <AbsoluteWrap
+      gap={4}
+      isNavbarVisible
+      zIndex="hide"
+    >
       <Icon
         name="footprint"
         height={50}
