@@ -5,9 +5,15 @@ import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ACTIONS, TMaintenance, TVehicle, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
+import {
+  FlexWrap,
+  Icon,
+  PhotoPreview,
+  Typography,
+  snackbarService,
+} from "@/shared/components";
 import { formatDate } from "@/shared/utils";
-import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useModal, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
@@ -15,6 +21,7 @@ import { MaintenancesForm } from "./maintenances-form";
 import { MaintenancesList } from "./maintenances-list";
 import { VehiclesForm } from "../vehicles-form";
 
+const { showSnackbar } = snackbarService;
 const abortController = new AbortController();
 
 type VehicleProps = {
@@ -35,7 +42,6 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
-  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useDidUpdate(() => setVehicle(serverVehicle), [serverVehicle]);

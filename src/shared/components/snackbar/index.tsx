@@ -1,8 +1,10 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
 
 import { MessageType } from '@/shared/types';
-import { Icon, type IconName, FlexWrap, Typography } from '.';
+import { Icon, type IconName, FlexWrap, Typography } from '..';
+import { snackbarService } from './snackbar.service';
+import type { SnackbarArgs } from './snackbar.types';
 
 type StyledSkeletonProps = {
   $duration: number;
@@ -57,10 +59,13 @@ const StyledSnackbarProgress = styled.div<StyledSkeletonProgressProps>`
   width: calc(100% - 16px);
 `;
 
-type SnackbarProps = {
-  body: ReactNode;
-  type: MessageType;
+const DEFAULT_DURATION = 5;
+
+type SnackbarState = {
+  isVisible: boolean;
   durationInSeconds: number;
+  type: MessageType;
+  body: ReactNode;
 }
 
 const ICON_NAME_MAPPER: Record<MessageType, IconName> = {
@@ -69,10 +74,42 @@ const ICON_NAME_MAPPER: Record<MessageType, IconName> = {
   warning: 'warning',
 };
 
-export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) => {
+const Snackbar: FC = () => {
   const { colors } = useTheme();
+  const [{ isVisible, durationInSeconds, type, body }, setState] = useState<SnackbarState>({
+    isVisible: false,
+    durationInSeconds: DEFAULT_DURATION,
+    type: 'success',
+    body: null,
+  });
 
-  return (
+  const hideSnackbar = () => {
+    setState((prevState): SnackbarState => ({
+      ...prevState,
+      isVisible: false,
+      body: null,
+    }));
+  };
+
+  const showSnackbar = (args: SnackbarArgs) => {
+    const duration = args.durationInSeconds || DEFAULT_DURATION;
+
+    setState((prevState): SnackbarState => ({
+      ...prevState,
+      isVisible: true,
+      durationInSeconds: duration,
+      type: args.type,
+      body: args.body,
+    }));
+    setTimeout(hideSnackbar, duration * 1000);
+  };
+
+  useEffect(() => {
+    snackbarService.init(showSnackbar);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return isVisible ? (
     <FlexWrap justify="center">
       <StyledSnackbar $duration={durationInSeconds}>
         <FlexWrap align="center" gap={2}>
@@ -90,5 +127,7 @@ export const Snackbar: FC<SnackbarProps> = ({ body, type, durationInSeconds }) =
         />
       </StyledSnackbar>
     </FlexWrap>
-  );
+  ) : null;
 };
+
+export { Snackbar, snackbarService };

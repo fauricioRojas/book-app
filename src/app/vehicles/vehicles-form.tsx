@@ -8,14 +8,17 @@ import {
   Input,
   Photo,
   Textarea,
+  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSupabase } from "@/contexts";
 import { VehiclesSelector } from "./vehicles-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
+
+const { showSnackbar } = snackbarService;
 
 type VehiclesForm = {
   plateNumber: string;
@@ -59,7 +62,6 @@ export const VehiclesForm: FC<VehiclesFormProps> = ({
   const { REQUIRED, YEAR } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
-  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {

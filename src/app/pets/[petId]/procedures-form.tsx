@@ -8,14 +8,17 @@ import {
   Input,
   Photo,
   Textarea,
+  snackbarService,
 } from "@/shared/components";
 import { useFormRules } from "@/hooks";
 import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useSupabase } from "@/contexts";
 import { ProceduresSelector } from "./procedures-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
 import { FormButtons } from "@/components";
+
+const { showSnackbar } = snackbarService;
 
 type ProceduresForm = {
   cost: string;
@@ -61,7 +64,6 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
-  const { showSnackbar } = useSnackbar();
   const { supabaseClient } = useSupabase();
 
   useEffect(() => {

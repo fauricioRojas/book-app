@@ -5,14 +5,21 @@ import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ACTIONS, TMaintenance, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
+import {
+  FlexWrap,
+  Icon,
+  PhotoPreview,
+  Typography,
+  snackbarService,
+} from "@/shared/components";
 import { formatDate, formatLength, formatMoney } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
+import { useDrawer, useLanguage, useMeasure, useModal, useSupabase } from "@/contexts";
 import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
 import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
 import { MaintenancesForm } from "../../maintenances-form";
 
+const { showSnackbar } = snackbarService;
 const abortController = new AbortController();
 
 type MaintenanceProps = {
@@ -36,7 +43,6 @@ export const Maintenance: FC<MaintenanceProps> = ({
   const router = useRouter();
   const { showDrawer } = useDrawer();
   const { showConfirmationModal } = useModal();
-  const { showSnackbar } = useSnackbar();
   const { currency, lengthUnit } = useMeasure();
   const { supabaseClient } = useSupabase();
 

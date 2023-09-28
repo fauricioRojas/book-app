@@ -4,14 +4,13 @@ import { FC, PropsWithChildren } from 'react';
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 
-import { Container, GlobalStyles } from '@/shared/components';
+import { Container, GlobalStyles, Snackbar } from '@/shared/components';
 import {
   CustomThemeProvider,
   DrawerProvider,
   LanguageProvider,
   MeasureProvider,
   ModalProvider,
-  SnackbarProvider,
   SupabaseProvider,
   SupabaseAuthProvider,
 } from '@/contexts';
@@ -46,15 +45,14 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
                 <SupabaseProvider>
                   <SupabaseAuthProvider serverSession={session}>
                     <ModalProvider>
-                      <SnackbarProvider>
-                        <DrawerProvider>
-                          <GlobalStyles />
-                          <Container>
-                            {children}
-                          </Container>
-                          <Navbar />
-                        </DrawerProvider>
-                      </SnackbarProvider>
+                      <DrawerProvider>
+                        <GlobalStyles />
+                        <Container>
+                          {children}
+                        </Container>
+                        <Navbar />
+                        <Snackbar />
+                      </DrawerProvider>
                     </ModalProvider>
                   </SupabaseAuthProvider>
                 </SupabaseProvider>

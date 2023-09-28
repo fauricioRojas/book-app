@@ -2,14 +2,22 @@
 
 import { useState } from "react";
 
-import { useLanguage, useSnackbar, useSupabaseAuth } from "@/contexts";
-import { Box, Card, FlexWrap, IconButton, Typography } from "@/shared/components";
+import { useLanguage, useSupabaseAuth } from "@/contexts";
+import {
+  Box,
+  Card,
+  FlexWrap,
+  IconButton,
+  Typography,
+  snackbarService,
+} from "@/shared/components";
+
+const { showSnackbar } = snackbarService;
 
 export const Account = () => {
   const [disabled, setDisabled] = useState(false);
   const { user, signOut } = useSupabaseAuth();
   const { translation } = useLanguage();
-  const { showSnackbar } = useSnackbar();
 
   const handleSignOut = async () => {    
     try {
