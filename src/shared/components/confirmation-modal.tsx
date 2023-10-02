@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
 import { useKeyPress } from '@/hooks';
-import { fadeIn, fadeOut, slideInUp, slideOutDown } from '@/shared/keyframes';
+import { fadeIn, fadeOut, slideInUp, slideOutDown } from '@/shared/styles';
 import { Backdrop, Button, FlexWrap, Typography } from '.';
 
 type StyledConfirmationModalProps = {

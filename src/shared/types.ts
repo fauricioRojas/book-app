@@ -1,8 +1,9 @@
 import type { ZIndices } from "@/theme/types";
 
-export type Size = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+export type GridColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
-export type FullSize =
+export type Size =
+  | 0
   | 1
   | 2
   | 3

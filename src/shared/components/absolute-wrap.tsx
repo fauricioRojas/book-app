@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
+import { gap } from '@/shared/styles';
 import type { Size, ZIndex } from '@/shared/types';
 
 type StyledAbsoluteWrapProps = {
@@ -24,7 +25,6 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
   justify-content: center;
   left: 0;
   margin: auto;
@@ -35,22 +35,10 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '-50px' : 0};
   width: 100%;
   z-index: ${({ $zIndex, theme }) => $zIndex ? theme.zIndices[$zIndex] : undefined};
+  ${gap};
 
-  ${({ theme }) => theme.breakpoints.sm} {
-    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.md} {
-    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
-  }
   ${({ theme }) => theme.breakpoints.lg} {
-    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
     top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '60px' : 0};
-  }
-  ${({ theme }) => theme.breakpoints.xl} {
-    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.xxl} {
-    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
   }
 `;
 

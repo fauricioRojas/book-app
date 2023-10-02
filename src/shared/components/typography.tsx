@@ -2,8 +2,9 @@
 
 import { Merriweather } from 'next/font/google';
 import { FC, PropsWithChildren, useMemo } from 'react';
-import styled, { DefaultTheme, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
+import { display, marginBottom } from '@/shared/styles';
 import type { Size } from '@/shared/types';
 
 type Color = 'primary' | 'primary-text' | 'secondary-text' | 'error';
@@ -23,7 +24,6 @@ type StyledTypographyProps = {
   $displayLg?: boolean;
   $displayXl?: boolean;
   $displayXxl?: boolean;
-  theme: DefaultTheme;
 }
 
 const merriweather = Merriweather({
@@ -31,124 +31,101 @@ const merriweather = Merriweather({
   subsets: ["latin"],
 });
 
-const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypographyProps) => css`
-  ${$color === 'primary' && css`
+const sharedCss = css<StyledTypographyProps>`
+  ${({ $color, theme }) => $color === 'primary' && css`
     color: ${theme.colors.primary};
   `}
-  ${$color === 'primary-text' && css`
+  ${({ $color, theme }) => $color === 'primary-text' && css`
     color: ${theme.colors.primaryText};
   `}
-  ${$color === 'secondary-text' && css`
+  ${({ $color, theme }) => $color === 'secondary-text' && css`
     color: ${theme.colors.secondaryText};
   `}
-  ${$color === 'error' && css`
+  ${({ $color, theme }) => $color === 'error' && css`
     color: ${theme.colors.error};
   `}
-  ${({ $display }: StyledTypographyProps) => typeof $display === 'boolean' && css`
-    display: ${$display ? 'block' : 'none'};
-  `}
-  font-style: ${$italic ? 'italic' : undefined};
-  ${({ $fontWeight }: StyledTypographyProps) => $fontWeight === 'bold' && css`
+  font-style: ${({ $italic }) => $italic ? 'italic' : undefined};
+  ${({ $fontWeight, theme }) => $fontWeight === 'bold' && css`
     font-weight: ${theme.fontWeights.bold};
   `}
-  ${({ $fontWeight }: StyledTypographyProps) => $fontWeight === 'regular' && css`
+  ${({ $fontWeight, theme }) => $fontWeight === 'regular' && css`
     font-weight: ${theme.fontWeights.regular};
   `}
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: 1.2;
-  margin-bottom: ${$mb ? theme.gutters[`size${$mb}`] : undefined};
   margin-top: 0;
-  text-align: ${$textAlign};
+  text-align: ${({ $textAlign }) => $textAlign};
   transition: color .2s ease;
-
-  ${({ theme }) => theme.breakpoints.sm} {
-    ${({ $displaySm }: StyledTypographyProps) => typeof $displaySm === 'boolean' && css`
-      display: ${$displaySm ? 'block' : 'none'};
-    `}
-  }
-  ${({ theme }) => theme.breakpoints.md} {
-    ${({ $displayMd }: StyledTypographyProps) => typeof $displayMd === 'boolean' && css`
-      display: ${$displayMd ? 'block' : 'none'};
-    `}
-  }
-  ${({ theme }) => theme.breakpoints.lg} {
-    ${({ $displayLg }: StyledTypographyProps) => typeof $displayLg === 'boolean' && css`
-      display: ${$displayLg ? 'block' : 'none'};
-    `}
-  }
-  ${({ theme }) => theme.breakpoints.xl} {
-    ${({ $displayXl }: StyledTypographyProps) => typeof $displayXl === 'boolean' && css`
-      display: ${$displayXl ? 'block' : 'none'};
-    `}
-  }
-  ${({ theme }) => theme.breakpoints.xxl} {
-    ${({ $displayXxl }: StyledTypographyProps) => typeof $displayXxl === 'boolean' && css`
-      display: ${$displayXxl ? 'block' : 'none'};
-    `}
-  }
+  ${display};
+  ${marginBottom};
 `;
 
-const H1 = styled.h1`
+const H1 = styled.h1<StyledTypographyProps>`
   font-size: 2rem;
+  ${sharedCss};
+
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2.25rem;
   }
   ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2.5rem;
   }
-  ${sharedCss};
 `;
-const H2 = styled.h2`
+const H2 = styled.h2<StyledTypographyProps>`
   font-size: 1.75rem;
+  ${sharedCss};
+
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2rem;
   }
   ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2.25rem;
   }
-  ${sharedCss};
 `;
-const H3 = styled.h3`
+const H3 = styled.h3<StyledTypographyProps>`
   font-size: 1.5rem;
+  ${sharedCss};
+
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.75rem;
   }
   ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2rem;
   }
-  ${sharedCss};
 `;
-const H4 = styled.h4`
+const H4 = styled.h4<StyledTypographyProps>`
   font-size: 1.25rem;
+  ${sharedCss};
+
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.375rem;
   }
   ${({ theme }) => theme.breakpoints.lg} {
     font-size: 1.5rem;
   }
-  ${sharedCss};
 `;
-const H5 = styled.h5`
+const H5 = styled.h5<StyledTypographyProps>`
   font-size: 1.125rem;
+  ${sharedCss};
+
   ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.25rem;
   }
-  ${sharedCss};
 `;
-const H6 = styled.h6`
+const H6 = styled.h6<StyledTypographyProps>`
   font-size: 1rem;
   ${sharedCss};
 `;
-const LABEL = styled.label`
+const LABEL = styled.label<StyledTypographyProps>`
   font-size: 1rem;
   display: inline-block;
   ${sharedCss};
 `;
-const P = styled.p`
+const P = styled.p<StyledTypographyProps>`
   font-size: 1rem;
   ${sharedCss};
 `;
-const SPAN = styled.span`
+const SPAN = styled.span<StyledTypographyProps>`
   font-size: calc(0.6rem + 0.3vw);
   ${({ theme }) => theme.breakpoints.lg} {
     font-size: 0.875rem;

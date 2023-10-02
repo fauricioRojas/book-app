@@ -31,7 +31,7 @@ const StyledSelect = styled.select<StyledSelectProps>`
   cursor: pointer;
   font-size: 1rem;
   height: ${({ $borderless }) => $borderless ? 'auto' : '40px'};
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   outline: 0;
   ${({ $borderless, theme }) => $borderless
     ? css`

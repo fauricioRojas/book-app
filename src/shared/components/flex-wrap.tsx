@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
+import { gap, marginBottom } from '@/shared/styles';
 import type { Position, Size } from '@/shared/types';
 
 type Align = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
@@ -63,10 +64,10 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
   flex-direction: ${({ $direction }) => $direction};
   flex-grow: ${({ $grow }) => $grow};
   flex-wrap: ${({ $wrap }) => $wrap};
-  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
   height: ${({ $fullHeight }) => $fullHeight ? '100%' : undefined};
   justify-content: ${({ $justify }) => $justify};
-  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
+  ${gap};
+  ${marginBottom};
 
   ${({ $position }) => $position === 'absolute' && css`
     position: absolute;
@@ -87,7 +88,6 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     flex-direction: ${({ $directionSm }) => $directionSm};
     flex-grow: ${({ $growSm }) => $growSm};
     flex-wrap: ${({ $wrapSm }) => $wrapSm};
-    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
     justify-content: ${({ $justifySm }) => $justifySm};
   }
   ${({ theme }) => theme.breakpoints.md} {
@@ -96,7 +96,6 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     flex-direction: ${({ $directionMd }) => $directionMd};
     flex-grow: ${({ $growMd }) => $growMd};
     flex-wrap: ${({ $wrapMd }) => $wrapMd};
-    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
     justify-content: ${({ $justifyMd }) => $justifyMd};
   }
   ${({ theme }) => theme.breakpoints.lg} {
@@ -105,7 +104,6 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     flex-direction: ${({ $directionLg }) => $directionLg};
     flex-grow: ${({ $growLg }) => $growLg};
     flex-wrap: ${({ $wrapLg }) => $wrapLg};
-    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
     justify-content: ${({ $justifyLg }) => $justifyLg};
   }
   ${({ theme }) => theme.breakpoints.xl} {
@@ -114,7 +112,6 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     flex-direction: ${({ $directionXl }) => $directionXl};
     flex-grow: ${({ $growXl }) => $growXl};
     flex-wrap: ${({ $wrapXl }) => $wrapXl};
-    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
     justify-content: ${({ $justifyXl }) => $justifyXl};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
@@ -123,7 +120,6 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     flex-direction: ${({ $directionXxl }) => $directionXxl};
     flex-grow: ${({ $growXxl }) => $growXxl};
     flex-wrap: ${({ $wrapXxl }) => $wrapXxl};
-    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
     justify-content: ${({ $justifyXxl }) => $justifyXxl};
   }
 `;

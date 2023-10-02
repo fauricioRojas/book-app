@@ -93,6 +93,7 @@ export type Theme = {
   colors: Colors;
   fontWeights: FontWeights;
   gutters: Gutters;
+  letterSpacing: string;
   shadows: Shadows;
   zIndices: ZIndices;
 };

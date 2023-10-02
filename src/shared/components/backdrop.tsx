@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled, { css } from 'styled-components';
 
-import { fadeIn, fadeOut } from '@/shared/keyframes';
+import { fadeIn, fadeOut } from '@/shared/styles';
 
 type StyledBackdropProps = {
   $isHiding: boolean;

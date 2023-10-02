@@ -1,21 +1,6 @@
-'use client';
-
 import { FC } from "react";
-import styled from 'styled-components';
 
-import { Fab, FlexWrap, IconButton, TFabItem } from "@/shared/components";
-
-const MobileWrapper = styled.div`
-  ${({ theme }) => theme.breakpoints.lg} {
-    display: none;
-  }
-`;
-const DesktopWrapper = styled.div`
-  display: none;
-  ${({ theme }) => theme.breakpoints.lg} {
-    display: block;
-  }
-`;
+import { Box, Fab, FlexWrap, IconButton, TFabItem } from "@/shared/components";
 
 type ActionsProps = {
   onDelete?: () => void;
@@ -56,10 +41,10 @@ export const Actions: FC<ActionsProps> = ({
 
   return (
     <>
-      <MobileWrapper>
+      <Box displayLg={false}>
         <Fab items={generateItems()} />
-      </MobileWrapper>
-      <DesktopWrapper>
+      </Box>
+      <Box display={false} displayLg>
         <FlexWrap align="center" gap={2} gapMd={1}>
           {onDelete && (
             <IconButton
@@ -89,7 +74,7 @@ export const Actions: FC<ActionsProps> = ({
             />
           )}
         </FlexWrap>
-      </DesktopWrapper>
+      </Box>
     </>
   );
 };

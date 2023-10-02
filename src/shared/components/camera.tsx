@@ -16,7 +16,7 @@ const StyledInputFileLabel = styled.label`
   display: block;
   font-size: 1rem;
   font-weight: ${({ theme }) => `${theme.fontWeights.regular}`};
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: 1;
   min-width: 64px;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};

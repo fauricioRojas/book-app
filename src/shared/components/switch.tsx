@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styled from 'styled-components';
 
+import { marginBottom } from '@/shared/styles';
 import type { Size } from '@/shared/types';
 
 type StyledSwitchProps = {
@@ -11,8 +12,8 @@ const StyledSwitch = styled.label<StyledSwitchProps>`
   cursor: pointer;
   display: inline-block;
   height: 26px;
-  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   width: 46px;
+  ${marginBottom};
   
   input {
     display: none;

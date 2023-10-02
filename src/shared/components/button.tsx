@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
+import { marginBottom, marginTop } from '@/shared/styles';
 import type { Size } from '@/shared/types';
 import { Icon, type IconName } from '.';
 
@@ -36,15 +37,15 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-weight: ${({ theme }) => `${theme.fontWeights.regular}`};
   height: 40px;
   justify-content: center;
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: 1;
-  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   min-width: 64px;
-  margin-top: ${({ $mt, theme }) => $mt ? theme.gutters[`size${$mt}`] : undefined};
   padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   text-align: center;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   vertical-align: middle;
+  ${marginBottom};
+  ${marginTop};
 
   ${({ $variant, theme }) => $variant === 'primary' && css`
     background-color: ${theme.colors.primary};
@@ -121,27 +122,6 @@ const StyledButton = styled.button<StyledButtonProps>`
     opacity: .65;
     cursor: default;
     pointer-events: none;
-  }
-
-  ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mbSm, theme }) => $mbSm ? theme.gutters[`size${$mbSm}`] : undefined};
-    margin-top: ${({ $mtSm, theme }) => $mtSm ? theme.gutters[`size${$mtSm}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mbMd, theme }) => $mbMd ? theme.gutters[`size${$mbMd}`] : undefined};
-    margin-top: ${({ $mtMd, theme }) => $mtMd ? theme.gutters[`size${$mtMd}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mbLg, theme }) => $mbLg ? theme.gutters[`size${$mbLg}`] : undefined};
-    margin-top: ${({ $mtLg, theme }) => $mtLg ? theme.gutters[`size${$mtLg}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mbXl, theme }) => $mbXl ? theme.gutters[`size${$mbXl}`] : undefined};
-    margin-top: ${({ $mtXl, theme }) => $mtXl ? theme.gutters[`size${$mtXl}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mbXxl, theme }) => $mbXxl ? theme.gutters[`size${$mbXxl}`] : undefined};
-    margin-top: ${({ $mtXxl, theme }) => $mtXxl ? theme.gutters[`size${$mtXxl}`] : undefined};
   }
 `
 

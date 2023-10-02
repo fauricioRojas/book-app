@@ -1,33 +1,34 @@
 import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-import type { Size } from '@/shared/types';
+import { marginBottom } from '@/shared/styles';
+import type { GridColumn, Size } from '@/shared/types';
 
 const COL_WIDTH = 100 / 12;
 
 type StyledColProps = {
-  $cols?: Size;
-  $sm?: Size;
-  $md?: Size;
-  $lg?: Size;
-  $xl?: Size;
-  $xxl?: Size;
-  $offset?: Size;
-  $offsetSm?: Size;
-  $offsetMd?: Size;
-  $offsetLg?: Size;
-  $offsetXl?: Size;
-  $offsetXxl?: Size;
+  $cols?: GridColumn;
+  $sm?: GridColumn;
+  $md?: GridColumn;
+  $lg?: GridColumn;
+  $xl?: GridColumn;
+  $xxl?: GridColumn;
+  $offset?: GridColumn;
+  $offsetSm?: GridColumn;
+  $offsetMd?: GridColumn;
+  $offsetLg?: GridColumn;
+  $offsetXl?: GridColumn;
+  $offsetXxl?: GridColumn;
   $mb?: Size;
 }
 
 const StyledCol = styled.div<StyledColProps>`
   flex: ${({ $cols }) => $cols ? `0 0 ${COL_WIDTH * $cols}%` : '1 0 0%'};
-  margin-bottom: ${({ theme, $mb }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   margin-left: ${({ $offset }) => $offset ? `${COL_WIDTH * $offset}%` : undefined};
   padding-left: ${({ theme }) => theme.gutters.size4};
   padding-right: ${({ theme }) => theme.gutters.size4};
   width: ${({ $cols }) => $cols ? `${COL_WIDTH * $cols}%` : '100%'};
+  ${marginBottom};
   
   ${({ theme }) => theme.breakpoints.sm} {
     flex: ${({ $sm }) => $sm ? `0 0 ${COL_WIDTH * $sm}%` : undefined};
@@ -57,18 +58,18 @@ const StyledCol = styled.div<StyledColProps>`
 `
 
 type ColProps = PropsWithChildren & {
-  cols?: Size;
-  sm?: Size;
-  md?: Size;
-  lg?: Size;
-  xl?: Size;
-  xxl?: Size;
-  offset?: Size;
-  offsetSm?: Size;
-  offsetMd?: Size;
-  offsetLg?: Size;
-  offsetXl?: Size;
-  offsetXxl?: Size;
+  cols?: GridColumn;
+  sm?: GridColumn;
+  md?: GridColumn;
+  lg?: GridColumn;
+  xl?: GridColumn;
+  xxl?: GridColumn;
+  offset?: GridColumn;
+  offsetSm?: GridColumn;
+  offsetMd?: GridColumn;
+  offsetLg?: GridColumn;
+  offsetXl?: GridColumn;
+  offsetXxl?: GridColumn;
   mb?: Size;
 }
 

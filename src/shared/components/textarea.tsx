@@ -30,7 +30,7 @@ const StyledTextarea = styled.textarea<StyledTextareaProps>`
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   height: ${({ $rows }) => `${$rows * 28.5}px`};
   line-height: inherit;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};

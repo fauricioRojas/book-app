@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import type { FullSize, Size } from '@/shared/types';
+import { marginBottom } from '@/shared/styles';
+import type { Size } from '@/shared/types';
 
-type Height = FullSize | string;
+type Height = Size | string;
 type Width = 'quarter' | 'half' | 'three-quarters' | 'full';
 
 type StyledSkeletonProps = {
@@ -48,8 +49,8 @@ const StyledSkeleton = styled.div<StyledSkeletonProps>`
   background-size: 300%;
   border-radius: ${({ theme }) => theme.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
-  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
+  ${marginBottom};
 
   ${({ theme }) => theme.breakpoints.sm} {
     height: ${({ $heightSm, theme }) => typeof $heightSm === 'number' ? theme.gutters[`size${$heightSm}`] : $heightSm};

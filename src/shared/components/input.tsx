@@ -38,7 +38,7 @@ const StyledInput = styled.input<StyledInputProps>`
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
   height: 40px;
-  letter-spacing: 0.00938rem;
+  letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: inherit;
   padding: ${({ $hasLeftIcon, $hasRightIcon, theme }) =>
     `${theme.gutters.size2} ${$hasRightIcon ? theme.gutters.size10 : theme.gutters.size3} ${theme.gutters.size2} ${$hasLeftIcon ? theme.gutters.size10 : theme.gutters.size3}`};

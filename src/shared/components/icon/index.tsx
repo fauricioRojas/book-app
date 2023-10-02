@@ -1,6 +1,7 @@
 import { FC, useMemo } from 'react';
 import styled from 'styled-components';
 
+import { marginLeft, marginRight } from '@/shared/styles';
 import type { Size } from '@/shared/types';
 import { ACAirFilterIcon } from './ac-air-filter-icon';
 import { ACIcon } from './ac-icon';
@@ -102,9 +103,9 @@ type StyledIconProps = {
 
 export const StyledSvg = styled.svg<StyledIconProps>`
   cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
-  margin-left: ${({ $ml, theme }) => $ml ? theme.gutters[`size${$ml}`] : undefined};
-  margin-right: ${({ $mr, theme }) => $mr ? theme.gutters[`size${$mr}`] : undefined};
   transition: color .2s ease;
+  ${marginLeft};
+  ${marginRight};
 `;
 
 const ICON_MAPPER = {

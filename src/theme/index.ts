@@ -122,6 +122,7 @@ const commonTheme: Omit<Theme, "colors"> = {
   breakpoints,
   fontWeights,
   gutters,
+  letterSpacing: "0.00938rem",
   shadows,
   zIndices,
 };

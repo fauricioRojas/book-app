@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import styled, { DefaultTheme, css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 type Color = 'primary' | 'secondary' | 'error';
 type Variant = 'circular' | 'pill';
@@ -8,12 +8,11 @@ type StyledBadgeProps = {
   $color: Color;
   $animate: boolean;
   $variant: Variant;
-  theme: DefaultTheme
 }
 
-const getPulseAnimation = ({ $color, theme }: StyledBadgeProps) => keyframes`
+const getPulseAnimation = keyframes<StyledBadgeProps>`
   0% {
-    box-shadow: 0 0 0 0px ${`${theme.colors[$color]}40`};
+    box-shadow: ${({ $color, theme }) => `0 0 0 0px ${theme.colors[$color]}40`};
   }
   100% {
     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);

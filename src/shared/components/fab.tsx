@@ -74,11 +74,11 @@ const StyledFabButton = styled.button<StyledFabProps>`
 //   transition: transform 200ms;
 // `;
 const StyledFabChild = styled.div<StyledFabChildProps>`
-  bottom: 3rem;
+  bottom: ${({ theme }) => theme.gutters.size12};
   opacity: ${({ $isOpen }) => $isOpen ? 1 : 0};
   pointer-events: ${({ $isOpen }) => $isOpen ? 'undefined' : 'none'};
   position: fixed;
-  right: 0.5rem;
+  right: ${({ theme }) => theme.gutters.size2};
   transition-delay: ${({ $delay, $isOpen }) => $isOpen ? `.${$delay}s` : undefined};
   transition-duration: .35s;
   transition-property: all;

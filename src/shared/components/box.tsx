@@ -1,9 +1,16 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
 
+import { display, marginBottom } from '@/shared/styles';
 import type { Position, Size } from '@/shared/types';
 
 type StyledBoxProps = {
+  $display?: boolean;
+  $displaySm?: boolean;
+  $displayMd?: boolean;
+  $displayLg?: boolean;
+  $displayXl?: boolean;
+  $displayXxl?: boolean;
   $mb?: Size;
   $mbSm?: Size;
   $mbMd?: Size;
@@ -13,8 +20,7 @@ type StyledBoxProps = {
   $position?: Position;
 }
 
-const StyledBox = styled.div<StyledBoxProps>`
-  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
+const StyledBox = styled.div<StyledBoxProps>`  
   ${({ $position }) => $position === 'absolute' && css`
     position: absolute;
   `};
@@ -28,24 +34,17 @@ const StyledBox = styled.div<StyledBoxProps>`
     position: sticky;
   `};
 
-  ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mbSm, theme }) => $mbSm ? theme.gutters[`size${$mbSm}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mbMd, theme }) => $mbMd ? theme.gutters[`size${$mbMd}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mbLg, theme }) =>$mbLg ?  theme.gutters[`size${$mbLg}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mbXl, theme }) => $mbXl ? theme.gutters[`size${$mbXl}`] : undefined};
-  }
-  ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mbXxl, theme }) => $mbXxl ? theme.gutters[`size${$mbXxl}`] : undefined};
-  }
-`
+  ${display};
+  ${marginBottom};
+`;
 
 type BoxProps = PropsWithChildren & {
+  display?: boolean;
+  displaySm?: boolean;
+  displayMd?: boolean;
+  displayLg?: boolean;
+  displayXl?: boolean;
+  displayXxl?: boolean;
   mb?: Size;
   mbSm?: Size;
   mbMd?: Size;
@@ -56,6 +55,12 @@ type BoxProps = PropsWithChildren & {
 }
 
 export const Box: FC<BoxProps> = ({
+  display,
+  displaySm,
+  displayMd,
+  displayLg,
+  displayXl,
+  displayXxl,
   mb,
   mbSm,
   mbMd,
@@ -66,6 +71,12 @@ export const Box: FC<BoxProps> = ({
   children,
 }) => (
   <StyledBox
+    $display={display}
+    $displaySm={displaySm}
+    $displayMd={displayMd}
+    $displayLg={displayLg}
+    $displayXl={displayXl}
+    $displayXxl={displayXxl}
     $mb={mb}
     $mbSm={mbSm}
     $mbMd={mbMd}
