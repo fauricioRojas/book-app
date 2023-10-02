@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 
-import { ConfirmationModalArgs } from "./modal.types";
+import type { ConfirmationModalArgs } from "./modal.types";
 
 type TModalContext = {
   showConfirmationModal: (args: ConfirmationModalArgs) => void;

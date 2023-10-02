@@ -65,53 +65,53 @@ export const marginBottom = css<MarginBottomProps>`
 `;
 
 export const marginLeft = css<MarginLeftProps>`
-  margin-bottom: ${({ theme, $ml }) =>
+  margin-left: ${({ theme, $ml }) =>
     typeof $ml === "number" ? theme.gutters[`size${$ml}`] : undefined};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mlSm, theme }) =>
+    margin-left: ${({ $mlSm, theme }) =>
       typeof $mlSm === "number" ? theme.gutters[`size${$mlSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mlMd, theme }) =>
+    margin-left: ${({ $mlMd, theme }) =>
       typeof $mlMd === "number" ? theme.gutters[`size${$mlMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mlLg, theme }) =>
+    margin-left: ${({ $mlLg, theme }) =>
       typeof $mlLg === "number" ? theme.gutters[`size${$mlLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mlXl, theme }) =>
+    margin-left: ${({ $mlXl, theme }) =>
       typeof $mlXl === "number" ? theme.gutters[`size${$mlXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mlXxl, theme }) =>
+    margin-left: ${({ $mlXxl, theme }) =>
       typeof $mlXxl === "number" ? theme.gutters[`size${$mlXxl}`] : undefined};
   }
 `;
 
 export const marginRight = css<MarginRightProps>`
-  margin-bottom: ${({ theme, $mr }) =>
+  margin-right: ${({ theme, $mr }) =>
     typeof $mr === "number" ? theme.gutters[`size${$mr}`] : undefined};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mrSm, theme }) =>
+    margin-right: ${({ $mrSm, theme }) =>
       typeof $mrSm === "number" ? theme.gutters[`size${$mrSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mrMd, theme }) =>
+    margin-right: ${({ $mrMd, theme }) =>
       typeof $mrMd === "number" ? theme.gutters[`size${$mrMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mrLg, theme }) =>
+    margin-right: ${({ $mrLg, theme }) =>
       typeof $mrLg === "number" ? theme.gutters[`size${$mrLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mrXl, theme }) =>
+    margin-right: ${({ $mrXl, theme }) =>
       typeof $mrXl === "number" ? theme.gutters[`size${$mrXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mrXxl, theme }) =>
+    margin-right: ${({ $mrXxl, theme }) =>
       typeof $mrXxl === "number" ? theme.gutters[`size${$mrXxl}`] : undefined};
   }
 `;

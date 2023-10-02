@@ -16,6 +16,7 @@ const StyledDrawer = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: ${({ theme }) => theme.zIndices.drawer};
 `;
 const StyledDrawerContent = styled.div<StyledDrawerProps>`
   animation: ${slideInUp} .3s;
@@ -27,7 +28,6 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
   height: 95%;
   position: absolute;
   width: 100%;
-  z-index: ${({ theme }) => theme.zIndices.drawer};
 
   ${({ $isHiding }) => $isHiding && css`
     animation: ${slideOutDown} .3s;

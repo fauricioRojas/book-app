@@ -1,12 +1,12 @@
 'use client';
 
 import NextLink from 'next/link';
-import { usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { Icon, Typography } from '@/shared/components';
-import { TNavbarItem } from './navbar.types';
+import type { TNavbarItem } from './navbar.types';
 
 const StyledLink = styled(NextLink)`
   align-items: center;

@@ -17,6 +17,7 @@ const StyledConfirmationModal = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: ${({ theme }) => theme.zIndices.confirmationModal};
 `;
 const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   align-items: center;

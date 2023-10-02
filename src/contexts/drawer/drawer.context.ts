@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 
-import { DrawerArgs } from "./drawer.types";
+import type { DrawerArgs } from "./drawer.types";
 
 type TDrawerContext = {
   showDrawer: (args: DrawerArgs) => void;

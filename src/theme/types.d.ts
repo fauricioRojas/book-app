@@ -82,6 +82,7 @@ export type ZIndices = {
   hide: number;
   fab: number;
   drawer: number;
+  confirmationModal: number;
   popover: number;
   snackbar: number;
 };

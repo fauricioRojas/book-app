@@ -112,6 +112,7 @@ const zIndices: ZIndices = {
   hide: -1,
   fab: 4,
   drawer: 1400,
+  confirmationModal: 1450,
   popover: 1500,
   snackbar: 1600,
 };

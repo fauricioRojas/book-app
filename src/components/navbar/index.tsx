@@ -3,10 +3,10 @@
 import { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { TNavbarItem } from './navbar.types';
-import { NavbarItem } from './navbar-item';
 import { useLanguage, useSupabaseAuth } from '@/contexts';
 import { ROUTES } from '@/shared/constants';
+import { NavbarItem } from './navbar-item';
+import type { TNavbarItem } from './navbar.types';
 
 const StyledNavbar = styled.nav`
   align-items: center;

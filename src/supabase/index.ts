@@ -1,3 +1,9 @@
 export * from "./constants";
 export * from "./select";
-export * from "./types";
+export type {
+  TMaintenance,
+  TPet,
+  TProcedure,
+  TTransfer,
+  TVehicle,
+} from "./types";

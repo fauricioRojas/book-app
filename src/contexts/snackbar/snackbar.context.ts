@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 
-import { SnackbarArgs } from "./snackbar.types";
+import type { SnackbarArgs } from "./snackbar.types";
 
 type TSnackbarContext = {
   showSnackbar: (args: SnackbarArgs) => void;

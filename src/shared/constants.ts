@@ -1,5 +1,5 @@
 import { ENGLISH } from "@/contexts/language/constants/english.constants";
-import type { IconName } from "./components";
+import type { IconName } from "@/shared/components";
 
 export const ICON_BY_TYPE: Record<string, IconName> = {
   // Vehicle types

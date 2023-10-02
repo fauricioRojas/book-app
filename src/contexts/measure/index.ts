@@ -1,3 +1,7 @@
 export * from "./measure.context";
 export * from "./measure.provider";
-export * from "./measure.types";
+export type {
+  CurrencyType,
+  LengthUnitType,
+  WeightUnitType,
+} from "./measure.types";
