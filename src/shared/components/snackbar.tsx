@@ -8,7 +8,7 @@ type StyledSkeletonProps = {
   $duration: number;
 }
 type StyledSkeletonProgressProps = StyledSkeletonProps & {
-  $color: string;
+  $color: 'success' | 'error' | 'warning';
 }
 
 const fadeInAnimation = keyframes`

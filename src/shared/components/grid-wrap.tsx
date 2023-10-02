@@ -23,29 +23,29 @@ type StyledGridWrapProps = {
 
 const StyledGridWrap = styled.div<StyledGridWrapProps>`
   display: grid;
-  gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
+  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
   grid-template-columns: ${({ $cols }) => $cols ? `repeat(${COLS_PER_ROW / $cols}, minmax(0, 1fr))` : undefined};
-  margin-bottom: ${({ theme, $mb }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ theme, $mb }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   width: 100%;
 
   ${({ theme }) => theme.breakpoints.sm} {
-    gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
+    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
     grid-template-columns: ${({ $sm }) => $sm ? `repeat(${COLS_PER_ROW / $sm}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
+    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
     grid-template-columns: ${({ $md }) => $md ? `repeat(${COLS_PER_ROW / $md}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
+    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
     grid-template-columns: ${({ $lg }) => $lg ? `repeat(${COLS_PER_ROW / $lg}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
+    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
     grid-template-columns: ${({ $xl }) => $xl ? `repeat(${COLS_PER_ROW / $xl}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
+    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
     grid-template-columns: ${({ $xxl }) => $xxl ? `repeat(${COLS_PER_ROW / $xxl}, minmax(0, 1fr))` : undefined};
   }
 `

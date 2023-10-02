@@ -3,6 +3,7 @@ import styled, { useTheme } from 'styled-components';
 
 import { Icon, type IconName } from '.';
 
+type IconButtonSolidVariant = 'primary' | 'secondary' | 'error' | 'warning';
 export type IconButtonVariant =
   | 'primary'
   | 'primary-ghost'
@@ -15,7 +16,7 @@ export type IconButtonVariant =
 
 type StyledIconButtonProps = {
   $isGhost: boolean;
-  $variant: IconButtonVariant;
+  $variant: IconButtonSolidVariant;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
@@ -38,15 +39,15 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
     transition: background-color .15s ease-in-out;
 
     &:focus, &:hover {
-      background-color: ${({ $isGhost, $variant, theme }) => $isGhost ?  theme.colors.secondary : theme.colors[`${$variant}800`]};
+      background-color: ${({ $isGhost, $variant, theme }) => $isGhost ?  theme.colors.secondary : theme.colors[`${$variant}400`]};
     }
   }
 `
 
 type IconButtonProps = {
   className?: string;
-  iconName: IconName
-  variant: IconButtonVariant
+  iconName: IconName;
+  variant: IconButtonVariant;
   width?: number;
   height?: number;
   disabled?: boolean;
@@ -62,7 +63,7 @@ export const IconButton: FC<IconButtonProps> = ({
 }) => {
   const { colors } = useTheme();
   const isGhost = variant.endsWith('ghost');
-  const formattedVariant = variant.replace('-ghost', '') as IconButtonVariant;
+  const formattedVariant = variant.replace('-ghost', '') as IconButtonSolidVariant;
 
   return (
     <StyledIconButton

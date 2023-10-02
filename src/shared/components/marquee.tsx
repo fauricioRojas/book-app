@@ -35,8 +35,8 @@ const marqueeAnimation = keyframes`
 
 const StyledMarquee = styled.div<StyledMarqueeProps>`
   display: flex;
-  gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
-  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
+  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
   position: relative;
   min-width: 100%;
@@ -44,47 +44,47 @@ const StyledMarquee = styled.div<StyledMarqueeProps>`
   -webkit-mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
 
   ${({ theme }) => theme.breakpoints.sm} {
-    gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
-    margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
+    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
+    margin-bottom: ${({ $mbSm, theme }) => $mbSm ? theme.gutters[`size${$mbSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
-    margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
+    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
+    margin-bottom: ${({ $mbMd, theme }) => $mbMd ? theme.gutters[`size${$mbMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
-    margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
+    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
+    margin-bottom: ${({ $mbLg, theme }) => $mbLg ? theme.gutters[`size${$mbLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
-    margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
+    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
+    margin-bottom: ${({ $mbXl, theme }) => $mbXl ? theme.gutters[`size${$mbXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
-    margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
+    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
+    margin-bottom: ${({ $mbXxl, theme }) => $mbXxl ? theme.gutters[`size${$mbXxl}`] : undefined};
   }
 `;
 const StyledMarqueeGroup = styled.div<StyledMarqueeGroupProps>`
   animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear infinite;
   display: flex;
-  gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
+  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
   -webkit-animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear infinite;
   animation-direction: ${({ $reverse }) => $reverse ? 'reverse' : undefined};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
+    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
+    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
+    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
+    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
+    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
   }
 `
 

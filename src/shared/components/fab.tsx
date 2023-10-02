@@ -59,7 +59,7 @@ const StyledFabButton = styled.button<StyledFabProps>`
   z-index: ${({ theme }) => theme.zIndices.fab};
 
   &:focus, &:hover {
-    background-color: ${({ theme }) => theme.colors.primary800};
+    background-color: ${({ theme }) => theme.colors.primary400};
   }
 
   ${({ theme }) => theme.breakpoints.lg} {

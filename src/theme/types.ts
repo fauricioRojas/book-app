@@ -26,11 +26,15 @@ export type Colors = {
   success: string;
   success300: string;
   error100: string;
+  error200: string;
   error: string;
-  error300: string;
+  error400: string;
+  error500: string;
   warning100: string;
+  warning200: string;
   warning: string;
-  warning300: string;
+  warning400: string;
+  warning500: string;
   skeleton: string;
   border: string;
   backdrop: string;

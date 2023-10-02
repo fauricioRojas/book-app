@@ -11,7 +11,7 @@ const StyledSwitch = styled.label<StyledSwitchProps>`
   cursor: pointer;
   display: inline-block;
   height: 26px;
-  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   width: 46px;
   
   input {

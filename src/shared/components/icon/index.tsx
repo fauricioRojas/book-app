@@ -102,8 +102,8 @@ type StyledIconProps = {
 
 export const StyledSvg = styled.svg<StyledIconProps>`
   cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
-  margin-left: ${({ $ml, theme }) => theme.gutters[`size${$ml}`]};
-  margin-right: ${({ $mr, theme }) => theme.gutters[`size${$mr}`]};
+  margin-left: ${({ $ml, theme }) => $ml ? theme.gutters[`size${$ml}`] : undefined};
+  margin-right: ${({ $mr, theme }) => $mr ? theme.gutters[`size${$mr}`] : undefined};
   transition: color .2s ease;
 `;
 

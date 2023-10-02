@@ -24,7 +24,7 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   bottom: 0;
   display: flex;
   flex-direction: column;
-  gap: ${({ $gap, theme }) => theme.gutters[`size${$gap}`]};
+  gap: ${({ $gap, theme }) => $gap ? theme.gutters[`size${$gap}`] : undefined};
   justify-content: center;
   left: 0;
   margin: auto;
@@ -37,20 +37,20 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   z-index: ${({ $zIndex, theme }) => $zIndex ? theme.zIndices[$zIndex] : undefined};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
+    gap: ${({ $gapSm, theme }) => $gapSm ? theme.gutters[`size${$gapSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
+    gap: ${({ $gapMd, theme }) => $gapMd ? theme.gutters[`size${$gapMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
+    gap: ${({ $gapLg, theme }) => $gapLg ? theme.gutters[`size${$gapLg}`] : undefined};
     top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '60px' : 0};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
+    gap: ${({ $gapXl, theme }) => $gapXl ? theme.gutters[`size${$gapXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
+    gap: ${({ $gapXxl, theme }) => $gapXxl ? theme.gutters[`size${$gapXxl}`] : undefined};
   }
 `;
 

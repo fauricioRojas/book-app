@@ -48,7 +48,7 @@ const StyledSkeleton = styled.div<StyledSkeletonProps>`
   background-size: 300%;
   border-radius: ${({ theme }) => theme.borderRadius};
   height: ${({ $height, theme }) => typeof $height === 'number' ? theme.gutters[`size${$height}`] : $height};
-  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 
   ${({ theme }) => theme.breakpoints.sm} {

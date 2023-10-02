@@ -56,7 +56,7 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypography
   `}
   letter-spacing: 0.00938rem;
   line-height: 1.2;
-  margin-bottom: ${theme.gutters[`size${$mb}`]};
+  margin-bottom: ${$mb ? theme.gutters[`size${$mb}`] : undefined};
   margin-top: 0;
   text-align: ${$textAlign};
   transition: color .2s ease;

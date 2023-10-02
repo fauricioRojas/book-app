@@ -38,9 +38,9 @@ const StyledButton = styled.button<StyledButtonProps>`
   justify-content: center;
   letter-spacing: 0.00938rem;
   line-height: 1;
-  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   min-width: 64px;
-  margin-top: ${({ $mt, theme }) => theme.gutters[`size${$mt}`]};
+  margin-top: ${({ $mt, theme }) => $mt ? theme.gutters[`size${$mt}`] : undefined};
   padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   text-align: center;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
@@ -97,8 +97,8 @@ const StyledButton = styled.button<StyledButtonProps>`
     color: ${theme.colors.white};
 
     &:focus, &:hover {
-      background-color: ${theme.colors.error300};
-      border-color: ${theme.colors.error300};
+      background-color: ${theme.colors.error400};
+      border-color: ${theme.colors.error400};
     }
   `}
 
@@ -124,24 +124,24 @@ const StyledButton = styled.button<StyledButtonProps>`
   }
 
   ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
-    margin-top: ${({ $mtSm, theme }) => theme.gutters[`size${$mtSm}`]};
+    margin-bottom: ${({ $mbSm, theme }) => $mbSm ? theme.gutters[`size${$mbSm}`] : undefined};
+    margin-top: ${({ $mtSm, theme }) => $mtSm ? theme.gutters[`size${$mtSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
-    margin-top: ${({ $mtMd, theme }) => theme.gutters[`size${$mtMd}`]};
+    margin-bottom: ${({ $mbMd, theme }) => $mbMd ? theme.gutters[`size${$mbMd}`] : undefined};
+    margin-top: ${({ $mtMd, theme }) => $mtMd ? theme.gutters[`size${$mtMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
-    margin-top: ${({ $mtLg, theme }) => theme.gutters[`size${$mtLg}`]};
+    margin-bottom: ${({ $mbLg, theme }) => $mbLg ? theme.gutters[`size${$mbLg}`] : undefined};
+    margin-top: ${({ $mtLg, theme }) => $mtLg ? theme.gutters[`size${$mtLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
-    margin-top: ${({ $mtXl, theme }) => theme.gutters[`size${$mtXl}`]};
+    margin-bottom: ${({ $mbXl, theme }) => $mbXl ? theme.gutters[`size${$mbXl}`] : undefined};
+    margin-top: ${({ $mtXl, theme }) => $mtXl ? theme.gutters[`size${$mtXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
-    margin-top: ${({ $mtXxl, theme }) => theme.gutters[`size${$mtXxl}`]};
+    margin-bottom: ${({ $mbXxl, theme }) => $mbXxl ? theme.gutters[`size${$mbXxl}`] : undefined};
+    margin-top: ${({ $mtXxl, theme }) => $mtXxl ? theme.gutters[`size${$mtXxl}`] : undefined};
   }
 `
 

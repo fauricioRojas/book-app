@@ -14,7 +14,7 @@ type StyledBoxProps = {
 }
 
 const StyledBox = styled.div<StyledBoxProps>`
-  margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ $mb, theme }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   ${({ $position }) => $position === 'absolute' && css`
     position: absolute;
   `};
@@ -29,19 +29,19 @@ const StyledBox = styled.div<StyledBoxProps>`
   `};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
+    margin-bottom: ${({ $mbSm, theme }) => $mbSm ? theme.gutters[`size${$mbSm}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
+    margin-bottom: ${({ $mbMd, theme }) => $mbMd ? theme.gutters[`size${$mbMd}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
+    margin-bottom: ${({ $mbLg, theme }) =>$mbLg ?  theme.gutters[`size${$mbLg}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
+    margin-bottom: ${({ $mbXl, theme }) => $mbXl ? theme.gutters[`size${$mbXl}`] : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
+    margin-bottom: ${({ $mbXxl, theme }) => $mbXxl ? theme.gutters[`size${$mbXxl}`] : undefined};
   }
 `
 

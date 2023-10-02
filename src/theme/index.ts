@@ -28,11 +28,15 @@ const commonColors = {
   success: "#31A24C",
   success300: "#16A34A",
   error100: "#EC716F",
+  error200: "#F87171",
   error: "#DC3545",
-  error300: "#A12D35",
-  warning100: "#FDBA74",
+  error400: "#A12D35",
+  error500: "#DC2626",
+  warning100: "#FB923C",
+  warning200: "#FDBA74",
   warning: "#F97316",
-  warning300: "#EA580C",
+  warning400: "#EA580C",
+  warning500: "#EA580C",
 };
 
 export const lightColors: Colors = {
