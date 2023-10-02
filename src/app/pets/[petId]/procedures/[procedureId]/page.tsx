@@ -1,9 +1,9 @@
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from 'next/headers';
 import { notFound } from "next/navigation";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { FC } from "react";
 
-import { TProcedure, SELECT, TABLES } from "@/supabase";
+import { SELECT, TABLES, TProcedure } from "@/supabase";
 import { Procedure } from "./procedure";
 
 const abortController = new AbortController();

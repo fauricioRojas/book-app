@@ -2,6 +2,8 @@
 
 import { ChangeEvent, FC } from 'react';
 
+import { useLanguage } from '@/contexts';
+import { detectMobileDevice } from '@/shared/utils';
 import {
   BrowseFiles,
   Camera,
@@ -9,8 +11,6 @@ import {
   PhotoPreview,
   Typography,
 } from '.';
-import { useLanguage } from '@/contexts';
-import { detectMobileDevice } from '@/shared/utils';
 
 type PhotoProps = {
   photo?: string;

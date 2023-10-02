@@ -1,8 +1,8 @@
 import { ChangeEvent, FC } from 'react';
 import styled from 'styled-components';
 
-import { Box } from '.';
 import { useLanguage } from '@/contexts';
+import { Box } from '.';
 
 const StyledInputFile = styled.input`
   display: none;

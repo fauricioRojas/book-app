@@ -2,7 +2,7 @@ import { ChangeEvent, FC, FocusEventHandler } from 'react';
 import styled, { useTheme } from 'styled-components';
 
 import { useLanguage } from '@/contexts';
-import { Box, FlexWrap, Icon, type IconName, Typography } from '.';
+import { Box, FlexWrap, Icon, Typography, type IconName } from '.';
 
 type InputMode = 'numeric' | 'tel' | 'decimal' | 'email' | 'url' | 'search';
 type Type = 'text' | 'password' | 'number' | 'date';

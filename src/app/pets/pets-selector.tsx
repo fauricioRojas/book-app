@@ -1,9 +1,9 @@
 import { FC, useMemo } from "react";
 
 import { useLanguage } from "@/contexts";
+import { ENGLISH } from "@/contexts/language/constants/english.constants";
 import { TypeSelector } from "@/shared/components";
 import { TypeSelectorOption } from "@/shared/types";
-import { ENGLISH } from "@/contexts/language/constants/english.constants";
 
 type PetsSelectorProps = {
   onSelect: (type: TypeSelectorOption) => void;

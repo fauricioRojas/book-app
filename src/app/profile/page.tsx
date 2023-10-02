@@ -1,5 +1,5 @@
-import { ProfileHeader } from "./profile-header";
 import { Account } from "./account";
+import { ProfileHeader } from "./profile-header";
 import { SettingsAndPreferences } from "./settings-and-preferences";
 
 const ProfilePage = () => (

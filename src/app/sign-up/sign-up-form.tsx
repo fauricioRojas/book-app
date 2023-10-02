@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
 
 import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
+import { useFormRules } from '@/hooks';
 import {
   AbsoluteWrap,
   Button,
@@ -13,7 +14,6 @@ import {
   Link,
   Typography
 } from '@/shared/components';
-import { useFormRules } from '@/hooks';
 import { ROUTES } from '@/shared/constants';
 
 const StyledForm = styled.form`

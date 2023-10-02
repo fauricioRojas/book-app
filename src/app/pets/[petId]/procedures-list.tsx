@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import { GridWrap } from '@/shared/components';
 import { TProcedure } from '@/supabase';
-import { ProceduresListItem } from './procedures-list-item';
 import { NoProcedures } from './no-procedures';
+import { ProceduresListItem } from './procedures-list-item';
 
 type ProceduresListProps = {
   procedures: TProcedure[];

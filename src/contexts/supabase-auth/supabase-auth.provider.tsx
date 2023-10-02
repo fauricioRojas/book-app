@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import { FC, PropsWithChildren, useEffect, useState } from "react";
 
-import { AuthSession, User } from "@supabase/supabase-js";
 import { ROUTES } from "@/shared/constants";
+import { AuthSession, User } from "@supabase/supabase-js";
 import { SupabaseAuthContext } from ".";
 import { useSupabase } from "..";
 

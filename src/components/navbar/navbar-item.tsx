@@ -22,7 +22,7 @@ const StyledLink = styled(NextLink)`
     width: 100px;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme }) => theme.colors.card};
     }
   }
 `;

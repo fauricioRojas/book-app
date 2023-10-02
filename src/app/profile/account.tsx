@@ -41,7 +41,7 @@ export const Account = () => {
           <Typography variant="h6">{user.email}</Typography>
           <IconButton
             iconName="sign-out"
-            variant="error"
+            variant="error-ghost"
             height={20}
             width={20}
             disabled={disabled}

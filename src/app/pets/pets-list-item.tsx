@@ -4,9 +4,9 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { TPet } from '@/supabase';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { formatDate } from '@/shared/utils';
+import { TPet } from '@/supabase';
 
 type PetsListItemProps = TPet;
 

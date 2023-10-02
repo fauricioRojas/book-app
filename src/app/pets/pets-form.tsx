@@ -1,20 +1,20 @@
 'use client';
 
 import { FC, useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
+import { FormButtons } from "@/components";
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
+import { useFormRules } from "@/hooks";
 import {
   GridWrap,
   Input,
   Photo,
   Textarea,
 } from "@/shared/components";
-import { useFormRules } from "@/hooks";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
-import { PetsSelector } from "./pets-selector";
 import { TypeSelectorOption } from "@/shared/types";
 import { TABLES } from "@/supabase";
-import { FormButtons } from "@/components";
+import { PetsSelector } from "./pets-selector";
 
 type PetsForm = {
   name: string;

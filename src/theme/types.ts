@@ -76,6 +76,7 @@ export type Shadows = {
 
 export type ZIndices = {
   hide: number;
+  fab: number;
   drawer: number;
   popover: number;
   snackbar: number;

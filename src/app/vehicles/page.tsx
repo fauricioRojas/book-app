@@ -1,7 +1,7 @@
-import { cookies } from 'next/headers';
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from 'next/headers';
 
-import { TABLES, TVehicle, SELECT } from '@/supabase';
+import { SELECT, TABLES, TVehicle } from '@/supabase';
 import { VehiclesHeader } from './vehicles-header';
 import { VehiclesList } from './vehicles-list';
 

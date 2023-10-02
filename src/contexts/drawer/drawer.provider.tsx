@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
 import { Drawer } from '@/shared/components';
 import { DrawerContext } from './drawer.context';

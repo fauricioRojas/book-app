@@ -1,10 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
 import styled, { useTheme } from 'styled-components';
 
-import { FlexWrap, GridWrap, Icon, Input, Typography } from "@/shared/components";
-import type { TypeSelectorOption } from "@/shared/types";
 import { useLanguage } from "@/contexts";
+import { FlexWrap, GridWrap, Icon, Input, Typography } from "@/shared/components";
 import { ICON_BY_TYPE } from "@/shared/constants";
+import type { TypeSelectorOption } from "@/shared/types";
 
 const StyledTypeSelectorOption = styled.div`
   align-items: center;

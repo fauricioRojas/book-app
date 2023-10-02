@@ -1,7 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from 'next/headers';
 
-import { TPet, SELECT, TABLES } from '@/supabase';
+import { SELECT, TABLES, TPet } from '@/supabase';
 import { PetsHeader } from './pets-header';
 import { PetsList } from './pets-list';
 

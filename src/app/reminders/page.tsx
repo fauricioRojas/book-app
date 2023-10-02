@@ -1,10 +1,10 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from 'next/headers';
 
-import { TProcedure, SELECT, TABLES } from '@/supabase';
-import { RemindersList } from "./reminders-list";
 import { getNextDateIn } from "@/shared/utils";
+import { SELECT, TABLES, TProcedure } from '@/supabase';
 import { RemindersHeader } from "./reminders-header";
+import { RemindersList } from "./reminders-list";
 
 export const revalidate = 0;
 

@@ -3,11 +3,11 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
-import { TProcedure } from '@/supabase';
 import { useLanguage } from '@/contexts';
+import { Card, FlexWrap, Icon, Typography } from '@/shared/components';
 import { ICON_BY_TYPE } from '@/shared/constants';
 import { formatDate } from '@/shared/utils';
+import { TProcedure } from '@/supabase';
 
 type RemindersListItemProps = TProcedure;
 

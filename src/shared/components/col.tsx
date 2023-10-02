@@ -23,12 +23,17 @@ type StyledColProps = {
 
 const StyledCol = styled.div<StyledColProps>`
   flex: ${({ $cols }) => $cols ? `0 0 ${COL_WIDTH * $cols}%` : '1 0 0%'};
-  margin-bottom: ${({ theme, $mb }) => theme.gutters[`size${$mb}`]};
+  margin-bottom: ${({ theme, $mb }) => $mb ? theme.gutters[`size${$mb}`] : undefined};
   margin-left: ${({ $offset }) => $offset ? `${COL_WIDTH * $offset}%` : undefined};
   padding-left: ${({ theme }) => theme.gutters.size4};
   padding-right: ${({ theme }) => theme.gutters.size4};
   width: ${({ $cols }) => $cols ? `${COL_WIDTH * $cols}%` : '100%'};
   
+  /* ${({ theme }) => theme.breakpoints.sm} {
+    flex: ${({ $sm }) => $sm ? `0 0 ${COL_WIDTH * $sm}%` : undefined};
+    margin-left: ${({ $offsetSm }) => $offsetSm ? `${COL_WIDTH * $offsetSm}%` : undefined};
+    width: ${({ $sm }) => $sm ? `${COL_WIDTH * $sm}%` : undefined};
+  } */
   @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
     flex: ${({ $sm }) => $sm ? `0 0 ${COL_WIDTH * $sm}%` : undefined};
     margin-left: ${({ $offsetSm }) => $offsetSm ? `${COL_WIDTH * $offsetSm}%` : undefined};

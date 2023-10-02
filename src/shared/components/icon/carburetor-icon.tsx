@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { type CommonIconProps, StyledSvg } from '.';
+import { StyledSvg, type CommonIconProps } from '.';
 
 export const CarburetorIcon: FC<CommonIconProps> = ({
   color,

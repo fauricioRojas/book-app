@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
 import { ConfirmationModal } from '@/shared/components';
 import { ModalContext } from './modal.context';

@@ -4,13 +4,13 @@ import { useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { useTheme } from "styled-components";
 
-import { ACTIONS, TProcedure, SCHEMAS, SELECT, TABLES } from "@/supabase";
-import { FlexWrap, Icon, PhotoPreview, Popover, Typography } from "@/shared/components";
-import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
-import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
-import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
-import { useDidUpdate } from "@/hooks";
 import { Actions } from "@/components";
+import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
+import { useDidUpdate } from "@/hooks";
+import { FlexWrap, Icon, PhotoPreview, Popover, Typography } from "@/shared/components";
+import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
+import { formatDate, formatMoney, formatWeight } from "@/shared/utils";
+import { ACTIONS, SCHEMAS, SELECT, TABLES, TProcedure } from "@/supabase";
 import { ProceduresForm } from "../../procedures-form";
 
 const abortController = new AbortController();

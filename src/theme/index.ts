@@ -1,14 +1,19 @@
 import type {
   Breakpoints,
   Colors,
-  Gutters,
   FontWeights,
+  Gutters,
   Shadows,
   Theme,
   ZIndices,
 } from "./types";
 
 const breakpoints: Breakpoints = {
+  // sm: "@media (width >= 36rem)",
+  // md: "@media (width >= 48rem)",
+  // lg: "@media (width >= 62rem)",
+  // xl: "@media (width >= 75rem)",
+  // xxl: "@media (width >= 87.5rem)",
   sm: "36rem",
   md: "48rem",
   lg: "62rem",
@@ -106,6 +111,7 @@ const shadows: Shadows = {
 
 const zIndices: ZIndices = {
   hide: -1,
+  fab: 4,
   drawer: 1400,
   popover: 1500,
   snackbar: 1600,

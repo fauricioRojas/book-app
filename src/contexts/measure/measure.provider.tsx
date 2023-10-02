@@ -4,8 +4,8 @@ import { ChangeEvent, FC, PropsWithChildren, useMemo } from "react";
 
 import { useLocalStorage } from '@/hooks';
 import type { SelectOption } from "@/shared/types";
-import { MeasureContext } from './measure.context';
 import { useLanguage } from "..";
+import { MeasureContext } from './measure.context';
 import type { CurrencyType, LengthUnitType, WeightUnitType } from "./measure.types";
 
 export const MeasureProvider: FC<PropsWithChildren> = ({ children }) => {

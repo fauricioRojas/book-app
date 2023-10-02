@@ -1,7 +1,7 @@
 "use client";
 
-import { FC, PropsWithChildren, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { FC, PropsWithChildren, useState } from "react";
 
 import { SupabaseContext } from ".";
 

@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
 import { Snackbar } from '@/shared/components';
-import { SnackbarContext } from './snackbar.context'
+import { SnackbarContext } from './snackbar.context';
 import type { SnackbarArgs } from './snackbar.types';
 
 const DEFAULT_DURATION = 5;

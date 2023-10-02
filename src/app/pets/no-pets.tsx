@@ -2,8 +2,8 @@
 
 import { useTheme } from 'styled-components';
 
-import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
 import { useDrawer, useLanguage } from '@/contexts';
+import { AbsoluteWrap, Button, Icon, Typography } from '@/shared/components';
 import { PetsForm } from './pets-form';
 
 export const NoPets = () => {

@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef, useState, FC } from 'react';
+import { FC, useRef, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { FlexWrap, Icon, Typography } from '.';
 import { useOutsideClick } from '@/hooks';
+import { FlexWrap, Icon, Typography } from '.';
 
 type StyledArrowProps = {
   $hasTitle: boolean;

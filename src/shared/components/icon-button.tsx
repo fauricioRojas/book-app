@@ -3,18 +3,28 @@ import styled, { useTheme } from 'styled-components';
 
 import { Icon, type IconName } from '.';
 
-type Variant = 'primary' | 'secondary' | 'error' | 'warning';
+export type IconButtonVariant =
+  | 'primary'
+  | 'primary-ghost'
+  | 'secondary'
+  | 'secondary-ghost'
+  | 'error'
+  | 'error-ghost'
+  | 'warning'
+  | 'warning-ghost';
 
 type StyledIconButtonProps = {
-  $variant: Variant;
+  $isGhost: boolean;
+  $variant: IconButtonVariant;
 }
 
 const StyledIconButton = styled.button<StyledIconButtonProps>`
-  background-color: transparent;
-  border: none;
+  background-color: ${({ $isGhost, $variant, theme }) => $isGhost ? 'transparent' : theme.colors[$variant]};
+  border: ${({ $isGhost, $variant, theme }) => $isGhost ? 'none' : theme.colors[$variant]};
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
-  padding: ${({ theme }) => theme.gutters.size0};
+  padding: ${({ $isGhost, theme }) => $isGhost ? theme.gutters.size0 : theme.gutters.size2};
 
   &:disabled {
     opacity: .65;
@@ -23,20 +33,20 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
   }
 
   @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
-    border: 2px solid transparent;
-    border-radius: 50%;
-    padding: ${({ theme }) => theme.gutters.size1};
+    border: 2px solid ${({ $isGhost, $variant, theme }) => $isGhost ? 'transparent' : theme.colors[$variant]};
+    padding: ${({ $isGhost, theme }) => $isGhost ? theme.gutters.size1 : theme.gutters.size3};
     transition: background-color .15s ease-in-out;
 
     &:focus, &:hover {
-      background-color: ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ $isGhost, $variant, theme }) => $isGhost ?  theme.colors.secondary : theme.colors[`${$variant}800`]};
     }
   }
 `
 
 type IconButtonProps = {
+  className?: string;
   iconName: IconName
-  variant?: Variant
+  variant: IconButtonVariant
   width?: number;
   height?: number;
   disabled?: boolean;
@@ -44,22 +54,25 @@ type IconButtonProps = {
 }
 
 export const IconButton: FC<IconButtonProps> = ({
-  variant = 'primary',
+  variant,
   iconName,
   width = 25,
   height = 25,
   ...props
 }) => {
   const { colors } = useTheme();
+  const isGhost = variant.endsWith('ghost');
+  const formattedVariant = variant.replace('-ghost', '') as IconButtonVariant;
 
   return (
     <StyledIconButton
-      $variant={variant}
+      $isGhost={isGhost}
+      $variant={formattedVariant}
       {...props}
     >
       <Icon
         name={iconName}
-        color={colors[variant]}
+        color={isGhost ? colors[formattedVariant] : colors.white}
         width={width}
         height={height}
         pointer

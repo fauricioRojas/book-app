@@ -2,8 +2,8 @@
 
 import styled, { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, Select, Typography } from '@/shared/components';
 import { useLanguage, useMeasure } from '@/contexts';
+import { Card, FlexWrap, Icon, Select, Typography } from '@/shared/components';
 
 const StyledIconWrapper = styled(FlexWrap)`
   width: 25px;

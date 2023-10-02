@@ -1,8 +1,9 @@
-import React, { FC, useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import styled from 'styled-components';
 
-import { ACIcon } from './ac-icon';
+import type { Size } from '@/shared/types';
 import { ACAirFilterIcon } from './ac-air-filter-icon';
+import { ACIcon } from './ac-icon';
 import { AddIcon } from './add-icon';
 import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
@@ -11,19 +12,19 @@ import { BatteryIcon } from './battery-icon';
 import { BellIcon } from './bell-icon';
 import { BeltIcon } from './belt-icon';
 import { BikeIcon } from './bike-icon';
-import { BrakeIcon } from './brake-icon';
 import { BrakeFiberIcon } from './brake-fiber-icon';
 import { BrakeFluidBottleIcon } from './brake-fluid-bottle-icon';
+import { BrakeIcon } from './brake-icon';
 import { BrushIcon } from './brush-icon';
 import { BullIcon } from './bull-icon';
 import { BushingIcon } from './bushing-icon';
 import { CableIcon } from './cable-icon';
 import { CameraIcon } from './camera-icon';
 import { CancelIcon } from './cancel-icon';
-import { CarIcon } from './car-icon';
-import { CarburetorIcon } from './carburetor-icon';
 import { CarChasisIcon } from './car-chasis-icon';
 import { CarFuseIcon } from './car-fuse-icon';
+import { CarIcon } from './car-icon';
+import { CarburetorIcon } from './carburetor-icon';
 import { CatIcon } from './cat-icon';
 import { ChainIcon } from './chain-icon';
 import { CheckIcon } from './check-icon';
@@ -42,9 +43,9 @@ import { FusesIcon } from './fuses-icon';
 import { GearIcon } from './gear-icon';
 import { GithubIcon } from './github-icon';
 import { GreaseGunIcon } from './grease-gun-icon';
-import { HandleBarIcon } from './handle-bar-icon';
 import { HairCutIcon } from './hair-cut-icon';
 import { HamsterIcon } from './hamster-icon';
+import { HandleBarIcon } from './handle-bar-icon';
 import { HorseIcon } from './horse-icon';
 import { HoseIcon } from './hose-icon';
 import { InfoIcon } from './info-icon';
@@ -53,11 +54,11 @@ import { LengthMeterIcon } from './length-meter-icon';
 import { LightBulbIcon } from './light-bulb-icon';
 import { MicrophoneIcon } from './microphone-icon';
 import { MoonIcon } from './moon-icon';
-import { MotorcycleIcon } from './motorcycle-icon';
 import { MotorcycleGripIcon } from './motorcycle-grip-icon';
+import { MotorcycleIcon } from './motorcycle-icon';
 import { MotorcycleSeatIcon } from './motorcycle-seat-icon';
-import { OilIcon } from './oil-icon';
 import { OilFilterIcon } from './oil-filter-icon';
+import { OilIcon } from './oil-icon';
 import { PaintGunIcon } from './paint-gun-icon';
 import { PencilIcon } from './pencil-icon';
 import { PetBathIcon } from './pet-bath-icon';
@@ -92,7 +93,6 @@ import { VideoCameraIcon } from './video-camera-icon';
 import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
 import { WeightIcon } from './weight-icon';
-import type { Size } from '@/shared/types';
 
 type StyledIconProps = {
   $isClickable?: boolean;
@@ -108,8 +108,8 @@ export const StyledSvg = styled.svg<StyledIconProps>`
 `;
 
 const ICON_MAPPER = {
-  ac: ACIcon,
   'ac-air-filter': ACAirFilterIcon,
+  ac: ACIcon,
   add: AddIcon,
   'arrow-back': ArrowBackIcon,
   'arrow-down': ArrowDownIcon,
@@ -118,19 +118,19 @@ const ICON_MAPPER = {
   bell: BellIcon,
   belt: BeltIcon,
   bike: BikeIcon,
-  brake: BrakeIcon,
   'brake-fiber': BrakeFiberIcon,
   'brake-fluid-bottle': BrakeFluidBottleIcon,
+  brake: BrakeIcon,
   brush: BrushIcon,
   bull: BullIcon,
   bushing: BushingIcon,
   cable: CableIcon,
   camera: CameraIcon,
   cancel: CancelIcon,
-  car: CarIcon,
-  carburetor: CarburetorIcon,
   'car-chasis': CarChasisIcon,
   'car-fuse': CarFuseIcon,
+  car: CarIcon,
+  carburetor: CarburetorIcon,
   cat: CatIcon,
   chain: ChainIcon,
   check: CheckIcon,
@@ -149,9 +149,9 @@ const ICON_MAPPER = {
   gear: GearIcon,
   github: GithubIcon,
   'grease-gun': GreaseGunIcon,
-  'handle-bar': HandleBarIcon,
   'hair-cut': HairCutIcon,
   hamster: HamsterIcon,
+  'handle-bar': HandleBarIcon,
   horse: HorseIcon,
   hose: HoseIcon,
   info: InfoIcon,
@@ -160,11 +160,11 @@ const ICON_MAPPER = {
   'light-bulb': LightBulbIcon,
   microphone: MicrophoneIcon,
   moon: MoonIcon,
-  motorcycle: MotorcycleIcon,
   'motorcycle-grip': MotorcycleGripIcon,
+  motorcycle: MotorcycleIcon,
   'motorcycle-seat': MotorcycleSeatIcon,
-  oil: OilIcon,
   'oil-filter': OilFilterIcon,
+  oil: OilIcon,
   'paint-gun': PaintGunIcon,
   pencil: PencilIcon,
   'pet-bath': PetBathIcon,

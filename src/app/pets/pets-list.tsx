@@ -2,12 +2,12 @@
 
 import { FC, useEffect, useState } from 'react';
 
-import { GridWrap } from '@/shared/components';
-import { TPet, TABLES, SCHEMAS, ACTIONS, SELECT } from '@/supabase';
-import { useDidUpdate } from '@/hooks';
-import { PetsListItem } from './pets-list-item';
-import { NoPets } from './no-pets';
 import { useSupabase } from '@/contexts';
+import { useDidUpdate } from '@/hooks';
+import { GridWrap } from '@/shared/components';
+import { ACTIONS, SCHEMAS, SELECT, TABLES, TPet } from '@/supabase';
+import { NoPets } from './no-pets';
+import { PetsListItem } from './pets-list-item';
 
 const abortController = new AbortController();
 

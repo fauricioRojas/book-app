@@ -1,10 +1,10 @@
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
-import { FC, PropsWithChildren } from 'react';
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { FC, PropsWithChildren } from 'react';
 
-import { Container, GlobalStyles } from '@/shared/components';
+import { Navbar } from '@/components';
 import {
   CustomThemeProvider,
   DrawerProvider,
@@ -12,11 +12,11 @@ import {
   MeasureProvider,
   ModalProvider,
   SnackbarProvider,
-  SupabaseProvider,
   SupabaseAuthProvider,
+  SupabaseProvider,
 } from '@/contexts';
+import { Container, GlobalStyles } from '@/shared/components';
 import { StyledComponentsRegistry } from './registry';
-import { Navbar } from '@/components';
 
 export const revalidate = 0;
 

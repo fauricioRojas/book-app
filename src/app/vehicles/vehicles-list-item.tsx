@@ -4,9 +4,9 @@ import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
 import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { TVehicle } from '@/supabase';
 import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { formatDate } from '@/shared/utils';
+import { TVehicle } from '@/supabase';
 
 type VehiclesListItemProps = TVehicle;
 

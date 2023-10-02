@@ -1,5 +1,6 @@
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse, type NextRequest } from "next/server";
+
 import { ROUTES } from "@/shared/constants";
 
 // import type { Database } from '@/lib/database.types'

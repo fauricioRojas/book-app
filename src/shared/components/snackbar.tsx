@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styled, { keyframes, useTheme } from 'styled-components';
 
 import { MessageType } from '@/shared/types';
-import { Icon, type IconName, FlexWrap, Typography } from '.';
+import { FlexWrap, Icon, Typography, type IconName } from '.';
 
 type StyledSkeletonProps = {
   $duration: number;

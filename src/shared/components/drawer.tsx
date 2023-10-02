@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
 import { useKeyPress } from '@/hooks';
-import { slideInUp, slideOutDown, slideInRight, slideOutRight } from '@/shared/keyframes';
+import { slideInRight, slideInUp, slideOutDown, slideOutRight } from '@/shared/keyframes';
 import { Backdrop, Icon, Typography } from '.';
 
 type StyledDrawerProps = {

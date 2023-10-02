@@ -1,7 +1,7 @@
 'use client';
 
 import { Merriweather } from 'next/font/google';
-import { useMemo, FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useMemo } from 'react';
 import styled, { DefaultTheme, css } from 'styled-components';
 
 import type { Size } from '@/shared/types';

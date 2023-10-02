@@ -3,11 +3,11 @@
 import { FC } from 'react';
 import { useTheme } from 'styled-components';
 
-import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
-import { TMaintenance } from '@/supabase';
-import { formatDate, formatMoney } from '@/shared/utils';
-import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
 import { useMeasure } from '@/contexts';
+import { Card, FlexWrap, Icon, Link, Typography } from '@/shared/components';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
+import { formatDate, formatMoney } from '@/shared/utils';
+import { TMaintenance } from '@/supabase';
 
 type MaintenancesListItemProps = TMaintenance;
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { Typography } from '@/shared/components';
 import { useLanguage } from '@/contexts';
+import { Typography } from '@/shared/components';
 
 export const NoMaintenances = () => {
   const { translation } = useLanguage();
