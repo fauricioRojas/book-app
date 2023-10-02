@@ -36,20 +36,20 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   width: 100%;
   z-index: ${({ $zIndex, theme }) => $zIndex ? theme.zIndices[$zIndex] : undefined};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
     top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '60px' : 0};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
   }
 `;

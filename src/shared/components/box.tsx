@@ -28,19 +28,19 @@ const StyledBox = styled.div<StyledBoxProps>`
     position: sticky;
   `};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
   }
 `

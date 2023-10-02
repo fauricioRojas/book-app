@@ -61,27 +61,27 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypography
   text-align: ${$textAlign};
   transition: color .2s ease;
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     ${({ $displaySm }: StyledTypographyProps) => typeof $displaySm === 'boolean' && css`
       display: ${$displaySm ? 'block' : 'none'};
     `}
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     ${({ $displayMd }: StyledTypographyProps) => typeof $displayMd === 'boolean' && css`
       display: ${$displayMd ? 'block' : 'none'};
     `}
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     ${({ $displayLg }: StyledTypographyProps) => typeof $displayLg === 'boolean' && css`
       display: ${$displayLg ? 'block' : 'none'};
     `}
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     ${({ $displayXl }: StyledTypographyProps) => typeof $displayXl === 'boolean' && css`
       display: ${$displayXl ? 'block' : 'none'};
     `}
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     ${({ $displayXxl }: StyledTypographyProps) => typeof $displayXxl === 'boolean' && css`
       display: ${$displayXxl ? 'block' : 'none'};
     `}
@@ -90,47 +90,47 @@ const sharedCss = ({ $color, $italic, $mb, $textAlign, theme }: StyledTypography
 
 const H1 = styled.h1`
   font-size: 2rem;
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2.25rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2.5rem;
   }
   ${sharedCss};
 `;
 const H2 = styled.h2`
   font-size: 1.75rem;
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     font-size: 2rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2.25rem;
   }
   ${sharedCss};
 `;
 const H3 = styled.h3`
   font-size: 1.5rem;
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.75rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     font-size: 2rem;
   }
   ${sharedCss};
 `;
 const H4 = styled.h4`
   font-size: 1.25rem;
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.375rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     font-size: 1.5rem;
   }
   ${sharedCss};
 `;
 const H5 = styled.h5`
   font-size: 1.125rem;
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     font-size: 1.25rem;
   }
   ${sharedCss};
@@ -150,7 +150,7 @@ const P = styled.p`
 `;
 const SPAN = styled.span`
   font-size: calc(0.6rem + 0.3vw);
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     font-size: 0.875rem;
   }
   ${sharedCss};

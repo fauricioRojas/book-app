@@ -8,19 +8,19 @@ const StyledContainer = styled.div`
   padding-left: ${({ theme }) => theme.gutters.size4};
   padding-right: ${({ theme }) => theme.gutters.size4};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     max-width: 33.75rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     max-width: 45rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     max-width: 60rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     max-width: 71.25rem;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     max-width: 82.5rem;
   }
 `

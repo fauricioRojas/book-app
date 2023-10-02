@@ -25,7 +25,7 @@ const StyledTypeSelectorOption = styled.div`
     background-color: ${({ theme }) => theme.colors.card};
   }
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     height: 8rem;
   }
 `;

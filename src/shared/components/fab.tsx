@@ -62,7 +62,7 @@ const StyledFabButton = styled.button<StyledFabProps>`
     background-color: ${({ theme }) => theme.colors.primary800};
   }
 
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     padding: ${({ theme }) => theme.gutters.size3};
   }
 `;

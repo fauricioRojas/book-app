@@ -22,7 +22,7 @@ const StyledNavbar = styled.nav`
   width: 100%;
   -webkit-backdrop-filter: ${({ theme }) => theme.backdropBlur};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     border-bottom: 0.5px solid ${({ theme }) => theme.colors.border};
     border-top: none;
     bottom: auto;

@@ -32,7 +32,7 @@ const StyledIconButton = styled.button<StyledIconButtonProps>`
     pointer-events: none;
   }
 
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     border: 2px solid ${({ $isGhost, $variant, theme }) => $isGhost ? 'transparent' : theme.colors[$variant]};
     padding: ${({ $isGhost, theme }) => $isGhost ? theme.gutters.size1 : theme.gutters.size3};
     transition: background-color .15s ease-in-out;

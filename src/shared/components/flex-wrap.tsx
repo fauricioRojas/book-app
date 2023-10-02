@@ -81,7 +81,7 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     position: sticky;
   `};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     align-items: ${({ $alignSm }) => $alignSm};
     flex-basis: ${({ $basisSm }) => $basisSm};
     flex-direction: ${({ $directionSm }) => $directionSm};
@@ -90,7 +90,7 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
     justify-content: ${({ $justifySm }) => $justifySm};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     align-items: ${({ $alignMd }) => $alignMd};
     flex-basis: ${({ $basisMd }) => $basisMd};
     flex-direction: ${({ $directionMd }) => $directionMd};
@@ -99,7 +99,7 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
     justify-content: ${({ $justifyMd }) => $justifyMd};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     align-items: ${({ $alignLg }) => $alignLg};
     flex-basis: ${({ $basisLg }) => $basisLg};
     flex-direction: ${({ $directionLg }) => $directionLg};
@@ -108,7 +108,7 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
     justify-content: ${({ $justifyLg }) => $justifyLg};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     align-items: ${({ $alignXl }) => $alignXl};
     flex-basis: ${({ $basisXl }) => $basisXl};
     flex-direction: ${({ $directionXl }) => $directionXl};
@@ -117,7 +117,7 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
     justify-content: ${({ $justifyXl }) => $justifyXl};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     align-items: ${({ $alignXxl }) => $alignXxl};
     flex-basis: ${({ $basisXxl }) => $basisXxl};
     flex-direction: ${({ $directionXxl }) => $directionXxl};

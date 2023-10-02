@@ -33,7 +33,7 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
     animation: ${slideOutDown} .3s;
   `};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     animation: ${slideInRight} .3s;
     border-left: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: 0;
@@ -46,13 +46,13 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
       animation: ${slideOutRight} .3s;
     `};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     width: 50%;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     width: 40%;
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     width: 30%;
   }
 `;
@@ -68,10 +68,10 @@ const StyledDrawerBody = styled.div`
   overflow-y: auto;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size4} ${theme.gutters.size4}`};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     padding: ${({ theme }) => theme.gutters.size4};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     height: calc(100% - 61px);
   }
 `;

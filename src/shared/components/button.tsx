@@ -123,23 +123,23 @@ const StyledButton = styled.button<StyledButtonProps>`
     pointer-events: none;
   }
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
     margin-top: ${({ $mtSm, theme }) => theme.gutters[`size${$mtSm}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
     margin-top: ${({ $mtMd, theme }) => theme.gutters[`size${$mtMd}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
     margin-top: ${({ $mtLg, theme }) => theme.gutters[`size${$mtLg}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
     margin-top: ${({ $mtXl, theme }) => theme.gutters[`size${$mtXl}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
     margin-top: ${({ $mtXxl, theme }) => theme.gutters[`size${$mtXxl}`]};
   }

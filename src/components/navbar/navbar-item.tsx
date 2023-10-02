@@ -15,7 +15,7 @@ const StyledLink = styled(NextLink)`
   gap: ${({ theme }) => theme.gutters.size1};
   text-decoration: none;
 
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     border-radius: ${({ theme }) => theme.borderRadius};
     padding: ${({ theme }) => `${theme.gutters.size1} ${theme.gutters.size0}`};
     transition: background-color .15s ease-in-out;

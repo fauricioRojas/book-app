@@ -51,23 +51,23 @@ const StyledSkeleton = styled.div<StyledSkeletonProps>`
   margin-bottom: ${({ $mb, theme }) => theme.gutters[`size${$mb}`]};
   width: ${({ $width }) => WIDTH_MAPPER[$width]};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     height: ${({ $heightSm, theme }) => typeof $heightSm === 'number' ? theme.gutters[`size${$heightSm}`] : $heightSm};
     width: ${({ $widthSm }) => $widthSm ? WIDTH_MAPPER[$widthSm] : undefined};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     height: ${({ $heightMd, theme }) => typeof $heightMd === 'number' ? theme.gutters[`size${$heightMd}`] : $heightMd};
     width: ${({ $widthMd }) => $widthMd ? WIDTH_MAPPER[$widthMd] : undefined};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     height: ${({ $heightLg, theme }) => typeof $heightLg === 'number' ? theme.gutters[`size${$heightLg}`] : $heightLg};
     width: ${({ $widthLg }) => $widthLg ? WIDTH_MAPPER[$widthLg] : undefined};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     height: ${({ $heightXl, theme }) => typeof $heightXl === 'number' ? theme.gutters[`size${$heightXl}`] : $heightXl};
     width: ${({ $widthXl }) => $widthXl ? WIDTH_MAPPER[$widthXl] : undefined};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     height: ${({ $heightXxl, theme }) => typeof $heightXxl === 'number' ? theme.gutters[`size${$heightXxl}`] : $heightXxl};
     width: ${({ $widthXxl }) => $widthXxl ? WIDTH_MAPPER[$widthXxl] : undefined};
   }

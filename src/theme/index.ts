@@ -9,16 +9,11 @@ import type {
 } from "./types";
 
 const breakpoints: Breakpoints = {
-  // sm: "@media (width >= 36rem)",
-  // md: "@media (width >= 48rem)",
-  // lg: "@media (width >= 62rem)",
-  // xl: "@media (width >= 75rem)",
-  // xxl: "@media (width >= 87.5rem)",
-  sm: "36rem",
-  md: "48rem",
-  lg: "62rem",
-  xl: "75rem",
-  xxl: "87.5rem",
+  sm: "@media (width >= 36rem)",
+  md: "@media (width >= 48rem)",
+  lg: "@media (width >= 62rem)",
+  xl: "@media (width >= 75rem)",
+  xxl: "@media (width >= 87.5rem)",
 };
 
 const commonColors = {

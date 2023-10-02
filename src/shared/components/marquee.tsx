@@ -43,23 +43,23 @@ const StyledMarquee = styled.div<StyledMarqueeProps>`
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
     margin-bottom: ${({ $mbSm, theme }) => theme.gutters[`size${$mbSm}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
     margin-bottom: ${({ $mbMd, theme }) => theme.gutters[`size${$mbMd}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
     margin-bottom: ${({ $mbLg, theme }) => theme.gutters[`size${$mbLg}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
     margin-bottom: ${({ $mbXl, theme }) => theme.gutters[`size${$mbXl}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
     margin-bottom: ${({ $mbXxl, theme }) => theme.gutters[`size${$mbXxl}`]};
   }
@@ -71,19 +71,19 @@ const StyledMarqueeGroup = styled.div<StyledMarqueeGroupProps>`
   -webkit-animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear infinite;
   animation-direction: ${({ $reverse }) => $reverse ? 'reverse' : undefined};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.sm}) {
+  ${({ theme }) => theme.breakpoints.sm} {
     gap: ${({ $gapSm, theme }) => theme.gutters[`size${$gapSm}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     gap: ${({ $gapMd, theme }) => theme.gutters[`size${$gapMd}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     gap: ${({ $gapLg, theme }) => theme.gutters[`size${$gapLg}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xl}) {
+  ${({ theme }) => theme.breakpoints.xl} {
     gap: ${({ $gapXl, theme }) => theme.gutters[`size${$gapXl}`]};
   }
-  @media (width >= ${({ theme }) => theme.breakpoints.xxl}) {
+  ${({ theme }) => theme.breakpoints.xxl} {
     gap: ${({ $gapXxl, theme }) => theme.gutters[`size${$gapXxl}`]};
   }
 `

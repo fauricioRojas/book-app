@@ -41,7 +41,7 @@ const StyledSnackbar = styled.div<StyledSkeletonProps>`
   width: auto;
   padding: ${({ theme }) => theme.gutters.size3};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     bottom: ${({ theme }) => theme.gutters.size8};
   }
 `;

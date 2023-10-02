@@ -37,7 +37,7 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
     animation: ${slideOutDown} .3s;
   `};
 
-  @media (width >= ${({ theme }) => theme.breakpoints.md}) {
+  ${({ theme }) => theme.breakpoints.md} {
     animation: ${fadeIn} .3s;
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.borderRadius};

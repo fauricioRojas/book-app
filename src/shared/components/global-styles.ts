@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     transition: background-color .3s;
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 
-    @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+    ${({ theme }) => theme.breakpoints.lg} {
       padding-bottom: ${({ theme }) => theme.gutters.size4};
       padding-top: ${({ theme }) =>
         `calc(${theme.gutters.size4} + 60px)`}; /* Based on navbar height */

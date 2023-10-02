@@ -6,13 +6,13 @@ import styled from 'styled-components';
 import { Fab, FlexWrap, IconButton, TFabItem } from "@/shared/components";
 
 const MobileWrapper = styled.div`
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     display: none;
   }
 `;
 const DesktopWrapper = styled.div`
   display: none;
-  @media (width >= ${({ theme }) => theme.breakpoints.lg}) {
+  ${({ theme }) => theme.breakpoints.lg} {
     display: block;
   }
 `;
