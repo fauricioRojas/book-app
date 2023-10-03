@@ -57,8 +57,8 @@ export const ProceduresSelector: FC<ProceduresSelectorProps> = ({
         label: translation.surgery,
         value: ENGLISH.surgery,
       },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [language],
   );
 

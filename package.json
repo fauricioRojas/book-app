@@ -19,8 +19,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier . --write",
-    "prettier-check": "prettier . --check"
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.7.4",

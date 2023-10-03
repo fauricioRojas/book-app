@@ -223,8 +223,8 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         label: translation.motorcycleGripsReplacement,
         value: ENGLISH.motorcycleGripsReplacement,
       },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [language],
   );
 
