@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -13,7 +13,7 @@ import {
   GridWrap,
   Input,
   Link,
-  Typography
+  Typography,
 } from '@/shared/components';
 import { ROUTES } from '@/shared/constants';
 
@@ -31,7 +31,7 @@ const StyledFlexWrap = styled(FlexWrap)`
 type SignInForm = {
   email: string;
   password: string;
-}
+};
 
 export const SignInForm = () => {
   const {
@@ -40,12 +40,13 @@ export const SignInForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<SignInForm>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
   const { EMAIL, MIN_LENGTH, REQUIRED } = useFormRules({ minLength: 6 });
-  const { signInWithEmail, signInWithGithub, signInWithFacebook } = useSupabaseAuth();
+  const { signInWithEmail, signInWithGithub, signInWithFacebook } =
+    useSupabaseAuth();
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
@@ -54,13 +55,13 @@ export const SignInForm = () => {
       const error = await signInWithEmail(email, password);
       if (error) {
         showSnackbar({
-          type: "error",
+          type: 'error',
           message: translation.signInCredentialsError,
         });
       }
     } catch (error) {
       showSnackbar({
-        type: "error",
+        type: 'error',
         message: translation.signInError,
       });
     }
@@ -68,10 +69,7 @@ export const SignInForm = () => {
 
   return (
     <AbsoluteWrap gap={12}>
-      <Typography
-        variant="h1"
-        fontWeight="bold"
-      >
+      <Typography variant="h1" fontWeight="bold">
         {translation.signIn}
       </Typography>
       <StyledFlexWrap direction="column" align="center" gap={6}>
@@ -104,9 +102,7 @@ export const SignInForm = () => {
               control={control}
               name="email"
               rules={{ ...REQUIRED, ...EMAIL }}
-              render={({
-                field: { onChange, onBlur, value },
-              }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <Input
                   value={value}
                   inputMode="email"
@@ -120,10 +116,8 @@ export const SignInForm = () => {
             <Controller
               control={control}
               name="password"
-              rules={{ ...REQUIRED, ...MIN_LENGTH}}
-              render={({
-                field: { onChange, onBlur, value },
-              }) => (
+              rules={{ ...REQUIRED, ...MIN_LENGTH }}
+              render={({ field: { onChange, onBlur, value } }) => (
                 <Input
                   value={value}
                   type="password"

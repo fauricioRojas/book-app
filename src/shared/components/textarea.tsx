@@ -15,18 +15,21 @@ type TextareaProps = {
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onBlur?: (event: FocusEvent<HTMLTextAreaElement>) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
-}
+};
 
-type StyledTextareaProps = Pick<TextareaProps, 'onChange' | 'onBlur' | 'onKeyDown'> & {
+type StyledTextareaProps = Pick<
+  TextareaProps,
+  'onChange' | 'onBlur' | 'onKeyDown'
+> & {
   $isInvalid: boolean;
   $rows: number;
-}
+};
 
 const StyledTextarea = styled.textarea<StyledTextareaProps>`
   background-color: transparent;
-  border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
-    ? theme.colors.error
-    : theme.colors.border};
+  border: 1px solid
+    ${({ $isInvalid, theme }) =>
+      $isInvalid ? theme.colors.error : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
@@ -34,14 +37,18 @@ const StyledTextarea = styled.textarea<StyledTextareaProps>`
   height: ${({ $rows }) => `${$rows * 28.5}px`};
   line-height: inherit;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   resize: none;
 
   &:hover {
-    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
+    border-color: ${({ $isInvalid, theme }) =>
+      $isInvalid ? undefined : theme.colors.primary100};
   }
   &:focus {
-    border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
+    border-color: ${({ $isInvalid, theme }) =>
+      $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;
     outline: 0;
   }
@@ -58,14 +65,27 @@ export const Textarea: FC<TextareaProps> = ({
 
   return (
     <FlexWrap direction="column" gap={2}>
-      {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
+      {label && (
+        <Typography variant="label">
+          {label}{' '}
+          {optional && (
+            <Typography variant="span" color="secondary-text">
+              ({translation.optional})
+            </Typography>
+          )}
+        </Typography>
+      )}
       <StyledTextarea
         rows={rows}
         $rows={rows}
         $isInvalid={!!errorMessage}
         {...props}
       />
-      {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
+      {errorMessage && (
+        <Typography variant="span" color="error">
+          {errorMessage}
+        </Typography>
+      )}
     </FlexWrap>
   );
 };

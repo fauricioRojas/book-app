@@ -19,28 +19,12 @@ export const NoVehicles = () => {
   };
 
   return (
-    <AbsoluteWrap
-      gap={4}
-      isNavbarVisible
-      zIndex="hide"
-    >
-      <Icon
-        name="tire"
-        height={50}
-        width={50}
-        color={colors.secondary400}
-      />
-      <Typography
-        variant="h3"
-        color="primary-text"
-        fontWeight="bold"
-      >
+    <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
+      <Icon name="tire" height={50} width={50} color={colors.secondary400} />
+      <Typography variant="h3" color="primary-text" fontWeight="bold">
         {translation.noVehicles}
       </Typography>
-      <Typography
-        variant="label"
-        color="secondary-text"
-      >
+      <Typography variant="label" color="secondary-text">
         {translation.noVehiclesMessage}
       </Typography>
       <Button

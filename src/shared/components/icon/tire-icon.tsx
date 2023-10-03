@@ -14,13 +14,13 @@ export const TireIcon: FC<CommonIconProps> = ({
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
-    viewBox="0 0 24 24" 
+    viewBox="0 0 24 24"
     width={width}
     height={height}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
-    {...props} 
+    {...props}
   >
     <path
       fill={color}

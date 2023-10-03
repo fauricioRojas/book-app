@@ -1,5 +1,5 @@
-import { TransfersList } from "./transfers-list";
-import { TransfersHeader } from "./transfers-header";
+import { TransfersList } from './transfers-list';
+import { TransfersHeader } from './transfers-header';
 
 export const revalidate = 0;
 

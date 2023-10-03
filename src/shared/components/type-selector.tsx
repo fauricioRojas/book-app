@@ -1,10 +1,16 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { useLanguage } from "@/contexts";
-import { FlexWrap, GridWrap, Icon, Input, Typography } from "@/shared/components";
-import { ICON_BY_TYPE } from "@/shared/constants";
-import type { TypeSelectorOption } from "@/shared/types";
+import { useLanguage } from '@/contexts';
+import {
+  FlexWrap,
+  GridWrap,
+  Icon,
+  Input,
+  Typography,
+} from '@/shared/components';
+import { ICON_BY_TYPE } from '@/shared/constants';
+import type { TypeSelectorOption } from '@/shared/types';
 
 const StyledTypeSelectorOption = styled.div`
   align-items: center;
@@ -18,7 +24,7 @@ const StyledTypeSelectorOption = styled.div`
   height: 6.5rem;
   justify-content: center;
   padding: ${({ theme }) => theme.gutters.size4};
-  transition: background-color .2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
   width: 100%;
 
   &:hover {
@@ -33,13 +39,10 @@ const StyledTypeSelectorOption = styled.div`
 type TypeSelectorProps = {
   types: TypeSelectorOption[];
   onSelect: (type: TypeSelectorOption) => void;
-}
+};
 
-export const TypeSelector: FC<TypeSelectorProps> = ({
-  types,
-  onSelect,
-}) => {
-  const [searchTerm, setSearchTerm] = useState("");
+export const TypeSelector: FC<TypeSelectorProps> = ({ types, onSelect }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredTypes, setFilteredTypes] = useState(types);
   const { colors } = useTheme();
   const { translation } = useLanguage();
@@ -50,7 +53,9 @@ export const TypeSelector: FC<TypeSelectorProps> = ({
     setSearchTerm(value);
     setFilteredTypes(
       value
-        ? types.filter(({ label }) => label.toLowerCase().includes(lowerCaseValue))
+        ? types.filter(({ label }) =>
+            label.toLowerCase().includes(lowerCaseValue),
+          )
         : types,
     );
   };
@@ -65,45 +70,36 @@ export const TypeSelector: FC<TypeSelectorProps> = ({
           onChange={handleChangeSearchTerm}
         />
       )}
-      {filteredTypes.length
-        ? (
-          <GridWrap
-            cols={6}
-            sm={4}
-            md={6}
-            gap={2}
-          >
-            {filteredTypes.map((type) => (
-              <StyledTypeSelectorOption
-                key={type.id}
-                onClick={() => onSelect(type)}
+      {filteredTypes.length ? (
+        <GridWrap cols={6} sm={4} md={6} gap={2}>
+          {filteredTypes.map((type) => (
+            <StyledTypeSelectorOption
+              key={type.id}
+              onClick={() => onSelect(type)}
+            >
+              <Icon
+                name={ICON_BY_TYPE[type.value]}
+                color={colors.secondaryText}
+                height={type.height ?? 30}
+                width={type.width ?? 30}
+                pointer
+              />
+              <Typography
+                variant="h6"
+                color="secondary-text"
+                fontWeight="bold"
+                textAlign="center"
               >
-                <Icon
-                  name={ICON_BY_TYPE[type.value]}
-                  color={colors.secondaryText}
-                  height={type.height ?? 30}
-                  width={type.width ?? 30}
-                  pointer
-                />
-                <Typography
-                  variant="h6"
-                  color="secondary-text"
-                  fontWeight="bold"
-                  textAlign="center"
-                >
-                  {type.label}
-                </Typography>
-              </StyledTypeSelectorOption>
-            ))}
-          </GridWrap>
-        ) : (
-          <Typography
-            variant="label"
-            color="secondary-text"
-          >
-            {translation.noResultsFound}
-          </Typography>
-        )}
+                {type.label}
+              </Typography>
+            </StyledTypeSelectorOption>
+          ))}
+        </GridWrap>
+      ) : (
+        <Typography variant="label" color="secondary-text">
+          {translation.noResultsFound}
+        </Typography>
+      )}
     </FlexWrap>
   );
 };

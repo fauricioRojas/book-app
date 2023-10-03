@@ -17,7 +17,7 @@ type StyledMarqueeProps = {
   $mbLg?: Size;
   $mbXl?: Size;
   $mbXxl?: Size;
-}
+};
 type StyledMarqueeGroupProps = {
   $duration: number;
   $gap?: Size;
@@ -27,7 +27,7 @@ type StyledMarqueeGroupProps = {
   $gapXl?: Size;
   $gapXxl?: Size;
   $reverse: boolean;
-}
+};
 
 const marqueeAnimation = keyframes`
   0% { transform: translateX(0); }
@@ -36,19 +36,33 @@ const marqueeAnimation = keyframes`
 
 const StyledMarquee = styled.div<StyledMarqueeProps>`
   display: flex;
-  mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
+  mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
   position: relative;
   min-width: 100%;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 20%, hsl(0 0% 0% / 1) 80%, hsl(0 0% 0% / 0));
+  -webkit-mask-image: linear-gradient(
+    to right,
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0)
+  );
   ${gap};
   ${marginBottom};
 `;
 const StyledMarqueeGroup = styled.div<StyledMarqueeGroupProps>`
-  animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear infinite;
+  animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear
+    infinite;
   display: flex;
-  -webkit-animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`} linear infinite;
-  animation-direction: ${({ $reverse }) => $reverse ? 'reverse' : undefined};
+  -webkit-animation: ${marqueeAnimation} ${({ $duration }) => `${$duration}s`}
+    linear infinite;
+  animation-direction: ${({ $reverse }) => ($reverse ? 'reverse' : undefined)};
   ${gap};
 `;
 
@@ -67,7 +81,7 @@ type MarqueeProps = PropsWithChildren & {
   mbXl?: Size;
   mbXxl?: Size;
   reverse?: boolean;
-}
+};
 
 export const Marquee: FC<MarqueeProps> = ({
   durationInSeconds = 30,

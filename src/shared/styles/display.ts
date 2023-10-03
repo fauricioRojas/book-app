@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css } from 'styled-components';
 
 type DisplayProps = {
   $display?: boolean;
@@ -11,43 +11,43 @@ type DisplayProps = {
 
 export const display = css<DisplayProps>`
   ${({ $display }) =>
-    typeof $display === "boolean" &&
+    typeof $display === 'boolean' &&
     css`
-      display: ${$display ? "block" : "none"};
+      display: ${$display ? 'block' : 'none'};
     `}
   ${({ theme }) => theme.breakpoints.sm} {
     ${({ $displaySm }) =>
-      typeof $displaySm === "boolean" &&
+      typeof $displaySm === 'boolean' &&
       css`
-        display: ${$displaySm ? "block" : "none"};
+        display: ${$displaySm ? 'block' : 'none'};
       `}
   }
   ${({ theme }) => theme.breakpoints.md} {
     ${({ $displayMd }) =>
-      typeof $displayMd === "boolean" &&
+      typeof $displayMd === 'boolean' &&
       css`
-        display: ${$displayMd ? "block" : "none"};
+        display: ${$displayMd ? 'block' : 'none'};
       `}
   }
   ${({ theme }) => theme.breakpoints.lg} {
     ${({ $displayLg }) =>
-      typeof $displayLg === "boolean" &&
+      typeof $displayLg === 'boolean' &&
       css`
-        display: ${$displayLg ? "block" : "none"};
+        display: ${$displayLg ? 'block' : 'none'};
       `}
   }
   ${({ theme }) => theme.breakpoints.xl} {
     ${({ $displayXl }) =>
-      typeof $displayXl === "boolean" &&
+      typeof $displayXl === 'boolean' &&
       css`
-        display: ${$displayXl ? "block" : "none"};
+        display: ${$displayXl ? 'block' : 'none'};
       `}
   }
   ${({ theme }) => theme.breakpoints.xxl} {
     ${({ $displayXxl }) =>
-      typeof $displayXxl === "boolean" &&
+      typeof $displayXxl === 'boolean' &&
       css`
-        display: ${$displayXxl ? "block" : "none"};
+        display: ${$displayXxl ? 'block' : 'none'};
       `}
   }
 `;

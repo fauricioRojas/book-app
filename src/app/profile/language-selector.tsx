@@ -11,14 +11,20 @@ const StyledIconWrapper = styled(FlexWrap)`
 
 export const LanguageSelector = () => {
   const { colors } = useTheme();
-  const { language, languageOptions, translation, changeLanguage } = useLanguage();
+  const { language, languageOptions, translation, changeLanguage } =
+    useLanguage();
 
   return (
     <Card background>
       <FlexWrap justify="space-between" align="center">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>
-            <Icon name="translate" color={colors.secondaryText} width={22} height={22} />
+            <Icon
+              name="translate"
+              color={colors.secondaryText}
+              width={22}
+              height={22}
+            />
           </StyledIconWrapper>
           <Typography variant="label">{translation.language}</Typography>
         </FlexWrap>

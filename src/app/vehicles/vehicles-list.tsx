@@ -13,7 +13,7 @@ const abortController = new AbortController();
 
 type VehiclesListProps = {
   serverVehicles: TVehicle[];
-}
+};
 
 export const VehiclesList: FC<VehiclesListProps> = ({ serverVehicles }) => {
   const [vehicles, setVehicles] = useState<TVehicle[]>(serverVehicles);
@@ -24,16 +24,22 @@ export const VehiclesList: FC<VehiclesListProps> = ({ serverVehicles }) => {
   useEffect(() => {
     const channel = supabaseClient
       .channel('vehicles-list')
-      .on('postgres_changes', {
-        event: ACTIONS.INSERT,
-        schema: SCHEMAS.PUBLIC,
-        table: TABLES.VEHICLES,
-      }, async (payload: any) => {
-        const newlyAddedVehicle = await findVehicleById(payload.new.id);
-        if (newlyAddedVehicle) {
-          setVehicles((prevVehicles: TVehicle[]) => prevVehicles.concat(newlyAddedVehicle));
-        }
-      })
+      .on(
+        'postgres_changes',
+        {
+          event: ACTIONS.INSERT,
+          schema: SCHEMAS.PUBLIC,
+          table: TABLES.VEHICLES,
+        },
+        async (payload: any) => {
+          const newlyAddedVehicle = await findVehicleById(payload.new.id);
+          if (newlyAddedVehicle) {
+            setVehicles((prevVehicles: TVehicle[]) =>
+              prevVehicles.concat(newlyAddedVehicle),
+            );
+          }
+        },
+      )
       .subscribe();
 
     return () => {
@@ -57,13 +63,7 @@ export const VehiclesList: FC<VehiclesListProps> = ({ serverVehicles }) => {
   }
 
   return (
-    <GridWrap
-      cols={12}
-      sm={6}
-      lg={4}
-      xl={3}
-      gap={4}
-    >
+    <GridWrap cols={12} sm={6} lg={4} xl={3} gap={4}>
       {vehicles.map((vehicle) => (
         <VehiclesListItem key={vehicle.id} {...vehicle} />
       ))}

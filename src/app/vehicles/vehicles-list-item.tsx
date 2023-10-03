@@ -14,10 +14,7 @@ export const VehiclesListItem: FC<VehiclesListItemProps> = ({
   id,
   brand,
   plateNumber,
-  notes: {
-    date,
-    type,
-  },
+  notes: { date, type },
 }) => {
   const { colors } = useTheme();
 
@@ -27,7 +24,9 @@ export const VehiclesListItem: FC<VehiclesListItemProps> = ({
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <FlexWrap direction="column" gap={1}>
-              <Typography variant="h5" fontWeight="bold">{brand}</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                {brand}
+              </Typography>
               <Typography variant="label">{plateNumber}</Typography>
             </FlexWrap>
             <Typography variant="label">{formatDate(date)}</Typography>

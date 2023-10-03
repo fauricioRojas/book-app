@@ -7,7 +7,13 @@ import { Icon, type IconName } from '.';
 
 type SolidVariant = 'primary' | 'secondary' | 'error';
 type NonSolidVariant = 'outline-primary' | 'outline-secondary' | 'text';
-type Variant = 'primary' | 'outline-primary' | 'secondary' | 'outline-secondary' | 'error' | 'text';
+type Variant =
+  | 'primary'
+  | 'outline-primary'
+  | 'secondary'
+  | 'outline-secondary'
+  | 'error'
+  | 'text';
 type Type = 'button' | 'submit' | 'reset';
 
 type StyledButtonProps = {
@@ -25,7 +31,7 @@ type StyledButtonProps = {
   $mtLg?: Size;
   $mtXl?: Size;
   $mtXxl?: Size;
-}
+};
 
 const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
@@ -42,97 +48,122 @@ const StyledButton = styled.button<StyledButtonProps>`
   min-width: 64px;
   padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   text-align: center;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   vertical-align: middle;
   ${marginBottom};
   ${marginTop};
 
-  ${({ $variant, theme }) => $variant === 'primary' && css`
-    background-color: ${theme.colors.primary};
-    border-color: ${theme.colors.primary};
-    color: ${theme.colors.white};
-
-    &:focus, &:hover {
-      background-color: ${theme.colors.primary400};
-      border-color: ${theme.colors.primary400};
-    }
-  `}
-
-  ${({ $variant, theme }) => $variant === 'outline-primary' && css`
-    background-color: transparent;
-    border-color: ${theme.colors.primary};
-    color: ${theme.colors.primary};
-
-    &:focus, &:hover {
+  ${({ $variant, theme }) =>
+    $variant === 'primary' &&
+    css`
       background-color: ${theme.colors.primary};
+      border-color: ${theme.colors.primary};
       color: ${theme.colors.white};
-    }
-  `}
 
-  ${({ $variant, theme }) => $variant === 'secondary' && css`
-    background-color: ${theme.colors.secondary};
-    border-color: ${theme.colors.secondary};
-    color: ${theme.colors.white};
+      &:focus,
+      &:hover {
+        background-color: ${theme.colors.primary400};
+        border-color: ${theme.colors.primary400};
+      }
+    `}
 
-    &:focus, &:hover {
-      background-color: ${theme.colors.secondary400};
-      border-color: ${theme.colors.secondary400};
-    }
-  `}
+  ${({ $variant, theme }) =>
+    $variant === 'outline-primary' &&
+    css`
+      background-color: transparent;
+      border-color: ${theme.colors.primary};
+      color: ${theme.colors.primary};
 
-  ${({ $variant, theme }) => $variant === 'outline-secondary' && css`
-    background-color: transparent;
-    border-color: ${theme.colors.border};
-    color: ${theme.colors.primaryText};
+      &:focus,
+      &:hover {
+        background-color: ${theme.colors.primary};
+        color: ${theme.colors.white};
+      }
+    `}
 
-    &:focus, &:hover {
+  ${({ $variant, theme }) =>
+    $variant === 'secondary' &&
+    css`
       background-color: ${theme.colors.secondary};
       border-color: ${theme.colors.secondary};
       color: ${theme.colors.white};
-    }
-  `}
 
-  ${({ $variant, theme }) => $variant === 'error' && css`
-    background-color: ${theme.colors.error};
-    border-color: ${theme.colors.error};
-    color: ${theme.colors.white};
+      &:focus,
+      &:hover {
+        background-color: ${theme.colors.secondary400};
+        border-color: ${theme.colors.secondary400};
+      }
+    `}
 
-    &:focus, &:hover {
-      background-color: ${theme.colors.error400};
-      border-color: ${theme.colors.error400};
-    }
-  `}
+  ${({ $variant, theme }) =>
+    $variant === 'outline-secondary' &&
+    css`
+      background-color: transparent;
+      border-color: ${theme.colors.border};
+      color: ${theme.colors.primaryText};
 
-  ${({ $variant, theme }) => $variant === 'text' && css`
-    background-color: transparent;
-    border-color: transparent;
-    color: ${theme.colors.primary200};
-    padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
+      &:focus,
+      &:hover {
+        background-color: ${theme.colors.secondary};
+        border-color: ${theme.colors.secondary};
+        color: ${theme.colors.white};
+      }
+    `}
 
-    &:focus, &:hover {
-      background-color: ${`${theme.colors.primary100}33`};
-    }
-  `}
+  ${({ $variant, theme }) =>
+    $variant === 'error' &&
+    css`
+      background-color: ${theme.colors.error};
+      border-color: ${theme.colors.error};
+      color: ${theme.colors.white};
 
-  ${({ $block }) => $block && css`
-    width: 100%;
-  `}
+      &:focus,
+      &:hover {
+        background-color: ${theme.colors.error400};
+        border-color: ${theme.colors.error400};
+      }
+    `}
+
+  ${({ $variant, theme }) =>
+    $variant === 'text' &&
+    css`
+      background-color: transparent;
+      border-color: transparent;
+      color: ${theme.colors.primary200};
+      padding: ${({ theme }) =>
+        `${theme.gutters.size2} ${theme.gutters.size3}`};
+
+      &:focus,
+      &:hover {
+        background-color: ${`${theme.colors.primary100}33`};
+      }
+    `}
+
+  ${({ $block }) =>
+    $block &&
+    css`
+      width: 100%;
+    `}
 
   &:disabled {
-    opacity: .65;
+    opacity: 0.65;
     cursor: default;
     pointer-events: none;
   }
-`
+`;
 
 type SolidButtonProps = {
   variant: SolidVariant;
   leftIconName?: IconName;
   rightIconName?: IconName;
-}
+};
 type NonSolidButtonProps = {
   variant: NonSolidVariant;
-}
+};
 type ButtonProps = {
   className?: string;
   disabled?: boolean;
@@ -152,7 +183,7 @@ type ButtonProps = {
   mtXxl?: Size;
   onClick?: () => void;
   children?: ReactNode;
-} & (SolidButtonProps | NonSolidButtonProps)
+} & (SolidButtonProps | NonSolidButtonProps);
 
 export const Button: FC<ButtonProps> = (props) => {
   const [leftIcon, setLeftIcon] = useState<ReactNode | null>(null);
@@ -160,7 +191,11 @@ export const Button: FC<ButtonProps> = (props) => {
   const { colors } = useTheme();
 
   useEffect(() => {
-    if (props.variant === 'primary' || props.variant === 'secondary' || props.variant === 'error') {
+    if (
+      props.variant === 'primary' ||
+      props.variant === 'secondary' ||
+      props.variant === 'error'
+    ) {
       if (props.leftIconName) {
         setLeftIcon(
           <Icon
@@ -170,7 +205,7 @@ export const Button: FC<ButtonProps> = (props) => {
             color={colors.white}
             mr={2}
             pointer
-          />
+          />,
         );
       }
       if (props.rightIconName) {
@@ -182,7 +217,7 @@ export const Button: FC<ButtonProps> = (props) => {
             color={colors.white}
             ml={2}
             pointer
-          />
+          />,
         );
       }
     }

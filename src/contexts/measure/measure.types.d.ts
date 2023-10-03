@@ -1,5 +1,5 @@
-export type CurrencyType = "colon" | "dollar";
+export type CurrencyType = 'colon' | 'dollar';
 
-export type LengthUnitType = "meters" | "miles";
+export type LengthUnitType = 'meters' | 'miles';
 
-export type WeightUnitType = "grams" | "pounds";
+export type WeightUnitType = 'grams' | 'pounds';

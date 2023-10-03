@@ -18,15 +18,16 @@ type CheckboxProps = {
   checked: boolean;
   label: string;
   onChange: () => void;
-}
+};
 
-export const Checkbox: FC<CheckboxProps> = ({
-  checked,
-  label,
-  onChange,
-}) => (
+export const Checkbox: FC<CheckboxProps> = ({ checked, label, onChange }) => (
   <StyledCheckbox>
-    <StyledInput id={label} type="checkbox" checked={checked} onChange={onChange} />
+    <StyledInput
+      id={label}
+      type="checkbox"
+      checked={checked}
+      onChange={onChange}
+    />
     <StyledLabel htmlFor={label}>{label}</StyledLabel>
   </StyledCheckbox>
 );

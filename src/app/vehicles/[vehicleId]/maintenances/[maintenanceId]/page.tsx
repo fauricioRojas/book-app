@@ -1,10 +1,10 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { notFound } from "next/navigation";
-import { FC } from "react";
+import { notFound } from 'next/navigation';
+import { FC } from 'react';
 
-import { SELECT, TABLES, TMaintenance } from "@/supabase";
-import { Maintenance } from "./maintenance";
+import { SELECT, TABLES, TMaintenance } from '@/supabase';
+import { Maintenance } from './maintenance';
 
 const abortController = new AbortController();
 
@@ -12,9 +12,11 @@ type MaintenancePageProps = {
   params: {
     maintenanceId: string;
   };
-}
+};
 
-const MaintenancePage: FC<MaintenancePageProps> = async ({ params: { maintenanceId } }) => {
+const MaintenancePage: FC<MaintenancePageProps> = async ({
+  params: { maintenanceId },
+}) => {
   const supabaseClient = createServerComponentClient({ cookies });
   const { data: maintenance } = await supabaseClient
     .from(TABLES.MAINTENANCES)

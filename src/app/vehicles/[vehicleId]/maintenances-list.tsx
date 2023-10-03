@@ -7,7 +7,7 @@ import { NoMaintenances } from './no-maintenances';
 
 type MaintenancesListProps = {
   maintenances: TMaintenance[];
-}
+};
 
 export const MaintenancesList: FC<MaintenancesListProps> = ({
   maintenances,
@@ -17,13 +17,7 @@ export const MaintenancesList: FC<MaintenancesListProps> = ({
   }
 
   return (
-    <GridWrap
-      cols={12}
-      sm={6}
-      lg={4}
-      xl={3}
-      gap={4}
-    >
+    <GridWrap cols={12} sm={6} lg={4} xl={3} gap={4}>
       {maintenances.map((maintenance) => (
         <MaintenancesListItem key={maintenance.id} {...maintenance} />
       ))}

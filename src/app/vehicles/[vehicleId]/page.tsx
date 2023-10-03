@@ -1,10 +1,10 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { notFound } from "next/navigation";
-import { FC } from "react";
+import { notFound } from 'next/navigation';
+import { FC } from 'react';
 
-import { SELECT, TABLES, TVehicle } from "@/supabase";
-import { Vehicle } from "./vehicle";
+import { SELECT, TABLES, TVehicle } from '@/supabase';
+import { Vehicle } from './vehicle';
 
 const abortController = new AbortController();
 
@@ -12,7 +12,7 @@ type VehiclePageProps = {
   params: {
     vehicleId: string;
   };
-}
+};
 
 const VehiclePage: FC<VehiclePageProps> = async ({ params: { vehicleId } }) => {
   const supabase = createServerComponentClient({ cookies });

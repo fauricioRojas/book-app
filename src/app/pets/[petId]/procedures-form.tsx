@@ -1,21 +1,16 @@
 'use client';
 
-import { FC, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FC, useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-import { FormButtons } from "@/components";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
-import { useFormRules } from "@/hooks";
-import {
-  GridWrap,
-  Input,
-  Photo,
-  Textarea,
-} from "@/shared/components";
-import { TypeSelectorOption } from "@/shared/types";
-import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { TABLES } from "@/supabase";
-import { ProceduresSelector } from "./procedures-selector";
+import { FormButtons } from '@/components';
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from '@/contexts';
+import { useFormRules } from '@/hooks';
+import { GridWrap, Input, Photo, Textarea } from '@/shared/components';
+import { TypeSelectorOption } from '@/shared/types';
+import { handleOnlyAllowNumbers } from '@/shared/utils';
+import { TABLES } from '@/supabase';
+import { ProceduresSelector } from './procedures-selector';
 
 type ProceduresForm = {
   cost: string;
@@ -25,14 +20,14 @@ type ProceduresForm = {
   date: Date | string;
   description?: string;
   photo?: string;
-}
+};
 
 type ProceduresFormProps = {
   defaultValues?: ProceduresForm;
   procedureId?: number;
   petId: number;
   noteId?: number;
-}
+};
 
 export const ProceduresForm: FC<ProceduresFormProps> = ({
   defaultValues,
@@ -48,16 +43,18 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
     formState: { errors, isSubmitting },
   } = useForm<ProceduresForm>({
     defaultValues: {
-      cost: "",
-      weight: "",
-      nextDate: "",
-      type: "",
-      date: "",
-      description: "",
+      cost: '',
+      weight: '',
+      nextDate: '',
+      type: '',
+      date: '',
+      description: '',
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(
+    isUpdateMode ? 'form' : 'selector',
+  );
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
@@ -74,30 +71,38 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
       setValue('description', defaultValues.description);
       setValue('photo', defaultValues.photo);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
   const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
-    setMode('form')
+    setMode('form');
   };
 
   const handleShowProceduresSelector = () => setMode('selector');
 
   const insertProcedure = async (procedureData: ProceduresForm) => {
-    const { data: noteDate, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
-      type: procedureData.type,
-      date: new Date(procedureData.date),
-      description: procedureData.description,
-      photo: procedureData.photo,
-    }).select('id').single();
-    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).insert({
-      petId,
-      noteId: noteDate?.id,
-      cost: procedureData.cost,
-      weight: procedureData.weight || null,
-      nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,
-    });
+    const { data: noteDate, error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .insert({
+        type: procedureData.type,
+        date: new Date(procedureData.date),
+        description: procedureData.description,
+        photo: procedureData.photo,
+      })
+      .select('id')
+      .single();
+    const { error: procedureError } = await supabaseClient
+      .from(TABLES.PROCEDURES)
+      .insert({
+        petId,
+        noteId: noteDate?.id,
+        cost: procedureData.cost,
+        weight: procedureData.weight || null,
+        nextDate: procedureData.nextDate
+          ? new Date(procedureData.nextDate)
+          : null,
+      });
 
     if (noteError || procedureError) {
       showSnackbar({
@@ -113,17 +118,25 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
   };
 
   const updateProcedure = async (procedureData: ProceduresForm) => {
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
-      type: procedureData.type,
-      date: new Date(procedureData.date),
-      description: procedureData.description,
-      photo: procedureData.photo,
-    }).match({ id: noteId });
-    const { error: procedureError } = await supabaseClient.from(TABLES.PROCEDURES).update({
-      cost: procedureData.cost,
-      weight: procedureData.weight || null,
-      nextDate: procedureData.nextDate ? new Date(procedureData.nextDate) : null,
-    }).match({ id: procedureId });
+    const { error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .update({
+        type: procedureData.type,
+        date: new Date(procedureData.date),
+        description: procedureData.description,
+        photo: procedureData.photo,
+      })
+      .match({ id: noteId });
+    const { error: procedureError } = await supabaseClient
+      .from(TABLES.PROCEDURES)
+      .update({
+        cost: procedureData.cost,
+        weight: procedureData.weight || null,
+        nextDate: procedureData.nextDate
+          ? new Date(procedureData.nextDate)
+          : null,
+      })
+      .match({ id: procedureId });
 
     if (noteError || procedureError) {
       showSnackbar({
@@ -148,7 +161,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
   };
 
   if (mode === 'selector') {
-    return <ProceduresSelector onSelect={handleSetType} />
+    return <ProceduresSelector onSelect={handleSetType} />;
   }
 
   return (
@@ -158,9 +171,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
           control={control}
           name="cost"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.cost}
@@ -175,9 +186,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
         <Controller
           control={control}
           name="weight"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.weight}
@@ -193,9 +202,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
           control={control}
           name="date"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               type="date"
               value={value}
@@ -209,9 +216,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
         <Controller
           control={control}
           name="nextDate"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               type="date"
               value={value}
@@ -225,9 +230,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
         <Controller
           control={control}
           name="description"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Textarea
               value={value}
               label={translation.description}
@@ -240,9 +243,7 @@ export const ProceduresForm: FC<ProceduresFormProps> = ({
         <Controller
           control={control}
           name="photo"
-          render={({
-            field: { onChange, value },
-          }) => (
+          render={({ field: { onChange, value } }) => (
             <Photo photo={value} onChangePhoto={onChange} />
           )}
         />

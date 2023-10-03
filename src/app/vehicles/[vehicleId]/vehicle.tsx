@@ -1,35 +1,42 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
-import { useTheme } from "styled-components";
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
+import { useTheme } from 'styled-components';
 
-import { Actions } from "@/components";
-import { useDrawer, useLanguage, useModal, useSnackbar, useSupabase } from "@/contexts";
-import { useDidUpdate } from "@/hooks";
-import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
-import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
-import { formatDate } from "@/shared/utils";
-import { ACTIONS, SCHEMAS, SELECT, TABLES, TMaintenance, TVehicle } from "@/supabase";
-import { VehiclesForm } from "../vehicles-form";
-import { MaintenancesForm } from "./maintenances-form";
-import { MaintenancesList } from "./maintenances-list";
+import { Actions } from '@/components';
+import {
+  useDrawer,
+  useLanguage,
+  useModal,
+  useSnackbar,
+  useSupabase,
+} from '@/contexts';
+import { useDidUpdate } from '@/hooks';
+import { FlexWrap, Icon, PhotoPreview, Typography } from '@/shared/components';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
+import { formatDate } from '@/shared/utils';
+import {
+  ACTIONS,
+  SCHEMAS,
+  SELECT,
+  TABLES,
+  TMaintenance,
+  TVehicle,
+} from '@/supabase';
+import { VehiclesForm } from '../vehicles-form';
+import { MaintenancesForm } from './maintenances-form';
+import { MaintenancesList } from './maintenances-list';
 
 const abortController = new AbortController();
 
 type VehicleProps = {
   serverVehicle: TVehicle;
-}
+};
 
 export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
-  const [{
-    id,
-    brand,
-    model,
-    plateNumber,
-    notes,
-    maintenances,
-  }, setVehicle] = useState<TVehicle>(serverVehicle);
+  const [{ id, brand, model, plateNumber, notes, maintenances }, setVehicle] =
+    useState<TVehicle>(serverVehicle);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -43,35 +50,47 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
   useEffect(() => {
     const vehicleChannel = supabaseClient
       .channel('vehicle')
-      .on('postgres_changes', {
-        event: ACTIONS.UPDATE,
-        schema: SCHEMAS.PUBLIC,
-        table: TABLES.VEHICLES,
-      }, async (payload: any) => {
-        const updatedVehicle = await findVehicleById(payload.new.id);
-        if (updatedVehicle) {
-          setVehicle((prevVehicle: TVehicle) => ({
-            ...prevVehicle,
-            ...updatedVehicle,
-          }));
-        }
-      })
+      .on(
+        'postgres_changes',
+        {
+          event: ACTIONS.UPDATE,
+          schema: SCHEMAS.PUBLIC,
+          table: TABLES.VEHICLES,
+        },
+        async (payload: any) => {
+          const updatedVehicle = await findVehicleById(payload.new.id);
+          if (updatedVehicle) {
+            setVehicle((prevVehicle: TVehicle) => ({
+              ...prevVehicle,
+              ...updatedVehicle,
+            }));
+          }
+        },
+      )
       .subscribe();
     const maintenanceChannel = supabaseClient
       .channel('maintenance')
-      .on('postgres_changes', {
-        event: ACTIONS.INSERT,
-        schema: SCHEMAS.PUBLIC,
-        table: TABLES.MAINTENANCES,
-      }, async (payload: any) => {
-        const newlyAddedMaintenance = await findMaintenanceById(payload.new.id);
-        if (newlyAddedMaintenance) {
-          setVehicle((prevVehicle: TVehicle) => ({
-            ...prevVehicle,
-            maintenances: prevVehicle.maintenances.concat(newlyAddedMaintenance),
-          }));
-        }
-      })
+      .on(
+        'postgres_changes',
+        {
+          event: ACTIONS.INSERT,
+          schema: SCHEMAS.PUBLIC,
+          table: TABLES.MAINTENANCES,
+        },
+        async (payload: any) => {
+          const newlyAddedMaintenance = await findMaintenanceById(
+            payload.new.id,
+          );
+          if (newlyAddedMaintenance) {
+            setVehicle((prevVehicle: TVehicle) => ({
+              ...prevVehicle,
+              maintenances: prevVehicle.maintenances.concat(
+                newlyAddedMaintenance,
+              ),
+            }));
+          }
+        },
+      )
       .subscribe();
 
     return () => {
@@ -90,7 +109,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
       .single();
     return data;
   };
-  
+
   const findMaintenanceById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.MAINTENANCES)
@@ -134,7 +153,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
     const [
       { error: maintenancesError },
       { error: noteError },
-      { error: vehicleError }
+      { error: vehicleError },
     ] = await Promise.all([
       supabaseClient.from(TABLES.MAINTENANCES).delete().eq('vehicleId', id),
       supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
@@ -153,7 +172,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
         message: translation.deletedVehicle,
       });
     }
-  }
+  };
 
   const handleShowDeleteConfirmation = () => {
     showConfirmationModal({
@@ -175,10 +194,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
             onClick={router.back}
           />
           <FlexWrap align="center" gap={3}>
-            <Typography
-              variant="h3"
-              fontWeight="bold"
-            >
+            <Typography variant="h3" fontWeight="bold">
               {brand}
             </Typography>
             <Icon
@@ -197,31 +213,51 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
       </FlexWrap>
       <FlexWrap direction="column" gap={4} mb={8}>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.plateNumber}</Typography>
-          <Typography variant="label" color="secondary-text">{plateNumber}</Typography>
+          <Typography variant="h5" fontWeight="bold">
+            {translation.plateNumber}
+          </Typography>
+          <Typography variant="label" color="secondary-text">
+            {plateNumber}
+          </Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.model}</Typography>
-          <Typography variant="label" color="secondary-text">{model}</Typography>
+          <Typography variant="h5" fontWeight="bold">
+            {translation.model}
+          </Typography>
+          <Typography variant="label" color="secondary-text">
+            {model}
+          </Typography>
         </FlexWrap>
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.dateOfPurchase}</Typography>
-          <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
+          <Typography variant="h5" fontWeight="bold">
+            {translation.dateOfPurchase}
+          </Typography>
+          <Typography variant="label" color="secondary-text">
+            {formatDate(notes.date)}
+          </Typography>
         </FlexWrap>
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.description}
+            </Typography>
+            <Typography variant="p" color="secondary-text">
+              {notes.description}
+            </Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.photo}
+            </Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}
         <FlexWrap direction="column" gap={2}>
-          <Typography variant="h5" fontWeight="bold">{translation.maintenances}</Typography>
+          <Typography variant="h5" fontWeight="bold">
+            {translation.maintenances}
+          </Typography>
           <MaintenancesList maintenances={maintenances} />
         </FlexWrap>
       </FlexWrap>

@@ -29,10 +29,7 @@ export const RemindersListItem: FC<RemindersListItemProps> = ({
             width={22}
             color={colors.primaryText}
           />
-          <Typography
-            variant="h5"
-            fontWeight="bold"
-          >
+          <Typography variant="h5" fontWeight="bold">
             {name}
           </Typography>
         </FlexWrap>

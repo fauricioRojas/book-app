@@ -6,7 +6,7 @@ import { Box } from '.';
 
 const StyledInputFile = styled.input`
   display: none;
-`
+`;
 const StyledInputFileLabel = styled.label`
   background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
@@ -21,23 +21,25 @@ const StyledInputFileLabel = styled.label`
   min-width: 64px;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
   text-align: center;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     border-color: ${({ theme }) => theme.colors.secondary};
   }
-`
+`;
 
 type BrowseFilesProps = {
   accept?: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
-export const BrowseFiles: FC<BrowseFilesProps> = ({
-  accept,
-  onChange,
-}) => {
+export const BrowseFiles: FC<BrowseFilesProps> = ({ accept, onChange }) => {
   const { translation } = useLanguage();
 
   return (
@@ -48,9 +50,7 @@ export const BrowseFiles: FC<BrowseFilesProps> = ({
         accept={accept}
         onChange={onChange}
       />
-      <StyledInputFileLabel
-        htmlFor="browse-files"
-      >
+      <StyledInputFileLabel htmlFor="browse-files">
         {translation.browse}
       </StyledInputFileLabel>
     </Box>

@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   ${({ theme }) => theme.breakpoints.xxl} {
     max-width: 82.5rem;
   }
-`
+`;
 
 export const Container: FC<PropsWithChildren> = ({ children }) => (
   <StyledContainer>{children}</StyledContainer>

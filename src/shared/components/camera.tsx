@@ -6,7 +6,7 @@ import { Box } from '.';
 
 const StyledInputFile = styled.input`
   display: none;
-`
+`;
 const StyledInputFileLabel = styled.label`
   background-color: transparent;
   border: ${({ theme }) => `1px solid ${theme.colors.border}`};
@@ -21,17 +21,22 @@ const StyledInputFileLabel = styled.label`
   min-width: 64px;
   padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size3}`};
   text-align: center;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: ${({ theme }) => theme.colors.secondary};
     border-color: ${({ theme }) => theme.colors.secondary};
   }
-`
+`;
 
 type CameraProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 export const Camera: FC<CameraProps> = ({ onChange }) => {
   const { translation } = useLanguage();
@@ -45,9 +50,7 @@ export const Camera: FC<CameraProps> = ({ onChange }) => {
         capture
         onChange={onChange}
       />
-      <StyledInputFileLabel
-        htmlFor="camera"
-      >
+      <StyledInputFileLabel htmlFor="camera">
         {translation.openCamera}
       </StyledInputFileLabel>
     </Box>

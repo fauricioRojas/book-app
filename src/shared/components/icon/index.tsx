@@ -99,11 +99,11 @@ type StyledIconProps = {
   $isClickable?: boolean;
   $ml?: Size;
   $mr?: Size;
-}
+};
 
 export const StyledSvg = styled.svg<StyledIconProps>`
-  cursor: ${({ $isClickable }) => $isClickable ? 'pointer' : 'default'};
-  transition: color .2s ease;
+  cursor: ${({ $isClickable }) => ($isClickable ? 'pointer' : 'default')};
+  transition: color 0.2s ease;
   ${marginLeft};
   ${marginRight};
 `;
@@ -217,13 +217,9 @@ export type CommonIconProps = {
 
 type IconProps = CommonIconProps & {
   name: IconName;
-}
+};
 
-export const Icon: FC<IconProps> = ({
-  name,
-  color = '#000',
-  ...props
-}) => {
+export const Icon: FC<IconProps> = ({ name, color = '#000', ...props }) => {
   const Element = useMemo(() => ICON_MAPPER[name], [name]);
 
   return <Element color={color} {...props} />;

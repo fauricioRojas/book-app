@@ -1,9 +1,9 @@
 'use client';
 
-import { Actions } from "@/components";
-import { useDrawer, useLanguage } from "@/contexts";
-import { FlexWrap, Typography } from "@/shared/components";
-import { VehiclesForm } from "./vehicles-form";
+import { Actions } from '@/components';
+import { useDrawer, useLanguage } from '@/contexts';
+import { FlexWrap, Typography } from '@/shared/components';
+import { VehiclesForm } from './vehicles-form';
 
 export const VehiclesHeader = () => {
   const { translation } = useLanguage();
@@ -18,10 +18,7 @@ export const VehiclesHeader = () => {
 
   return (
     <FlexWrap align="center" justify="space-between" mb={8}>
-      <Typography
-        variant="h1"
-        fontWeight="bold"
-      >
+      <Typography variant="h1" fontWeight="bold">
         {translation.vehicles}
       </Typography>
       <Actions onAdd={handleShowVehicleForm} />

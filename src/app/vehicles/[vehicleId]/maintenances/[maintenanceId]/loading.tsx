@@ -1,15 +1,10 @@
-import { FlexWrap, Skeleton } from "@/shared/components";
+import { FlexWrap, Skeleton } from '@/shared/components';
 
 const Loading = () => (
   <>
-    <Skeleton
-      height={6}
-      heightMd={9}
-      width="full"
-      mb={8}
-    />
+    <Skeleton height={6} heightMd={9} width="full" mb={8} />
     <FlexWrap gap={4} mb={4}>
-      <FlexWrap direction="column" basis="50%" gap={2}>    
+      <FlexWrap direction="column" basis="50%" gap={2}>
         <Skeleton height="21.5px" heightSm={6} width="full" widthMd="full" />
         <Skeleton height={5} width="full" widthMd="full" />
       </FlexWrap>

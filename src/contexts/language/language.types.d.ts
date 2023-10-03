@@ -1,4 +1,4 @@
-export type LanguageType = "es" | "en";
+export type LanguageType = 'es' | 'en';
 
 type Language = { [K in LanguageType]: string };
 

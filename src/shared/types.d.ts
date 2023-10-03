@@ -1,4 +1,4 @@
-import type { ZIndices } from "@/theme/types";
+import type { ZIndices } from '@/theme/types';
 
 export type GridColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
@@ -25,9 +25,9 @@ export type Size =
   | 19
   | 20;
 
-export type Position = "absolute" | "fixed" | "relative" | "sticky";
+export type Position = 'absolute' | 'fixed' | 'relative' | 'sticky';
 
-export type MessageType = "success" | "error" | "warning";
+export type MessageType = 'success' | 'error' | 'warning';
 
 export type ZIndex = keyof ZIndices;
 

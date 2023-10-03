@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-const PREFIX = "book-app-";
+const PREFIX = 'book-app-';
 
-const isClient = typeof window !== "undefined";
+const isClient = typeof window !== 'undefined';
 
 export function useLocalStorage<S>(
   key: string,
-  defaultValue?: S
+  defaultValue?: S,
 ): [S, Dispatch<SetStateAction<S>>] {
   const prefixedKey = PREFIX + key;
   const [value, setValue] = useState(() => {

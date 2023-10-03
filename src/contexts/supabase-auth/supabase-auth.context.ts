@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import type { User } from "@supabase/supabase-js";
-import { createContext, useContext } from "react";
+import type { User } from '@supabase/supabase-js';
+import { createContext, useContext } from 'react';
 
 type TSubabaseAuthContext = {
   user?: User;
@@ -25,7 +25,7 @@ export const useSupabaseAuth = () => {
   const context = useContext(SupabaseAuthContext);
 
   if (!context) {
-    throw new Error("useSupabaseAuth must be used inside SupabaseAuthProvider");
+    throw new Error('useSupabaseAuth must be used inside SupabaseAuthProvider');
   }
 
   return context;

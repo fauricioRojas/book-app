@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { Controller, useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ import {
   GridWrap,
   Input,
   Link,
-  Typography
+  Typography,
 } from '@/shared/components';
 import { ROUTES } from '@/shared/constants';
 
@@ -30,7 +30,7 @@ const StyledFlexWrap = styled(FlexWrap)`
 type SignUpForm = {
   email: string;
   password: string;
-}
+};
 
 export const SignUpForm = () => {
   const {
@@ -39,8 +39,8 @@ export const SignUpForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<SignUpForm>({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
   const { EMAIL, MIN_LENGTH, REQUIRED } = useFormRules({ minLength: 6 });
@@ -53,19 +53,19 @@ export const SignUpForm = () => {
       const error = await signUp(email, password);
       if (error) {
         showSnackbar({
-          type: "error",
+          type: 'error',
           message: error,
         });
       } else {
         showSnackbar({
-          type: "success",
+          type: 'success',
           message: translation.signInInstructions,
           durationInSeconds: 8,
         });
       }
     } catch (error) {
       showSnackbar({
-        type: "error",
+        type: 'error',
         message: translation.signUpError,
       });
     }
@@ -73,10 +73,7 @@ export const SignUpForm = () => {
 
   return (
     <AbsoluteWrap gap={12}>
-      <Typography
-        variant="h1"
-        fontWeight="bold"
-      >
+      <Typography variant="h1" fontWeight="bold">
         {translation.signUp}
       </Typography>
       <StyledFlexWrap direction="column" align="center" gap={6}>
@@ -85,10 +82,8 @@ export const SignUpForm = () => {
             <Controller
               control={control}
               name="email"
-              rules={{ ...REQUIRED, ...EMAIL}}
-              render={({
-                field: { onChange, onBlur, value },
-              }) => (
+              rules={{ ...REQUIRED, ...EMAIL }}
+              render={({ field: { onChange, onBlur, value } }) => (
                 <Input
                   value={value}
                   inputMode="email"
@@ -103,9 +98,7 @@ export const SignUpForm = () => {
               control={control}
               name="password"
               rules={{ ...REQUIRED, ...MIN_LENGTH }}
-              render={({
-                field: { onChange, onBlur, value },
-              }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <Input
                   value={value}
                   type="password"

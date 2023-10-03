@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
-import { useLanguage } from "@/contexts";
+import { useLanguage } from '@/contexts';
 
 type UseFormRulesProps = {
   minLength?: number;
@@ -41,18 +41,18 @@ export const useFormRules = ({
       MIN_LENGTH: {
         minLength: {
           value: minLength,
-          message: translation.minLength.replace("{min}", minLength.toString()),
+          message: translation.minLength.replace('{min}', minLength.toString()),
         },
       },
       MAX_LENGTH: {
         maxLength: {
           value: maxLength,
-          message: translation.maxLength.replace("{max}", maxLength.toString()),
+          message: translation.maxLength.replace('{max}', maxLength.toString()),
         },
       },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [language]
+    [language],
   );
 
   return formRules;

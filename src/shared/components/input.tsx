@@ -21,19 +21,22 @@ type InputProps = {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEventHandler<HTMLInputElement>) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
-}
+};
 
-type StyledInputProps = Pick<InputProps, 'onChange' | 'onBlur' | 'onKeyDown'> & {
+type StyledInputProps = Pick<
+  InputProps,
+  'onChange' | 'onBlur' | 'onKeyDown'
+> & {
   $isInvalid: boolean;
   $hasLeftIcon: boolean;
   $hasRightIcon: boolean;
-}
+};
 
 const StyledInput = styled.input<StyledInputProps>`
   background-color: transparent;
-  border: 1px solid ${({ $isInvalid, theme }) => $isInvalid
-    ? theme.colors.error
-    : theme.colors.border};
+  border: 1px solid
+    ${({ $isInvalid, theme }) =>
+      $isInvalid ? theme.colors.error : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1rem;
@@ -41,11 +44,17 @@ const StyledInput = styled.input<StyledInputProps>`
   letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: inherit;
   padding: ${({ $hasLeftIcon, $hasRightIcon, theme }) =>
-    `${theme.gutters.size2} ${$hasRightIcon ? theme.gutters.size10 : theme.gutters.size3} ${theme.gutters.size2} ${$hasLeftIcon ? theme.gutters.size10 : theme.gutters.size3}`};
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    `${theme.gutters.size2} ${
+      $hasRightIcon ? theme.gutters.size10 : theme.gutters.size3
+    } ${theme.gutters.size2} ${
+      $hasLeftIcon ? theme.gutters.size10 : theme.gutters.size3
+    }`};
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   width: 100%;
 
-  &[type="date"] {
+  &[type='date'] {
     &::-webkit-date-and-time-value {
       text-align: left;
     }
@@ -66,15 +75,25 @@ const StyledInput = styled.input<StyledInputProps>`
   }
 
   &:hover {
-    border-color: ${({ $isInvalid, theme }) => $isInvalid ? undefined : theme.colors.primary100};
+    border-color: ${({ $isInvalid, theme }) =>
+      $isInvalid ? undefined : theme.colors.primary100};
   }
 
   &:focus {
-    border-color: ${({ $isInvalid, theme }) => $isInvalid ? theme.colors.error : theme.colors.primary};
+    border-color: ${({ $isInvalid, theme }) =>
+      $isInvalid ? theme.colors.error : theme.colors.primary};
     border-width: 2px;
     outline: 0;
     padding: ${({ $hasLeftIcon, $hasRightIcon, theme }) =>
-      `${theme.gutters.size2} ${$hasRightIcon ? `calc(${theme.gutters.size10} - 1px)` : `calc(${theme.gutters.size3} - 1px)`} ${theme.gutters.size2} ${$hasLeftIcon ? `calc(${theme.gutters.size10} - 1px)` : `calc(${theme.gutters.size3} - 1px)`}`};
+      `${theme.gutters.size2} ${
+        $hasRightIcon
+          ? `calc(${theme.gutters.size10} - 1px)`
+          : `calc(${theme.gutters.size3} - 1px)`
+      } ${theme.gutters.size2} ${
+        $hasLeftIcon
+          ? `calc(${theme.gutters.size10} - 1px)`
+          : `calc(${theme.gutters.size3} - 1px)`
+      }`};
   }
 `;
 const StyledLeftIcon = styled(Icon)`
@@ -102,7 +121,16 @@ export const Input: FC<InputProps> = ({
 
   return (
     <FlexWrap direction="column" gap={2}>
-      {label && <Typography variant="label">{label} {optional && <Typography variant="span" color="secondary-text">({translation.optional})</Typography>}</Typography>}
+      {label && (
+        <Typography variant="label">
+          {label}{' '}
+          {optional && (
+            <Typography variant="span" color="secondary-text">
+              ({translation.optional})
+            </Typography>
+          )}
+        </Typography>
+      )}
       <Box position="relative">
         {leftIconName && (
           <StyledLeftIcon
@@ -128,7 +156,11 @@ export const Input: FC<InputProps> = ({
           />
         )}
       </Box>
-      {errorMessage && <Typography variant="span" color="error">{errorMessage}</Typography>}
+      {errorMessage && (
+        <Typography variant="span" color="error">
+          {errorMessage}
+        </Typography>
+      )}
     </FlexWrap>
   );
 };

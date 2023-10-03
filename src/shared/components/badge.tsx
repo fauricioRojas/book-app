@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
 type Color = 'primary' | 'secondary' | 'error';
@@ -8,7 +8,7 @@ type StyledBadgeProps = {
   $color: Color;
   $animate: boolean;
   $variant: Variant;
-}
+};
 
 const getPulseAnimation = keyframes<StyledBadgeProps>`
   0% {
@@ -25,41 +25,43 @@ const StyledBadge = styled.span<StyledBadgeProps>`
   display: grid;
   place-items: center;
 
-  ${({ $animate, $color, theme }) => $animate && css`
-    animation: ${getPulseAnimation} 2s infinite;
-    box-shadow: ${`0px 0px 1px 1px ${theme.colors[$color]}40`};
-  `};
+  ${({ $animate, $color, theme }) =>
+    $animate &&
+    css`
+      animation: ${getPulseAnimation} 2s infinite;
+      box-shadow: ${`0px 0px 1px 1px ${theme.colors[$color]}40`};
+    `};
 
-  ${({ $variant }) => $variant === 'circular' && css`
-    border-radius: 50%;
-    height: 2rem;
-    width: 2rem;
-  `};
+  ${({ $variant }) =>
+    $variant === 'circular' &&
+    css`
+      border-radius: 50%;
+      height: 2rem;
+      width: 2rem;
+    `};
 
-  ${({ $variant }) => $variant === 'pill' && css`
-    border-radius: 3rem;
-    height: 3rem;
-    padding-inline: 1rem;
-  `};
+  ${({ $variant }) =>
+    $variant === 'pill' &&
+    css`
+      border-radius: 3rem;
+      height: 3rem;
+      padding-inline: 1rem;
+    `};
 `;
 
 type BadgeProps = PropsWithChildren & {
   color: Color;
   variant: Variant;
   animate?: boolean;
-}
-  
+};
+
 export const Badge: FC<BadgeProps> = ({
   color,
   variant,
   animate = false,
   children,
 }) => (
-  <StyledBadge
-    $color={color}
-    $animate={animate}
-    $variant={variant}
-  >
+  <StyledBadge $color={color} $animate={animate} $variant={variant}>
     {children}
   </StyledBadge>
 );

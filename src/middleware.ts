@@ -1,7 +1,7 @@
-import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
-import { NextResponse, type NextRequest } from "next/server";
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
+import { NextResponse, type NextRequest } from 'next/server';
 
-import { ROUTES } from "@/shared/constants";
+import { ROUTES } from '@/shared/constants';
 
 // import type { Database } from '@/lib/database.types'
 
@@ -40,5 +40,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js).*)'],
 };

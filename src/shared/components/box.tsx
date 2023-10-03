@@ -18,21 +18,29 @@ type StyledBoxProps = {
   $mbXl?: Size;
   $mbXxl?: Size;
   $position?: Position;
-}
+};
 
-const StyledBox = styled.div<StyledBoxProps>`  
-  ${({ $position }) => $position === 'absolute' && css`
-    position: absolute;
-  `};
-  ${({ $position }) => $position === 'fixed' && css`
-    position: fixed;
-  `};
-  ${({ $position }) => $position === 'relative' && css`
-    position: relative;
-  `};
-  ${({ $position }) => $position === 'sticky' && css`
-    position: sticky;
-  `};
+const StyledBox = styled.div<StyledBoxProps>`
+  ${({ $position }) =>
+    $position === 'absolute' &&
+    css`
+      position: absolute;
+    `};
+  ${({ $position }) =>
+    $position === 'fixed' &&
+    css`
+      position: fixed;
+    `};
+  ${({ $position }) =>
+    $position === 'relative' &&
+    css`
+      position: relative;
+    `};
+  ${({ $position }) =>
+    $position === 'sticky' &&
+    css`
+      position: sticky;
+    `};
 
   ${display};
   ${marginBottom};
@@ -52,7 +60,7 @@ type BoxProps = PropsWithChildren & {
   mbXl?: Size;
   mbXxl?: Size;
   position?: Position;
-}
+};
 
 export const Box: FC<BoxProps> = ({
   display,

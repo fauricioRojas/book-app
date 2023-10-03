@@ -13,7 +13,7 @@ const abortController = new AbortController();
 
 type PetsListProps = {
   serverPets: TPet[];
-}
+};
 
 export const PetsList: FC<PetsListProps> = ({ serverPets }) => {
   const [pets, setPets] = useState<TPet[]>(serverPets);
@@ -24,16 +24,20 @@ export const PetsList: FC<PetsListProps> = ({ serverPets }) => {
   useEffect(() => {
     const channel = supabaseClient
       .channel('pets')
-      .on('postgres_changes', {
-        event: ACTIONS.INSERT,
-        schema: SCHEMAS.PUBLIC,
-        table: TABLES.PETS,
-      }, async (payload: any) => {
-        const newlyAddedPet = await findPetById(payload.new.id);
-        if (newlyAddedPet) {
-          setPets((prevPets: TPet[]) => prevPets.concat(newlyAddedPet));
-        }
-      })
+      .on(
+        'postgres_changes',
+        {
+          event: ACTIONS.INSERT,
+          schema: SCHEMAS.PUBLIC,
+          table: TABLES.PETS,
+        },
+        async (payload: any) => {
+          const newlyAddedPet = await findPetById(payload.new.id);
+          if (newlyAddedPet) {
+            setPets((prevPets: TPet[]) => prevPets.concat(newlyAddedPet));
+          }
+        },
+      )
       .subscribe();
 
     return () => {
@@ -42,7 +46,7 @@ export const PetsList: FC<PetsListProps> = ({ serverPets }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const findPetById = async(id: number) => {
+  const findPetById = async (id: number) => {
     const { data } = await supabaseClient
       .from(TABLES.PETS)
       .select<string, TPet>(SELECT.MINIMAL_PET)
@@ -57,13 +61,7 @@ export const PetsList: FC<PetsListProps> = ({ serverPets }) => {
   }
 
   return (
-    <GridWrap
-      cols={12}
-      sm={6}
-      lg={4}
-      xl={3}
-      gap={4}
-    >
+    <GridWrap cols={12} sm={6} lg={4} xl={3} gap={4}>
       {pets.map((pet) => (
         <PetsListItem key={pet.id} {...pet} />
       ))}

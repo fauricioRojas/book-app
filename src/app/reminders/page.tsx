@@ -1,10 +1,10 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-import { getNextDateIn } from "@/shared/utils";
+import { getNextDateIn } from '@/shared/utils';
 import { SELECT, TABLES, TProcedure } from '@/supabase';
-import { RemindersHeader } from "./reminders-header";
-import { RemindersList } from "./reminders-list";
+import { RemindersHeader } from './reminders-header';
+import { RemindersList } from './reminders-list';
 
 export const revalidate = 0;
 
@@ -20,7 +20,7 @@ const RemindersPage = async () => {
     .gt('nextDate', today)
     .lt('nextDate', todayIn15)
     .abortSignal(abortController.signal);
-  
+
   return (
     <main>
       <RemindersHeader />

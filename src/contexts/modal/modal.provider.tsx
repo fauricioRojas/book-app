@@ -9,31 +9,33 @@ import type { ConfirmationModalArgs } from './modal.types';
 type ModalState = {
   isConfirmationModalOpen: boolean;
   confirmationModalConfig: ConfirmationModalArgs;
-}
+};
 
 export const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [
-    { isConfirmationModalOpen, confirmationModalConfig },
-    setState,
-  ] = useState<ModalState>({
-    isConfirmationModalOpen: false,
-    confirmationModalConfig: {} as ConfirmationModalArgs,
-  });
-
-  const hideConfirmationModal = () => {
-    setState((prevState): ModalState => ({
-      ...prevState,
+  const [{ isConfirmationModalOpen, confirmationModalConfig }, setState] =
+    useState<ModalState>({
       isConfirmationModalOpen: false,
       confirmationModalConfig: {} as ConfirmationModalArgs,
-    }));
+    });
+
+  const hideConfirmationModal = () => {
+    setState(
+      (prevState): ModalState => ({
+        ...prevState,
+        isConfirmationModalOpen: false,
+        confirmationModalConfig: {} as ConfirmationModalArgs,
+      }),
+    );
   };
 
   const showConfirmationModal = (args: ConfirmationModalArgs) => {
-    setState((prevState): ModalState => ({
-      ...prevState,
-      isConfirmationModalOpen: true,
-      confirmationModalConfig: args,
-    }));
+    setState(
+      (prevState): ModalState => ({
+        ...prevState,
+        isConfirmationModalOpen: true,
+        confirmationModalConfig: args,
+      }),
+    );
   };
 
   return (

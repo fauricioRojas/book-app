@@ -11,9 +11,7 @@ import { formatDate } from '@/shared/utils';
 
 type TransfersListItemProps = TTransfer;
 
-export const TransfersListItem: FC<TransfersListItemProps> = ({
-  id,
-}) => {
+export const TransfersListItem: FC<TransfersListItemProps> = ({ id }) => {
   const { translation } = useLanguage();
   const { colors } = useTheme();
 

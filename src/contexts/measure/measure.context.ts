@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { ChangeEvent, createContext, useContext } from "react";
+import { ChangeEvent, createContext, useContext } from 'react';
 
-import type { SelectOption } from "@/shared/types";
+import type { SelectOption } from '@/shared/types';
 import type {
   CurrencyType,
   LengthUnitType,
   WeightUnitType,
-} from "./measure.types";
+} from './measure.types';
 
 type MeasureContext = {
   currency: CurrencyType;
@@ -22,13 +22,13 @@ type MeasureContext = {
 };
 
 export const MeasureContext = createContext<MeasureContext>({
-  currency: "colon",
+  currency: 'colon',
   currencyOptions: [],
   changeCurrency: () => undefined,
-  lengthUnit: "meters",
+  lengthUnit: 'meters',
   lengthUnitOptions: [],
   changeLengthUnit: () => undefined,
-  weightUnit: "grams",
+  weightUnit: 'grams',
   weightUnitOptions: [],
   changeWeightUnit: () => undefined,
 });
@@ -37,7 +37,7 @@ export const useMeasure = () => {
   const context = useContext(MeasureContext);
 
   if (!context) {
-    throw new Error("useMeasure must be used inside MeasureProvider");
+    throw new Error('useMeasure must be used inside MeasureProvider');
   }
 
   return context;

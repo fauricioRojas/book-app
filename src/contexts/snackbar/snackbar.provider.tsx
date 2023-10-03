@@ -10,7 +10,7 @@ const DEFAULT_DURATION = 5;
 
 type SnackbarState = SnackbarArgs & {
   isVisible: boolean;
-}
+};
 
 const DEFAULT_STATE: SnackbarState = {
   isVisible: false,
@@ -20,18 +20,21 @@ const DEFAULT_STATE: SnackbarState = {
 };
 
 export const SnackbarProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [{ isVisible, durationInSeconds, type, message }, setState] = useState<SnackbarState>(DEFAULT_STATE);
+  const [{ isVisible, durationInSeconds, type, message }, setState] =
+    useState<SnackbarState>(DEFAULT_STATE);
 
   const hideSnackbar = () => setState(DEFAULT_STATE);
 
   const showSnackbar = (args: SnackbarArgs) => {
     const duration = args.durationInSeconds || DEFAULT_DURATION;
 
-    setState((prevState): SnackbarState => ({
-      ...prevState,
-      ...args,
-      isVisible: true,
-    }));
+    setState(
+      (prevState): SnackbarState => ({
+        ...prevState,
+        ...args,
+        isVisible: true,
+      }),
+    );
     setTimeout(hideSnackbar, duration * 1000);
   };
 

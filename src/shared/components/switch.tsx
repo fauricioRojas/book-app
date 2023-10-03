@@ -6,7 +6,7 @@ import type { Size } from '@/shared/types';
 
 type StyledSwitchProps = {
   $mb?: Size;
-}
+};
 
 const StyledSwitch = styled.label<StyledSwitchProps>`
   cursor: pointer;
@@ -14,7 +14,7 @@ const StyledSwitch = styled.label<StyledSwitchProps>`
   height: 26px;
   width: 46px;
   ${marginBottom};
-  
+
   input {
     display: none;
 
@@ -40,7 +40,7 @@ const StyledSwitch = styled.label<StyledSwitchProps>`
       background-color: ${({ theme }) => theme.colors.white};
       border-radius: 11px;
       box-shadow: ${({ theme }) => theme.shadows.sm};
-      content: "";
+      content: '';
       height: 20px;
       left: 0;
       position: absolute;
@@ -55,7 +55,7 @@ type SwitchProps = {
   checked: boolean;
   mb?: Size;
   onChange: () => void;
-}
+};
 
 export const Switch: FC<SwitchProps> = ({ checked, mb, onChange }) => (
   <StyledSwitch $mb={mb}>

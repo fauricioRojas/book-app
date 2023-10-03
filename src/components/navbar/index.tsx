@@ -18,7 +18,9 @@ const StyledNavbar = styled.nav`
   justify-content: space-between;
   padding: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size4}`};
   position: fixed;
-  transition: background-color .3s, border .3s;
+  transition:
+    background-color 0.3s,
+    border 0.3s;
   width: 100%;
   -webkit-backdrop-filter: ${({ theme }) => theme.backdropBlur};
 
@@ -37,34 +39,37 @@ export const Navbar = () => {
   const { user } = useSupabaseAuth();
   const { language, translation } = useLanguage();
 
-  const navbarItems = useMemo((): TNavbarItem[] => [
-    {
-      iconName: 'bell',
-      text: translation.reminders,
-      href: ROUTES.REMINDERS,
-    },
-    {
-      iconName: 'tire',
-      text: translation.vehicles,
-      href: ROUTES.VEHICLES,
-    },
-    {
-      iconName: 'footprint',
-      text: translation.pets,
-      href: ROUTES.PETS,
-    },
-    {
-      iconName: 'transfer',
-      text: translation.transfers,
-      href: ROUTES.TRANSFERS,
-    },
-    {
-      iconName: 'profile',
-      text: translation.profile,
-      href: ROUTES.PROFILE,
-    },
+  const navbarItems = useMemo(
+    (): TNavbarItem[] => [
+      {
+        iconName: 'bell',
+        text: translation.reminders,
+        href: ROUTES.REMINDERS,
+      },
+      {
+        iconName: 'tire',
+        text: translation.vehicles,
+        href: ROUTES.VEHICLES,
+      },
+      {
+        iconName: 'footprint',
+        text: translation.pets,
+        href: ROUTES.PETS,
+      },
+      {
+        iconName: 'transfer',
+        text: translation.transfers,
+        href: ROUTES.TRANSFERS,
+      },
+      {
+        iconName: 'profile',
+        text: translation.profile,
+        href: ROUTES.PROFILE,
+      },
+    ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  ], [language]);
+    [language],
+  );
 
   if (!user) {
     return null;
@@ -72,7 +77,7 @@ export const Navbar = () => {
 
   return (
     <StyledNavbar>
-      {navbarItems.map(navbarItem => (
+      {navbarItems.map((navbarItem) => (
         <NavbarItem key={navbarItem.text} {...navbarItem} />
       ))}
     </StyledNavbar>

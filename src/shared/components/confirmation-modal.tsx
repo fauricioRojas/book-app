@@ -8,7 +8,7 @@ import { Backdrop, Button, FlexWrap, Typography } from '.';
 
 type StyledConfirmationModalProps = {
   $isHiding: boolean;
-}
+};
 
 const StyledConfirmationModal = styled.div`
   height: 100%;
@@ -21,9 +21,10 @@ const StyledConfirmationModal = styled.div`
 `;
 const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   align-items: center;
-  animation: ${slideInUp} .3s;
+  animation: ${slideInUp} 0.3s;
   background-color: ${({ theme }) => theme.colors.neutral};
-  border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
+  border-radius: ${({ theme }) =>
+    `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   bottom: 0;
   display: flex;
@@ -34,12 +35,14 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
   position: absolute;
   width: 100%;
 
-  ${({ $isHiding }) => $isHiding && css`
-    animation: ${slideOutDown} .3s;
-  `};
+  ${({ $isHiding }) =>
+    $isHiding &&
+    css`
+      animation: ${slideOutDown} 0.3s;
+    `};
 
   ${({ theme }) => theme.breakpoints.md} {
-    animation: ${fadeIn} .3s;
+    animation: ${fadeIn} 0.3s;
     border: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: ${({ theme }) => theme.borderRadius};
     bottom: auto;
@@ -51,9 +54,11 @@ const StyledConfirmationModalContent = styled.div<StyledConfirmationModalProps>`
     transform: translate(-50%, -50%);
     width: auto;
 
-    ${({ $isHiding }) => $isHiding && css`
-      animation: ${fadeOut} .3s;
-    `};
+    ${({ $isHiding }) =>
+      $isHiding &&
+      css`
+        animation: ${fadeOut} 0.3s;
+      `};
   }
 `;
 
@@ -63,7 +68,7 @@ type ConfirmationModalProps = {
   buttonText: string;
   onClick: () => Promise<void>;
   onClose: () => void;
-}
+};
 
 export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   title,
@@ -95,30 +100,16 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
 
   return isOpen ? (
     <StyledConfirmationModal>
-      <Backdrop
-        isHiding={isHiding}
-        onClick={handleClose}
-      />
+      <Backdrop isHiding={isHiding} onClick={handleClose} />
       <StyledConfirmationModalContent $isHiding={isHiding}>
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          textAlign="center"
-        >
+        <Typography variant="h6" fontWeight="bold" textAlign="center">
           {title}
         </Typography>
         <FlexWrap gap={4}>
-          <Button
-            variant="outline-secondary"
-            onClick={handleClose}
-          >
+          <Button variant="outline-secondary" onClick={handleClose}>
             {translation.cancel}
           </Button>
-          <Button
-            variant="error"
-            disabled={disabled}
-            onClick={handleClick}
-          >
+          <Button variant="error" disabled={disabled} onClick={handleClick}>
             {buttonText}
           </Button>
         </FlexWrap>

@@ -1,20 +1,15 @@
 'use client';
 
-import { FC, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FC, useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-import { FormButtons } from "@/components";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
-import { useFormRules } from "@/hooks";
-import {
-  GridWrap,
-  Input,
-  Photo,
-  Textarea,
-} from "@/shared/components";
-import { TypeSelectorOption } from "@/shared/types";
-import { TABLES } from "@/supabase";
-import { PetsSelector } from "./pets-selector";
+import { FormButtons } from '@/components';
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from '@/contexts';
+import { useFormRules } from '@/hooks';
+import { GridWrap, Input, Photo, Textarea } from '@/shared/components';
+import { TypeSelectorOption } from '@/shared/types';
+import { TABLES } from '@/supabase';
+import { PetsSelector } from './pets-selector';
 
 type PetsForm = {
   name: string;
@@ -23,13 +18,13 @@ type PetsForm = {
   dateOfBirth: Date | string;
   description?: string;
   photo?: string;
-}
+};
 
 type PetsFormProps = {
   defaultValues?: PetsForm;
   petId?: number;
   noteId?: number;
-}
+};
 
 export const PetsForm: FC<PetsFormProps> = ({
   defaultValues,
@@ -44,15 +39,17 @@ export const PetsForm: FC<PetsFormProps> = ({
     formState: { errors, isSubmitting },
   } = useForm<PetsForm>({
     defaultValues: {
-      name: "",
-      breed: "",
-      type: "",
-      dateOfBirth: "",
-      description: "",
+      name: '',
+      breed: '',
+      type: '',
+      dateOfBirth: '',
+      description: '',
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(
+    isUpdateMode ? 'form' : 'selector',
+  );
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
@@ -68,23 +65,27 @@ export const PetsForm: FC<PetsFormProps> = ({
       setValue('description', defaultValues.description);
       setValue('photo', defaultValues.photo);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
   const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
-    setMode('form')
+    setMode('form');
   };
 
   const handleShowPetsSelector = () => setMode('selector');
 
   const insertPet = async (petData: PetsForm) => {
-    const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
-      type: petData.type,
-      date: new Date(petData.dateOfBirth),
-      description: petData.description || null,
-      photo: petData.photo || null,
-    }).select('id').single();
+    const { data: noteData, error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .insert({
+        type: petData.type,
+        date: new Date(petData.dateOfBirth),
+        description: petData.description || null,
+        photo: petData.photo || null,
+      })
+      .select('id')
+      .single();
     const { error: petError } = await supabaseClient.from(TABLES.PETS).insert({
       noteId: noteData?.id,
       name: petData.name,
@@ -105,16 +106,22 @@ export const PetsForm: FC<PetsFormProps> = ({
   };
 
   const updatePet = async (petData: PetsForm) => {
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
-      type: petData.type,
-      date: new Date(petData.dateOfBirth),
-      description: petData.description || null,
-      photo: petData.photo || null,
-    }).match({ id: noteId });
-    const { error: petError } = await supabaseClient.from(TABLES.PETS).update({
-      name: petData.name,
-      breed: petData.breed,
-    }).match({ id: petId });
+    const { error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .update({
+        type: petData.type,
+        date: new Date(petData.dateOfBirth),
+        description: petData.description || null,
+        photo: petData.photo || null,
+      })
+      .match({ id: noteId });
+    const { error: petError } = await supabaseClient
+      .from(TABLES.PETS)
+      .update({
+        name: petData.name,
+        breed: petData.breed,
+      })
+      .match({ id: petId });
 
     if (noteError || petError) {
       showSnackbar({
@@ -139,7 +146,7 @@ export const PetsForm: FC<PetsFormProps> = ({
   };
 
   if (mode === 'selector') {
-    return <PetsSelector onSelect={handleSetType} />
+    return <PetsSelector onSelect={handleSetType} />;
   }
 
   return (
@@ -149,9 +156,7 @@ export const PetsForm: FC<PetsFormProps> = ({
           control={control}
           name="name"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.name}
@@ -165,9 +170,7 @@ export const PetsForm: FC<PetsFormProps> = ({
           control={control}
           name="breed"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.breed}
@@ -181,9 +184,7 @@ export const PetsForm: FC<PetsFormProps> = ({
           control={control}
           name="dateOfBirth"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               type="date"
               value={value}
@@ -197,9 +198,7 @@ export const PetsForm: FC<PetsFormProps> = ({
         <Controller
           control={control}
           name="description"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Textarea
               value={value}
               label={translation.description}
@@ -212,9 +211,7 @@ export const PetsForm: FC<PetsFormProps> = ({
         <Controller
           control={control}
           name="photo"
-          render={({
-            field: { onChange, value },
-          }) => (
+          render={({ field: { onChange, value } }) => (
             <Photo photo={value} onChangePhoto={onChange} />
           )}
         />

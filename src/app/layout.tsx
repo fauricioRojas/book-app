@@ -1,7 +1,7 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
-import { cookies } from "next/headers";
+import { cookies } from 'next/headers';
 import { FC, PropsWithChildren } from 'react';
 
 import { Navbar } from '@/components';
@@ -23,11 +23,11 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: 'BookApp',
   description: 'Manage your vehicles and pets using Book App',
-}
+};
 
 const lato = Lato({
-  weight: ["400", "700"],
-  subsets: ["latin"],
+  weight: ['400', '700'],
+  subsets: ['latin'],
 });
 
 const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
@@ -49,9 +49,7 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
                       <SnackbarProvider>
                         <DrawerProvider>
                           <GlobalStyles />
-                          <Container>
-                            {children}
-                          </Container>
+                          <Container>{children}</Container>
                           <Navbar />
                         </DrawerProvider>
                       </SnackbarProvider>

@@ -1,10 +1,10 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { notFound } from "next/navigation";
-import { FC } from "react";
+import { notFound } from 'next/navigation';
+import { FC } from 'react';
 
-import { SELECT, TABLES, TProcedure } from "@/supabase";
-import { Procedure } from "./procedure";
+import { SELECT, TABLES, TProcedure } from '@/supabase';
+import { Procedure } from './procedure';
 
 const abortController = new AbortController();
 
@@ -12,9 +12,11 @@ type ProcedurePageProps = {
   params: {
     procedureId: string;
   };
-}
+};
 
-const ProcedurePage: FC<ProcedurePageProps> = async ({ params: { procedureId } }) => {
+const ProcedurePage: FC<ProcedurePageProps> = async ({
+  params: { procedureId },
+}) => {
   const supabase = createServerComponentClient({ cookies });
   const { data: procedure } = await supabase
     .from(TABLES.PROCEDURES)

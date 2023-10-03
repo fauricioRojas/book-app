@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ChangeEvent, createContext, useContext } from "react";
+import { ChangeEvent, createContext, useContext } from 'react';
 
-import { SelectOption } from "@/shared/types";
-import type { LanguageTranslation, LanguageType } from "./language.types";
+import { SelectOption } from '@/shared/types';
+import type { LanguageTranslation, LanguageType } from './language.types';
 
 type TLanguageContext = {
   language: LanguageType;
@@ -13,7 +13,7 @@ type TLanguageContext = {
 };
 
 export const LanguageContext = createContext<TLanguageContext>({
-  language: "es",
+  language: 'es',
   languageOptions: [],
   translation: {} as LanguageTranslation,
   changeLanguage: () => undefined,
@@ -23,7 +23,7 @@ export const useLanguage = () => {
   const context = useContext(LanguageContext);
 
   if (!context) {
-    throw new Error("useLanguage must be used inside LanguageProvider");
+    throw new Error('useLanguage must be used inside LanguageProvider');
   }
 
   return context;

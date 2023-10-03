@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { FC, PropsWithChildren, useState } from "react";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { FC, PropsWithChildren, useState } from 'react';
 
-import { SupabaseContext } from ".";
+import { SupabaseContext } from '.';
 
 export const SupabaseProvider: FC<PropsWithChildren> = ({ children }) => {
   const [supabaseClient] = useState(() => createClientComponentClient());
@@ -12,5 +12,5 @@ export const SupabaseProvider: FC<PropsWithChildren> = ({ children }) => {
     <SupabaseContext.Provider value={{ supabaseClient }}>
       {children}
     </SupabaseContext.Provider>
-  )
+  );
 };

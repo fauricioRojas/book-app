@@ -20,31 +20,37 @@ type StyledGridWrapProps = {
   $gapLg?: Size;
   $gapXl?: Size;
   $gapXxl?: Size;
-}
+};
 
 const StyledGridWrap = styled.div<StyledGridWrapProps>`
   display: grid;
-  grid-template-columns: ${({ $cols }) => $cols ? `repeat(${COLS_PER_ROW / $cols}, minmax(0, 1fr))` : undefined};
+  grid-template-columns: ${({ $cols }) =>
+    $cols ? `repeat(${COLS_PER_ROW / $cols}, minmax(0, 1fr))` : undefined};
   width: 100%;
   ${gap};
   ${marginBottom};
 
   ${({ theme }) => theme.breakpoints.sm} {
-    grid-template-columns: ${({ $sm }) => $sm ? `repeat(${COLS_PER_ROW / $sm}, minmax(0, 1fr))` : undefined};
+    grid-template-columns: ${({ $sm }) =>
+      $sm ? `repeat(${COLS_PER_ROW / $sm}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.md} {
-    grid-template-columns: ${({ $md }) => $md ? `repeat(${COLS_PER_ROW / $md}, minmax(0, 1fr))` : undefined};
+    grid-template-columns: ${({ $md }) =>
+      $md ? `repeat(${COLS_PER_ROW / $md}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.lg} {
-    grid-template-columns: ${({ $lg }) => $lg ? `repeat(${COLS_PER_ROW / $lg}, minmax(0, 1fr))` : undefined};
+    grid-template-columns: ${({ $lg }) =>
+      $lg ? `repeat(${COLS_PER_ROW / $lg}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.xl} {
-    grid-template-columns: ${({ $xl }) => $xl ? `repeat(${COLS_PER_ROW / $xl}, minmax(0, 1fr))` : undefined};
+    grid-template-columns: ${({ $xl }) =>
+      $xl ? `repeat(${COLS_PER_ROW / $xl}, minmax(0, 1fr))` : undefined};
   }
   ${({ theme }) => theme.breakpoints.xxl} {
-    grid-template-columns: ${({ $xxl }) => $xxl ? `repeat(${COLS_PER_ROW / $xxl}, minmax(0, 1fr))` : undefined};
+    grid-template-columns: ${({ $xxl }) =>
+      $xxl ? `repeat(${COLS_PER_ROW / $xxl}, minmax(0, 1fr))` : undefined};
   }
-`
+`;
 
 type GridWrapProps = PropsWithChildren & {
   cols?: GridColumn;

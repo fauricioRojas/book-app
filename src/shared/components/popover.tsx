@@ -8,7 +8,7 @@ import { FlexWrap, Icon, Typography } from '.';
 
 type StyledArrowProps = {
   $hasTitle: boolean;
-}
+};
 
 const StyledPopover = styled.div`
   background-color: ${({ theme }) => theme.colors.card};
@@ -26,11 +26,13 @@ const StyledArrow = styled.div<StyledArrowProps>`
   position: absolute;
   top: calc(-0.5rem - 1px);
 
-  &::before, &::after {
+  &::before,
+  &::after {
     border-color: transparent;
     border-style: solid;
-    border-width: ${({ theme }) => `${theme.gutters.size0} ${theme.gutters.size2} ${theme.gutters.size2}`};
-    content: "";
+    border-width: ${({ theme }) =>
+      `${theme.gutters.size0} ${theme.gutters.size2} ${theme.gutters.size2}`};
+    content: '';
     position: absolute;
   }
 
@@ -40,7 +42,8 @@ const StyledArrow = styled.div<StyledArrowProps>`
   }
 
   &::after {
-    border-bottom-color: ${({ $hasTitle, theme }) => $hasTitle ? theme.colors.secondary : theme.colors.card};
+    border-bottom-color: ${({ $hasTitle, theme }) =>
+      $hasTitle ? theme.colors.secondary : theme.colors.card};
     top: 1px;
   }
 `;
@@ -62,14 +65,14 @@ const StyledBody = styled.div`
 type PopoverProps = {
   title?: string;
   description: string;
-}
+};
 
 export const Popover: FC<PopoverProps> = ({ title, description }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const theme = useTheme()
+  const theme = useTheme();
   const popoverRef = useRef(null);
-  
-  const handleOnClick = () => setIsVisible(prevIsVisible => !prevIsVisible);
+
+  const handleOnClick = () => setIsVisible((prevIsVisible) => !prevIsVisible);
 
   useOutsideClick({ ref: popoverRef, callback: handleOnClick });
 
@@ -87,7 +90,9 @@ export const Popover: FC<PopoverProps> = ({ title, description }) => {
           <StyledArrow $hasTitle={!!title} />
           {title && (
             <StyledHeader>
-              <Typography variant="h6" fontWeight="bold">{title}</Typography>
+              <Typography variant="h6" fontWeight="bold">
+                {title}
+              </Typography>
             </StyledHeader>
           )}
           <StyledBody>

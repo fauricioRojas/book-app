@@ -28,6 +28,7 @@ export const CancelIcon: FC<CommonIconProps> = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"
-      d="M13 1 1 13M1 1l12 12" />
+      d="M13 1 1 13M1 1l12 12"
+    />
   </StyledSvg>
 );

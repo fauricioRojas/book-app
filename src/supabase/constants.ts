@@ -1,17 +1,17 @@
 export enum TABLES {
-  MAINTENANCES = "maintenances",
-  NOTES = "notes",
-  PETS = "pets",
-  PROCEDURES = "procedures",
-  VEHICLES = "vehicles",
+  MAINTENANCES = 'maintenances',
+  NOTES = 'notes',
+  PETS = 'pets',
+  PROCEDURES = 'procedures',
+  VEHICLES = 'vehicles',
 }
 
 export enum SCHEMAS {
-  PUBLIC = "public",
+  PUBLIC = 'public',
 }
 
 export enum ACTIONS {
-  DELETE = "DELETE",
-  INSERT = "INSERT",
-  UPDATE = "UPDATE",
+  DELETE = 'DELETE',
+  INSERT = 'INSERT',
+  UPDATE = 'UPDATE',
 }

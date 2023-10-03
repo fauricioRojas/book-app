@@ -1,11 +1,11 @@
-import type { CurrencyType, LengthUnitType, WeightUnitType } from "@/contexts";
+import type { CurrencyType, LengthUnitType, WeightUnitType } from '@/contexts';
 
 const fillWithZeros = (value: string | number) =>
-  value.toString().padStart(2, "0");
+  value.toString().padStart(2, '0');
 
 export const handleOnlyAllowNumbers = (event: KeyboardEvent) => {
   const numbericKey = +event.key;
-  const isBackspacing = event.key === "Backspace";
+  const isBackspacing = event.key === 'Backspace';
   const isNonNumeric = !numbericKey && numbericKey !== 0;
 
   if (isNonNumeric && !isBackspacing) {
@@ -14,10 +14,10 @@ export const handleOnlyAllowNumbers = (event: KeyboardEvent) => {
 };
 
 export const detectAndroidDevice = () =>
-  navigator.userAgent.toLowerCase().includes("android");
+  navigator.userAgent.toLowerCase().includes('android');
 
 export const detectMobileDevice = () => {
-  if (typeof window === "undefined") return false;
+  if (typeof window === 'undefined') return false;
 
   const regex =
     /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -25,7 +25,7 @@ export const detectMobileDevice = () => {
 };
 
 export const formatDate = (date: Date): string => {
-  const newDate = typeof date === "string" ? new Date(date) : date;
+  const newDate = typeof date === 'string' ? new Date(date) : date;
   const day = fillWithZeros(newDate.getDate());
   const month = fillWithZeros(newDate.getMonth() + 1);
   const year = newDate.getFullYear();
@@ -34,43 +34,43 @@ export const formatDate = (date: Date): string => {
 
 export const formatMoney = (
   value: number,
-  currency: CurrencyType = "colon"
+  currency: CurrencyType = 'colon',
 ) => {
   const currencyMapper: Record<CurrencyType, string> = {
-    colon: "COL",
-    dollar: "USD",
+    colon: 'COL',
+    dollar: 'USD',
   };
-  const formatter = new Intl.NumberFormat("en-US", {
-    style: "currency",
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
     currency: currencyMapper[currency],
     minimumFractionDigits: 0,
   });
 
-  return formatter.format(value).replace("COL", "₡").replace(/\s/g, "");
+  return formatter.format(value).replace('COL', '₡').replace(/\s/g, '');
 };
 
 export const formatLength = (
   value: number,
-  lengthUnit: LengthUnitType = "meters"
+  lengthUnit: LengthUnitType = 'meters',
 ) => {
   const lengthMapper: Record<LengthUnitType, string> = {
-    meters: "km",
-    miles: "mi",
+    meters: 'km',
+    miles: 'mi',
   };
 
-  return `${value.toLocaleString("en-US")} ${lengthMapper[lengthUnit]}`;
+  return `${value.toLocaleString('en-US')} ${lengthMapper[lengthUnit]}`;
 };
 
 export const formatWeight = (
   value: number,
-  weightUnit: WeightUnitType = "grams"
+  weightUnit: WeightUnitType = 'grams',
 ) => {
   const weightMapper: Record<WeightUnitType, string> = {
-    grams: "kg",
-    pounds: "lb.",
+    grams: 'kg',
+    pounds: 'lb.',
   };
 
-  return `${value.toLocaleString("en-US")} ${weightMapper[weightUnit]}`;
+  return `${value.toLocaleString('en-US')} ${weightMapper[weightUnit]}`;
 };
 
 export const getDeviceDarkMode = () => {
@@ -80,7 +80,7 @@ export const getDeviceDarkMode = () => {
   //     window.matchMedia("(prefers-color-scheme: dark)").matches;
   return (
     window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
+    window.matchMedia('(prefers-color-scheme: dark)').matches
   );
 };
 

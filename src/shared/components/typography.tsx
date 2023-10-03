@@ -24,38 +24,50 @@ type StyledTypographyProps = {
   $displayLg?: boolean;
   $displayXl?: boolean;
   $displayXxl?: boolean;
-}
+};
 
 const merriweather = Merriweather({
-  weight: ["400", "700"],
-  subsets: ["latin"],
+  weight: ['400', '700'],
+  subsets: ['latin'],
 });
 
 const sharedCss = css<StyledTypographyProps>`
-  ${({ $color, theme }) => $color === 'primary' && css`
-    color: ${theme.colors.primary};
-  `}
-  ${({ $color, theme }) => $color === 'primary-text' && css`
-    color: ${theme.colors.primaryText};
-  `}
-  ${({ $color, theme }) => $color === 'secondary-text' && css`
-    color: ${theme.colors.secondaryText};
-  `}
-  ${({ $color, theme }) => $color === 'error' && css`
-    color: ${theme.colors.error};
-  `}
-  font-style: ${({ $italic }) => $italic ? 'italic' : undefined};
-  ${({ $fontWeight, theme }) => $fontWeight === 'bold' && css`
-    font-weight: ${theme.fontWeights.bold};
-  `}
-  ${({ $fontWeight, theme }) => $fontWeight === 'regular' && css`
-    font-weight: ${theme.fontWeights.regular};
-  `}
+  ${({ $color, theme }) =>
+    $color === 'primary' &&
+    css`
+      color: ${theme.colors.primary};
+    `}
+  ${({ $color, theme }) =>
+    $color === 'primary-text' &&
+    css`
+      color: ${theme.colors.primaryText};
+    `}
+  ${({ $color, theme }) =>
+    $color === 'secondary-text' &&
+    css`
+      color: ${theme.colors.secondaryText};
+    `}
+  ${({ $color, theme }) =>
+    $color === 'error' &&
+    css`
+      color: ${theme.colors.error};
+    `}
+  font-style: ${({ $italic }) => ($italic ? 'italic' : undefined)};
+  ${({ $fontWeight, theme }) =>
+    $fontWeight === 'bold' &&
+    css`
+      font-weight: ${theme.fontWeights.bold};
+    `}
+  ${({ $fontWeight, theme }) =>
+    $fontWeight === 'regular' &&
+    css`
+      font-weight: ${theme.fontWeights.regular};
+    `}
   letter-spacing: ${({ theme }) => theme.letterSpacing};
   line-height: 1.2;
   margin-top: 0;
   text-align: ${({ $textAlign }) => $textAlign};
-  transition: color .2s ease;
+  transition: color 0.2s ease;
   ${display};
   ${marginBottom};
 `;
@@ -133,7 +145,6 @@ const SPAN = styled.span<StyledTypographyProps>`
   ${sharedCss};
 `;
 
-
 const TYPOGRAPHY_MAPPER: Record<Variant, any> = {
   h1: H1,
   h2: H2,
@@ -160,7 +171,7 @@ type TypographyProps = PropsWithChildren & {
   displayLg?: boolean;
   displayXl?: boolean;
   displayXxl?: boolean;
-}
+};
 
 export const Typography: FC<TypographyProps> = ({
   variant,

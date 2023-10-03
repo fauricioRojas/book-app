@@ -7,10 +7,7 @@ export const NoMaintenances = () => {
   const { translation } = useLanguage();
 
   return (
-    <Typography
-      variant="label"
-      color="secondary-text"
-    >
+    <Typography variant="label" color="secondary-text">
       {translation.noMaintenances}
     </Typography>
   );

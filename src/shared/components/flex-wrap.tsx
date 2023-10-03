@@ -6,7 +6,13 @@ import type { Position, Size } from '@/shared/types';
 
 type Align = 'baseline' | 'center' | 'flex-start' | 'flex-end' | 'stretch';
 type Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
-type Justify = 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+type Justify =
+  | 'flex-start'
+  | 'flex-end'
+  | 'center'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 type Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 type StyledFlexWrapProps = {
@@ -55,7 +61,7 @@ type StyledFlexWrapProps = {
   $wrapLg?: Wrap;
   $wrapXl?: Wrap;
   $wrapXxl?: Wrap;
-}
+};
 
 const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
   align-items: ${({ $align }) => $align};
@@ -64,23 +70,31 @@ const StyledFlexWrap = styled.div<StyledFlexWrapProps>`
   flex-direction: ${({ $direction }) => $direction};
   flex-grow: ${({ $grow }) => $grow};
   flex-wrap: ${({ $wrap }) => $wrap};
-  height: ${({ $fullHeight }) => $fullHeight ? '100%' : undefined};
+  height: ${({ $fullHeight }) => ($fullHeight ? '100%' : undefined)};
   justify-content: ${({ $justify }) => $justify};
   ${gap};
   ${marginBottom};
 
-  ${({ $position }) => $position === 'absolute' && css`
-    position: absolute;
-  `};
-  ${({ $position }) => $position === 'fixed' && css`
-    position: fixed;
-  `};
-  ${({ $position }) => $position === 'relative' && css`
-    position: relative;
-  `};
-  ${({ $position }) => $position === 'sticky' && css`
-    position: sticky;
-  `};
+  ${({ $position }) =>
+    $position === 'absolute' &&
+    css`
+      position: absolute;
+    `};
+  ${({ $position }) =>
+    $position === 'fixed' &&
+    css`
+      position: fixed;
+    `};
+  ${({ $position }) =>
+    $position === 'relative' &&
+    css`
+      position: relative;
+    `};
+  ${({ $position }) =>
+    $position === 'sticky' &&
+    css`
+      position: sticky;
+    `};
 
   ${({ theme }) => theme.breakpoints.sm} {
     align-items: ${({ $alignSm }) => $alignSm};
@@ -171,7 +185,7 @@ type FlexWrapProps = PropsWithChildren & {
   wrapLg?: Wrap;
   wrapXl?: Wrap;
   wrapXxl?: Wrap;
-}
+};
 
 export const FlexWrap: FC<FlexWrapProps> = ({
   align,

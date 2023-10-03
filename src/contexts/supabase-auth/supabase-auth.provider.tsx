@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
-import { FC, PropsWithChildren, useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
-import { ROUTES } from "@/shared/constants";
-import { AuthSession, User } from "@supabase/supabase-js";
-import { SupabaseAuthContext } from ".";
-import { useSupabase } from "..";
+import { ROUTES } from '@/shared/constants';
+import { AuthSession, User } from '@supabase/supabase-js';
+import { SupabaseAuthContext } from '.';
+import { useSupabase } from '..';
 
 type SupabaseAuthProviderProps = PropsWithChildren & {
   serverSession?: AuthSession | null;
-}
+};
 
 export const SupabaseAuthProvider: FC<SupabaseAuthProviderProps> = ({
   serverSession,
@@ -46,7 +46,7 @@ export const SupabaseAuthProvider: FC<SupabaseAuthProviderProps> = ({
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
-  }
+  };
 
   const signInWithEmail = async (email: string, password: string) => {
     const { error } = await supabaseClient.auth.signInWithPassword({
@@ -82,7 +82,6 @@ export const SupabaseAuthProvider: FC<SupabaseAuthProviderProps> = ({
     const {
       data: { subscription },
     } = supabaseClient.auth.onAuthStateChange((event, session) => {
-      
       if (session?.access_token !== serverSession?.access_token) {
         router.refresh();
       } else {
@@ -96,15 +95,17 @@ export const SupabaseAuthProvider: FC<SupabaseAuthProviderProps> = ({
   }, [supabaseClient, router, serverSession?.access_token]);
 
   return (
-    <SupabaseAuthContext.Provider value={{
-      user,
-      signOut,
-      signUp,
-      signInWithGithub,
-      signInWithFacebook,
-      signInWithEmail,
-    }}>
+    <SupabaseAuthContext.Provider
+      value={{
+        user,
+        signOut,
+        signUp,
+        signInWithGithub,
+        signInWithFacebook,
+        signInWithEmail,
+      }}
+    >
       {children}
     </SupabaseAuthContext.Provider>
-  )
+  );
 };

@@ -2,12 +2,17 @@ import { FC, PropsWithChildren, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
 import { useKeyPress } from '@/hooks';
-import { slideInRight, slideInUp, slideOutDown, slideOutRight } from '@/shared/styles';
+import {
+  slideInRight,
+  slideInUp,
+  slideOutDown,
+  slideOutRight,
+} from '@/shared/styles';
 import { Backdrop, Icon, Typography } from '.';
 
 type StyledDrawerProps = {
   $isHiding: boolean;
-}
+};
 
 const StyledDrawer = styled.div`
   height: 100%;
@@ -19,9 +24,10 @@ const StyledDrawer = styled.div`
   z-index: ${({ theme }) => theme.zIndices.drawer};
 `;
 const StyledDrawerContent = styled.div<StyledDrawerProps>`
-  animation: ${slideInUp} .3s;
+  animation: ${slideInUp} 0.3s;
   background-color: ${({ theme }) => theme.colors.neutral};
-  border-radius: ${({ theme }) => `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
+  border-radius: ${({ theme }) =>
+    `${theme.borderRadius} ${theme.borderRadius} ${theme.gutters.size0} ${theme.gutters.size0}`};
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   bottom: 0;
   box-shadow: ${({ theme }) => theme.shadows.sm};
@@ -29,12 +35,14 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
   position: absolute;
   width: 100%;
 
-  ${({ $isHiding }) => $isHiding && css`
-    animation: ${slideOutDown} .3s;
-  `};
+  ${({ $isHiding }) =>
+    $isHiding &&
+    css`
+      animation: ${slideOutDown} 0.3s;
+    `};
 
   ${({ theme }) => theme.breakpoints.md} {
-    animation: ${slideInRight} .3s;
+    animation: ${slideInRight} 0.3s;
     border-left: 1px solid ${({ theme }) => theme.colors.border};
     border-radius: 0;
     border-top: none;
@@ -42,9 +50,11 @@ const StyledDrawerContent = styled.div<StyledDrawerProps>`
     right: 0;
     width: 60%;
 
-    ${({ $isHiding }) => $isHiding && css`
-      animation: ${slideOutRight} .3s;
-    `};
+    ${({ $isHiding }) =>
+      $isHiding &&
+      css`
+        animation: ${slideOutRight} 0.3s;
+      `};
   }
   ${({ theme }) => theme.breakpoints.lg} {
     width: 50%;
@@ -66,7 +76,8 @@ const StyledDrawerBody = styled.div`
   height: calc(100% - 58px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: ${({ theme }) => `${theme.gutters.size2} ${theme.gutters.size4} ${theme.gutters.size4}`};
+  padding: ${({ theme }) =>
+    `${theme.gutters.size2} ${theme.gutters.size4} ${theme.gutters.size4}`};
 
   ${({ theme }) => theme.breakpoints.md} {
     padding: ${({ theme }) => theme.gutters.size4};
@@ -80,7 +91,7 @@ type DrawerProps = PropsWithChildren & {
   title: string;
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
 export const Drawer: FC<DrawerProps> = ({
   title,
@@ -103,10 +114,7 @@ export const Drawer: FC<DrawerProps> = ({
 
   return isOpen ? (
     <StyledDrawer>
-      <Backdrop
-        isHiding={isHiding}
-        onClick={handleClose}
-      />
+      <Backdrop isHiding={isHiding} onClick={handleClose} />
       <StyledDrawerContent $isHiding={isHiding}>
         <StyledDrawerHeader>
           <Typography variant="h4" fontWeight="bold">

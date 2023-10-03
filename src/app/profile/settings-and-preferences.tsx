@@ -1,12 +1,12 @@
 'use client';
 
-import { useLanguage } from "@/contexts";
-import { FlexWrap, Typography } from "@/shared/components";
-import { CurrencySelector } from "./currency-selector";
-import { LanguageSelector } from "./language-selector";
-import { LengthSelector } from "./length-selector";
-import { ThemeSelector } from "./theme-selector";
-import { WeightSelector } from "./weight-selector";
+import { useLanguage } from '@/contexts';
+import { FlexWrap, Typography } from '@/shared/components';
+import { CurrencySelector } from './currency-selector';
+import { LanguageSelector } from './language-selector';
+import { LengthSelector } from './length-selector';
+import { ThemeSelector } from './theme-selector';
+import { WeightSelector } from './weight-selector';
 
 export const SettingsAndPreferences = () => {
   const { translation } = useLanguage();

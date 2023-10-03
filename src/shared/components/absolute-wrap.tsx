@@ -14,14 +14,14 @@ type StyledAbsoluteWrapProps = {
   $gradient: boolean;
   $isNavbarVisible: boolean;
   $zIndex?: ZIndex;
-}
+};
 
 const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   align-items: center;
-  background: ${({ $gradient, theme }) => $gradient
-    ? `linear-gradient(to right, ${theme.colors.secondary}, ${theme.colors.secondary400}, ${theme.colors.secondary500})`
-    : undefined
-  };
+  background: ${({ $gradient, theme }) =>
+    $gradient
+      ? `linear-gradient(to right, ${theme.colors.secondary}, ${theme.colors.secondary400}, ${theme.colors.secondary500})`
+      : undefined};
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -32,13 +32,14 @@ const StyledAbsoluteWrap = styled.div<StyledAbsoluteWrapProps>`
   padding-right: ${({ theme }) => theme.gutters.size4};
   position: absolute;
   right: 0;
-  top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '-50px' : 0};
+  top: ${({ $isNavbarVisible }) => ($isNavbarVisible ? '-50px' : 0)};
   width: 100%;
-  z-index: ${({ $zIndex, theme }) => $zIndex ? theme.zIndices[$zIndex] : undefined};
+  z-index: ${({ $zIndex, theme }) =>
+    $zIndex ? theme.zIndices[$zIndex] : undefined};
   ${gap};
 
   ${({ theme }) => theme.breakpoints.lg} {
-    top: ${({ $isNavbarVisible }) => $isNavbarVisible ? '60px' : 0};
+    top: ${({ $isNavbarVisible }) => ($isNavbarVisible ? '60px' : 0)};
   }
 `;
 
@@ -53,7 +54,7 @@ type AbsoluteWrapProps = PropsWithChildren & {
   gradient?: boolean;
   isNavbarVisible?: boolean;
   zIndex?: ZIndex;
-}
+};
 
 export const AbsoluteWrap: FC<AbsoluteWrapProps> = ({
   className,

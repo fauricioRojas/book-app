@@ -19,35 +19,20 @@ export const NoPets = () => {
   };
 
   return (
-    <AbsoluteWrap
-      gap={4}
-      isNavbarVisible
-      zIndex="hide"
-    >
+    <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
       <Icon
         name="footprint"
         height={50}
         width={50}
         color={colors.secondary400}
       />
-      <Typography
-        variant="h3"
-        color="primary-text"
-        fontWeight="bold"
-      >
+      <Typography variant="h3" color="primary-text" fontWeight="bold">
         {translation.noPets}
       </Typography>
-      <Typography
-        variant="label"
-        color="secondary-text"
-      >
+      <Typography variant="label" color="secondary-text">
         {translation.noPetsMessage}
       </Typography>
-      <Button
-        variant="primary"
-        rightIconName="add"
-        onClick={handleShowPetForm}
-      >
+      <Button variant="primary" rightIconName="add" onClick={handleShowPetForm}>
         {translation.addPet}
       </Button>
     </AbsoluteWrap>

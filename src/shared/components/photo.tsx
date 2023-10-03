@@ -4,18 +4,12 @@ import { ChangeEvent, FC } from 'react';
 
 import { useLanguage } from '@/contexts';
 import { detectMobileDevice } from '@/shared/utils';
-import {
-  BrowseFiles,
-  Camera,
-  FlexWrap,
-  PhotoPreview,
-  Typography,
-} from '.';
+import { BrowseFiles, Camera, FlexWrap, PhotoPreview, Typography } from '.';
 
 type PhotoProps = {
   photo?: string;
   onChangePhoto: (photo?: string) => void;
-}
+};
 
 const isMobileDevice = detectMobileDevice();
 
@@ -34,14 +28,19 @@ export const Photo: FC<PhotoProps> = ({ photo, onChangePhoto }) => {
       reader.readAsDataURL(files[0]);
       reader.onload = () => {
         handleChangePhoto(reader.result as string);
-      }
+      };
       reader.onerror = () => handleChangePhoto();
     }
   };
 
   return (
     <FlexWrap direction="column" gap={2}>
-      <Typography variant="label">{translation.photo} <Typography variant="span" color="secondary-text">({translation.optional})</Typography></Typography>
+      <Typography variant="label">
+        {translation.photo}{' '}
+        <Typography variant="span" color="secondary-text">
+          ({translation.optional})
+        </Typography>
+      </Typography>
       {!photo && (
         <FlexWrap align="center" justify="flex-start" gap={3}>
           <BrowseFiles

@@ -1,9 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useLanguage, useSnackbar, useSupabaseAuth } from "@/contexts";
-import { Box, Card, FlexWrap, IconButton, Typography } from "@/shared/components";
+import { useLanguage, useSnackbar, useSupabaseAuth } from '@/contexts';
+import {
+  Box,
+  Card,
+  FlexWrap,
+  IconButton,
+  Typography,
+} from '@/shared/components';
 
 export const Account = () => {
   const [disabled, setDisabled] = useState(false);
@@ -11,7 +17,7 @@ export const Account = () => {
   const { translation } = useLanguage();
   const { showSnackbar } = useSnackbar();
 
-  const handleSignOut = async () => {    
+  const handleSignOut = async () => {
     try {
       setDisabled(true);
       const error = await signOut();
@@ -50,5 +56,5 @@ export const Account = () => {
         </FlexWrap>
       </Card>
     </Box>
-  )
+  );
 };

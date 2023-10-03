@@ -7,9 +7,7 @@ import { Backdrop, Icon, IconButton, IconButtonVariant, IconName } from '.';
 
 const getTranslateValues = (length: number) => {
   if (length === 1) {
-    return [
-      { x: '-0.65rem', y: '-5rem' },
-    ];
+    return [{ x: '-0.65rem', y: '-5rem' }];
   } else if (length === 2) {
     return [
       { x: '-1.8rem', y: '-4.5rem' },
@@ -25,24 +23,26 @@ const getTranslateValues = (length: number) => {
 
 type StyledFabProps = {
   $isOpen: boolean;
-}
+};
 type StyledFabChildProps = {
   $delay: number;
   $isOpen: boolean;
   $translateX: number | string;
   $translateY: number | string;
-}
+};
 
 const StyledFab = styled.div<StyledFabProps>`
-  ${({ $isOpen }) => $isOpen && css`
-    height: 100%;
-    left: 0;
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: ${({theme }) => theme.zIndices.fab};
-  `}
+  ${({ $isOpen }) =>
+    $isOpen &&
+    css`
+      height: 100%;
+      left: 0;
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: ${({ theme }) => theme.zIndices.fab};
+    `}
 `;
 const StyledFabButton = styled.button<StyledFabProps>`
   background-color: ${({ theme }) => theme.colors.primary};
@@ -54,11 +54,14 @@ const StyledFabButton = styled.button<StyledFabProps>`
   padding: ${({ theme }) => theme.gutters.size2};
   position: fixed;
   right: ${({ theme }) => theme.gutters.size4};
-  transform: ${({ $isOpen }) => $isOpen ? 'rotate(45deg)' : undefined};
-  transition: transform 200ms, background-color .15s ease-in-out;
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(45deg)' : undefined)};
+  transition:
+    transform 200ms,
+    background-color 0.15s ease-in-out;
   z-index: ${({ theme }) => theme.zIndices.fab};
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: ${({ theme }) => theme.colors.primary400};
   }
 
@@ -75,27 +78,32 @@ const StyledFabButton = styled.button<StyledFabProps>`
 // `;
 const StyledFabChild = styled.div<StyledFabChildProps>`
   bottom: ${({ theme }) => theme.gutters.size12};
-  opacity: ${({ $isOpen }) => $isOpen ? 1 : 0};
-  pointer-events: ${({ $isOpen }) => $isOpen ? 'undefined' : 'none'};
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  pointer-events: ${({ $isOpen }) => ($isOpen ? 'undefined' : 'none')};
   position: fixed;
   right: ${({ theme }) => theme.gutters.size2};
-  transition-delay: ${({ $delay, $isOpen }) => $isOpen ? `.${$delay}s` : undefined};
-  transition-duration: .35s;
+  transition-delay: ${({ $delay, $isOpen }) =>
+    $isOpen ? `.${$delay}s` : undefined};
+  transition-duration: 0.35s;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  transform: ${({ $isOpen, $translateX, $translateY }) => $isOpen ? `translate3d(${$translateX}, ${$translateY}, 0)` : 'rotateZ(90deg)'};
-  z-index: ${({ $isOpen, theme }) => $isOpen ? theme.zIndices.fab : theme.zIndices.hide};
+  transform: ${({ $isOpen, $translateX, $translateY }) =>
+    $isOpen
+      ? `translate3d(${$translateX}, ${$translateY}, 0)`
+      : 'rotateZ(90deg)'};
+  z-index: ${({ $isOpen, theme }) =>
+    $isOpen ? theme.zIndices.fab : theme.zIndices.hide};
 `;
 
 export type TFabItem = {
   variant: IconButtonVariant;
   iconName: IconName;
   onClick: () => void;
-}
+};
 
 type FabProps = {
   items: TFabItem[];
-}
+};
 
 export const Fab: FC<FabProps> = ({ items }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -113,23 +121,12 @@ export const Fab: FC<FabProps> = ({ items }) => {
 
   return (
     <StyledFab $isOpen={isOpen}>
-      {isOpen && (
-        <Backdrop
-          isHiding={false}
-          onClick={handleClose}
-        />
-      )}
+      {isOpen && <Backdrop isHiding={false} onClick={handleClose} />}
       <StyledFabButton
         $isOpen={isOpen}
         onClick={isOpen ? handleClose : handleOpen}
       >
-        <Icon
-          name="add"
-          color={colors.white}
-          width={25}
-          height={25}
-          pointer
-        />
+        <Icon name="add" color={colors.white} width={25} height={25} pointer />
       </StyledFabButton>
       {/* <StyledFabButton
         $isOpen={isOpen}

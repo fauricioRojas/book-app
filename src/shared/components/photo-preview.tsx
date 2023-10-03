@@ -7,7 +7,7 @@ import { Box, Icon } from '.';
 
 type StyledPhotoPreviewProps = {
   $backgroundImage: string;
-}
+};
 
 const StyledPhotoPreview = styled.div<StyledPhotoPreviewProps>`
   background-image: url(${({ $backgroundImage }) => $backgroundImage});
@@ -16,7 +16,7 @@ const StyledPhotoPreview = styled.div<StyledPhotoPreviewProps>`
   min-height: 150px;
   max-height: 300px;
   width: 100%;
-`
+`;
 const StyledTrashIconWrap = styled.div`
   align-items: center;
   backdrop-filter: ${({ theme }) => theme.backdropBlur};
@@ -29,30 +29,35 @@ const StyledTrashIconWrap = styled.div`
   top: ${({ theme }) => theme.gutters.size1};
   width: 30px;
   -webkit-backdrop-filter: ${({ theme }) => theme.backdropBlur};
-`
+`;
 
 type PhotoPreviewProps = {
   photo?: string;
   onRemovePhoto?: () => void;
-}
+};
 
-export const PhotoPreview: FC<PhotoPreviewProps> = ({ photo, onRemovePhoto }) => {
+export const PhotoPreview: FC<PhotoPreviewProps> = ({
+  photo,
+  onRemovePhoto,
+}) => {
   const { colors } = useTheme();
 
-  return photo && (
-    <Box position="relative">
-      {onRemovePhoto && (
-        <StyledTrashIconWrap>
-          <Icon
-            name="trash"
-            height={18}
-            width={16}
-            color={colors.error}
-            onClick={onRemovePhoto}
-          />
-        </StyledTrashIconWrap>
-      )}
-      <StyledPhotoPreview $backgroundImage={photo} />
-    </Box>
+  return (
+    photo && (
+      <Box position="relative">
+        {onRemovePhoto && (
+          <StyledTrashIconWrap>
+            <Icon
+              name="trash"
+              height={18}
+              width={16}
+              color={colors.error}
+              onClick={onRemovePhoto}
+            />
+          </StyledTrashIconWrap>
+        )}
+        <StyledPhotoPreview $backgroundImage={photo} />
+      </Box>
+    )
   );
 };

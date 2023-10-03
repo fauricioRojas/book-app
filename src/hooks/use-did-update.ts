@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export const useDidUpdate = (callback: () => void, props: any[]) => {
   const mountedRef = useRef<boolean>(false);

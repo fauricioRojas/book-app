@@ -1,37 +1,32 @@
 'use client';
 
-import { FC, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { FC, useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
-import { FormButtons } from "@/components";
-import { useDrawer, useLanguage, useSnackbar, useSupabase } from "@/contexts";
-import { useFormRules } from "@/hooks";
-import {
-  GridWrap,
-  Input,
-  Photo,
-  Textarea,
-} from "@/shared/components";
-import { TypeSelectorOption } from "@/shared/types";
-import { handleOnlyAllowNumbers } from "@/shared/utils";
-import { TABLES } from "@/supabase";
-import { MaintenancesSelector } from "./maintenances-selector";
+import { FormButtons } from '@/components';
+import { useDrawer, useLanguage, useSnackbar, useSupabase } from '@/contexts';
+import { useFormRules } from '@/hooks';
+import { GridWrap, Input, Photo, Textarea } from '@/shared/components';
+import { TypeSelectorOption } from '@/shared/types';
+import { handleOnlyAllowNumbers } from '@/shared/utils';
+import { TABLES } from '@/supabase';
+import { MaintenancesSelector } from './maintenances-selector';
 
 type MaintenancesForm = {
   cost: string;
   kilometers?: string;
   type: string;
-  date: Date |string;
+  date: Date | string;
   description?: string;
   photo?: string;
-}
+};
 
 type MaintenancesFormProps = {
   defaultValues?: MaintenancesForm;
   maintenanceId?: number;
   vehicleId: number;
   noteId?: number;
-}
+};
 
 export const MaintenancesForm: FC<MaintenancesFormProps> = ({
   defaultValues,
@@ -47,15 +42,17 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
     formState: { errors, isSubmitting },
   } = useForm<MaintenancesForm>({
     defaultValues: {
-      cost: "",
-      kilometers: "",
-      type: "",
-      date: "",
-      description: "",
+      cost: '',
+      kilometers: '',
+      type: '',
+      date: '',
+      description: '',
       photo: undefined,
     },
   });
-  const [mode, setMode] = useState<'selector' | 'form'>(isUpdateMode ? 'form' : 'selector');
+  const [mode, setMode] = useState<'selector' | 'form'>(
+    isUpdateMode ? 'form' : 'selector',
+  );
   const { REQUIRED } = useFormRules();
   const { hideDrawer } = useDrawer();
   const { translation } = useLanguage();
@@ -71,29 +68,35 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
       setValue('description', defaultValues.description);
       setValue('photo', defaultValues.photo);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValues]);
 
   const handleSetType = (type: TypeSelectorOption) => {
     setValue('type', type.value);
-    setMode('form')
+    setMode('form');
   };
 
   const handleShowMaintenancesSelector = () => setMode('selector');
 
   const insertMaintenance = async (maintenanceData: MaintenancesForm) => {
-    const { data: noteData, error: noteError } = await supabaseClient.from(TABLES.NOTES).insert({
-      type: maintenanceData.type,
-      date: new Date(maintenanceData.date),
-      description: maintenanceData.description,
-      photo: maintenanceData.photo,
-    }).select('id').single();
-    const { error: maintenanceError } = await supabaseClient.from(TABLES.MAINTENANCES).insert({
-      vehicleId,
-      noteId: noteData?.id,
-      cost: maintenanceData.cost,
-      kilometers: maintenanceData.kilometers || null,
-    });
+    const { data: noteData, error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .insert({
+        type: maintenanceData.type,
+        date: new Date(maintenanceData.date),
+        description: maintenanceData.description,
+        photo: maintenanceData.photo,
+      })
+      .select('id')
+      .single();
+    const { error: maintenanceError } = await supabaseClient
+      .from(TABLES.MAINTENANCES)
+      .insert({
+        vehicleId,
+        noteId: noteData?.id,
+        cost: maintenanceData.cost,
+        kilometers: maintenanceData.kilometers || null,
+      });
 
     if (noteError || maintenanceError) {
       showSnackbar({
@@ -109,16 +112,22 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
   };
 
   const updateMaintenance = async (maintenanceData: MaintenancesForm) => {
-    const { error: noteError } = await supabaseClient.from(TABLES.NOTES).update({
-      type: maintenanceData.type,
-      date: new Date(maintenanceData.date),
-      description: maintenanceData.description,
-      photo: maintenanceData.photo,
-    }).match({ id: noteId });
-    const { error: maintenanceError } = await supabaseClient.from(TABLES.MAINTENANCES).update({
-      cost: maintenanceData.cost,
-      kilometers: maintenanceData.kilometers || null,
-    }).match({ id: maintenanceId });
+    const { error: noteError } = await supabaseClient
+      .from(TABLES.NOTES)
+      .update({
+        type: maintenanceData.type,
+        date: new Date(maintenanceData.date),
+        description: maintenanceData.description,
+        photo: maintenanceData.photo,
+      })
+      .match({ id: noteId });
+    const { error: maintenanceError } = await supabaseClient
+      .from(TABLES.MAINTENANCES)
+      .update({
+        cost: maintenanceData.cost,
+        kilometers: maintenanceData.kilometers || null,
+      })
+      .match({ id: maintenanceId });
 
     if (noteError || maintenanceError) {
       showSnackbar({
@@ -143,7 +152,7 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
   };
 
   if (mode === 'selector') {
-    return <MaintenancesSelector onSelect={handleSetType} />
+    return <MaintenancesSelector onSelect={handleSetType} />;
   }
 
   return (
@@ -153,9 +162,7 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
           control={control}
           name="cost"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.cost}
@@ -170,9 +177,7 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
         <Controller
           control={control}
           name="kilometers"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               value={value}
               label={translation.kilometers}
@@ -188,9 +193,7 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
           control={control}
           name="date"
           rules={REQUIRED}
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               type="date"
               value={value}
@@ -204,9 +207,7 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
         <Controller
           control={control}
           name="description"
-          render={({
-            field: { onChange, onBlur, value },
-          }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Textarea
               value={value}
               label={translation.description}
@@ -219,15 +220,15 @@ export const MaintenancesForm: FC<MaintenancesFormProps> = ({
         <Controller
           control={control}
           name="photo"
-          render={({
-            field: { onChange, value },
-          }) => (
+          render={({ field: { onChange, value } }) => (
             <Photo photo={value} onChangePhoto={onChange} />
           )}
         />
         <FormButtons
           disabledSave={isSubmitting}
-          onClickBack={isUpdateMode ? undefined : handleShowMaintenancesSelector}
+          onClickBack={
+            isUpdateMode ? undefined : handleShowMaintenancesSelector
+          }
         />
       </GridWrap>
     </form>

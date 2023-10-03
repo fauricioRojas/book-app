@@ -14,10 +14,7 @@ export const PetsListItem: FC<PetsListItemProps> = ({
   id,
   name,
   breed,
-  notes: {
-    date,
-    type,
-  },
+  notes: { date, type },
 }) => {
   const { colors } = useTheme();
 
@@ -27,7 +24,9 @@ export const PetsListItem: FC<PetsListItemProps> = ({
         <FlexWrap justify="space-between" gap={2}>
           <FlexWrap direction="column" gap={4}>
             <FlexWrap direction="column" gap={1}>
-              <Typography variant="h5" fontWeight="bold">{name}</Typography>
+              <Typography variant="h5" fontWeight="bold">
+                {name}
+              </Typography>
               <Typography variant="label">{breed}</Typography>
             </FlexWrap>
             <Typography variant="label">{formatDate(date)}</Typography>

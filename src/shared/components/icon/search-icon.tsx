@@ -21,11 +21,7 @@ export const SearchIcon: FC<CommonIconProps> = ({
     $isClickable={pointer || !!props.onClick}
     {...props}
   >
-    <rect
-      width="256"
-      height="256"
-      fill="none"
-    />
+    <rect width="256" height="256" fill="none" />
     <circle
       cx="115.997"
       cy="116"

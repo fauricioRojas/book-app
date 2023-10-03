@@ -1,18 +1,14 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-import { Box, Fab, FlexWrap, IconButton, TFabItem } from "@/shared/components";
+import { Box, Fab, FlexWrap, IconButton, TFabItem } from '@/shared/components';
 
 type ActionsProps = {
   onDelete?: () => void;
   onEdit?: () => void;
   onAdd?: () => void;
-}
+};
 
-export const Actions: FC<ActionsProps> = ({
-  onDelete,
-  onEdit,
-  onAdd,
-}) => {
+export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
   const generateItems = () => {
     const items = [];
     if (onAdd) {

@@ -1,36 +1,42 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
-import { useTheme } from "styled-components";
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useState } from 'react';
+import { useTheme } from 'styled-components';
 
-import { Actions } from "@/components";
-import { useDrawer, useLanguage, useMeasure, useModal, useSnackbar, useSupabase } from "@/contexts";
-import { useDidUpdate } from "@/hooks";
-import { FlexWrap, Icon, PhotoPreview, Typography } from "@/shared/components";
-import { ICON_BY_TYPE, ROUTES } from "@/shared/constants";
-import { formatDate, formatLength, formatMoney } from "@/shared/utils";
-import { ACTIONS, SCHEMAS, SELECT, TABLES, TMaintenance } from "@/supabase";
-import { MaintenancesForm } from "../../maintenances-form";
+import { Actions } from '@/components';
+import {
+  useDrawer,
+  useLanguage,
+  useMeasure,
+  useModal,
+  useSnackbar,
+  useSupabase,
+} from '@/contexts';
+import { useDidUpdate } from '@/hooks';
+import { FlexWrap, Icon, PhotoPreview, Typography } from '@/shared/components';
+import { ICON_BY_TYPE, ROUTES } from '@/shared/constants';
+import { formatDate, formatLength, formatMoney } from '@/shared/utils';
+import { ACTIONS, SCHEMAS, SELECT, TABLES, TMaintenance } from '@/supabase';
+import { MaintenancesForm } from '../../maintenances-form';
 
 const abortController = new AbortController();
 
 type MaintenanceProps = {
   serverMaintenance: TMaintenance;
-}
+};
 
-export const Maintenance: FC<MaintenanceProps> = ({
-  serverMaintenance
-}) => {
-  const [{
-    id,
-    notes,
-    cost,
-    kilometers,
-    vehicles: {
-      id: vehicleId,
-    }
-  }, setMaintenance] = useState<TMaintenance>(serverMaintenance);
+export const Maintenance: FC<MaintenanceProps> = ({ serverMaintenance }) => {
+  const [
+    {
+      id,
+      notes,
+      cost,
+      kilometers,
+      vehicles: { id: vehicleId },
+    },
+    setMaintenance,
+  ] = useState<TMaintenance>(serverMaintenance);
   const { translation } = useLanguage();
   const { colors } = useTheme();
   const router = useRouter();
@@ -45,16 +51,20 @@ export const Maintenance: FC<MaintenanceProps> = ({
   useEffect(() => {
     const channel = supabaseClient
       .channel('maintenance')
-      .on('postgres_changes', {
-        event: ACTIONS.UPDATE,
-        schema: SCHEMAS.PUBLIC,
-        table: TABLES.MAINTENANCES,
-      }, async (payload: any) => {
-        const updatedMaintenance = await findMaintenanceById(payload.new.id);
-        if (updatedMaintenance) {
-          setMaintenance(updatedMaintenance);
-        }
-      })
+      .on(
+        'postgres_changes',
+        {
+          event: ACTIONS.UPDATE,
+          schema: SCHEMAS.PUBLIC,
+          table: TABLES.MAINTENANCES,
+        },
+        async (payload: any) => {
+          const updatedMaintenance = await findMaintenanceById(payload.new.id);
+          if (updatedMaintenance) {
+            setMaintenance(updatedMaintenance);
+          }
+        },
+      )
       .subscribe();
 
     return () => {
@@ -96,13 +106,11 @@ export const Maintenance: FC<MaintenanceProps> = ({
   };
 
   const handleDelete = async () => {
-    const [
-      { error: noteError },
-      { error: maintenanceError }
-    ] = await Promise.all([
-      supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
-      supabaseClient.from(TABLES.MAINTENANCES).delete().eq('id', id),
-    ]);
+    const [{ error: noteError }, { error: maintenanceError }] =
+      await Promise.all([
+        supabaseClient.from(TABLES.NOTES).delete().eq('id', notes.id),
+        supabaseClient.from(TABLES.MAINTENANCES).delete().eq('id', id),
+      ]);
 
     console.log('noteError: ', noteError);
     console.log('maintenanceError: ', maintenanceError);
@@ -118,7 +126,7 @@ export const Maintenance: FC<MaintenanceProps> = ({
         message: translation.deletedMaintenance,
       });
     }
-  }
+  };
 
   const handleShowDeleteConfirmation = () => {
     showConfirmationModal({
@@ -154,29 +162,47 @@ export const Maintenance: FC<MaintenanceProps> = ({
       <FlexWrap direction="column" gap={4}>
         <FlexWrap gap={4}>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.date}</Typography>
-            <Typography variant="label" color="secondary-text">{formatDate(notes.date)}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.date}
+            </Typography>
+            <Typography variant="label" color="secondary-text">
+              {formatDate(notes.date)}
+            </Typography>
           </FlexWrap>
           <FlexWrap direction="column" basis="50%" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.cost}</Typography>
-            <Typography variant="label" color="secondary-text">{formatMoney(cost, currency)}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.cost}
+            </Typography>
+            <Typography variant="label" color="secondary-text">
+              {formatMoney(cost, currency)}
+            </Typography>
           </FlexWrap>
         </FlexWrap>
         {kilometers && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.weight}</Typography>
-            <Typography variant="label" color="secondary-text">{formatLength(kilometers, lengthUnit)}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.weight}
+            </Typography>
+            <Typography variant="label" color="secondary-text">
+              {formatLength(kilometers, lengthUnit)}
+            </Typography>
           </FlexWrap>
         )}
         {notes.description && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.description}</Typography>
-            <Typography variant="p" color="secondary-text">{notes.description}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.description}
+            </Typography>
+            <Typography variant="p" color="secondary-text">
+              {notes.description}
+            </Typography>
           </FlexWrap>
         )}
         {notes.photo && (
           <FlexWrap direction="column" gap={2}>
-            <Typography variant="h5" fontWeight="bold">{translation.photo}</Typography>
+            <Typography variant="h5" fontWeight="bold">
+              {translation.photo}
+            </Typography>
             <PhotoPreview photo={notes.photo} />
           </FlexWrap>
         )}

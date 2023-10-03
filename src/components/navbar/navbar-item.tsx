@@ -18,7 +18,7 @@ const StyledLink = styled(NextLink)`
   ${({ theme }) => theme.breakpoints.lg} {
     border-radius: ${({ theme }) => theme.borderRadius};
     padding: ${({ theme }) => `${theme.gutters.size1} ${theme.gutters.size0}`};
-    transition: background-color .15s ease-in-out;
+    transition: background-color 0.15s ease-in-out;
     width: 100px;
 
     &:hover {
@@ -30,7 +30,7 @@ const StyledLink = styled(NextLink)`
 type NavbarItemProps = TNavbarItem;
 
 export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const { colors } = useTheme();
   const isActive = pathname.includes(href);
 
