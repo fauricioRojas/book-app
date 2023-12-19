@@ -19,13 +19,13 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 1,
         label: translation.engineOilChange,
         value: ENGLISH.engineOilChange,
-        height: 40,
-        width: 40,
+        size: 40,
       },
       {
         id: 2,
         label: translation.refuel,
         value: ENGLISH.refuel,
+        size: 25,
       },
       {
         id: 3,
@@ -91,8 +91,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 15,
         label: translation.oilFilterChange,
         value: ENGLISH.oilFilterChange,
-        width: 25,
-        height: 25,
+        size: 25,
       },
       {
         id: 16,
@@ -113,8 +112,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 19,
         label: translation.brakesAdjustment,
         value: ENGLISH.brakesAdjustment,
-        width: 35,
-        height: 35,
+        size: 35,
       },
       {
         id: 20,
@@ -135,8 +133,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 23,
         label: translation.motorcycleFuseReplacement,
         value: ENGLISH.motorcycleFuseReplacement,
-        width: 25,
-        height: 25,
+        size: 25,
       },
       {
         id: 24,
@@ -147,8 +144,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 25,
         label: translation.handleBarChange,
         value: ENGLISH.handleBarChange,
-        height: 40,
-        width: 40,
+        size: 40,
       },
       {
         id: 26,
@@ -159,8 +155,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 27,
         label: translation.gearChange,
         value: ENGLISH.gearChange,
-        height: 30,
-        width: 30,
+        size: 30,
       },
       {
         id: 28,
@@ -181,15 +176,13 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 31,
         label: translation.acRevision,
         value: ENGLISH.acRevision,
-        height: 35,
-        width: 35,
+        size: 35,
       },
       {
         id: 32,
         label: translation.fuelFilterChange,
         value: ENGLISH.fuelFilterChange,
-        height: 35,
-        width: 35,
+        size: 35,
       },
       {
         id: 33,
@@ -200,8 +193,7 @@ export const MaintenancesSelector: FC<MaintenancesSelectorProps> = ({
         id: 34,
         label: translation.brakeFluidChange,
         value: ENGLISH.brakeFluidChange,
-        height: 35,
-        width: 35,
+        size: 35,
       },
       {
         id: 35,

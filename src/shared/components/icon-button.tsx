@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { Icon, type IconName } from '.';
+import { Icon, type IconName, type IconSize } from '.';
 
 type IconButtonSolidVariant = 'primary' | 'secondary' | 'error' | 'warning';
 export type IconButtonVariant =
@@ -56,8 +56,7 @@ type IconButtonProps = {
   className?: string;
   iconName: IconName;
   variant: IconButtonVariant;
-  width?: number;
-  height?: number;
+  size?: IconSize;
   disabled?: boolean;
   onClick?: () => void;
 };
@@ -65,8 +64,7 @@ type IconButtonProps = {
 export const IconButton: FC<IconButtonProps> = ({
   variant,
   iconName,
-  width = 25,
-  height = 25,
+  size,
   ...props
 }) => {
   const { colors } = useTheme();
@@ -81,8 +79,7 @@ export const IconButton: FC<IconButtonProps> = ({
       <Icon
         name={iconName}
         color={isGhost ? colors[formattedVariant] : colors.white}
-        width={width}
-        height={height}
+        size={size}
         pointer
       />
     </StyledIconButton>

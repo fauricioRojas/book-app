@@ -123,8 +123,7 @@ export const Drawer: FC<DrawerProps> = ({
           <Icon
             name="cancel"
             color={colors.primaryText}
-            width={15}
-            height={15}
+            size={15}
             onClick={handleClose}
           />
         </StyledDrawerHeader>

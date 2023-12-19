@@ -80,8 +80,7 @@ export const TypeSelector: FC<TypeSelectorProps> = ({ types, onSelect }) => {
               <Icon
                 name={ICON_BY_TYPE[type.value]}
                 color={colors.secondaryText}
-                height={type.height ?? 30}
-                width={type.width ?? 30}
+                size={type.size ?? 30}
                 pointer
               />
               <Typography

@@ -188,7 +188,7 @@ type FlexWrapProps = PropsWithChildren & {
 };
 
 export const FlexWrap: FC<FlexWrapProps> = ({
-  align,
+  align = 'stretch',
   alignSm,
   alignMd,
   alignLg,
@@ -219,7 +219,7 @@ export const FlexWrap: FC<FlexWrapProps> = ({
   growLg,
   growXl,
   growXxl,
-  justify,
+  justify = 'flex-start',
   justifySm,
   justifyMd,
   justifyLg,
@@ -227,7 +227,7 @@ export const FlexWrap: FC<FlexWrapProps> = ({
   justifyXxl,
   mb,
   position,
-  wrap,
+  wrap = 'wrap',
   wrapSm,
   wrapMd,
   wrapLg,

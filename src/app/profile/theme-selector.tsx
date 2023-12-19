@@ -19,12 +19,7 @@ export const ThemeSelector = () => {
       <FlexWrap justify="space-between">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>
-            <Icon
-              name="moon"
-              color={colors.secondaryText}
-              width={15}
-              height={15}
-            />
+            <Icon name="moon" size={18} color={colors.secondaryText} />
           </StyledIconWrapper>
           <Typography variant="label">{translation.theme}</Typography>
         </FlexWrap>

@@ -7,15 +7,14 @@ export const TickIcon: FC<CommonIconProps> = ({
   pointer,
   ml,
   mr,
-  width = 20,
-  height = 20,
+  size = 'sm',
   ...props
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 503.995 424"
-    width={width}
-    height={height}
+    $color={color}
+    $size={size}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
@@ -74,7 +73,7 @@ export const TickIcon: FC<CommonIconProps> = ({
         c3.79-0.85,7.73-1.21,11.76-1.1c-9.57,7.81-17.99,16.82-25.08,26.89c-11.93,16.91-19.9,36.74-23.15,57.46l-18.03,9.65
         C395.217,133.5,394.467,129.66,393.607,125.88z M438.537,142.44c-0.75,2.49-2.43,4.54-4.73,5.77l-35.45,18.97
         c-0.06-7.24-0.5-14.37-1.33-21.36l27.51-14.72c4.75-2.54,10.69-0.76,13.25,3.96C439.018,137.34,439.287,139.96,438.537,142.44z"
-      fill={color}
+      fill="currentColor"
     />
   </StyledSvg>
 );

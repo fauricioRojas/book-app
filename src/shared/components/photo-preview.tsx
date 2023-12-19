@@ -49,8 +49,7 @@ export const PhotoPreview: FC<PhotoPreviewProps> = ({
           <StyledTrashIconWrap>
             <Icon
               name="trash"
-              height={18}
-              width={16}
+              size={18}
               color={colors.error}
               onClick={onRemovePhoto}
             />

@@ -25,8 +25,7 @@ export const RemindersListItem: FC<RemindersListItemProps> = ({
         <FlexWrap align="center" gap={3}>
           <Icon
             name={ICON_BY_TYPE[type]}
-            height={22}
-            width={22}
+            size={22}
             color={colors.primaryText}
           />
           <Typography variant="h5" fontWeight="bold">

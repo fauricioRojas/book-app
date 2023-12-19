@@ -37,8 +37,7 @@ export const ProceduresListItem: FC<ProceduresListItemProps> = ({
             <Icon
               name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
-              height={45}
-              width={45}
+              size={45}
               pointer
             />
           </FlexWrap>

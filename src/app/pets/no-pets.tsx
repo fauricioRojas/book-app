@@ -22,8 +22,7 @@ export const NoPets = () => {
     <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
       <Icon
         name="footprint"
-        height={50}
-        width={50}
+        size="xxl"
         color={colors.secondary400}
       />
       <Typography variant="h3" color="primary-text" fontWeight="bold">

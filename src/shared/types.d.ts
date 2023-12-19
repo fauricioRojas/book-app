@@ -1,4 +1,5 @@
 import type { ZIndices } from '@/theme/types';
+import type { IconSize } from '@/shared/components';
 
 export type GridColumn = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 
@@ -40,6 +41,5 @@ export type TypeSelectorOption = {
   id: number;
   label: string;
   value: string;
-  height?: number;
-  width?: number;
+  size?: IconSize;
 };

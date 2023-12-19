@@ -46,8 +46,7 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
             <IconButton
               iconName="trash"
               variant="error-ghost"
-              height={25}
-              width={25}
+              size={25}
               onClick={onDelete}
             />
           )}
@@ -55,8 +54,7 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
             <IconButton
               iconName="pencil"
               variant="primary-ghost"
-              height={25}
-              width={25}
+              size={25}
               onClick={onEdit}
             />
           )}
@@ -64,8 +62,7 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
             <IconButton
               iconName="add"
               variant="primary-ghost"
-              height={25}
-              width={25}
+              size={25}
               onClick={onAdd}
             />
           )}

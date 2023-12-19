@@ -48,8 +48,6 @@ export const Account = () => {
           <IconButton
             iconName="sign-out"
             variant="error-ghost"
-            height={20}
-            width={20}
             disabled={disabled}
             onClick={handleSignOut}
           />

@@ -187,9 +187,8 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
       <FlexWrap align="center" justify="space-between" mb={8}>
         <FlexWrap align="center" gap={2}>
           <Icon
-            name="arrow-back"
-            height={25}
-            width={25}
+            name="arrow-left"
+            size={25}
             color={colors.primaryText}
             onClick={router.back}
           />
@@ -199,8 +198,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
             </Typography>
             <Icon
               name={ICON_BY_TYPE[notes.type]}
-              height={25}
-              width={25}
+              size={25}
               color={colors.primaryText}
             />
           </FlexWrap>

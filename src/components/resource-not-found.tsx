@@ -34,8 +34,7 @@ export const ResourceNotFound: FC<ResourceNotFoundProps> = ({ page }) => {
     <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
       <Icon
         name="sad-emoji"
-        height={75}
-        width={75}
+        size={75}
         color={colors.secondary400}
       />
       <Typography variant="h3" color="primary-text" fontWeight="bold">

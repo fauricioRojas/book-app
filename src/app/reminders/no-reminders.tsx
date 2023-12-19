@@ -11,7 +11,7 @@ export const NoReminders = () => {
 
   return (
     <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
-      <Icon name="bell" height={50} width={50} color={colors.secondary400} />
+      <Icon name="bell" size="xxl" color={colors.secondary400} />
       <Typography variant="h3" color="primary-text" fontWeight="bold">
         {translation.noReminders}
       </Typography>

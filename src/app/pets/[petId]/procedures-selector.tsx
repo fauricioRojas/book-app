@@ -39,8 +39,6 @@ export const ProceduresSelector: FC<ProceduresSelectorProps> = ({
         id: 5,
         label: translation.bath,
         value: ENGLISH.bath,
-        height: 35,
-        width: 35,
       },
       {
         id: 6,

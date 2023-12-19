@@ -7,15 +7,14 @@ export const CancelIcon: FC<CommonIconProps> = ({
   pointer,
   ml,
   mr,
-  width = 20,
-  height = 20,
+  size = 'sm',
   ...props
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 14 14"
-    width={width}
-    height={height}
+    $color={color}
+    $size={size}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
@@ -24,7 +23,7 @@ export const CancelIcon: FC<CommonIconProps> = ({
     <path
       fill="none"
       fillRule="evenodd"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="2"

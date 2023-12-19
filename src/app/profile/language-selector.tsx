@@ -19,12 +19,7 @@ export const LanguageSelector = () => {
       <FlexWrap justify="space-between" align="center">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>
-            <Icon
-              name="translate"
-              color={colors.secondaryText}
-              width={22}
-              height={22}
-            />
+            <Icon name="translate" color={colors.secondaryText} />
           </StyledIconWrapper>
           <Typography variant="label">{translation.language}</Typography>
         </FlexWrap>

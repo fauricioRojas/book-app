@@ -7,15 +7,14 @@ export const CarFuseIcon: FC<CommonIconProps> = ({
   pointer,
   ml,
   mr,
-  width = 20,
-  height = 20,
+  size = 'sm',
   ...props
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 128 128"
-    width={width}
-    height={height}
+    $color={color}
+    $size={size}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
@@ -23,7 +22,7 @@ export const CarFuseIcon: FC<CommonIconProps> = ({
   >
     <path
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit="10"
@@ -35,7 +34,7 @@ export const CarFuseIcon: FC<CommonIconProps> = ({
       cy="70"
       r="4"
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit="10"
@@ -46,7 +45,7 @@ export const CarFuseIcon: FC<CommonIconProps> = ({
       cy="70"
       r="4"
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit="10"
@@ -54,7 +53,7 @@ export const CarFuseIcon: FC<CommonIconProps> = ({
     />
     <path
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit="10"

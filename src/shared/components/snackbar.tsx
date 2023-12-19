@@ -90,8 +90,7 @@ export const Snackbar: FC<SnackbarProps> = ({
           <Icon
             name={ICON_NAME_MAPPER[type]}
             color={colors[type]}
-            width={22}
-            height={22}
+            size={22}
           />
           <Typography variant="label">{message}</Typography>
         </FlexWrap>

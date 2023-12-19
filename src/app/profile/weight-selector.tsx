@@ -19,12 +19,7 @@ export const WeightSelector = () => {
       <FlexWrap justify="space-between" align="center">
         <FlexWrap align="center" gap={2}>
           <StyledIconWrapper>
-            <Icon
-              name="weight"
-              color={colors.secondaryText}
-              width={18}
-              height={18}
-            />
+            <Icon name="weight" color={colors.secondaryText} />
           </StyledIconWrapper>
           <Typography variant="label">{translation.weight}</Typography>
         </FlexWrap>

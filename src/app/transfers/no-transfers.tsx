@@ -13,8 +13,7 @@ export const NoTransfers = () => {
     <AbsoluteWrap gap={4} isNavbarVisible zIndex="hide">
       <Icon
         name="transfer"
-        height={50}
-        width={50}
+        size="xxl"
         color={colors.secondary400}
       />
       <Typography variant="h3" color="primary-text" fontWeight="bold">

@@ -200,8 +200,7 @@ export const Button: FC<ButtonProps> = (props) => {
         setLeftIcon(
           <Icon
             name={props.leftIconName}
-            width={18}
-            height={18}
+            size={18}
             color={colors.white}
             mr={2}
             pointer
@@ -212,8 +211,7 @@ export const Button: FC<ButtonProps> = (props) => {
         setRightIcon(
           <Icon
             name={props.rightIconName}
-            width={18}
-            height={18}
+            size={18}
             color={colors.white}
             ml={2}
             pointer

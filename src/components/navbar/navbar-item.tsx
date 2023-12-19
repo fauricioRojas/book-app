@@ -39,8 +39,6 @@ export const NavbarItem: FC<NavbarItemProps> = ({ iconName, text, href }) => {
       <Icon
         name={iconName}
         color={isActive ? colors.primary : colors.secondaryText}
-        width={20}
-        height={20}
         pointer
       />
       <Typography

@@ -7,23 +7,26 @@ export const ArrowDownIcon: FC<CommonIconProps> = ({
   pointer,
   ml,
   mr,
-  width = 20,
-  height = 20,
+  size ='sm',
   ...props
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 48 48"
-    width={width}
-    height={height}
+    fill="none"
+    viewBox="0 0 14 8"
+    $color={color}
+    $size={size}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
     {...props}
   >
     <path
-      fill={color}
-      d="M14.83 16.42 24 25.59l9.17-9.17L36 19.25l-12 12-12-12z"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
     />
   </StyledSvg>
 );

@@ -35,8 +35,7 @@ export const VehiclesListItem: FC<VehiclesListItemProps> = ({
             <Icon
               name={ICON_BY_TYPE[type]}
               color={colors.primaryText}
-              height={50}
-              width={50}
+              size="xxl"
               pointer
             />
           </FlexWrap>

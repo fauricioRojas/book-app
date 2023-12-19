@@ -7,15 +7,14 @@ export const SearchIcon: FC<CommonIconProps> = ({
   pointer,
   ml,
   mr,
-  width = 20,
-  height = 20,
+  size = 'sm',
   ...props
 }) => (
   <StyledSvg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 256.001 256.001"
-    width={width}
-    height={height}
+    $color={color}
+    $size={size}
     $ml={ml}
     $mr={mr}
     $isClickable={pointer || !!props.onClick}
@@ -27,7 +26,7 @@ export const SearchIcon: FC<CommonIconProps> = ({
       cy="116"
       r="84"
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="24"
@@ -38,7 +37,7 @@ export const SearchIcon: FC<CommonIconProps> = ({
       y1="175.4"
       y2="224.001"
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth="24"

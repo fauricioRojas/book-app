@@ -126,7 +126,7 @@ export const Fab: FC<FabProps> = ({ items }) => {
         $isOpen={isOpen}
         onClick={isOpen ? handleClose : handleOpen}
       >
-        <Icon name="add" color={colors.white} width={25} height={25} pointer />
+        <Icon name="add" color={colors.white} size="md" pointer />
       </StyledFabButton>
       {/* <StyledFabButton
         $isOpen={isOpen}
@@ -149,8 +149,7 @@ export const Fab: FC<FabProps> = ({ items }) => {
             <IconButton
               variant={item.variant}
               iconName={item.iconName}
-              height={22}
-              width={22}
+              size={22}
               onClick={handleClick(item.onClick)}
             />
           </StyledFabChild>

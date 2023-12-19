@@ -81,8 +81,7 @@ export const Popover: FC<PopoverProps> = ({ title, description }) => {
       <Icon
         name="info"
         color={theme.colors.secondaryText}
-        width={18}
-        height={18}
+        size={18}
         onClick={handleOnClick}
       />
       {isVisible && (

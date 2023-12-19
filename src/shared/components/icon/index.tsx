@@ -1,13 +1,13 @@
 import { FC, useMemo } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { marginLeft, marginRight } from '@/shared/styles';
 import type { Size } from '@/shared/types';
 import { ACAirFilterIcon } from './ac-air-filter-icon';
 import { ACIcon } from './ac-icon';
 import { AddIcon } from './add-icon';
-import { ArrowBackIcon } from './arrow-back-icon';
 import { ArrowDownIcon } from './arrow-down-icon';
+import { ArrowLeftIcon } from './arrow-left-icon';
 import { BallJointsIcon } from './ball-joints-icon';
 import { BatteryIcon } from './battery-icon';
 import { BellIcon } from './bell-icon';
@@ -95,25 +95,54 @@ import { WarningIcon } from './warning-icon';
 import { WaterDropIcon } from './water-drop-icon';
 import { WeightIcon } from './weight-icon';
 
+export type IconSize = number | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 type StyledIconProps = {
+  $color?: string;
   $isClickable?: boolean;
   $ml?: Size;
   $mr?: Size;
+  $size: IconSize;
 };
 
 export const StyledSvg = styled.svg<StyledIconProps>`
+  color: ${({ $color, theme }) => $color ?? theme.colors.primaryText};
   cursor: ${({ $isClickable }) => ($isClickable ? 'pointer' : 'default')};
   transition: color 0.2s ease;
   ${marginLeft};
   ${marginRight};
+
+  ${({ $size }) => typeof $size === 'number' && css`
+    height: ${`${$size}px`};
+    width: ${`${$size}px`};
+  `};
+  ${({ $size }) => $size === 'sm' && css`
+    height: 20px;
+    width: 20px;
+  `};
+  ${({ $size }) => $size === 'md' && css`
+    height: 26px;
+    width: 26px;
+  `};
+  ${({ $size }) => $size === 'lg' && css`
+    height: 32px;
+    width: 32px;
+  `};
+  ${({ $size }) => $size === 'xl' && css`
+    height: 40px;
+    width: 40px;
+  `};
+  ${({ $size }) => $size === 'xxl' && css`
+    height: 50px;
+    width: 50px;
+  `};
 `;
 
 const ICON_MAPPER = {
   'ac-air-filter': ACAirFilterIcon,
   ac: ACIcon,
   add: AddIcon,
-  'arrow-back': ArrowBackIcon,
   'arrow-down': ArrowDownIcon,
+  'arrow-left': ArrowLeftIcon,
   'ball-joints': BallJointsIcon,
   battery: BatteryIcon,
   bell: BellIcon,
@@ -208,10 +237,9 @@ export type CommonIconProps = {
   className?: string;
   pointer?: boolean;
   color?: string;
-  width?: number;
-  height?: number;
   mr?: Size;
   ml?: Size;
+  size?: IconSize;
   onClick?: () => void;
 };
 
@@ -219,8 +247,8 @@ type IconProps = CommonIconProps & {
   name: IconName;
 };
 
-export const Icon: FC<IconProps> = ({ name, color = '#000', ...props }) => {
+export const Icon: FC<IconProps> = ({ name, ...props }) => {
   const Element = useMemo(() => ICON_MAPPER[name], [name]);
 
-  return <Element color={color} {...props} />;
+  return <Element {...props} />;
 };
