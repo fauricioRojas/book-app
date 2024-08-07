@@ -13,11 +13,18 @@ const getTranslateValues = (length: number) => {
       { x: '-1.8rem', y: '-4.5rem' },
       { x: '-4rem', y: '-2rem' },
     ];
+  } else if (length === 3) {
+    return [
+      { x: '-0.5rem', y: '-5rem' },
+      { x: '-3.4rem', y: '-3.9rem' },
+      { x: '-4.5rem', y: '-1rem' },
+    ];
   }
   return [
-    { x: '-0.5rem', y: '-5rem' },
-    { x: '-3.4rem', y: '-3.9rem' },
-    { x: '-4.5rem', y: '-1rem' },
+    { x: '-0.1rem', y: '-4.75rem' },
+    { x: '-3rem', y: '-4rem' },
+    { x: '-4rem', y: '-1.25rem' },
+    { x: '-3rem', y: '1.5rem' },
   ];
 };
 

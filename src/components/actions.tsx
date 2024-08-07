@@ -4,13 +4,15 @@ import { Box, Fab, FlexWrap, IconButton, TFabItem } from '@/shared/components';
 
 type ActionsProps = {
   onDelete?: () => void;
+  onTransfer?: () => void;
   onEdit?: () => void;
   onAdd?: () => void;
 };
 
-export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
+export const Actions: FC<ActionsProps> = ({ onDelete, onTransfer, onEdit, onAdd }) => {
   const generateItems = () => {
-    const items = [];
+    const items: TFabItem[] = [];
+
     if (onAdd) {
       items.push({
         variant: 'primary',
@@ -25,6 +27,13 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
         onClick: onEdit,
       });
     }
+    if (onTransfer) {
+      items.push({
+        variant: 'primary',
+        iconName: 'transfer',
+        onClick: onTransfer,
+      });
+    }
     if (onDelete) {
       items.push({
         variant: 'error',
@@ -32,7 +41,7 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
         onClick: onDelete,
       });
     }
-    return items as TFabItem[];
+    return items;
   };
 
   return (
@@ -56,6 +65,14 @@ export const Actions: FC<ActionsProps> = ({ onDelete, onEdit, onAdd }) => {
               variant="primary-ghost"
               size={25}
               onClick={onEdit}
+            />
+          )}
+          {onTransfer && (
+            <IconButton
+              iconName="transfer"
+              variant="primary-ghost"
+              size={25}
+              onClick={onTransfer}
             />
           )}
           {onAdd && (

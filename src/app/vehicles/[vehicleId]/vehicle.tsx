@@ -149,6 +149,15 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
     });
   };
 
+  const handleTransfer = () => {
+    showDrawer({
+      title: translation.transferVehicle,
+      children: (
+        <h1>Transfer</h1>
+      ),
+    });
+  };
+
   const handleDelete = async () => {
     const [
       { error: maintenancesError },
@@ -205,6 +214,7 @@ export const Vehicle: FC<VehicleProps> = ({ serverVehicle }) => {
         </FlexWrap>
         <Actions
           onDelete={handleShowDeleteConfirmation}
+          onTransfer={handleTransfer}
           onEdit={handleShowVehiclesFormInEditMode}
           onAdd={handleShowMaintenancesForm}
         />

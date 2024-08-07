@@ -175,6 +175,7 @@ export const SPANISH: LanguageTranslation = {
   alreadyHaveAnAccount: 'Ya tienes una cuenta? Inicie sesión aquí',
   signOutError: 'Hubo un error al cerrar sesión',
   // Transfer
+  transferVehicle: 'Transferir vehículo',
   transfers: 'Transferencias',
   noTransfers: 'No tiene transferencias',
   noTransfersMessage: 'Las transferencias que haga aparecerán aquí',

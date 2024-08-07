@@ -172,6 +172,7 @@ export type LanguageTranslation = Language & {
   alreadyHaveAnAccount: string;
   signOutError: string;
   // Transfers
+  transferVehicle: string;
   transfers: string;
   noTransfers: string;
   noTransfersMessage: string;
